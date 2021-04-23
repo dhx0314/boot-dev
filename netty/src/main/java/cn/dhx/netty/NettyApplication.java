@@ -1,14 +1,13 @@
-package cn.dhx.mybatis;
+package cn.dhx.netty;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MybatisApplication {
+public class NettyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MybatisApplication.class, args);
-
+        SpringApplication.run(NettyApplication.class, args);
     }
 
 }
