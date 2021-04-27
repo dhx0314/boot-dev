@@ -1,6 +1,7 @@
 package cn.dhx.mybatis.web;
 
 
+import cn.dhx.mybatis.config.GlobalConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,12 @@ public class DemoController {
         System.out.println(a1);
         System.out.println(data);
         return "hi";
+    }
+
+    @GetMapping("/hello2")
+    public String a1() {
+        System.out.println(GlobalConfig.SESSION_TIMEOUT);
+        return "wae";
     }
 
 
