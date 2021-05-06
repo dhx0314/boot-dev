@@ -23,6 +23,7 @@
         <module>netty</module>
         <module>nx</module>
         <module>boot</module>
+        <module>design-pattern</module>
     </modules>
 
     <properties>
