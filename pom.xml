@@ -21,6 +21,8 @@
         <module>mybatis</module>
         <module>webflux</module>
         <module>netty</module>
+        <module>nx</module>
+        <module>boot</module>
     </modules>
 
     <properties>
