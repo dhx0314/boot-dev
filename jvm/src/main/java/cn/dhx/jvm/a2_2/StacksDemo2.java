@@ -1,6 +1,4 @@
-package cn.dhx.juc.a2;
-
-import org.omg.CORBA.TIMEOUT;
+package cn.dhx.jvm.a2_2;
 
 public class StacksDemo2 {
 

@@ -1,4 +1,4 @@
-package cn.dhx.juc.a2;
+package cn.dhx.jvm.a2_2;
 
 public class StacksDemo {
 

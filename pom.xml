@@ -25,6 +25,7 @@
         <module>boot</module>
         <module>design-pattern</module>
         <module>juc</module>
+        <module>jvm</module>
     </modules>
 
     <properties>
