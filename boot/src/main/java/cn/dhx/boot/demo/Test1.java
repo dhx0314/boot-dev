@@ -18,5 +18,21 @@ public class Test1 {
         // true
         // true
         // false
+
+
+//        Java 先执行 &&， 在执行 || 。不是按照从左到右执行。
+
+        System.out.println("----------------");
+        System.out.println(false && true || true);
+        System.out.println(false && false || true);
+        System.out.println(false && true || false);
+        System.out.println(true || true && false);
+        System.out.println(true && true || false && true);
+        System.out.println(true && false || false && true);
+        System.out.println(false && true || true && false);
+
+
+
+
     }
 }

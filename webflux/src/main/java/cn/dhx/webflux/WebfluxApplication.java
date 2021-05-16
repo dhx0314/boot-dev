@@ -11,6 +11,19 @@ public class WebfluxApplication {
     //业务
     //http://10.152.5.29:8091/agent/voiceprint/wvrquery.do?method=vocalPrintResult
 
+//
+//    123456789
+//    123456789
+//    123456789
+//    123456789
+//    123456789
+//    123456789
+//    123456789
+//    123456789
+//    123456789
+//    123456789
+//    123456789
+
     public static void main(String[] args) {
         SpringApplication.run(WebfluxApplication.class, args);
     }
