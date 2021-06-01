@@ -1,5 +1,7 @@
 package cn.dhx.boot.demo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class GitDemo2 {
 
 
@@ -11,7 +13,9 @@ public class GitDemo2 {
                 break;
             case "1":
                 System.out.println("111");
-
         }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
     }
 }
