@@ -21,6 +21,7 @@ public class Upload {
 
 
 
+
     public boolean downAndUploadFile(String downPath, String uploadPath) {
         byte[] data = null;
         long start, end;
@@ -34,8 +35,7 @@ public class Upload {
                     downPath,
                     HttpMethod.GET,
                     new HttpEntity<String>(headers),
-                    byte[].class,
-                    UUID.randomUUID().toString());
+                    byte[].class);
             if (response.getStatusCode() == HttpStatus.OK) {
                 data = response.getBody();
                 end = System.currentTimeMillis();
