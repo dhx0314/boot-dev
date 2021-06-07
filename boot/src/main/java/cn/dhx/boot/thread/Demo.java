@@ -1,18 +1,22 @@
 package cn.dhx.boot.thread;
 
+import org.omg.CORBA.TIMEOUT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
-@Service
+
 public class Demo {
 
 
-    @Autowired
-    private Servicce servicce;
-
-    public void fun1() {
-        servicce.add();
+    public static void main(String[] args) throws InterruptedException {
+        ExecutorService service = Executors.newFixedThreadPool(10);
+        service.submit(new Servicce("1","2"));
+        TimeUnit.SECONDS.sleep(10);
+        service.submit(new Servicce("1a","2a"));
     }
 
 
