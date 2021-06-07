@@ -26,6 +26,7 @@
         <module>design-pattern</module>
         <module>juc</module>
         <module>jvm</module>
+        <module>mybatis-plus</module>
     </modules>
 
     <properties>

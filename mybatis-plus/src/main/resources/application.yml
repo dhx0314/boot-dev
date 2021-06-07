@@ -1,0 +1,11 @@
+
+
+
+
+spring:
+  #数据库配置
+  datasource:
+    url: jdbc:mysql://121.5.218.105:10001/dhx?useUnicode=true&useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
