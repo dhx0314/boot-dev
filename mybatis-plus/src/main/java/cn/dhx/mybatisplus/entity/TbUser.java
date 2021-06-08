@@ -3,7 +3,9 @@ package cn.dhx.mybatisplus.entity;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -15,9 +17,9 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 
+@Accessors(chain = true)
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
 public class TbUser extends Model<TbUser> {
     //主键ID
     private Long id;
@@ -42,4 +44,6 @@ public class TbUser extends Model<TbUser> {
     protected Serializable pkVal() {
         return this.id;
     }
+
+
 }

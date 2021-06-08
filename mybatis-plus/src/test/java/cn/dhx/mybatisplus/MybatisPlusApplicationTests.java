@@ -1,12 +1,18 @@
 package cn.dhx.mybatisplus;
 
 import cn.dhx.mybatisplus.dao.IpStationDao;
+import cn.dhx.mybatisplus.dao.TbUserDao;
 import cn.dhx.mybatisplus.entity.Filedetail;
 import cn.dhx.mybatisplus.entity.IpStation;
+import cn.dhx.mybatisplus.entity.TbUser;
 import cn.dhx.mybatisplus.service.FiledetailService;
 import cn.dhx.mybatisplus.service.IpStationService;
 import cn.dhx.mybatisplus.service.TbUserService;
+import cn.dhx.mybatisplus.service.impl.TbUserServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +42,9 @@ class MybatisPlusApplicationTests {
 
     @Autowired
     private IpStationDao ipStationDao;
+
+    @Autowired
+    private TbUserDao tbUserDao;
 
     @Test
     public void fu1() {
@@ -100,5 +109,45 @@ class MybatisPlusApplicationTests {
         int count21 = ipStationService.count();
         System.out.println(count21+"   2");
     }
+
+    @Test
+    public void fun2b() {
+
+        QueryWrapper<TbUser> tbUserQueryWrapper = new QueryWrapper<>();
+        tbUserQueryWrapper
+                .eq(true,"user_name","lisi")
+                .eq(false,"age","22");
+        List<TbUser> list = tbUserService.list(tbUserQueryWrapper);
+        for (TbUser tbUser : list) {
+            System.out.println(tbUser);
+        }
+    }
+
+    @Test
+    public void fun2c() {
+//        LambdaQueryWrapper<TbUser> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+//        lambdaQueryWrapper.ge("age",21);
+
+//        LambdaQueryWrapper<TbUser> userLambdaQueryWrapper = Wrappers.lambdaQuery();
+//        userLambdaQueryWrapper.like(TbUser::getAge , "k");
+        QueryWrapper<TbUser> tbUserQueryWrapper = new QueryWrapper<>();
+        tbUserQueryWrapper
+                .lambda()
+                .eq(TbUser::getAge,"20");
+        Page<TbUser> userIPage = tbUserDao.selectPage(new Page<TbUser>(1, 2), tbUserQueryWrapper);
+
+        System.out.println("Current:"+userIPage.getCurrent());
+        System.out.println("Total:"+userIPage.getTotal());
+        System.out.println("Pages:"+userIPage.getPages());
+        System.out.println("Size:"+userIPage.getSize());
+        List<TbUser> records = userIPage.getRecords();
+        for (TbUser record : records) {
+            System.out.println(record);
+        }
+    }
+
+
+
+
 
 }
