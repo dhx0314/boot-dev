@@ -1,11 +1,26 @@
-
-
-
-
 spring:
-  #数据库配置
   datasource:
-    url: jdbc:mysql://121.5.218.105:10001/dhx?useUnicode=true&useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        master:
+          url: jdbc:mysql://121.5.218.105:10001/dhx?useUnicode=true&useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+          username: root
+          password: root
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        slave_1:
+          url: jdbc:mysql://172.16.2.144:3306/recordercontrolservice?autoReconnect=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+          username: root
+          password: opensips321
+          driver-class-name: com.mysql.cj.jdbc.Driver
+#        slave_1:
+#          url: jdbc:oracle:thin:@172.16.0.67:1521:ORCL
+#          username: recorder
+#          password: recorder
+#          driver-class-name: oracle.jdbc.OracleDriver
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
+

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @author dhx
  * @since 2021-06-08 01:03:13
  */
-@Service("tbUserService")
+@Service
 public class TbUserServiceImpl extends ServiceImpl<TbUserDao, TbUser> implements TbUserService {
 
 }
