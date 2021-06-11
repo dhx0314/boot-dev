@@ -1,6 +1,12 @@
 package cn.dhx.boot;
 
+import cn.dhx.boot.config.Person;
 import cn.dhx.boot.demo.PkgProcessor;
+//import cn.dhx.boot.ftp.FileUtil;
+//import cn.dhx.boot.ftp.config.FtpConfigProperties;
+
+import cn.dhx.boot.ftppool.FtpPool;
+
 import cn.dhx.boot.redis.DemoRedis;
 import cn.dhx.boot.thread.Demo;
 //import cn.dhx.boot.thread2.Stu;
@@ -9,16 +15,21 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.net.ftp.FTPClient;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+import javax.swing.plaf.TableHeaderUI;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -37,6 +48,100 @@ class BootApplicationTests {
 
     @Autowired
     private Stu stu;
+//
+//    @Autowired
+//    FileUtil fileUtil;
+
+
+//    @Autowired
+//    private TestObjectPool testObjectPool;
+
+    @Autowired
+    private FtpPool ftpPool;
+
+
+    @Value("${time.cron}")
+    private String interval;
+
+    @Autowired
+    private Person person;
+
+
+    @Test
+    public void fun1rr() {
+//        System.out.println(person);
+        Map<String, Object> maps = person.getMaps();
+        maps.forEach((k,v)->{
+            System.out.println(k+"  "+v);
+        });
+    }
+
+    @Test
+    public void fun1aa() {
+        System.out.println(interval);
+        String[] s = interval.split(" ");
+        String s2 = s[1];
+        String substring = s2.substring(s2.lastIndexOf("/") + 1);
+        System.out.println("s        "+substring);
+        for (String s1 : s) {
+            System.out.println(s1);
+        }
+    }
+
+
+    @Test
+    public void a11()  {
+        for (int i = 0; i < 15; i++) {
+            new Thread(() -> {
+                FTPClient ftpClient = null;
+                try {
+                    ftpClient = ftpPool.borrowObject();
+                    System.out.println(Thread.currentThread().getName() + "--- " + ftpClient);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    ftpPool.returnObject(ftpClient);
+                }
+
+            }).start();
+        }
+    }
+
+
+
+//    @Test
+//    public void test() {
+//
+//        for (int i = 0; i < 20; i++) {
+//
+//            new Thread(() -> {
+//                TestObject testObject = null;
+//                try {
+//                    testObject = testObjectPool.borrowObject();
+//                    //省略业务代码...
+//                    System.out.println(Thread.currentThread().getName()+"-----   "+testObject);
+////                    System.out.println(testObject);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                } finally {
+//                    if (testObject != null) {
+//                        //最终归还对象到对象池
+//                        testObjectPool.returnObject(testObject);
+//                    }
+//                }
+//            }).start();
+//        }
+//    }
+
+//    @Test
+//    public void fun2() {
+//        try {
+//            fileUtil.down();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
 
 
 
@@ -56,18 +161,17 @@ class BootApplicationTests {
     }
 
 
-
     @Test
     public void fun3() {
 
-        String stationExistUrl="http://172.16.2.144:8091/passive-recorder/stationExist";
+        String stationExistUrl = "http://172.16.2.144:8091/passive-recorder/stationExist";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         ObjectMapper objectMapper = new ObjectMapper();
         HashMap<String, Integer> hashMap = new HashMap<>();
-        hashMap.put("station",Integer.valueOf("1001"));
-        String json=null;
+        hashMap.put("station", Integer.valueOf("1001"));
+        String json = null;
         try {
             json = objectMapper.writeValueAsString(hashMap);
         } catch (JsonProcessingException e) {

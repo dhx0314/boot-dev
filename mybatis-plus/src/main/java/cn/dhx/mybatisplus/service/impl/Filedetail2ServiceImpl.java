@@ -1,10 +1,10 @@
 package cn.dhx.mybatisplus.service.impl;
 
+import cn.dhx.mybatisplus.dao.Filedetail2Dao;
+import cn.dhx.mybatisplus.entity.Filedetail2;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.dhx.mybatisplus.dao.FiledetailDao;
-import cn.dhx.mybatisplus.entity.Filedetail;
-import cn.dhx.mybatisplus.service.FiledetailService;
+import cn.dhx.mybatisplus.service.Filedetail2Service;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  */
 @Service("filedetailService")
 @DS("slave_1")
-public class FiledetailServiceImpl extends ServiceImpl<FiledetailDao, Filedetail> implements FiledetailService {
+public class Filedetail2ServiceImpl extends ServiceImpl<Filedetail2Dao, Filedetail2> implements Filedetail2Service {
 
 }

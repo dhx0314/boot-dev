@@ -1,7 +1,7 @@
 package cn.dhx.mybatisplus.dao;
 
+import cn.dhx.mybatisplus.entity.Filedetail2;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import cn.dhx.mybatisplus.entity.Filedetail;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 
 @Mapper
-public interface FiledetailDao extends BaseMapper<Filedetail> {
+public interface Filedetail2Dao extends BaseMapper<Filedetail2> {
 
 }

@@ -1,6 +1,8 @@
 package cn.dhx.boot.ftp.web;
 
-import cn.dhx.boot.ftp.FileUtil;
+//import cn.dhx.boot.ftp.FileUtil;
+//import cn.dhx.boot.ftp.FileUtil;
+import cn.dhx.boot.ftp.FileUtil2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,7 @@ public class FtpController {
 
 
     @Autowired
-    FileUtil fileUtil;
+    FileUtil2 fileUtil;
 
     @PostMapping("/upload")
     public String uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {

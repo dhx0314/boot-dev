@@ -44,6 +44,16 @@ public class Byte2InputStream {
     }
 
 
+
+    public static byte[] toByteArray(InputStream input) throws IOException {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int n = 0;
+        while (-1 != (n = input.read(buffer))) {
+            output.write(buffer, 0, n);
+        }
+        return output.toByteArray();
+    }
     public static void main(String[] args) {
         String str = "你好呀";
         byte[] bytes = str.getBytes();

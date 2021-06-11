@@ -19,7 +19,7 @@ import java.util.Date;
 
 @Data
 @TableName(value = "filedetail")
-public class Filedetail extends Model<Filedetail> {
+public class Filedetail2 extends Model<Filedetail2> {
 
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;

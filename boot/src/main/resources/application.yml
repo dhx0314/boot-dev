@@ -13,3 +13,27 @@ ftp:
   basePath: /
   httPath: ftp://172.16.2.155
 
+time:
+  cron: 0 0/5 * * * ?
+#ftp:
+#  client:
+#    connectTimeout: 30000
+#    encoding: utf-8
+#    host: 172.16.2.155
+#    passiveMode: false
+#    password: dhx
+#    port: 21
+#    username: dhx
+
+person:
+  lastName: hello
+  age: 18
+  boss: false
+  birth: 2017/12/12
+  maps: {k1:v1,k2:12}
+  lists:
+    - lisi
+    - zhaoliu
+  dog:
+    name: 小狗
+    age: 12

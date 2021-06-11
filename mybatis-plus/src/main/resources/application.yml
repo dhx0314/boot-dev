@@ -9,16 +9,16 @@ spring:
           username: root
           password: root
           driver-class-name: com.mysql.cj.jdbc.Driver
-        slave_1:
-          url: jdbc:mysql://172.16.2.144:3306/recordercontrolservice?autoReconnect=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
-          username: root
-          password: opensips321
-          driver-class-name: com.mysql.cj.jdbc.Driver
 #        slave_1:
-#          url: jdbc:oracle:thin:@172.16.0.67:1521:ORCL
-#          username: recorder
-#          password: recorder
-#          driver-class-name: oracle.jdbc.OracleDriver
+#          url: jdbc:mysql://172.16.2.144:3306/recordercontrolservice?autoReconnect=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+#          username: root
+#          password: opensips321
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+        slave_1:
+          url: jdbc:oracle:thin:@172.16.0.67:1521:ORCL
+          username: recorder
+          password: recorder
+          driver-class-name: oracle.jdbc.OracleDriver
 
 mybatis-plus:
   configuration:

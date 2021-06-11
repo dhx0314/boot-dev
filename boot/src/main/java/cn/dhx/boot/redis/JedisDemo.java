@@ -2,6 +2,7 @@ package cn.dhx.boot.redis;
 
 import org.junit.Test;
 import redis.clients.jedis.HostAndPort;
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
 
@@ -20,7 +21,7 @@ public class JedisDemo {
         nodes.add(new HostAndPort("47.100.101.31", 7004));
         nodes.add(new HostAndPort("47.100.101.31", 7005));
         nodes.add(new HostAndPort("47.100.101.31", 7006));
-
+        Jedis jedis = new Jedis("127.0.0.1", 6379);
 
         JedisCluster cluster = new JedisCluster(nodes);
 
