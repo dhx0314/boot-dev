@@ -1,12 +1,18 @@
 package cn.dhx.mybatisplus;
 
 import cn.dhx.mybatisplus.dao.IpStationDao;
-import cn.dhx.mybatisplus.entity.Filedetail2;
+import cn.dhx.mybatisplus.dao.TbUserDao;
+import cn.dhx.mybatisplus.entity.Filedetail;
 import cn.dhx.mybatisplus.entity.IpStation;
-import cn.dhx.mybatisplus.service.Filedetail2Service;
+import cn.dhx.mybatisplus.entity.TbUser;
+import cn.dhx.mybatisplus.service.FiledetailService;
 import cn.dhx.mybatisplus.service.IpStationService;
 import cn.dhx.mybatisplus.service.TbUserService;
+import cn.dhx.mybatisplus.service.impl.TbUserServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +43,9 @@ class MybatisPlusApplicationTests {
     @Autowired
     private IpStationDao ipStationDao;
 
+    @Autowired
+    private TbUserDao tbUserDao;
+
     @Test
     public void fu1() {
         int count = tbUserService.count();
@@ -59,21 +68,19 @@ class MybatisPlusApplicationTests {
     public void fun1() {
 
 
-//        List<Filedetail> list = filedetail2Service.list();
+//        List<Filedetail> list = filedetailService.list();
 //        for (Filedetail filedetail : list) {
 //            System.out.println(filedetail);
 //        }
 //        System.out.println(list.size());
 //
-//        int count = filedetail2Service.count();
+//        int count = filedetailService.count();
 //        System.out.println(count);
-        int count = filedetail2Service.count();
-        System.out.println(count);
-        QueryWrapper<Filedetail2> wrapper = new QueryWrapper<>();
+        QueryWrapper<Filedetail> wrapper = new QueryWrapper<>();
         String s="2021-03-30 17:20:00";
         wrapper.apply("to_char(STARTDATETIME,'yyyy-MM-dd HH24:MI:SS')<={0}",s);
 //        wrapper.apply("id=60");
-        List<Filedetail2> list1 = filedetail2Service.list(wrapper);
+        List<Filedetail> list1 = filedetailService.list(wrapper);
         System.out.println(list1.size());
 //        for (Filedetail filedetail : list1) {
 //            System.out.println(filedetail);
@@ -83,7 +90,7 @@ class MybatisPlusApplicationTests {
 
     @Test
     public void funaa1() {
-        int count = filedetail2Service.count();
+        int count = filedetailService.count();
         System.out.println(count);
     }
 
