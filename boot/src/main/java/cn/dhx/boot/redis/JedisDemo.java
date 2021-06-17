@@ -25,7 +25,8 @@ public class JedisDemo {
 
         JedisCluster cluster = new JedisCluster(nodes);
 
-//        JedisPool jedisPool = new JedisPool( "127.0.0.1", 6379);
+        JedisPool jedisPool = new JedisPool( "127.0.0.1", 6379);
+//        Jedis resource = jedisPool.getResource();
         try {
             String res = cluster.get("name");
             System.out.println(res);

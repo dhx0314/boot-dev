@@ -16,8 +16,7 @@ public class FtpPoolAutoConfiguration {
     private FtpPool pool;
 
     @Autowired
-    private
-    FtpClientFactory ftpClientFactory;
+    private FtpClientFactory ftpClientFactory;
 
     public FtpPoolAutoConfiguration(FtpConfig config) {
         this.config = config;
@@ -25,7 +24,7 @@ public class FtpPoolAutoConfiguration {
 
     //    @ConditionalOnClass({TestObjectFactory.class})
     @Bean
-    protected FtpPool faceSDKPool() {
+    protected FtpPool initFtpPool() {
 //        FtpClientFactory ftpClientFactory = new FtpClientFactory();
         //设置对象池的相关参数
         GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
