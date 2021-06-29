@@ -1,15 +1,20 @@
 package cn.dhx.boot;
 
+import cn.dhx.boot.auto.AppProp;
+import cn.dhx.boot.auto.AppProperties;
 import cn.dhx.boot.config.Person;
 import cn.dhx.boot.demo.PkgProcessor;
 //import cn.dhx.boot.ftp.FileUtil;
 //import cn.dhx.boot.ftp.config.FtpConfigProperties;
 
+import cn.dhx.boot.demo2.StuDemo;
+import cn.dhx.boot.demo2.dataDemo;
 import cn.dhx.boot.ftppool.FtpPool;
 
+import cn.dhx.boot.httpd.Upload;
 import cn.dhx.boot.redis.DemoRedis;
 import cn.dhx.boot.thread.Demo;
-//import cn.dhx.boot.thread2.Stu;
+//import cn.dhx.boot.thread2.StuDemo;
 import cn.dhx.boot.thread2.Stu;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -18,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.net.ftp.FTPClient;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +35,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.swing.plaf.TableHeaderUI;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @SpringBootTest
@@ -67,6 +74,71 @@ class BootApplicationTests {
     private Person person;
 
 
+    @Autowired
+    private AppProperties appProperties;
+
+
+
+    @Autowired
+    ObjectFactory<StuDemo> stuDemo;
+
+    @Autowired
+    StuDemo stuDemosin;
+
+
+    @Autowired
+    private Upload upload;
+
+    @Test
+    public void fun1aaa() {
+
+            System.out.println("fun3");
+            String downPath="http://172.16.2.144:8010/vox/a.wav";
+            String upPath="http://172.16.2.144:8010/vox/b.wav";
+            upload.downAndUploadFile(downPath,upPath);
+
+    }
+
+
+    @Test
+    public void a1q() {
+        for (int i = 0; i <5; i++) {
+            StuDemo stuDemo = this.stuDemo.getObject();
+            System.out.println(stuDemo);
+            System.out.println(stuDemo.dataDemo);
+        }
+
+        System.out.println("--------------");
+        for (int i = 0; i < 5; i++) {
+            System.out.println(stuDemosin);
+            System.out.println(stuDemosin.dataDemo);
+        }
+//        StuDemo object = stuDemo.getObject();
+//        System.out.println(stuDemo);
+//        System.out.println(object.dataDemo);
+//        dataDemo dataDemo = stuDemo.getObject().dataDemo;
+//        System.out.println(dataDemo);
+//        System.out.println(stuDemosin);
+//        System.out.println(stuDemosin.dataDemo);
+//        StuDemo stuDemo = new StuDemo();
+//        System.out.println(stuDemo.dataDemo);
+//        StuDemo stuDemo1 = new StuDemo();
+//        System.out.println(stuDemo1.dataDemo);
+
+    }
+
+    @Test
+    public void fun1a() {
+        List<AppProp> aesList = appProperties.getAesList();
+        for (AppProp appProp : aesList) {
+            System.out.println(appProp);
+        }
+
+
+    }
+
+
+
     @Test
     public void fun1rr() {
 //        System.out.println(person);
@@ -87,6 +159,8 @@ class BootApplicationTests {
             System.out.println(s1);
         }
     }
+
+
 
 
     @Test

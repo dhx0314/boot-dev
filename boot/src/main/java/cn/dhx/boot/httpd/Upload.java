@@ -29,8 +29,8 @@ public class Upload {
         try {
             start = System.currentTimeMillis();
             HttpHeaders headers = new HttpHeaders();
-            headers.add("Authorization", "Basic "
-                    + Base64.encodeBase64String(("admin" + ":"+"admin").getBytes()));
+//            headers.add("Authorization", "Basic "
+//                    + Base64.encodeBase64String(("admin" + ":"+"admin").getBytes()));
             ResponseEntity<byte[]> response = restTemplate.exchange(
                     downPath,
                     HttpMethod.GET,
@@ -39,6 +39,7 @@ public class Upload {
             if (response.getStatusCode() == HttpStatus.OK) {
                 data = response.getBody();
                 end = System.currentTimeMillis();
+                System.out.println(data.length);
                 log.info("SUCCESS download file [{}]. cost [ {} ] ms", downPath, end - start);
             } else {
                 log.error("FAILED download file [{}]! response code : {}", downPath, response.getStatusCodeValue());
@@ -60,7 +61,7 @@ public class Upload {
 
         try {
             start = System.currentTimeMillis();
-            restTemplate.put(uploadPath, data);
+//            restTemplate.put(uploadPath, data);
             end = System.currentTimeMillis();
             log.info("SUCCESS put file [{}]. cost [ {} ] ms", uploadPath, end - start);
             return true;
