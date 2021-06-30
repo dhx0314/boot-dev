@@ -24,9 +24,9 @@ public class WebDemo {
     @PostMapping("/test3")
     public Object fun3() throws JsonProcessingException {
         HashMap<String, String> map = new HashMap<>();
-        map.put("a","fffffffffffffff");
-        map.put("2","2");
-        map.put("3","2");
+        map.put("a", "fffffffffffffff");
+        map.put("2", "2");
+        map.put("3", "2");
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        String s1 = objectMapper.writeValueAsString(map);
 //        JsonNode jsonNode = objectMapper.readTree(s1);
