@@ -29,6 +29,7 @@
         <module>mybatis-plus</module>
         <module>util</module>
         <module>redis-pool</module>
+        <module>algorithm</module>
     </modules>
 
     <properties>
