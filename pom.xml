@@ -27,6 +27,8 @@
         <module>juc</module>
         <module>jvm</module>
         <module>mybatis-plus</module>
+        <module>util</module>
+        <module>redis-pool</module>
     </modules>
 
     <properties>

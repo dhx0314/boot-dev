@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @since 2021-06-08 17:19:46
  */
 @Service
-@DS("slave_1")
+//@DS("slave_1")
 public class IpStationServiceImpl extends ServiceImpl<IpStationDao, IpStation> implements IpStationService {
 
 }

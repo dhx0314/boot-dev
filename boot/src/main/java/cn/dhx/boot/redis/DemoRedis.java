@@ -15,6 +15,7 @@ public class DemoRedis {
 
     public void fun1() {
         String key="hash";
+        redisTemplate.opsForValue().set("1","2");
         redisTemplate.opsForHash().put(key,"k1","v1");
         redisTemplate.opsForHash().put(key,"k2","v2");
 
