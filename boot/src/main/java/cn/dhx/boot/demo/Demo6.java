@@ -1,9 +1,19 @@
 package cn.dhx.boot.demo;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 public class Demo6 {
     public static void main(String[] args) {
-        String s="sofia/external/2000@wilcom.demo";
+//        String s="sofia/external/2000@wilcom.demo";
 //        number = channelName.substring("sofia/external/".length());
-        System.out.println("sofia/external".length());
+//        System.out.println("sofia/external".length());
+
+        ConcurrentHashMap<String, String> hashMap = new ConcurrentHashMap<>();
+        hashMap.put("1","2");
+        hashMap.put("2","3");
+        String remove = hashMap.remove("1");
+        System.out.println(remove);
+        String remove1 = hashMap.remove("3");
+        System.out.println(remove1);
     }
 }

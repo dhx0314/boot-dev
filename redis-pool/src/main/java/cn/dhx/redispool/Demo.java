@@ -2,6 +2,8 @@ package cn.dhx.redispool;
 
 import cn.dhx.redispool.clusterpool.ClusterPool;
 import cn.dhx.redispool.clusterpool.ClusterPoolConfiguration;
+import org.apache.commons.pool2.impl.DefaultPooledObject;
+import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 
@@ -21,24 +23,32 @@ public class Demo {
             HostAndPort hostAndPort = new HostAndPort(split1[0],Integer.valueOf(split1[1]));
             node.add(hostAndPort);
         }
+
+
+//
+//        JedisCluster jedisCluster = new JedisCluster(node,100,100,100,"laihu",new GenericObjectPoolConfig());
+//        return new DefaultPooledObject<JedisCluster>(jedisCluster);
+   //     jedisCluster.set("a","a2");
+//
 //        ClusterPoolConfiguration poolAutoConfiguration = new ClusterPoolConfiguration();
 //        ClusterPool clusterPool = poolAutoConfiguration.initSDKPool(node);
 
         ClusterPool clusterPool = ClusterPoolConfiguration.getClusterPoolConfiguration().initSDKPool(node);
-//        for (int i = 0; i < 10; i++) {
-//            int finalI = i;
-//            new Thread(()->{
-//                JedisCluster jedisCluster=null;
-//                try {
-//                    jedisCluster = clusterPool.borrowObject();
+        for (int i = 0; i < 10; i++) {
+            int finalI = i;
+            new Thread(()->{
+                JedisCluster jedisCluster=null;
+                try {
+                    jedisCluster = clusterPool.borrowObject();
 //                    jedisCluster.set("k"+ finalI, String.valueOf(finalI));
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }finally {
-//                    clusterPool.returnObject(jedisCluster);
-//                }
-//            }).start();
-//        }
+                    jedisCluster.hset("map","k"+ finalI,String.valueOf(finalI));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }finally {
+                    clusterPool.returnObject(jedisCluster);
+                }
+            }).start();
+        }
 
         for (int i = 0; i < 10; i++) {
             int finalI = i;
@@ -47,7 +57,10 @@ public class Demo {
                 try {
                     jedisCluster = clusterPool.borrowObject();
                     String s = jedisCluster.get("k" + finalI);
-                    System.out.println(s);
+
+                    String hget = jedisCluster.hget("map", "k" + finalI);
+                    System.out.println(hget);
+//                    System.out.println(s);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }finally {

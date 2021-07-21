@@ -78,7 +78,6 @@ class BootApplicationTests {
     private AppProperties appProperties;
 
 
-
     @Autowired
     ObjectFactory<StuDemo> stuDemo;
 
@@ -89,20 +88,41 @@ class BootApplicationTests {
     @Autowired
     private Upload upload;
 
+
+    @Test
+    public void fun1waef() {
+        String s = null;
+        try {
+
+            String ss="11";
+            System.out.println(ss);
+            log.info("----"+ss);
+            s.equals("2");
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            log.info("-----------------");
+            log.info("----"+e.getCause().getMessage());
+            log.info("===================");
+        }
+    }
+
+
     @Test
     public void fun1aaa() {
 
-            System.out.println("fun3");
-            String downPath="http://172.16.2.144:8010/vox/a.wav";
-            String upPath="http://172.16.2.144:8010/vox/b.wav";
-            upload.downAndUploadFile(downPath,upPath);
+        System.out.println("fun3");
+        String downPath = "http://172.16.2.144:8010/vox/a.wav";
+        String upPath = "http://172.16.2.144:8010/vox/b.wav";
+        upload.downAndUploadFile(downPath, upPath);
 
     }
 
 
     @Test
     public void a1q() {
-        for (int i = 0; i <5; i++) {
+        for (int i = 0; i < 5; i++) {
             StuDemo stuDemo = this.stuDemo.getObject();
             System.out.println(stuDemo);
             System.out.println(stuDemo.dataDemo);
@@ -138,13 +158,12 @@ class BootApplicationTests {
     }
 
 
-
     @Test
     public void fun1rr() {
 //        System.out.println(person);
         Map<String, Object> maps = person.getMaps();
-        maps.forEach((k,v)->{
-            System.out.println(k+"  "+v);
+        maps.forEach((k, v) -> {
+            System.out.println(k + "  " + v);
         });
     }
 
@@ -154,17 +173,15 @@ class BootApplicationTests {
         String[] s = interval.split(" ");
         String s2 = s[1];
         String substring = s2.substring(s2.lastIndexOf("/") + 1);
-        System.out.println("s        "+substring);
+        System.out.println("s        " + substring);
         for (String s1 : s) {
             System.out.println(s1);
         }
     }
 
 
-
-
     @Test
-    public void a11()  {
+    public void a11() {
         for (int i = 0; i < 15; i++) {
             new Thread(() -> {
                 FTPClient ftpClient = null;
@@ -180,7 +197,6 @@ class BootApplicationTests {
             }).start();
         }
     }
-
 
 
 //    @Test
@@ -215,8 +231,6 @@ class BootApplicationTests {
 //            e.printStackTrace();
 //        }
 //    }
-
-
 
 
     @Test

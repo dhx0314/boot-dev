@@ -4,6 +4,7 @@ import org.apache.commons.pool2.DestroyMode;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
+import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 
@@ -20,7 +21,7 @@ public class ClusterPoolFactory implements PooledObjectFactory<JedisCluster> {
 
     @Override
     public PooledObject<JedisCluster> makeObject() throws Exception {
-        JedisCluster jedisCluster = new JedisCluster(node);
+        JedisCluster jedisCluster = new JedisCluster(node,100,100,100,"laihu",new GenericObjectPoolConfig());
         return new DefaultPooledObject<JedisCluster>(jedisCluster);
     }
 
