@@ -26,20 +26,20 @@ public class Demo {
 //        ClusterPool clusterPool = poolAutoConfiguration.initSDKPool(node);
 
         ClusterPool clusterPool = ClusterPoolConfiguration.getClusterPoolConfiguration().initSDKPool(node);
-        for (int i = 0; i < 10; i++) {
-            int finalI = i;
-            new Thread(()->{
-                JedisCluster jedisCluster=null;
-                try {
-                    jedisCluster = clusterPool.borrowObject();
-                    jedisCluster.set("k"+ finalI, String.valueOf(finalI));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }finally {
-                    clusterPool.returnObject(jedisCluster);
-                }
-            }).start();
-        }
+//        for (int i = 0; i < 10; i++) {
+//            int finalI = i;
+//            new Thread(()->{
+//                JedisCluster jedisCluster=null;
+//                try {
+//                    jedisCluster = clusterPool.borrowObject();
+//                    jedisCluster.set("k"+ finalI, String.valueOf(finalI));
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }finally {
+//                    clusterPool.returnObject(jedisCluster);
+//                }
+//            }).start();
+//        }
 
         for (int i = 0; i < 10; i++) {
             int finalI = i;
