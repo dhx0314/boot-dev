@@ -59,6 +59,9 @@ public class WebClientDemo {
 
         System.out.println("start");
 
+
+
+
 //        HashSet<String> strings = new HashSet<>();
         CopyOnWriteArraySet<String> strings = new CopyOnWriteArraySet<>();
 
@@ -91,6 +94,13 @@ public class WebClientDemo {
         }
         log.info("---------------------------");
         countDownLatch.await();
+        new Thread(()-> {
+            for (int i = 0; i < 100; i++) {
+                log.info("---"+availableSwitchList.size());
+            }
+        }).start();
+
+        Thread.sleep(2);
 
         for (String string : strings) {
             System.out.println(string);

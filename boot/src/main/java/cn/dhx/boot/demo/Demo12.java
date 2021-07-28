@@ -8,46 +8,22 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Demo12 {
     public static void main(String[] args)  {
 
-////
-//        List<String> list2 = new ArrayList<>();
-//        list2.add("123");
-//        list2.add("2332");
-//        list2.add("awef");
-//        list2.add("awe324f");
-//
-//        CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>(list2);
-//        Iterator<String> iterator = list.iterator();
-//        while(iterator.hasNext()){
-//            String next = iterator.next();
-//            System.out.println("o  "+next);
-//            if(next.equals("awef")) {
-////                iterator.remove();
-//                list.remove(next);
-//            }
-//            System.out.println(next);
-//            System.out.println(list.size());
-//        }
-//
-//        System.out.println("-----------------");
-//        for (String s : list) {
-//            System.out.println(s);
-//        }
-        ArrayList<Stu> stus = new ArrayList<>();
-        stus.add(new Stu("aa", "11"));
-        stus.add(new Stu("bb", "12"));
-        stus.add(new Stu("cc", "13"));
-        stus.add(new Stu("dd", "14"));
+        Stu stu = new Stu("1","2");
+        for (int i = 0; i < 10; i++) {
+            new Thread(()->{
+                List<String> stringList = stu.getStringList();
+                synchronized (stringList) {
+                    stringList.add("23");
+                    System.out.println(Thread.currentThread().getName()+"-----");
+                    System.out.println(stringList.size());
+                    stringList.remove(1);
+                }
+                synchronized (stringList) {
 
-        for (Stu stu : stus) {
-            System.out.println(stu);
+                }
+            }).start();
         }
 
-        stus.remove(new Stu("cc", "13"));
-
-        System.out.println("----------------");
-        for (Stu stu : stus) {
-            System.out.println(stu);
-        }
     }
 
 
@@ -57,9 +33,28 @@ class Stu {
     private String name;
     private String age;
 
+    private List<String> stringList=new ArrayList<>();
+
+    public List<String> getStringList() {
+        return stringList;
+    }
+
+    public void setStringList(List<String> stringList) {
+        this.stringList = stringList;
+    }
+
     public Stu(String name, String age) {
         this.name = name;
         this.age = age;
+        init();
+    }
+
+    public void init() {
+        stringList.add("132");
+        stringList.add("324");
+        stringList.add("24");
+        stringList.add("32");
+        stringList.add("234");
     }
 
     @Override
