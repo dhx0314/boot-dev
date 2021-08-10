@@ -41,6 +41,9 @@ public class WebClientDemo {
 //                .bodyToMono(String.class); //响应数据类型转换
 //
 //        System.out.println("=====" + mono.block());
+
+
+
         System.out.println("start");
         String url = "http://127.0.0.1:8088/test1";
         Mono<String> stringMono = WebClient.create(url)
@@ -51,6 +54,31 @@ public class WebClientDemo {
         for (int i = 0; i < 100; i++) {
             System.out.println(i);
         }
+    }
+
+
+    @GetMapping("/a/a1")
+    public String werewra(){
+        log.info("-------------");
+        fun2watae();
+        log.info("------awef-------");
+        return "awf";
+    }
+
+
+    public void fun2watae() {
+        String url = "http://127.0.0.1:8088/test2";
+        WebClient.create(url)
+                .post()
+                .retrieve()
+                .bodyToMono(String.class)
+                .doOnError(x -> {
+                    System.out.println("----------------------------");
+//                        System.out.println(x);
+                    System.out.println("----------------------------");
+                }).subscribe(x -> {
+            log.info(x);
+        });
     }
 
 

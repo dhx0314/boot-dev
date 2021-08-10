@@ -36,10 +36,10 @@ public class RedisDaoDemo {
 
 ////        agent.setAgentId(agentId);
 //        System.out.println(agent1);
-//        redisDao.setRedisDataHash("map","k1",new RedisAgent("a100","100"));
-//        redisDao.setRedisDataHash("map","k2",new RedisAgent("b100","200"));
-//        redisDao.setRedisDataHash("map","k3",new RedisAgent("c100","300"));
-//
+        redisDao.setRedisDataHash("map","k1",new RedisAgent("a100","100"));
+        redisDao.setRedisDataHash("map","k2",new RedisAgent("b100","200"));
+        redisDao.setRedisDataHash("map","k3",new RedisAgent("c100","300"));
+
 //
 //
 //        redisDao.setex("k1","2","a",3200);
