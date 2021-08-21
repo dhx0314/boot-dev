@@ -3,7 +3,6 @@ package cn.dhx.boot;
 import cn.dhx.boot.auto.AppProp;
 import cn.dhx.boot.auto.AppProperties;
 import cn.dhx.boot.config.Person;
-import cn.dhx.boot.demo.PkgProcessor;
 //import cn.dhx.boot.ftp.FileUtil;
 //import cn.dhx.boot.ftp.config.FtpConfigProperties;
 
@@ -21,12 +20,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.net.ftp.FTPClient;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -34,17 +36,15 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.swing.plaf.TableHeaderUI;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.Duration;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Slf4j
 class BootApplicationTests {
 
-    @Autowired
-    PkgProcessor pkgProcessor2;
 
     @Autowired
     DemoRedis demoRedis;
@@ -55,6 +55,17 @@ class BootApplicationTests {
 
     @Autowired
     private Stu stu;
+
+
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    RedisTemplate redisTemplate;
+
+
+
+
 //
 //    @Autowired
 //    FileUtil fileUtil;
@@ -88,6 +99,98 @@ class BootApplicationTests {
     @Autowired
     private Upload upload;
 
+
+    @Test
+    public void fun23947() throws JsonProcessingException, InterruptedException {
+//        Person person = new Person();
+//        person.setAge(10);
+//        person.setLastName("2213");
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String string = objectMapper.writeValueAsString(person);
+//        redisTemplate.opsForHash().put("map1","k1",string);
+//        Map map1 = redisTemplate.opsForHash().entries("map1");
+//        Object k1 = map1.get("k1");
+//        System.out.println(k1);
+//        System.out.println(k1.toString());
+
+
+//        redisTemplate.opsForValue().set("str1", "1", 10, TimeUnit.SECONDS);
+////        Thread.sleep(5);
+//        TimeUnit.SECONDS.sleep(8);
+//        Long str1 = redisTemplate.opsForValue().getOperations().getExpire("str1");
+//        System.out.println(str1);
+
+        Boolean str = redisTemplate.expire("str", 10, TimeUnit.SECONDS);
+        System.out.println(str);
+        Set keys = redisTemplate.keys("REC-AGENT*");
+        System.out.println(keys.size());
+    }
+
+
+
+
+
+    @Test
+    public void test2() throws IOException {
+        long start = System.currentTimeMillis();
+        List<String> keys = Lists.newArrayList();
+        Cursor<String> cursor = scan(stringRedisTemplate, "*REC-AGENT*", 200);
+        while (cursor.hasNext()){
+            //找到一次就添加一次
+            keys.add(cursor.next());
+        }
+        cursor.close();
+        keys.forEach(System.out::println);
+        long end = System.currentTimeMillis();
+        System.out.println(end-start);
+    }
+
+
+    private static Cursor<String> scan(StringRedisTemplate stringRedisTemplate, String match, int count){
+        ScanOptions scanOptions = ScanOptions.scanOptions().match(match).count(count).build();
+        RedisSerializer<String> redisSerializer = (RedisSerializer<String>) stringRedisTemplate.getKeySerializer();
+        return (Cursor) stringRedisTemplate.executeWithStickyConnection((RedisCallback) redisConnection ->
+                new ConvertingCursor<>(redisConnection.scan(scanOptions), redisSerializer::deserialize));
+    }
+    @Test
+    public void fun1weafe() throws InterruptedException {
+        String key = "hash";
+//        redisTemplate.opsForValue().set("str1", "2", Duration.ofSeconds(100));
+//        TimeUnit.SECONDS.sleep(10);
+
+//        redisTemplate.opsForValue().
+        redisTemplate.opsForHash().put(key, "k1", "v1");
+        redisTemplate.opsForHash().put(key, "k2", "v2");
+        redisTemplate.opsForHash().put(key, "k3", "v3");
+        redisTemplate.opsForHash().get(key, "k3");
+        Map<Object, Object> hashmap = redisTemplate.opsForHash().entries(key);
+//        Map<Object, Object> hashmap2 = redisTemplate.opsForHash().entries("key");
+        hashmap.forEach((k,v)->{
+            System.out.println(k+"---"+v);
+        });
+        List values = redisTemplate.opsForHash().values(key);
+        values.forEach(x->{
+            System.out.println(x);
+        });
+
+
+//        hashmap.forEach((k, v) -> {
+//            System.out.println(k + " " + v);
+//        });
+//        Set<Object> keySet = hashmap.keySet();
+//        ArrayList<Object> objects = new ArrayList<>(keySet);
+//        int size = objects.size();
+//        for (int i = 0; i < 100; i++) {
+//            int number = (int)(Math.random()*size);
+//            int a=number;
+//            Object o = objects.get(a);
+//            Object o1 = hashmap.get(o);
+//            System.out.println(o1);
+//        }
+
+
+
+    }
 
     @Test
     public void fun1waef() {
@@ -233,14 +336,7 @@ class BootApplicationTests {
 //    }
 
 
-    @Test
-    void contextLoads() {
 
-        PkgProcessor.getInstance().fun1();
-        PkgProcessor instance = PkgProcessor.getInstance();
-        System.out.println(instance.hashCode());
-        System.out.println(pkgProcessor2.hashCode());
-    }
 
 
     @Test

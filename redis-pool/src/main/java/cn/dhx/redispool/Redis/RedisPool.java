@@ -14,7 +14,7 @@ public class RedisPool {
 
     }
 
-    private static String url="172.16.2.144:6379";
+    private static String url;
 
     private static String password;
 
@@ -40,7 +40,7 @@ public class RedisPool {
         if (null == jedisPool) {
             synchronized (RedisPool.class) {
                 if (null == jedisPool) {
-                    String[] split = url.split(":");
+                    String[] split = url.split("\\:");
                     String s = split[1];
                     int port = Integer.parseInt(s);
                     JedisPoolConfig poolConfig = new JedisPoolConfig();

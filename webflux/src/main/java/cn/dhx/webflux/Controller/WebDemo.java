@@ -18,6 +18,11 @@ public class WebDemo {
     @PostMapping("/test2")
     public String fun1() {
         log.info("test1-------------------------");
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "ok92475897937";
     }
 

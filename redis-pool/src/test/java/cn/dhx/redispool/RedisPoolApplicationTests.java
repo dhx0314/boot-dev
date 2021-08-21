@@ -1,48 +1,80 @@
 package cn.dhx.redispool;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import cn.dhx.redispool.entity.CallDto;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.StringUtils;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
+@Slf4j
 class RedisPoolApplicationTests {
 
 
-    @Autowired
-    RedisTemplate redisTemplate;
 
     @Autowired
-    StringRedisTemplate stringRedisTemplate;
+    private StringRedisTemplate redisTemplate;
 
     @Test
-    void contextLoads() throws IOException {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        HashMap<String, String> map = new HashMap<>();
-//        map.put("k1","v1");
-//        map.put("k2","v2");
+    void contextLoads() {
+//        getStationRecordingKey("");
 
-        redisTemplate.opsForValue().set("k1","v22222");
-        Object k11 = redisTemplate.opsForValue().get("k1");
-        System.out.println(k11);
-        String k1 = (String) redisTemplate.opsForValue().get("k1");
+        redisTemplate.opsForHash().put("REC-AGENT","k1","v1");
+
+        Object k1 = redisTemplate.opsForHash().get("REC-AGENT", "k1");
         System.out.println(k1);
-//        String s = objectMapper.readValue(k1, String.class);
-//        System.out.println(s);
+        String s = redisTemplate.opsForValue().get("REC-AGENT");
+        System.out.println(s);
+    }
 
-        String k112 = stringRedisTemplate.opsForValue().get("k1");
-        System.out.println(k112);
-        stringRedisTemplate.opsForValue().set("sk1","sv1");
-        String sk1 = stringRedisTemplate.opsForValue().get("sk1");
-        System.out.println(sk1);
+
+
+
+    public ArrayList<String> getStationRecordingKey(String deviceId) {
+        String tag ="REC-AGENT|station-recording:";
+        String key=tag;
+        if (StringUtils.isBlank(deviceId)) {
+            key=tag;
+        }else {
+            key=tag+"*"+deviceId;
+        }
+        long start = System.currentTimeMillis();
+        ArrayList<String> keys = new ArrayList<>();
+        Cursor<String> cursor = scan(redisTemplate, key+"*", 200);
+        while (cursor.hasNext()){
+            //找到一次就添加一次
+            keys.add(cursor.next());
+        }
+        try {
+            cursor.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        long end = System.currentTimeMillis();
+        log.info("getStationRecordingKey cost  [{}] ms",end-start);
+        for (String s : keys) {
+            System.out.println(s);
+        }
+        System.out.println(keys.size());
+        return keys;
+    }
+
+
+    private static Cursor<String> scan(StringRedisTemplate stringRedisTemplate, String match, int count){
+        ScanOptions scanOptions = ScanOptions.scanOptions().match(match).count(count).build();
+        RedisSerializer<String> redisSerializer = (RedisSerializer<String>) stringRedisTemplate.getKeySerializer();
+        return (Cursor) stringRedisTemplate.executeWithStickyConnection((RedisCallback) redisConnection ->
+                new ConvertingCursor<>(redisConnection.scan(scanOptions), redisSerializer::deserialize));
     }
 
 }
