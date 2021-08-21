@@ -29,12 +29,12 @@ class RedisPoolApplicationTests {
     void contextLoads() {
 //        getStationRecordingKey("");
 
-        List<Object> values = redisTemplate.opsForHash().values("REC-AGENT|station-recording:1002");
-        for (Object value : values) {
-            CallDto callDto = JsonUtil.toObject((String) value, CallDto.class);
-            System.out.println(value);
-            System.out.println(callDto);
-        }
+        redisTemplate.opsForHash().put("REC-AGENT","k1","v1");
+
+        Object k1 = redisTemplate.opsForHash().get("REC-AGENT", "k1");
+        System.out.println(k1);
+        String s = redisTemplate.opsForValue().get("REC-AGENT");
+        System.out.println(s);
     }
 
 
