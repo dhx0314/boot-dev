@@ -1,7 +1,7 @@
 package cn.dhx.redispool.web;
 
 
-import cn.dhx.redispool.Redisson.RedisLock;
+import cn.dhx.redispool.redisson.RedisLock;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -19,6 +19,12 @@ public class WebController {
 
     @Autowired
     StringRedisTemplate stringRedisTemplate;
+
+
+    @GetMapping("/a234")
+    public void fun2() {
+        System.out.println("-----------------");
+    }
 
     @GetMapping("/hi")
     public void fun1() throws InterruptedException {

@@ -15,7 +15,7 @@ public class User {
 
     private  Integer age;
 
-    private Demo demo;
+//    private Demo demo;
 
 
     public void fun1() {

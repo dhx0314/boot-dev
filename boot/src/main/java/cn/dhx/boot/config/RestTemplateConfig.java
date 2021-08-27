@@ -20,7 +20,7 @@ public class RestTemplateConfig {
         // 创建一个 httpCilent 简单工厂
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
         // 设置连接超时
-        factory.setConnectTimeout(15000);
+        factory.setConnectTimeout(5000);
         // 设置读取超时
         factory.setReadTimeout(5000);
         return factory;

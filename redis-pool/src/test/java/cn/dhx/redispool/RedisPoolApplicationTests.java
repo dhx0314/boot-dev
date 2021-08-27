@@ -1,6 +1,7 @@
 package cn.dhx.redispool;
 
 import cn.dhx.redispool.entity.CallDto;
+import cn.dhx.redispool.web.WebController;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
@@ -24,6 +25,15 @@ class RedisPoolApplicationTests {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
+
+
+    @Autowired
+    private WebController webController;
+
+    @Test
+    public void fun212() {
+        webController.fun2();
+    }
 
     @Test
     void contextLoads() {
