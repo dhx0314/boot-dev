@@ -29,6 +29,7 @@
         <module>util</module>
         <module>redis-pool</module>
         <module>algorithm</module>
+        <module>mq</module>
     </modules>
 
     <properties>
