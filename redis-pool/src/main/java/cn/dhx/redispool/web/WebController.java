@@ -26,6 +26,31 @@ public class WebController {
         System.out.println("-----------------");
     }
 
+    @GetMapping("/hi2")
+    public String fun1a() {
+        if (redisLock.lock("a")) {
+            try {
+                String name = Thread.currentThread().getName();
+//                    log.info(name);
+                String lock = stringRedisTemplate.opsForValue().get("lock");
+                log.info(lock);
+                stringRedisTemplate.opsForValue().set("lock", name);
+                TimeUnit.SECONDS.sleep(10);
+                log.info("------------------redisLock.lock();-----");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                log.info("------------------redisLock.unlock();-----");
+                redisLock.unlock("a");
+            }
+        }else {
+            log.info("no lock");
+        }
+        return "a";
+    }
+
+
+
     @GetMapping("/hi")
     public void fun1() throws InterruptedException {
 

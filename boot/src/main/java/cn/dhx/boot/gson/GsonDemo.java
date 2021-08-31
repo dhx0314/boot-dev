@@ -1,7 +1,6 @@
 package cn.dhx.boot.gson;
 
 import cn.dhx.boot.entity.User;
-import cn.dhx.boot.thread2.Stu;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

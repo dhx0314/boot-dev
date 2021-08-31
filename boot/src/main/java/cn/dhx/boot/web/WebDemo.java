@@ -19,7 +19,7 @@ public class WebDemo {
 
     @GetMapping("/test22")
     public String fun21() {
-        Demo01.fun1();
+//        Demo01.fun1();
         log.info("test1-------------------------");
         return "ok92475897937";
     }
