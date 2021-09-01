@@ -11,6 +11,7 @@ import cn.dhx.boot.ftppool.FtpPool;
 import cn.dhx.boot.httpd.Upload;
 import cn.dhx.boot.kafka.KafkaProducerDemo;
 //import cn.dhx.boot.thread2.StuDemo;
+import cn.dhx.boot.service.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,4 +40,38 @@ import java.util.concurrent.TimeUnit;
 class BootApplicationTests {
 
 
+
+//    @Autowired
+//    private MyService myService;
+
+    @Autowired
+    private MyServiceUtil myServiceUtil;
+
+
+    @Test
+    public void fun2() {
+
+//        MyServiceUtil.send();
+
+//        Object myServiceImpl = SpringUtils.getObject("myServiceImpl2");
+//        MyService MyService= (MyService) myServiceImpl;
+//        MyService.send();
+            myServiceUtil.fun1("myServiceImpl2");
+            MyServiceUtil.send();
+
+        myServiceUtil.fun1("abc");
+        MyServiceUtil.send();
+//        myService.send();
+//        System.out.println("---------------");
+//
+//        try {
+//            Object sti = SpringUtils.getBean("st2i");
+//        } catch (Exception e) {
+//            log.info("erroe",e);
+//        }
+
+
+
+
+    }
 }
