@@ -1,4 +1,4 @@
-package cn.dhx.mq.rabbitmq.ack;
+package cn.dhx.mq.rabbitmq.confirm;
 
 import cn.dhx.mq.rabbitmq.util.RabbitMqUtil;
 import com.rabbitmq.client.Channel;

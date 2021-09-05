@@ -30,6 +30,7 @@ public class Consumer {
          * 3.推送的消息如何进行消费的接口回调
          * 3.消费者未成功消费的回调
          */
+        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
         channel.basicConsume(QUEUE_NAME,true, (consumerTag,message)->{
             String s = new String(message.getBody());
             System.out.println("message-------"+s);
@@ -37,9 +38,9 @@ public class Consumer {
         },(consumerTag)->{
             System.out.println("消息消费被中断");
         });
-
-        channel.close();
-        connection.close();
+//
+//        channel.close();
+//        connection.close();
 
     }
 }

@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 @Component
 public class MyServiceUtil {
 
-    private static MyService myService;
+    private static MyService myService ;
 
     private String aa;
 
@@ -35,15 +35,13 @@ public class MyServiceUtil {
     }
 
 
-
-
-    @Autowired
-    @Qualifier("myServiceImpl2")
-    void setMyService(MyService myService) {
-        log.info("myService");
-        this.myService = myService;
-        send();
-    }
+//    @Autowired
+//    @Qualifier("myServiceImpl2")
+//    void setMyService(MyService myService) {
+//        log.info("myService");
+//        this.myService = myService;
+//        send();
+//    }
 
 
 //    @Autowired
@@ -53,11 +51,11 @@ public class MyServiceUtil {
 //        this.myService = myService;
 //    }
 
-//    @PostConstruct
+    //    @PostConstruct
     public void fun1(String s) {
         Object myServiceImpl = SpringUtils.getObject(s);
-        MyService myServiceT= (MyService) myServiceImpl;
+        MyService myServiceT = (MyService) myServiceImpl;
 //        MyService.send();
-        myService=myServiceT;
+        myService = myServiceT;
     }
 }
