@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -27,8 +28,22 @@ class RedisPoolApplicationTests {
     private StringRedisTemplate redisTemplate;
 
 
+
+
+
     @Autowired
     private WebController webController;
+
+
+    @Test
+    public void funwaef23() {
+        ValueOperations<String, String> stringValueOperations = redisTemplate.opsForValue();
+        for (int i = 30001; i <30500 ; i++) {
+            String key="DEVICE-INFO-MAP"+"|"+i;
+            String s = UUID.randomUUID().toString();
+            stringValueOperations.set(key,s);
+        }
+    }
 
     @Test
     public void fun212() {

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dhx.mybatis.dao.FiledetailDao">
+
+    <resultMap type="cn.dhx.mybatis.entity.Filedetail" id="FiledetailMap">
+        <result property="recordtype" column="RecordType" jdbcType="VARCHAR"/>
+        <result property="startdatetime" column="startDateTime" jdbcType="TIMESTAMP"/>
+        <result property="agentfilename" column="agentFileName" jdbcType="VARCHAR"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="fileencodingfmt" column="fileEncodingFmt" jdbcType="VARCHAR"/>
+        <result property="calllenth" column="callLenth" jdbcType="INTEGER"/>
+        <result property="callid" column="callid" jdbcType="VARCHAR"/>
+        <result property="customfilename" column="customFileName" jdbcType="VARCHAR"/>
+        <result property="calldirect" column="callDirect" jdbcType="VARCHAR"/>
+        <result property="ani" column="ani" jdbcType="VARCHAR"/>
+        <result property="enddatetime" column="endDateTime" jdbcType="TIMESTAMP"/>
+        <result property="agentid" column="agentId" jdbcType="VARCHAR"/>
+        <result property="deviceid" column="deviceId" jdbcType="VARCHAR"/>
+        <result property="filename" column="fileName" jdbcType="VARCHAR"/>
+        <result property="dnis" column="dnis" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="FiledetailMap">
+        select RecordType,
+               startDateTime,
+               agentFileName,
+               id,
+               fileEncodingFmt,
+               callLenth,
+               callid,
+               customFileName,
+               callDirect,
+               ani,
+               endDateTime,
+               agentId,
+               deviceId,
+               fileName,
+               dnis
+        from recorder2.filedetail
+        where id = #{id}
+    </select>
+
+
+    <select id="queryById2" resultType="java.util.HashMap">
+        select RecordType,
+               startDateTime,
+               agentFileName,
+               id,
+               fileEncodingFmt,
+               callLenth,
+               callid,
+               customFileName,
+               callDirect,
+               ani,
+               endDateTime,
+               agentId,
+               deviceId,
+               fileName,
+               dnis
+        from recorder2.filedetail
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="FiledetailMap">
+        select RecordType,
+               startDateTime,
+               agentFileName,
+               id,
+               fileEncodingFmt,
+               callLenth,
+               callid,
+               customFileName,
+               callDirect,
+               ani,
+               endDateTime,
+               agentId,
+               deviceId,
+               fileName,
+               dnis
+        from recorder2.filedetail limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="FiledetailMap">
+        select
+        RecordType, startDateTime, agentFileName, id, fileEncodingFmt, callLenth, callid, customFileName, callDirect,
+        ani, endDateTime, agentId, deviceId, fileName, dnis
+        from recorder2.filedetail
+        <where>
+            <if test="recordtype != null and recordtype != ''">
+                and RecordType = #{recordtype}
+            </if>
+            <if test="startdatetime != null">
+                and startDateTime = #{startdatetime}
+            </if>
+            <if test="agentfilename != null and agentfilename != ''">
+                and agentFileName = #{agentfilename}
+            </if>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="fileencodingfmt != null and fileencodingfmt != ''">
+                and fileEncodingFmt = #{fileencodingfmt}
+            </if>
+            <if test="calllenth != null">
+                and callLenth = #{calllenth}
+            </if>
+            <if test="callid != null and callid != ''">
+                and callid = #{callid}
+            </if>
+            <if test="customfilename != null and customfilename != ''">
+                and customFileName = #{customfilename}
+            </if>
+            <if test="calldirect != null and calldirect != ''">
+                and callDirect = #{calldirect}
+            </if>
+            <if test="ani != null and ani != ''">
+                and ani = #{ani}
+            </if>
+            <if test="enddatetime != null">
+                and endDateTime = #{enddatetime}
+            </if>
+            <if test="agentid != null and agentid != ''">
+                and agentId = #{agentid}
+            </if>
+            <if test="deviceid != null and deviceid != ''">
+                and deviceId = #{deviceid}
+            </if>
+            <if test="filename != null and filename != ''">
+                and fileName = #{filename}
+            </if>
+            <if test="dnis != null and dnis != ''">
+                and dnis = #{dnis}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into recorder2.filedetail(RecordType, startDateTime, agentFileName, fileEncodingFmt, callLenth, callid,
+                                         customFileName, callDirect, ani, endDateTime, agentId, deviceId, fileName,
+                                         dnis)
+        values (#{recordtype}, #{startdatetime}, #{agentfilename}, #{fileencodingfmt}, #{calllenth}, #{callid},
+                #{customfilename}, #{calldirect}, #{ani}, #{enddatetime}, #{agentid}, #{deviceid}, #{filename}, #{dnis})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into recorder2.filedetail(RecordType, startDateTime, agentFileName, fileEncodingFmt, callLenth, callid,
+        customFileName, callDirect, ani, endDateTime, agentId, deviceId, fileName, dnis)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.recordtype}, #{entity.startdatetime}, #{entity.agentfilename}, #{entity.fileencodingfmt},
+            #{entity.calllenth}, #{entity.callid}, #{entity.customfilename}, #{entity.calldirect}, #{entity.ani},
+            #{entity.enddatetime}, #{entity.agentid}, #{entity.deviceid}, #{entity.filename}, #{entity.dnis})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into recorder2.filedetail(RecordType, startDateTime, agentFileName, fileEncodingFmt, callLenth, callid,
+        customFileName, callDirect, ani, endDateTime, agentId, deviceId, fileName, dnis)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.recordtype}, #{entity.startdatetime}, #{entity.agentfilename}, #{entity.fileencodingfmt},
+            #{entity.calllenth}, #{entity.callid}, #{entity.customfilename}, #{entity.calldirect}, #{entity.ani},
+            #{entity.enddatetime}, #{entity.agentid}, #{entity.deviceid}, #{entity.filename}, #{entity.dnis})
+        </foreach>
+        on duplicate key update
+        RecordType = values(RecordType) , startDateTime = values(startDateTime) , agentFileName = values(agentFileName)
+        , fileEncodingFmt = values(fileEncodingFmt) , callLenth = values(callLenth) , callid = values(callid) ,
+        customFileName = values(customFileName) , callDirect = values(callDirect) , ani = values(ani) , endDateTime =
+        values(endDateTime) , agentId = values(agentId) , deviceId = values(deviceId) , fileName = values(fileName) ,
+        dnis = values(dnis)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update recorder2.filedetail
+        <set>
+            <if test="recordtype != null and recordtype != ''">
+                RecordType = #{recordtype},
+            </if>
+            <if test="startdatetime != null">
+                startDateTime = #{startdatetime},
+            </if>
+            <if test="agentfilename != null and agentfilename != ''">
+                agentFileName = #{agentfilename},
+            </if>
+            <if test="fileencodingfmt != null and fileencodingfmt != ''">
+                fileEncodingFmt = #{fileencodingfmt},
+            </if>
+            <if test="calllenth != null">
+                callLenth = #{calllenth},
+            </if>
+            <if test="callid != null and callid != ''">
+                callid = #{callid},
+            </if>
+            <if test="customfilename != null and customfilename != ''">
+                customFileName = #{customfilename},
+            </if>
+            <if test="calldirect != null and calldirect != ''">
+                callDirect = #{calldirect},
+            </if>
+            <if test="ani != null and ani != ''">
+                ani = #{ani},
+            </if>
+            <if test="enddatetime != null">
+                endDateTime = #{enddatetime},
+            </if>
+            <if test="agentid != null and agentid != ''">
+                agentId = #{agentid},
+            </if>
+            <if test="deviceid != null and deviceid != ''">
+                deviceId = #{deviceid},
+            </if>
+            <if test="filename != null and filename != ''">
+                fileName = #{filename},
+            </if>
+            <if test="dnis != null and dnis != ''">
+                dnis = #{dnis},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from recorder2.filedetail
+        where id = #{id}
+    </delete>
+
+</mapper>
+

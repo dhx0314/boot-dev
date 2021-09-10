@@ -1,6 +1,5 @@
 package cn.dhx.redispool.clusterpool;
 
-import org.apache.commons.pool2.DestroyMode;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.DefaultPooledObject;

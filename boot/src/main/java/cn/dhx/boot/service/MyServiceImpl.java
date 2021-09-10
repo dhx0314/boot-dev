@@ -10,7 +10,7 @@ public class MyServiceImpl implements MyService{
 
     @Override
     public void send() {
-        log.info("---MyServiceImpl----send-----");
+        log.info("---MyServiceImpl--abc--send-----");
     }
 
 }

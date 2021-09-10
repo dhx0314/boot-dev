@@ -61,7 +61,7 @@ public class Upload {
 
         try {
             start = System.currentTimeMillis();
-//            restTemplate.put(uploadPath, data);
+            restTemplate.put(uploadPath, data);
             end = System.currentTimeMillis();
             log.info("SUCCESS put file [{}]. cost [ {} ] ms", uploadPath, end - start);
             return true;
