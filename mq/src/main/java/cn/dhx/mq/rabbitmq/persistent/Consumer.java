@@ -1,4 +1,4 @@
-package cn.dhx.mq.rabbitmq.ack;
+package cn.dhx.mq.rabbitmq.persistent;
 
 import cn.dhx.mq.rabbitmq.util.RabbitMqUtil;
 import com.rabbitmq.client.Channel;
@@ -8,26 +8,16 @@ import java.util.concurrent.TimeoutException;
 
 public class Consumer {
 
-    private final static String QUEUE_NAME="ack_queue";
+    private final static String QUEUE_NAME="persistent";
 
     public static void main(String[] args) throws IOException, TimeoutException {
         Channel channel = RabbitMqUtil.getChannel();
         System.out.println("consumer 1  wait");
-
-        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
-
-
-        int prefetchCount = 2;
-        channel.basicQos(prefetchCount);
-        boolean autoAck=false;
-        channel.basicConsume(QUEUE_NAME,autoAck,(consumerTag, message)->{
+        boolean durable=true;
+        channel.queueDeclare(QUEUE_NAME,durable,false,false,null);
+        channel.basicConsume(QUEUE_NAME,true,(consumerTag, message)->{
             String s = new String(message.getBody());
             System.out.println("-----" + s);
-            /**
-             * 1.消息标记 tag
-             * 2.是否批量应答未应答消息
-             */
-            channel.basicAck(message.getEnvelope().getDeliveryTag(), false);
         },(consumerTag)->{
             System.out.println("----------");
         });

@@ -13,6 +13,7 @@ public class Consumer {
     public static void main(String[] args) throws IOException, TimeoutException {
         Channel channel = RabbitMqUtil.getChannel();
         System.out.println("consumer 1  wait");
+        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
         channel.basicConsume(QUEUE_NAME,true,(consumerTag, message)->{
             String s = new String(message.getBody());
             System.out.println("-----" + s);
