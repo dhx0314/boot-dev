@@ -3,15 +3,19 @@ package cn.dhx.mq.rabbitmq.confirm;
 import cn.dhx.mq.rabbitmq.util.RabbitMqUtil;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.ConfirmCallback;
+import com.rabbitmq.client.ConfirmListener;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Scanner;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 public class AsyncProduce {
 
-    private final static String QUEUE_NAME = "confirm";
+    private final static String QUEUE_NAME = "async_confirm";
 
     public static void main(String[] args) throws Exception {
         Channel channel = RabbitMqUtil.getChannel();
@@ -54,6 +58,10 @@ public class AsyncProduce {
          */
 
         channel.addConfirmListener(ackCallback, nackCallback);
+
+
+
+
         long start = System.currentTimeMillis();
         for (int i = 0; i < 1000; i++) {
             String message = "消息" + i;
@@ -67,7 +75,7 @@ public class AsyncProduce {
         }
 
         long end = System.currentTimeMillis();
-        System.out.println("single cost " + (end - start));
+        System.out.println("Async cost " + (end - start));
 
     }
 }
