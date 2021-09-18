@@ -85,6 +85,7 @@ public class ParameterController2 {
     //}'
     @PostMapping("/requestBody/map")
     public void login(@RequestBody Map<String, String> map) {
+        System.out.println(map.toString());
         System.out.println(map.get("userName"));
         System.out.println(map.get("passWord"));
     }

@@ -1,10 +1,14 @@
 package cn.dhx.boot.web;
 
 import cn.dhx.boot.demo.Demo01;
+import cn.dhx.boot.demo.JsonResult;
+import cn.dhx.boot.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -12,6 +16,30 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class WebDemo {
 
+
+
+
+    @GetMapping("/test223")
+    public JsonResult fun213() {
+        HashMap<String, String> stringStringHashMap = new HashMap<>();
+        stringStringHashMap.put("123","wwafer");
+        stringStringHashMap.put("12we3","wwafer");
+
+
+        HashMap<String, String> stringStringHashMap2 = new HashMap<>();
+        stringStringHashMap2.put("1232","wwafer");
+        stringStringHashMap2.put("12we23","wwafer");
+        ArrayList<Object> objects = new ArrayList<>();
+        objects.add(stringStringHashMap);
+        objects.add(stringStringHashMap2);
+        User user = new User();
+        user.setAge(100);
+        user.setId(1);
+        user.setName("zhangsan");
+        JsonResult wa = new JsonResult("11", true, "wa", objects);
+        JsonResult wa2 = new JsonResult("11", true, "wa");
+        return wa2;
+    }
 
 //
 //    @Autowired

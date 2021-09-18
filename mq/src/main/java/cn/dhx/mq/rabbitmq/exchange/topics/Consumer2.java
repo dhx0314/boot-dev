@@ -14,10 +14,6 @@ public class Consumer2 {
     public static void main(String[] args) throws IOException, TimeoutException {
         Channel channel = RabbitMqUtil.getChannel();
         System.out.println("consumer 2  wait");
-        /**
-         * 生成一个临时的队列 队列的名称是随机的
-         * 当消费者断开和该队列的连接时 队列自动删除
-         */
         channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
         String queueName="Q2";
         channel.queueDeclare(queueName, false, false, false, null);
