@@ -48,7 +48,10 @@ public class WebDemo {
     @GetMapping("/test22")
     public String fun21() {
 //        Demo01.fun1();
-        log.info("test1-------------------------");
+        HashMap<String, String> stringStringHashMap = new HashMap<>();
+        String a = stringStringHashMap.get("a");
+
+        log.info("test1------------{}-------------",a);
         return "ok92475897937";
     }
 

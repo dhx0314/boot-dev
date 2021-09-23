@@ -3,11 +3,14 @@ package cn.dhx.redispool.web;
 
 import cn.dhx.redispool.redisson.RedisLock;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -21,34 +24,48 @@ public class WebController {
     StringRedisTemplate stringRedisTemplate;
 
 
+    @Autowired
+    private RedissonClient redissonClient;
+
+    @GetMapping("/add")
+    public void fun2add() throws IOException {
+        Long key = stringRedisTemplate.opsForValue().increment("key", 1);
+        log.info("=="+key);
+    }
+
+
     @GetMapping("/a234")
-    public void fun2() {
+    public void fun2() throws IOException {
+        Config config = redissonClient.getConfig();
+        String s = config.toYAML();
+        System.out.println(s);
         System.out.println("-----------------");
     }
 
     @GetMapping("/hi2")
     public String fun1a() {
-        if (redisLock.lock("a")) {
-            try {
-                String name = Thread.currentThread().getName();
+        new Thread(() -> {
+            if (redisLock.lock("a")) {
+                try {
+                    String name = Thread.currentThread().getName();
 //                    log.info(name);
-                String lock = stringRedisTemplate.opsForValue().get("lock");
-                log.info(lock);
-                stringRedisTemplate.opsForValue().set("lock", name);
-                TimeUnit.SECONDS.sleep(10);
-                log.info("------------------redisLock.lock();-----");
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                log.info("------------------redisLock.unlock();-----");
-                redisLock.unlock("a");
+//                String lock = stringRedisTemplate.opsForValue().get("lock");
+//                log.info(lock);
+                    stringRedisTemplate.opsForValue().set("lock", name);
+                    TimeUnit.SECONDS.sleep(3);
+                    log.info("------------------redisLock.lock();-----");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    log.info("------------------redisLock.unlock();-----");
+                    redisLock.unlock("a");
+                }
+            } else {
+                log.info("no lock");
             }
-        }else {
-            log.info("no lock");
-        }
+        }).start();
         return "a";
     }
-
 
 
     @GetMapping("/hi")

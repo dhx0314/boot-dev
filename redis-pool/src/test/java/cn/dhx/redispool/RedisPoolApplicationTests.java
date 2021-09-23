@@ -45,10 +45,7 @@ class RedisPoolApplicationTests {
         }
     }
 
-    @Test
-    public void fun212() {
-        webController.fun2();
-    }
+
 
     @Test
     void contextLoads() {
