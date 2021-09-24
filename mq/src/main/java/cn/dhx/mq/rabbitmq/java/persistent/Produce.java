@@ -20,6 +20,7 @@ public class Produce {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             String next = scanner.next();
+            //消息的持久化
             channel.basicPublish("",QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN,next.getBytes());
             System.out.println("send --"+next);
         }
