@@ -1,4 +1,4 @@
-package cn.dhx.jvm.a3_2;
+package cn.dhx.jvm.reference;
 
 import java.io.IOException;
 import java.lang.ref.Reference;

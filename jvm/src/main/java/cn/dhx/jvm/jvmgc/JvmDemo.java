@@ -1,4 +1,4 @@
-package cn.dhx.jvm.a4_5;
+package cn.dhx.jvm.jvmgc;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;

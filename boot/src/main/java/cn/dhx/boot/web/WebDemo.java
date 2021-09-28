@@ -17,6 +17,12 @@ import java.util.concurrent.TimeUnit;
 public class WebDemo {
 
 
+    @GetMapping("list")
+    public Object list() {
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("11");
+        return strings;
+    }
 
 
     @GetMapping("/test223")

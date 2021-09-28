@@ -1,4 +1,4 @@
-package cn.dhx.jvm.a2_5;
+package cn.dhx.jvm.String;
 
 
 //  StringTable ["a","b","ab"]  hashtable结构 不能扩容

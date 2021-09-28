@@ -1,11 +1,6 @@
-package cn.dhx.jvm.a3_2;
-
-import com.sun.javafx.util.WeakReferenceQueue;
+package cn.dhx.jvm.reference;
 
 import java.io.IOException;
-import java.lang.ref.Reference;
-import java.lang.ref.ReferenceQueue;
-import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package cn.dhx.jvm.a2_6;
+package cn.dhx.jvm.direct;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;

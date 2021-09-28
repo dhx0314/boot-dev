@@ -1,4 +1,4 @@
-package cn.dhx.jvm.a2_4;
+package cn.dhx.jvm.heap;
 
 import java.util.ArrayList;
 

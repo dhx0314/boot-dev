@@ -1,4 +1,4 @@
-package cn.dhx.jvm.a2_5;
+package cn.dhx.jvm.String;
 
 public class StringTable3 {
     public static void main(String[] args) {
