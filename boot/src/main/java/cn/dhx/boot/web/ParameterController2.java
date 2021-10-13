@@ -84,10 +84,19 @@ public class ParameterController2 {
     //    "passWord":"bb"
     //}'
     @PostMapping("/requestBody/map")
-    public void login(@RequestBody Map<String, String> map) {
+    public String login(@RequestBody Map<String, String> map) {
         System.out.println(map.toString());
         System.out.println(map.get("userName"));
         System.out.println(map.get("passWord"));
+        return map.toString();
+    }
+
+    @GetMapping("/requestBody/map2")
+    public String login2(@RequestBody Map<String, String> map) {
+        System.out.println(map.toString());
+        System.out.println(map.get("userName"));
+        System.out.println(map.get("passWord"));
+        return map.toString();
     }
 
     //127.0.0.1:8001/pathVariable/aa/18

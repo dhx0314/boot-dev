@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @SpringBootTest
@@ -33,6 +34,33 @@ class RedisPoolApplicationTests {
 
     @Autowired
     private WebController webController;
+
+    @Test
+    public void fun1() {
+//        Long key = redisTemplate.opsForValue().increment("key", 1);
+//        incr("11",1L,"incr error");
+
+//        Map<Object, Object> entries = redisTemplate.opsForHash().entries("REC-AGENT|MPS-144");
+//        System.out.println(entries.toString());
+
+        String s = redisTemplate.opsForValue().get("11");
+        System.out.println(s);
+    }
+
+    public Long incr(String key, long delta, String errMsg) {
+        if (delta < 0) {
+            throw new RuntimeException("递增因子必须大于0");
+        }
+        try {
+//            key = generateKey(key);
+             redisTemplate.opsForValue().increment(key, delta);
+             int i=1/0;
+            return 1L;
+        } catch (Exception e) {
+            log.error(errMsg, e);
+        }
+        return null;
+    }
 
 
     @Test

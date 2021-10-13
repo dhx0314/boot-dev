@@ -78,6 +78,41 @@ class BootApplicationTests {
 
     }
 
+
+    @Test
+    public void fun2post() throws JsonProcessingException {
+        String url = "http://172.16.2.144:18099/passive-recorder/merge";
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("callId", "af4c6a58-8c14-47b6-96d8-96f8502bdbf1123");
+        hashMap.put("deviceId", "1005");
+        ObjectMapper objectMapper = new ObjectMapper();
+        String param = objectMapper.writeValueAsString(hashMap);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity httpEntity = new HttpEntity<>(param, headers);
+        String s = restTemplate.postForObject(url, httpEntity, String.class);
+        System.out.println(s);
+
+    }
+
+
+
+    @Test
+    public void fun2post2() throws JsonProcessingException {
+        String url = "http://127.0.0.1:8080/requestBody/map2";
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("callId", "af4c6a58-8c14-47b6-96d8-96f8502bdbf1123");
+        hashMap.put("deviceId", "1005");
+        ObjectMapper objectMapper = new ObjectMapper();
+        String param = objectMapper.writeValueAsString(hashMap);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity httpEntity = new HttpEntity<>(param, headers);
+        String s = restTemplate.getForObject(url, String.class,httpEntity);
+        System.out.println(s);
+
+    }
+
     @Test
     public void fun2aeaw() throws JsonProcessingException, InterruptedException {
         String url = "http://172.16.2.144:8082/api/startREC";

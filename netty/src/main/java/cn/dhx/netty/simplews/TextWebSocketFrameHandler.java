@@ -21,6 +21,8 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
         System.out.println("收到消息："+msg.text());
+
+        Channel channel = ctx.channel();
         //单个回应
 //        ctx.channel().writeAndFlush(new TextWebSocketFrame("服务时间："+ msg.text().toUpperCase()+" "+ LocalDateTime.now()));
         //全部channle都推送
