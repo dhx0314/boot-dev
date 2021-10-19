@@ -43,8 +43,16 @@ class RedisPoolApplicationTests {
 //        Map<Object, Object> entries = redisTemplate.opsForHash().entries("REC-AGENT|MPS-144");
 //        System.out.println(entries.toString());
 
-        String s = redisTemplate.opsForValue().get("11");
+//        String s = redisTemplate.opsForValue().get("11");
+
+
+        redisTemplate.opsForValue().set("k1","v2");
+        String s = redisTemplate.opsForValue().get("REC-AGENT|LicenseUsedNum");
         System.out.println(s);
+        String channel="message-test";
+        String message="22";
+        redisTemplate.convertAndSend(channel, message);
+//        System.out.println(s);
     }
 
     public Long incr(String key, long delta, String errMsg) {
