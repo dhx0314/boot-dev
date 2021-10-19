@@ -24,6 +24,7 @@ public class DelayedQueueConfig {
     }
 
 
+    // 延迟交换机
     @Bean("delayedExchange")
     public CustomExchange delayedExchange() {
         HashMap<String, Object> hashMap = new HashMap<>();

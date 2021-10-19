@@ -17,6 +17,7 @@ import java.util.Date;
 public class DeadLetterQueueConsumer {
 
 
+    // 死信队列消费者
     @RabbitListener(queues = TtlQueueConfig.DEAD_LETTER_QUEUE)
     public void receiveD(Message message, Channel channel) {
 
@@ -24,6 +25,7 @@ public class DeadLetterQueueConsumer {
         log.info("{}-----message--{}",new Date(),s);
     }
 
+    // 延迟队列消费者
     @RabbitListener(queues = DelayedQueueConfig.DELAYED_QUEUE_NAME)
     public void receiveDelayedQueue(Message message) {
         String msg = new String(message.getBody());
