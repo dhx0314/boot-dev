@@ -37,6 +37,37 @@ class RedisPoolApplicationTests {
 
     @Test
     public void fun1() {
+
+
+        try {
+            String deviceIpOld = (String) redisTemplate.opsForHash().get("key", "deviceId");
+            System.out.println(deviceIpOld);
+            if (StringUtils.isNotBlank(deviceIpOld)) {
+                System.out.println("---");
+            } else {
+                System.out.println("aaa");
+            }
+        } catch (Exception e) {
+            log.error("aa",e);
+            System.out.println("aa");
+        }
+
+//        StringRedisTemplate object = SpringUtils.getObject(StringRedisTemplate.class);
+//        redisTemplate=object;
+//        String customCache = redisTemplate.opsForValue().get("customCache");
+//        System.out.println(customCache);
+
+//        for (int i = 0; i < 3; i++) {
+//            String customCache = redisTemplate.opsForValue().get("customCache");
+//
+//            if (StringUtils.isBlank(customCache)) {
+//                redisTemplate.opsForValue().set("customCache", "1");
+//            } else {
+//                redisTemplate.opsForValue().increment("customCache",100);
+//            }
+//            System.out.println(customCache);
+//        }
+
 //        Long key = redisTemplate.opsForValue().increment("key", 1);
 //        incr("11",1L,"incr error");
 
@@ -46,12 +77,12 @@ class RedisPoolApplicationTests {
 //        String s = redisTemplate.opsForValue().get("11");
 
 
-        redisTemplate.opsForValue().set("k1","v2");
-        String s = redisTemplate.opsForValue().get("REC-AGENT|LicenseUsedNum");
-        System.out.println(s);
-        String channel="message-test";
-        String message="22";
-        redisTemplate.convertAndSend(channel, message);
+//        redisTemplate.opsForValue().set("k1","v2");
+//        String s = redisTemplate.opsForValue().get("REC-AGENT|LicenseUsedNum");
+//        System.out.println(s);
+//        String channel="message-test";
+//        String message="22";
+//        redisTemplate.convertAndSend(channel, message);
 //        System.out.println(s);
     }
 
