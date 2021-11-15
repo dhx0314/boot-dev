@@ -13,10 +13,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -27,6 +24,10 @@ class RedisPoolApplicationTests {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
+//
+//    @Autowired
+//    private RedisTemplate redisTemplate;
+
 
 
 
@@ -35,22 +36,40 @@ class RedisPoolApplicationTests {
     @Autowired
     private WebController webController;
 
+
+    @Test
+    public void fun1aa() {
+        Long remove = redisTemplate.opsForZSet().remove("REC-AGENT|RecDeviceList", "30499");
+
+    }
+
     @Test
     public void fun1() {
 
+        Object o = redisTemplate.opsForHash().entries("REC-AGENT|MPS-82");
 
-        try {
-            String deviceIpOld = (String) redisTemplate.opsForHash().get("key", "deviceId");
-            System.out.println(deviceIpOld);
-            if (StringUtils.isNotBlank(deviceIpOld)) {
-                System.out.println("---");
-            } else {
-                System.out.println("aaa");
-            }
-        } catch (Exception e) {
-            log.error("aa",e);
-            System.out.println("aa");
+        HashMap<Object, Object> stringStringHashMap = new HashMap<>();
+        stringStringHashMap= (HashMap<Object, Object>) o;
+        Object serviceType = stringStringHashMap.get("serviceType2");
+        if (serviceType == null) {
+            System.out.println("-------");
+        }else {
+            System.out.println("waefewafwa");
+            System.out.println(serviceType.toString());
         }
+//
+//        try {
+//            String deviceIpOld = (String) redisTemplate.opsForHash().get("REC-AGENT|MPS-82", "deviceId");
+//            System.out.println(deviceIpOld);
+//            if (StringUtils.isNotBlank(deviceIpOld)) {
+//                System.out.println("---");
+//            } else {
+//                System.out.println("aaa");
+//            }
+//        } catch (Exception e) {
+//            log.error("aa",e);
+//            System.out.println("aa");
+//        }
 
 //        StringRedisTemplate object = SpringUtils.getObject(StringRedisTemplate.class);
 //        redisTemplate=object;

@@ -12,12 +12,13 @@ import static org.bytedeco.ffmpeg.global.avutil.*;
 import static org.bytedeco.ffmpeg.global.swscale.*;
 
 public class ReadFewFrame {
-    /**
-     * Write image data using simple image format ppm
-     * @see https://en.wikipedia.org/wiki/Netpbm_format
-     */
+//    /**
+//     * Write image data using simple image format ppm
+//     * @see https://en.wikipedia.org/wiki/Netpbm_format
+//     */
     static void save_frame(AVFrame pFrame, int width, int height, int f_idx) throws IOException {
         // Open file
+//        String szFilename = String.format("frame%d_.ppm", f_idx);
         String szFilename = String.format("frame%d_.ppm", f_idx);
         OutputStream pFile = new FileOutputStream(szFilename);
 
