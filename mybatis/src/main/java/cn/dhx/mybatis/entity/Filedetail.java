@@ -1,78 +1,62 @@
 package cn.dhx.mybatis.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
+
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
-import java.util.Date;
 import java.io.Serializable;
 
 /**
- * (Filedetail)实体类
+ * (Filedetail)表实体类
  *
  * @author dhx
- * @since 2021-09-07 18:00:00
+ * @since 2021-11-10 16:00:37
  */
-
+@SuppressWarnings("serial")
 @Data
-public class Filedetail implements Serializable {
-    private static final long serialVersionUID = 474121856445979216L;
-
-    private String recordtype;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date startdatetime;
-
-    private String agentfilename;
+public class Filedetail extends Model<Filedetail> {
 
     private Integer id;
 
-    private String fileencodingfmt;
-
-    private Integer calllenth;
-
-    private String callid;
-
-    private String customfilename;
-
-    private String calldirect;
-
     private String ani;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date enddatetime;
-
-    private String agentid;
-
-    private String deviceid;
-
-    private String filename;
 
     private String dnis;
 
+    private String calldirect;
 
-    public String getRecordtype() {
-        return recordtype;
-    }
+    private String fileid;
 
-    public void setRecordtype(String recordtype) {
-        this.recordtype = recordtype;
-    }
+    private String filename;
 
-    public Date getStartdatetime() {
-        return startdatetime;
-    }
+    private String agentfilename;
 
-    public void setStartdatetime(Date startdatetime) {
-        this.startdatetime = startdatetime;
-    }
+    private String customfilename;
 
-    public String getAgentfilename() {
-        return agentfilename;
-    }
+    private String fileinfo;
 
-    public void setAgentfilename(String agentfilename) {
-        this.agentfilename = agentfilename;
-    }
+    private String deviceid;
+
+    private String agentid;
+
+    private Date startdatetime;
+
+    private Date enddatetime;
+
+    private String callid;
+
+    private String contactid;
+
+    private Integer calllenth;
+
+    private String recordtype;
+
+    private String servername;
+
+    private String fileencodingfmt;
+
+    private String separablefileencodingfmt;
+
 
     public Integer getId() {
         return id;
@@ -80,46 +64,6 @@ public class Filedetail implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getFileencodingfmt() {
-        return fileencodingfmt;
-    }
-
-    public void setFileencodingfmt(String fileencodingfmt) {
-        this.fileencodingfmt = fileencodingfmt;
-    }
-
-    public Integer getCalllenth() {
-        return calllenth;
-    }
-
-    public void setCalllenth(Integer calllenth) {
-        this.calllenth = calllenth;
-    }
-
-    public String getCallid() {
-        return callid;
-    }
-
-    public void setCallid(String callid) {
-        this.callid = callid;
-    }
-
-    public String getCustomfilename() {
-        return customfilename;
-    }
-
-    public void setCustomfilename(String customfilename) {
-        this.customfilename = customfilename;
-    }
-
-    public String getCalldirect() {
-        return calldirect;
-    }
-
-    public void setCalldirect(String calldirect) {
-        this.calldirect = calldirect;
     }
 
     public String getAni() {
@@ -130,28 +74,28 @@ public class Filedetail implements Serializable {
         this.ani = ani;
     }
 
-    public Date getEnddatetime() {
-        return enddatetime;
+    public String getDnis() {
+        return dnis;
     }
 
-    public void setEnddatetime(Date enddatetime) {
-        this.enddatetime = enddatetime;
+    public void setDnis(String dnis) {
+        this.dnis = dnis;
     }
 
-    public String getAgentid() {
-        return agentid;
+    public String getCalldirect() {
+        return calldirect;
     }
 
-    public void setAgentid(String agentid) {
-        this.agentid = agentid;
+    public void setCalldirect(String calldirect) {
+        this.calldirect = calldirect;
     }
 
-    public String getDeviceid() {
-        return deviceid;
+    public String getFileid() {
+        return fileid;
     }
 
-    public void setDeviceid(String deviceid) {
-        this.deviceid = deviceid;
+    public void setFileid(String fileid) {
+        this.fileid = fileid;
     }
 
     public String getFilename() {
@@ -162,12 +106,125 @@ public class Filedetail implements Serializable {
         this.filename = filename;
     }
 
-    public String getDnis() {
-        return dnis;
+    public String getAgentfilename() {
+        return agentfilename;
     }
 
-    public void setDnis(String dnis) {
-        this.dnis = dnis;
+    public void setAgentfilename(String agentfilename) {
+        this.agentfilename = agentfilename;
     }
 
+    public String getCustomfilename() {
+        return customfilename;
+    }
+
+    public void setCustomfilename(String customfilename) {
+        this.customfilename = customfilename;
+    }
+
+    public String getFileinfo() {
+        return fileinfo;
+    }
+
+    public void setFileinfo(String fileinfo) {
+        this.fileinfo = fileinfo;
+    }
+
+    public String getDeviceid() {
+        return deviceid;
+    }
+
+    public void setDeviceid(String deviceid) {
+        this.deviceid = deviceid;
+    }
+
+    public String getAgentid() {
+        return agentid;
+    }
+
+    public void setAgentid(String agentid) {
+        this.agentid = agentid;
+    }
+
+    public Date getStartdatetime() {
+        return startdatetime;
+    }
+
+    public void setStartdatetime(Date startdatetime) {
+        this.startdatetime = startdatetime;
+    }
+
+    public Date getEnddatetime() {
+        return enddatetime;
+    }
+
+    public void setEnddatetime(Date enddatetime) {
+        this.enddatetime = enddatetime;
+    }
+
+    public String getCallid() {
+        return callid;
+    }
+
+    public void setCallid(String callid) {
+        this.callid = callid;
+    }
+
+    public String getContactid() {
+        return contactid;
+    }
+
+    public void setContactid(String contactid) {
+        this.contactid = contactid;
+    }
+
+    public Integer getCalllenth() {
+        return calllenth;
+    }
+
+    public void setCalllenth(Integer calllenth) {
+        this.calllenth = calllenth;
+    }
+
+    public String getRecordtype() {
+        return recordtype;
+    }
+
+    public void setRecordtype(String recordtype) {
+        this.recordtype = recordtype;
+    }
+
+    public String getServername() {
+        return servername;
+    }
+
+    public void setServername(String servername) {
+        this.servername = servername;
+    }
+
+    public String getFileencodingfmt() {
+        return fileencodingfmt;
+    }
+
+    public void setFileencodingfmt(String fileencodingfmt) {
+        this.fileencodingfmt = fileencodingfmt;
+    }
+
+    public String getSeparablefileencodingfmt() {
+        return separablefileencodingfmt;
+    }
+
+    public void setSeparablefileencodingfmt(String separablefileencodingfmt) {
+        this.separablefileencodingfmt = separablefileencodingfmt;
+    }
+
+    /**
+     * 获取主键值
+     *
+     * @return 主键值
+     */
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
 }

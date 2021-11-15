@@ -76,6 +76,6 @@ person:
 #      acks: 0
 aa:
   bb: myServiceImpl2
-
-
+server:
+  port: 8001
 

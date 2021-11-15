@@ -1,9 +1,10 @@
 package cn.dhx.mybatisplus;
 
 
-import cn.dhx.mybatisplus.service.IpStationService;
-import cn.dhx.mybatisplus.service.TbUserService;
-import cn.dhx.mybatisplus.service.impl.TbUserServiceImpl;
+import cn.dhx.mybatisplus.entity.Filedetail2;
+
+import cn.dhx.mybatisplus.service.impl.Filedetail2ServiceImpl;
+
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -20,5 +21,14 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 class MybatisPlusApplicationTests {
 
+
+    @Autowired
+    Filedetail2ServiceImpl filedetail2Service;
+
+    @Test
+    public void ffun1() {
+        Filedetail2 byId = filedetail2Service.getById(1);
+        System.out.println(byId);
+    }
 
 }

@@ -17,19 +17,26 @@ public class ParameterController2 {
 
     //  127.0.0.1:8001/requestParam?name=aa&age=18
     // 127.0.0.1:8080/requestParam?name=aa&age=10&addr=tt
-    @PostMapping("/requestParam")
+    @GetMapping("/requestParam")
     public void fun1(@RequestParam("name") String name, @RequestParam("age") int age) {
         System.out.println(name);
         System.out.println(age);
     }
 
     //  127.0.0.1:8001/requestParam2?name=aa&age=18
-    @PostMapping("/requestParam2")
+    @GetMapping("/requestParam2")
     public void fun2(String name, int age) {
         System.out.println(name);
         System.out.println(age);
     }
 
+
+    //  127.0.0.1:8001/requestParam2?name=aa&age=18
+    @GetMapping("/requestParam3")
+    public void fun2a(Map<String,String> map) {
+        System.out.println(map.get("name"));
+        System.out.println(map.get("age"));
+    }
 
     //    json
     //      127.0.0.1:8001/requestBody

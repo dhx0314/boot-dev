@@ -3,6 +3,7 @@ package cn.dhx.mybatis;
 
 import cn.dhx.mybatis.dao.FiledetailDao;
 import cn.dhx.mybatis.entity.Filedetail;
+import cn.dhx.mybatis.service.impl.FiledetailServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +18,12 @@ import java.util.Map;
 class MybatisApplicationTests {
 
     @Autowired
-    FiledetailDao filedetailDao;
-
-
+    private FiledetailServiceImpl filedetailService;
 
     @Test
-    void contextLoads() {
-        Filedetail filedetail = filedetailDao.queryById(1);
-        System.out.println(filedetail.toString());
-
-        List<Map<String,Object>> maps = filedetailDao.queryById2(1);
-        System.out.println(maps);
+    public void fun1() {
+        Filedetail byId = filedetailService.getById(1);
+        System.out.println(byId.toString());
     }
 
 }
