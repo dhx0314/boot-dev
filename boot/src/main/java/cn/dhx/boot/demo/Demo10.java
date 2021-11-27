@@ -4,12 +4,17 @@ public class Demo10 {
 
     public static void main(String[] args) {
 
-//        System.out.println(100 + 8);//108
-//        System.out.println("100" + 8);//1008
-//        System.out.println("a" + 100 + 8);//a1008
-//        System.out.println(100 + 8 + "a");//108a
+//        String url="http://172.16.2.88:9090/driver/v1/tsapi/getConfirmation/Recorderb8GEBJ";
+        String url="/driver/v1/tsapi/getConfirmation/Recorderb8GEBJ";
+        String temp[] =url.split("/");
+        //System.out.println("url count:"+temp.length);
+        String method = temp[4];
+        if(temp.length==6) {
+            String body = temp[5];
+        }
+        for (String s : temp) {
+            System.out.println(s);
+        }
 
-        Stu stu = new Stu();
-        System.out.println(stu);
     }
 }

@@ -9,7 +9,6 @@ import cn.dhx.boot.config.Person;
 import cn.dhx.boot.ftppool.FtpPool;
 
 import cn.dhx.boot.httpd.Upload;
-import cn.dhx.boot.kafka.KafkaProducerDemo;
 //import cn.dhx.boot.thread2.StuDemo;
 import cn.dhx.boot.service.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
