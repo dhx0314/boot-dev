@@ -13,6 +13,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.*;
 
 @SpringBootTest
@@ -39,7 +40,12 @@ class RedisPoolApplicationTests {
 
     @Test
     public void fun1aa() {
-        Long remove = redisTemplate.opsForZSet().remove("REC-AGENT|RecDeviceList", "30499");
+
+        Boolean aBoolean = redisTemplate.opsForValue().setIfAbsent("key1", "mpsLocation", Duration.ofSeconds(100));
+        System.out.println(aBoolean);
+
+        Boolean aBoolean2 = redisTemplate.opsForValue().setIfAbsent("key1", "mpsLocation", Duration.ofSeconds(100));
+        System.out.println(aBoolean2);
 
     }
 
