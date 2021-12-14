@@ -1,14 +1,11 @@
 package cn.dhx.boot.ftp;
 
-import cn.dhx.boot.ftp.util.Byte2InputStream;
-import cn.dhx.boot.ftppool.FtpPool;
+import cn.dhx.boot.ftp.ftppool.FtpPool;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -35,7 +32,7 @@ public class FileUtil2 {
     @Value("${ftp.basePath}")
     String FTP_BASEPATH;
 
-    @Autowired
+//    @Autowired
     private FtpPool ftpPool;
 
     //根据当前文件生成 文件夹

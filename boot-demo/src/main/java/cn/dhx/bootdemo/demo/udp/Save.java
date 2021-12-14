@@ -48,7 +48,8 @@ public class Save {
             String data = new String(buf, 0, packet.getLength());
 
 //            System.out.println("收到 " + ip + " 发来的消息：" + data);
-            log.info("{} message {} ",ip,data);
+            log.info("{} message {} ",ip,data.length());
+
 
         }
 

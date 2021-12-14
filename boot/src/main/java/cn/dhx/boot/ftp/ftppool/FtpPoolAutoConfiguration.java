@@ -1,9 +1,7 @@
-package cn.dhx.boot.ftppool;
+package cn.dhx.boot.ftp.ftppool;
 
 
-import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,25 +23,25 @@ public class FtpPoolAutoConfiguration {
     //    @ConditionalOnClass({TestObjectFactory.class})
     @Bean
     protected FtpPool initFtpPool() {
-//        FtpClientFactory ftpClientFactory = new FtpClientFactory();
-        //设置对象池的相关参数
-        GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
-        poolConfig.setMaxIdle(config.getMaxIdle());
-        poolConfig.setMaxTotal(config.getMaxTotal());
-        poolConfig.setMinIdle(config.getMinIdle());
-        poolConfig.setBlockWhenExhausted(true);
-        poolConfig.setTestOnBorrow(true);
-        poolConfig.setTestOnReturn(true);
-        poolConfig.setTestWhileIdle(true);
-        poolConfig.setTimeBetweenEvictionRunsMillis(1000 * 60 * 30);
-        //一定要关闭jmx，不然springboot启动会报已经注册了某个jmx的错误
-        poolConfig.setJmxEnabled(false);
-
-        //新建一个对象池,传入对象工厂和配置
-        pool = new FtpPool(ftpClientFactory, poolConfig);
-
-        initPool(config.getInitialSize(), config.getMaxIdle());
-        return pool;
+//        //设置对象池的相关参数
+//        GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
+//        poolConfig.setMaxIdle(config.getMaxIdle());
+//        poolConfig.setMaxTotal(config.getMaxTotal());
+//        poolConfig.setMinIdle(config.getMinIdle());
+//        poolConfig.setBlockWhenExhausted(true);
+//        poolConfig.setTestOnBorrow(true);
+//        poolConfig.setTestOnReturn(true);
+//        poolConfig.setTestWhileIdle(true);
+//        poolConfig.setTimeBetweenEvictionRunsMillis(1000 * 60 * 30);
+//        //一定要关闭jmx，不然springboot启动会报已经注册了某个jmx的错误
+//        poolConfig.setJmxEnabled(false);
+//
+//        //新建一个对象池,传入对象工厂和配置
+//        pool = new FtpPool(ftpClientFactory, poolConfig);
+//
+//        initPool(config.getInitialSize(), config.getMaxIdle());
+//        return pool;
+        return null;
     }
 
     /**

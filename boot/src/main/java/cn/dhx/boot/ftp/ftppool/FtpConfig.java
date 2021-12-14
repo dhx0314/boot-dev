@@ -1,4 +1,4 @@
-package cn.dhx.boot.ftppool;
+package cn.dhx.boot.ftp.ftppool;
 
 
 import lombok.Data;

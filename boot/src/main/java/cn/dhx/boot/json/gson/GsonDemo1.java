@@ -1,6 +1,5 @@
-package cn.dhx.boot.gson;
+package cn.dhx.boot.json.gson;
 
-import cn.dhx.boot.demo.Stu;
 import cn.dhx.boot.entity.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

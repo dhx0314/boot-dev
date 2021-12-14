@@ -1,4 +1,4 @@
-package cn.dhx.boot.config;
+package cn.dhx.boot.autoconfig;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

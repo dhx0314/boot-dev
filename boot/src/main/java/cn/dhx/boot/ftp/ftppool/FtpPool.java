@@ -1,4 +1,4 @@
-package cn.dhx.boot.ftppool;
+package cn.dhx.boot.ftp.ftppool;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.pool2.PooledObjectFactory;
