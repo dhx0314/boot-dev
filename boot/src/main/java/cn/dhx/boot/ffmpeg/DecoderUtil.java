@@ -25,9 +25,9 @@ public class DecoderUtil{
         };
         System.out.println(bytes2.length);
 
-        G729Decoder g729Decoder = new G729Decoder();
-        g729Decoder.init();
-        g729Decoder.decode(bytes1);
+//        G729Decoder g729Decoder = new G729Decoder();
+//        g729Decoder.init();
+//        g729Decoder.decode(bytes1);
 
     }
 }

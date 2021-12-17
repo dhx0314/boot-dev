@@ -1,22 +1,26 @@
 package cn.dhx.boot.demo;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Demo11 {
 
     public static void main(String[] args) {
-        ConcurrentHashMap<String, JsonResult> hashMap = new ConcurrentHashMap<>();
-//        JsonResult k = hashMap.get("k");
-//        System.out.println(k);
-//        if (k == null) {
-//            System.out.println("------------");
-//        }
+//        AtomicInteger atomicInteger = new AtomicInteger();
+//        int i = atomicInteger.get();
+//        System.out.println(i);
+//        atomicInteger.set(1);
 
-        Set<Map.Entry<String, JsonResult>> entries = hashMap.entrySet();
-        for (Map.Entry<String, JsonResult> entry : entries) {
-            System.out.println(entry.getKey());
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("1");
+        strings.add("2");
+        strings.add("3");
+        System.out.println(strings.size());
+        for (int i = 0; i < strings.size() - 1; i++) {
+            System.out.println(strings.get(i));
         }
     }
 }
