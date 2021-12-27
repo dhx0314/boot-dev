@@ -4,7 +4,10 @@ package cn.dhx.bootdemo.controller;
 import cn.dhx.bootdemo.entity.User2;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.mysql.cj.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class DemoController {
 
+
+    @Value("${aa.bb:}")
+    String string;
+
+
     @GetMapping("/hello")
     public Object fun1() {
         log.info("---------------");
+        log.info("aa {}",string);
+        boolean empty = string.isEmpty();
+        log.info("{}",empty);
         return "hello";
     }
 

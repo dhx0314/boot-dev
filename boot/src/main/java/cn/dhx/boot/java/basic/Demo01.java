@@ -1,4 +1,4 @@
-package cn.dhx.boot.basic;
+package cn.dhx.boot.java.basic;
 
 public class Demo01 {
 
