@@ -57,10 +57,9 @@ public class G729Decoder2 {
         int i, ch;
         byteBuf.clear();
         byteBuf.put(buf);
-        pkt.data(new BytePointer(byteBuf));
-        pkt.size(buf.length);
-
-
+        av_packet_from_data(pkt,buf,buf.length);
+//        pkt.data(new BytePointer(byteBuf));
+//        pkt.size(buf.length);
         int ret = avcodec_send_packet(codec_ctx, pkt);
         if (ret < 0) {
             //fprintf(stderr, "Error submitting the packet to the decoder\n");
@@ -90,21 +89,13 @@ public class G729Decoder2 {
             int planes = av_sample_fmt_is_planar(sample_format) != 0 ? (int) samples_frame.channels() : 1;
             System.out.println("planes " + planes);
 
-
-
             for (i = 0; i < planes; i++) {
 
                 BytePointer data = frame.data(i);
-
-
-
                 ByteBuffer buf2 = data.asByteBuffer();
                 byte[] bytes = new byte[buf2.capacity()];
                 buf2.get(bytes, 0, bytes.length);
                 System.out.println(Arrays.toString(bytes));
-                for (short aByte : bytes) {
-                    System.out.println("aByte "+ aByte);
-                }
             }
 
 

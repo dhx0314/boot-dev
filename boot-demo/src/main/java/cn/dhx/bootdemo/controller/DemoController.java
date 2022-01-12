@@ -8,10 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mysql.cj.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 @Slf4j
@@ -22,12 +21,49 @@ public class DemoController {
     String string;
 
 
+    @PostMapping("/prod-api/extension/isOnLine")
+    @ResponseBody
+    public Object getpush(@RequestBody String data) {
+        log.info("-"+data.toString());
+        ObjectMapper objectMapper = new ObjectMapper();
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        hashMap.put("code",200);
+        hashMap.put("push","1");
+        return hashMap;
+    }
+
+    @GetMapping("/demo")
+    public String aa() {
+        new Thread(() -> {
+            try {
+                Demo4.fun();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        new Thread(() -> {
+            try {
+                Demo4.fun2();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        return "0k";
+    }
+
+
+
+
+
     @GetMapping("/hello")
     public Object fun1() {
+
         log.info("---------------");
-        log.info("aa {}",string);
+        log.info("aa {}", string);
         boolean empty = string.isEmpty();
-        log.info("{}",empty);
+        log.info("{}", empty);
         return "hello";
     }
 

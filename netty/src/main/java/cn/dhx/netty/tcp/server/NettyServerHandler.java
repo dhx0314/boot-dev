@@ -143,7 +143,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
 
-        String socketString = ctx.channel().remoteAddress().toString();
+        String socketString = ctx.channel().id().toString();
 
         if (evt instanceof IdleStateEvent) {
             IdleStateEvent event = (IdleStateEvent) evt;
