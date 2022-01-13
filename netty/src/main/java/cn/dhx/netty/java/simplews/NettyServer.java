@@ -1,4 +1,4 @@
-package cn.dhx.netty.simplews;
+package cn.dhx.netty.java.simplews;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -26,7 +26,7 @@ public class NettyServer {
         ServerBootstrap bootstrap = new ServerBootstrap()
                 .group(bossGroup, workGroup)
                 .channel(NioServerSocketChannel.class)
-                .childHandler(new cn.dhx.netty.simplews.ServerChannelInitializer())
+                .childHandler(new cn.dhx.netty.java.simplews.ServerChannelInitializer())
                 .localAddress(socketAddress)
                 .option(ChannelOption.SO_BACKLOG, 1024)
                 // 两小时内没有数据的通信时,TCP会自动发送一个活动探测数据报文

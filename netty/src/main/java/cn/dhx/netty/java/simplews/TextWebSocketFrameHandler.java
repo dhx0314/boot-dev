@@ -1,4 +1,4 @@
-package cn.dhx.netty.simplews;
+package cn.dhx.netty.java.simplews;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
