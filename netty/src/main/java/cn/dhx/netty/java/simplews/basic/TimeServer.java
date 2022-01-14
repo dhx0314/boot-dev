@@ -42,7 +42,7 @@ public class TimeServer {
 
         @Override
         protected void initChannel(SocketChannel socketChannel) throws Exception {
-            socketChannel.pipeline().addLast(new IdleStateHandler(3, 0, 0, TimeUnit.SECONDS));
+            socketChannel.pipeline().addLast(new IdleStateHandler(20, 0, 0, TimeUnit.SECONDS));
             socketChannel.pipeline().addLast(new TimeServerHandler());
         }
     }

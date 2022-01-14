@@ -18,6 +18,7 @@ package cn.dhx.netty.boot.tcp.client;
 import cn.dhx.netty.boot.cache.TcpChannelUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.slf4j.Slf4j;
@@ -30,14 +31,19 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
+@ChannelHandler.Sharable
 public class TcpClientHandler extends ChannelInboundHandlerAdapter {
 
 
-    private TcpClient tcpClient;
+    @Autowired
+    private TcpClient client;
 
-    public TcpClientHandler(TcpClient tcpClient) {
-        this.tcpClient = tcpClient;
-    }
+//    private TcpClient tcpClient;
+//
+//
+//    public TcpClientHandler(TcpClient tcpClient) {
+//        this.tcpClient = tcpClient;
+//    }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
@@ -64,7 +70,7 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         log.info("tcp exceptionCaught id {}",ctx.channel().id());
         ctx.close();
-        tcpClient.fun1();
+//        tcpClient.fun1();
 
     }
 
@@ -72,13 +78,8 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
     public void channelInactive(ChannelHandlerContext ctx) {
         ctx.close();
         log.info("tcp channelInactive id {}",ctx.channel().id());
-//        log.info(tcpClient.toString());
-        try {
-            TimeUnit.SECONDS.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        tcpClient.fun1();
+
+        client.fun1();
     }
 
 }

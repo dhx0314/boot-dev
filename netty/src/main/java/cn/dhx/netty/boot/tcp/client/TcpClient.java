@@ -21,6 +21,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -46,7 +47,8 @@ public class TcpClient {
 
     private Channel channel;
 
-    private int count;
+    @Autowired
+    private TcpClientHandler tcpClientHandler;
 
 
     public void connect(String host, int port) {
@@ -61,7 +63,7 @@ public class TcpClient {
                         @Override
                         public void initChannel(SocketChannel ch)
                                 throws Exception {
-                            ch.pipeline().addLast(new TcpClientHandler(TcpClient.this));
+                            ch.pipeline().addLast(tcpClientHandler);
                         }
                     });
             log.info("tcp connect  ");
@@ -74,10 +76,6 @@ public class TcpClient {
 
         } catch (Exception e) {
             log.info("tcp connect exception", e);
-        } finally {
-            // 优雅退出，释放NIO线程组
-//            log.error("netty shutdownGracefully");
-//            group.shutdownGracefully();
         }
     }
 
@@ -90,33 +88,21 @@ public class TcpClient {
 
     }
 
-    public void fun2() {
-        log.info("tcp connect  ");
-    }
+
 
     public void fun1() {
-        for (int i = 0; i < 10; i++) {
+        new Thread(()-> {
             log.info("tcp connect  ");
             try {
-
-                boolean active = channel.isActive();
-                if (active) {
-                    break;
-                }
                 channelFuture = bootstrap.connect(tcpHost, tcpPort).sync();
-
                 channel = channelFuture.channel();
                 log.info("tcp connect success {}", channelFuture.toString());
                 // 当代客户端链路关闭
-
-
-                TimeUnit.SECONDS.sleep(5);
                 channelFuture.channel().closeFuture().sync();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-        }
+        }).start();
 
     }
 }
