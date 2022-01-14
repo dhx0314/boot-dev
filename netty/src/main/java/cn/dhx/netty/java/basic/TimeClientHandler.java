@@ -8,9 +8,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 import java.util.logging.Logger;
 
-/**
- * Created by wangdecheng on 24/05/2018.
- */
+
 public class TimeClientHandler extends ChannelInboundHandlerAdapter {
 
     private static final Logger logger = Logger.getLogger(TimeClientHandler.class.getName());

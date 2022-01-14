@@ -9,9 +9,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-/**
- * Created by wangdecheng on 23/05/2018.
- */
+
 public class TimeServer {
 
     public void bind(int port) throws Exception {

@@ -8,9 +8,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 import java.util.Date;
 
-/**
- * Created by wangdecheng on 23/05/2018.
- */
+
 
 public class TimeServerHandler extends ChannelInboundHandlerAdapter {
 

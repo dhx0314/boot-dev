@@ -16,33 +16,45 @@
 package cn.dhx.netty.boot.tcp.client;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.concurrent.TimeUnit;
 
-/**
- * @author lilinfeng
- * @version 1.0
- * @date 2014年2月14日
- */
+
 @Component
 @Slf4j
 public class TcpClient {
 
-    public void connect(int port, String host) throws Exception {
-        // 配置客户端NIO线程组
-        EventLoopGroup group = new NioEventLoopGroup();
+    @Value("${tcp.host}")
+    private String tcpHost;
+
+    @Value("${tcp.port}")
+    private int tcpPort;
+
+    private EventLoopGroup group;
+
+    private Bootstrap bootstrap;
+
+    private ChannelFuture channelFuture;
+
+    private Channel channel;
+
+    private int count;
+
+
+    public void connect(String host, int port) {
         try {
-            Bootstrap b = new Bootstrap();
-            b.group(group).channel(NioSocketChannel.class)
+            // 配置客户端NIO线程组
+            group = new NioEventLoopGroup();
+            bootstrap = new Bootstrap();
+            bootstrap.group(group).channel(NioSocketChannel.class)
                     //禁用了Nagle算法,允许小包的发送
                     .option(ChannelOption.TCP_NODELAY, true)
                     .handler(new ChannelInitializer<SocketChannel>() {
@@ -52,47 +64,48 @@ public class TcpClient {
                             ch.pipeline().addLast(new TcpClientHandler());
                         }
                     });
-
-
-            // 发起异步连接操作
-            ChannelFuture f = b.connect(host, port).sync();
-
+            log.info("tcp connect  ");
+            channelFuture = bootstrap.connect(host, port).sync();
+            channel = channelFuture.channel();
+            log.info("tcp connect success {}", channelFuture.toString());
             // 当代客户端链路关闭
-            f.channel().closeFuture().sync();
+
+            channelFuture.channel().closeFuture().sync();
+
+        } catch (Exception e) {
+            log.info("tcp connect exception", e);
         } finally {
             // 优雅退出，释放NIO线程组
-            group.shutdownGracefully();
+//            log.error("netty shutdownGracefully");
+//            group.shutdownGracefully();
         }
     }
-
-    /**
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        int port = 8899;
-        if (args != null && args.length > 0) {
-            try {
-                port = Integer.valueOf(args[0]);
-            } catch (NumberFormatException e) {
-                // 采用默认值
-            }
-        }
-        new TcpClient().connect(port, "127.0.0.1");
-    }
-
 
     @PostConstruct
-    public void fun() {
+    public void startConnect() {
+        log.info("----------startConnect");
         new Thread(() -> {
-            int port = 8899;
-            log.info("----------------");
-            try {
-                new TcpClient().connect(port, "127.0.0.1");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            this.connect(tcpHost, tcpPort);
         }).start();
+
+    }
+
+    public void fun2() {
+        log.info("tcp connect  ");
+    }
+
+    public void fun1() {
+        log.info("tcp connect  ");
+        try {
+            channelFuture = bootstrap.connect(tcpHost, tcpPort).sync();
+
+            channel = channelFuture.channel();
+            log.info("tcp connect success {}", channelFuture.toString());
+            // 当代客户端链路关闭
+
+            channelFuture.channel().closeFuture().sync();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

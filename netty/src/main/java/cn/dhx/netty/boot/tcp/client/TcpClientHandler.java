@@ -15,55 +15,36 @@
  */
 package cn.dhx.netty.boot.tcp.client;
 
-import cn.dhx.netty.boot.cache.CacheUtil;
+import cn.dhx.netty.boot.cache.TcpChannelUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
-/**
- * @author lilinfeng
- * @version 1.0
- * @date 2014年2月14日
- */
 
 @Slf4j
-//@Component
+@Component
 public class TcpClientHandler extends ChannelInboundHandlerAdapter {
 
-//    private static final log log = log
-//            .getlog(TcpClientHandler.class.getName());
 
-    private final ByteBuf firstMessage;
-
-    private CopyOnWriteArrayList<ChannelHandlerContext> arrayList = new CopyOnWriteArrayList<>();
-
-//    public String sendMessage(String msg) {
-//        byte[] bytes = msg.getBytes();
-//        ByteBuf buffer = Unpooled.buffer(bytes.length);
-//        buffer.writeBytes(bytes);
-//
-//        return "ok";
-//    }
-
-    /**
-     * Creates a client-side handler.
-     */
-    public TcpClientHandler() {
-        byte[] req = "QUERY TIME ORDER".getBytes();
-        firstMessage = Unpooled.buffer(req.length);
-        firstMessage.writeBytes(req);
-    }
+    @Autowired
+    private TcpClient tcpClient;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        log.info("channelActive");
-        CacheUtil.save(ctx);
+        log.info("tcp channelActive id",ctx.channel().id());
+
+        byte[] req = "aa".getBytes();
+        ByteBuf firstMessage = Unpooled.buffer(req.length);
+        firstMessage.writeBytes(req);
         ctx.writeAndFlush(firstMessage);
+        TcpChannelUtil.save(ctx);
     }
 
     @Override
@@ -74,23 +55,21 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
         String body = new String(req, "UTF-8");
         System.out.println("Now is : " + body);
         log.info("Now is : " + body);
-        CacheUtil.fun1(body);
-
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        // 释放资源
-        log.warn("Unexpected exception from downstream : "
-                + cause.getMessage());
+        log.info("tcp exceptionCaught id {}",ctx.channel().id());
+//        ctx.close();
 
-        log.info("exceptionCaught id {}",ctx.channel().id());
-        ctx.close();
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
-        log.info("channelInactive id {}",ctx.channel().id());
+        TcpClient tcpClient2 = new TcpClient();
+        tcpClient2.fun2();
+        log.info("tcp channelInactive id {}",ctx.channel().id());
+        tcpClient2.fun1();
     }
 
 }
