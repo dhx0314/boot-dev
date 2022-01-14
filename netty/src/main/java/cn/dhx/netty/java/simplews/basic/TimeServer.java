@@ -1,4 +1,4 @@
-package cn.dhx.netty.java.basic;
+package cn.dhx.netty.java.simplews.basic;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -8,8 +8,13 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.timeout.IdleStateHandler;
 
+import java.util.concurrent.TimeUnit;
 
+/**
+ * Created by wangdecheng on 23/05/2018.
+ */
 public class TimeServer {
 
     public void bind(int port) throws Exception {
@@ -21,6 +26,7 @@ public class TimeServer {
             b.group(bossGroup,workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG,1024)
+//                    .option(ChannelOption.SO_KEEPALIVE,true)
                     .childHandler(new ChildChanelHandler());
             ChannelFuture f = b.bind(port).sync();
 
@@ -36,12 +42,13 @@ public class TimeServer {
 
         @Override
         protected void initChannel(SocketChannel socketChannel) throws Exception {
+            socketChannel.pipeline().addLast(new IdleStateHandler(3, 0, 0, TimeUnit.SECONDS));
             socketChannel.pipeline().addLast(new TimeServerHandler());
         }
     }
 
     public static void main(String[] args) throws Exception{
-        int port = 8080;
+        int port = 8899;
         if(args !=null && args.length > 0 ){
             try{
 

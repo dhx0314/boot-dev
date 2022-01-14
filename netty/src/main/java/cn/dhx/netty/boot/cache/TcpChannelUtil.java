@@ -30,12 +30,15 @@ public class TcpChannelUtil {
         ByteBuf buffer = Unpooled.buffer(bytes.length);
         buffer.writeBytes(bytes);
         if (arrayList.size() < 0) {
-            tcpClient.fun1();
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+            log.info("size "  );
+            return;
+//            tcpClient.fun1();
+//            try {
+//                TimeUnit.SECONDS.sleep(1);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
         ChannelHandlerContext ctx = arrayList.get(0);
         log.info("send");

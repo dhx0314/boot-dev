@@ -1,29 +1,33 @@
-package cn.dhx.netty.java.basic;
+package cn.dhx.netty.java.simplews.basic;
 
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.logging.Logger;
 
+/**
+ * Created by wangdecheng on 24/05/2018.
+ */
 
+@Slf4j
 public class TimeClientHandler extends ChannelInboundHandlerAdapter {
 
-    private static final Logger logger = Logger.getLogger(TimeClientHandler.class.getName());
 
     private final ByteBuf firstMessage;
 
     public TimeClientHandler(){
-        byte[] req = intToBytes(999999);
-
+        byte[] req = "Query Time Order".getBytes();
         firstMessage = Unpooled.buffer(req.length);
         firstMessage.writeBytes(req);
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx){
+        System.out.println("channelActive {}"+ctx.channel().id());
         ctx.writeAndFlush(firstMessage);
     }
 
@@ -34,22 +38,11 @@ public class TimeClientHandler extends ChannelInboundHandlerAdapter {
         buf.readBytes(req);
         String body = new String(req,"UTF-8");
         System.out.println("NOW is :" + body);
-        ctx.close();
+//        ctx.close();
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx,Throwable cause){
-        logger.warning("unexpected exception from downstream : " + cause.getMessage());
         ctx.close();
-    }
-
-
-    public static byte[] intToBytes(int n) {
-        byte[] b = new byte[4];
-        b[3] = (byte) (n & 0xff);
-        b[2] = (byte) (n >> 8 & 0xff);
-        b[1] = (byte) (n >> 16 & 0xff);
-        b[0] = (byte) (n >> 24 & 0xff);
-        return b;
     }
 }

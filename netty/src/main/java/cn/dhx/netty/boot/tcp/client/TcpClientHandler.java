@@ -25,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.CopyOnWriteArrayList;
-
+import java.util.concurrent.TimeUnit;
 
 
 @Slf4j
@@ -33,8 +33,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class TcpClientHandler extends ChannelInboundHandlerAdapter {
 
 
-    @Autowired
     private TcpClient tcpClient;
+
+    public TcpClientHandler(TcpClient tcpClient) {
+        this.tcpClient = tcpClient;
+    }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
@@ -60,16 +63,22 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         log.info("tcp exceptionCaught id {}",ctx.channel().id());
-//        ctx.close();
+        ctx.close();
+        tcpClient.fun1();
 
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
-        TcpClient tcpClient2 = new TcpClient();
-        tcpClient2.fun2();
+        ctx.close();
         log.info("tcp channelInactive id {}",ctx.channel().id());
-        tcpClient2.fun1();
+//        log.info(tcpClient.toString());
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        tcpClient.fun1();
     }
 
 }

@@ -61,7 +61,7 @@ public class TcpClient {
                         @Override
                         public void initChannel(SocketChannel ch)
                                 throws Exception {
-                            ch.pipeline().addLast(new TcpClientHandler());
+                            ch.pipeline().addLast(new TcpClientHandler(TcpClient.this));
                         }
                     });
             log.info("tcp connect  ");
@@ -95,17 +95,28 @@ public class TcpClient {
     }
 
     public void fun1() {
-        log.info("tcp connect  ");
-        try {
-            channelFuture = bootstrap.connect(tcpHost, tcpPort).sync();
+        for (int i = 0; i < 10; i++) {
+            log.info("tcp connect  ");
+            try {
 
-            channel = channelFuture.channel();
-            log.info("tcp connect success {}", channelFuture.toString());
-            // 当代客户端链路关闭
+                boolean active = channel.isActive();
+                if (active) {
+                    break;
+                }
+                channelFuture = bootstrap.connect(tcpHost, tcpPort).sync();
 
-            channelFuture.channel().closeFuture().sync();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+                channel = channelFuture.channel();
+                log.info("tcp connect success {}", channelFuture.toString());
+                // 当代客户端链路关闭
+
+
+                TimeUnit.SECONDS.sleep(5);
+                channelFuture.channel().closeFuture().sync();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
         }
+
     }
 }
