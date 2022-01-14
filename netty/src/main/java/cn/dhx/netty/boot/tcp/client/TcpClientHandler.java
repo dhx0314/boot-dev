@@ -21,6 +21,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.EventLoop;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -72,14 +73,16 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
         ctx.close();
 //        tcpClient.fun1();
 
+
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
         ctx.close();
+
         log.info("tcp channelInactive id {}",ctx.channel().id());
 
-        client.fun1();
+//        client.fun1();
     }
 
 }

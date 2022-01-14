@@ -20,6 +20,7 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 @Slf4j
+@Data
 public class TcpClient {
 
     @Value("${tcp.host}")
@@ -74,6 +76,7 @@ public class TcpClient {
 
             channelFuture.channel().closeFuture().sync();
 
+            log.info("tcp closeFuture ");
         } catch (Exception e) {
             log.info("tcp connect exception", e);
         }
@@ -87,6 +90,8 @@ public class TcpClient {
         }).start();
 
     }
+
+
 
 
 
