@@ -69,41 +69,53 @@ public class TcpClient {
                         }
                     });
             log.info("tcp connect  ");
-            channelFuture = bootstrap.connect(host, port).sync();
-            channel = channelFuture.channel();
-            log.info("tcp connect success {}", channelFuture.toString());
-            // 当代客户端链路关闭
-
-            channelFuture.channel().closeFuture().sync();
-
-            log.info("tcp closeFuture ");
+            doConnect();
         } catch (Exception e) {
             log.info("tcp connect exception", e);
         }
     }
 
     @PostConstruct
-    public void startConnect() {
-        log.info("----------startConnect");
+    public void startTcpConnect() {
+        log.info("start tcp connect");
         new Thread(() -> {
             this.connect(tcpHost, tcpPort);
         }).start();
 
     }
 
-
-
+    public void doConnect() {
+        log.info("channel {}",channel);
+        if (channel != null && channel.isActive()) {
+            return;
+        }
+        channelFuture = bootstrap.connect("127.0.0.1", 8899);
+        channelFuture.addListener(new ChannelFutureListener() {
+            public void operationComplete(ChannelFuture futureListener) throws Exception {
+                if (futureListener.isSuccess()) {
+                    log.info("channel set");
+                    channel = futureListener.channel();
+                    System.out.println("Connect to tcp server successfully!");
+                } else {
+                    System.out.println("Failed to connect to  tcp server, try connect after 5s");
+                    futureListener.channel().eventLoop().schedule(() -> {
+                        doConnect();
+                    }, 5, TimeUnit.SECONDS);
+                }
+            }
+        });
+    }
 
 
     public void fun1() {
-        new Thread(()-> {
+        new Thread(() -> {
             log.info("tcp connect  ");
             try {
                 channelFuture = bootstrap.connect(tcpHost, tcpPort).sync();
                 channel = channelFuture.channel();
                 log.info("tcp connect success {}", channelFuture.toString());
                 // 当代客户端链路关闭
-                channelFuture.channel().closeFuture().sync();
+//                channelFuture.channel().closeFuture().sync();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

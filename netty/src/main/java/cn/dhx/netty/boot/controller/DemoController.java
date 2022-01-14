@@ -36,10 +36,11 @@ public class DemoController {
         boolean active = channelFuture.channel().isActive();
         log.info("success {}", success);
         log.info("channel {}", active);
+        log.info("channel2 {}", tcpClient.getChannel().isActive());
         if (active) {
             channelFuture.channel().writeAndFlush(Unpooled.copiedBuffer("AA".getBytes(StandardCharsets.UTF_8)));
         } else {
-            tcpClient.fun1();
+            tcpClient.doConnect();
         }
 
 
