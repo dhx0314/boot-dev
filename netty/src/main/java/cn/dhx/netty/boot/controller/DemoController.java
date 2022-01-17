@@ -21,10 +21,15 @@ public class DemoController {
     @Autowired
     private TcpClient tcpClient;
 
+    @Autowired
+    private TcpChannelUtil tcpChannelUtil;
+
     @GetMapping("/hi/{msg}")
     public Object fun1(@PathVariable("msg") String msg) {
 //        timeClientHandler.sendMessage(msg);
-        TcpChannelUtil.send(msg);
+//        TcpChannelUtil.send(msg);
+
+        tcpChannelUtil.OpenAudioStream();
         return "0k";
     }
 

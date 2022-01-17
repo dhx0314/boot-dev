@@ -39,50 +39,39 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
     @Autowired
     private TcpClient client;
 
-//    private TcpClient tcpClient;
-//
-//
-//    public TcpClientHandler(TcpClient tcpClient) {
-//        this.tcpClient = tcpClient;
-//    }
-
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        log.info("tcp channelActive id",ctx.channel().id());
-
-        byte[] req = "aa".getBytes();
-        ByteBuf firstMessage = Unpooled.buffer(req.length);
-        firstMessage.writeBytes(req);
-        ctx.writeAndFlush(firstMessage);
-        TcpChannelUtil.save(ctx);
+        log.info("tcp channelActive id {}",ctx.channel().id());
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf buf = (ByteBuf) msg;
-        byte[] req = new byte[buf.readableBytes()];
-        buf.readBytes(req);
-        String body = new String(req, "UTF-8");
-        System.out.println("Now is : " + body);
-        log.info("Now is : " + body);
+
+
+       log.info("-----");
+
+        byte[] bytes2= (byte[]) msg;
+        String body2 = new String(bytes2, "UTF-8");
+        log.info("---{}",body2);
+//        ByteBuf buf = (ByteBuf) msg;
+//        byte[] req = new byte[buf.readableBytes()];
+//        buf.readBytes(req);
+//        String body = new String(req, "UTF-8");
+//        System.out.println("Now is : " + body);
+//        log.info("Now is : " + body);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         log.info("tcp exceptionCaught id {}",ctx.channel().id());
         ctx.close();
-//        tcpClient.fun1();
-
-
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
-        ctx.close();
-
         log.info("tcp channelInactive id {}",ctx.channel().id());
-
-//        client.fun1();
+        ctx.close();
+        client.doConnect();
     }
 
 }
