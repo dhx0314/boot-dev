@@ -14,6 +14,8 @@ public class Demo16 {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("key1","value12");
         hashMap.put("key2","value2");
+        String s1 = hashMap.toString();
+        System.out.println(s1);
         ObjectMapper objectMapper = new ObjectMapper();
         String s = objectMapper.writeValueAsString(hashMap);
         System.out.println(s);

@@ -39,6 +39,17 @@ class RedisPoolApplicationTests {
 
 
     @Test
+    public void fun2() {
+        Map<Object, Object> map=null;
+        try {
+            map = redisTemplate.opsForHash().entries("key");
+        } catch (Exception e) {
+            System.out.println("-----");
+        }
+        System.out.println(map);
+    }
+
+    @Test
     public void fun1aa() {
 
         Boolean aBoolean = redisTemplate.opsForValue().setIfAbsent("key1", "mpsLocation", Duration.ofSeconds(100));

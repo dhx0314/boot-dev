@@ -18,10 +18,7 @@ package cn.dhx.netty.boot.tcp.client;
 import cn.dhx.netty.boot.cache.TcpChannelUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandler;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.EventLoop;
+import io.netty.channel.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -33,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Component
 @ChannelHandler.Sharable
-public class TcpClientHandler extends ChannelInboundHandlerAdapter {
+public class TcpClientHandler extends SimpleChannelInboundHandler<byte[]> {
 
 
     @Autowired
@@ -44,22 +41,30 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
         log.info("tcp channelActive id {}",ctx.channel().id());
     }
 
+//    @Override
+//    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+//
+//
+//       log.info("-----");
+//
+//        byte[] bytes2= (byte[]) msg;
+//        String body2 = new String(bytes2, "UTF-8");
+//        log.info("---{}",body2);
+////        ByteBuf buf = (ByteBuf) msg;
+////        byte[] req = new byte[buf.readableBytes()];
+////        buf.readBytes(req);
+////        String body = new String(req, "UTF-8");
+////        System.out.println("Now is : " + body);
+////        log.info("Now is : " + body);
+//    }
+
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-
-
-       log.info("-----");
-
-        byte[] bytes2= (byte[]) msg;
-        String body2 = new String(bytes2, "UTF-8");
-        log.info("---{}",body2);
-//        ByteBuf buf = (ByteBuf) msg;
-//        byte[] req = new byte[buf.readableBytes()];
-//        buf.readBytes(req);
-//        String body = new String(req, "UTF-8");
-//        System.out.println("Now is : " + body);
-//        log.info("Now is : " + body);
+    protected void channelRead0(ChannelHandlerContext ctx, byte[] msg) throws Exception {
+        String body2 = new String(msg, "UTF-8");
+        log.info("--channelRead0-{}",body2);
     }
+
+
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {

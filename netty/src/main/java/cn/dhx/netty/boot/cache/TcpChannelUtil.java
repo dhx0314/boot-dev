@@ -22,7 +22,6 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class TcpChannelUtil {
 
-
     @Autowired
     private TcpClient tcpClient;
 
@@ -40,11 +39,11 @@ public class TcpChannelUtil {
             e.printStackTrace();
         }
         int length = jsonStr.length();
-        log.info("length {}",length);
+        log.info("length {}", length);
         byte[] length4 = NetByteUtil.intToBytes(length);
         byte[] jsonStrBytes = jsonStr.getBytes();
-        byte[] bytes2 = ArrayUtils.addAll(length4, jsonStrBytes);
-        send(bytes2);
+        byte[] bytesAll = ArrayUtils.addAll(length4, jsonStrBytes);
+        send(bytesAll);
     }
 
     public void CloseAudioStream() {

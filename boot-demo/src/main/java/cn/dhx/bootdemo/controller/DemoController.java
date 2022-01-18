@@ -21,6 +21,21 @@ public class DemoController {
     String string;
 
 
+    @GetMapping("/error")
+    public void fun1awewa() {
+
+        String s="1";
+        try {
+
+            int i=1/0;
+        } catch (Exception e) {
+            log.error("[{}] aa ",s,e);
+        }
+
+
+    }
+
+
     @PostMapping("/prod-api/extension/isOnLine")
     @ResponseBody
     public Object getpush(@RequestBody String data) {

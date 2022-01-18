@@ -51,9 +51,9 @@ public class TcpClient {
 
     @Autowired
     private TcpClientHandler tcpClientHandler;
-
-    @Autowired
-    private TcpDecoder tcpDecoder;
+//
+//    @Autowired
+//    private TcpDecoder tcpDecoder;
 
 
     public void connect(String host, int port) {
@@ -68,7 +68,7 @@ public class TcpClient {
                         @Override
                         public void initChannel(SocketChannel ch)
                                 throws Exception {
-                            ch.pipeline().addLast(tcpDecoder);
+                            ch.pipeline().addLast(new TcpDecoder());
                             ch.pipeline().addLast(tcpClientHandler);
                         }
                     });

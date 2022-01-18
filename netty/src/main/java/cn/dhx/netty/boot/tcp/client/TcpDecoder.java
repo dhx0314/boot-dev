@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
 @Slf4j
 public class TcpDecoder extends ByteToMessageDecoder {
 
@@ -20,7 +19,7 @@ public class TcpDecoder extends ByteToMessageDecoder {
 
     private byte[] bytes4 = new byte[4];
 
-    private static final int POCKET_SIZE = 40;
+    private static final int POCKET_SIZE = 20;
 
     private boolean flag = false;
 
@@ -46,10 +45,15 @@ public class TcpDecoder extends ByteToMessageDecoder {
         int counter = inMessage.readableBytes() / POCKET_SIZE;
 
         for (int i = 0; i < counter; i++) {
+            System.out.println(i);
+            int readable = inMessage.readableBytes();
+            if (readable < 4) {
+                break;
+            }
             inMessage.readBytes(bytes4);
             int length = NetByteUtil.bytesToInt(bytes4);
             System.out.println(length);
-            int readable = inMessage.readableBytes();
+            readable = inMessage.readableBytes();
             System.out.println(readable);
             if (readable < length) {
                 flag = true;
