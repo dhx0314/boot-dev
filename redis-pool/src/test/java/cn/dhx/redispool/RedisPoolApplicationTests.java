@@ -30,6 +30,11 @@ class RedisPoolApplicationTests {
 //    private RedisTemplate redisTemplate;
 
 
+    @Test
+    public void fun234() {
+        String s = redisTemplate.opsForValue().get("key222");
+        System.out.println(s);
+    }
 
 
 

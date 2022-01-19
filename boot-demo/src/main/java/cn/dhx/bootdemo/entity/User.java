@@ -14,10 +14,7 @@ public class User {
     private  Integer age;
 
 
-    @Override
-    public String toString() {
-        return new String("aa");
-    }
+
 
 
 }

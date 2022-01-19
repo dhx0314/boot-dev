@@ -9,10 +9,7 @@ public class Demo18 {
 
     public static void main(String[] args) {
         RTVoiceRequest rtVoiceRequest = new RTVoiceRequest();
-        rtVoiceRequest.setCallId("aaa");
-        rtVoiceRequest.setDeviceId("ddddd");
-        rtVoiceRequest.put("aa","bb");
-        System.out.println(rtVoiceRequest.toString());
+        System.out.println(rtVoiceRequest);
     }
 
 }

@@ -26,13 +26,4 @@ public class User {
 //    private Demo demo;
 
 
-    @Override
-    public String toString() {
-        return new String("aa");
-    }
-
-    public void fun1() {
-        System.out.println(demoName);
-        System.out.println(age);
-    }
 }
