@@ -1,6 +1,7 @@
 package cn.dhx.redispool;
 
 import cn.dhx.redispool.entity.CallDto;
+import cn.dhx.redispool.util.JsonUtil;
 import cn.dhx.redispool.web.WebController;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.hash.BeanUtilsHashMapper;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -27,13 +29,35 @@ class RedisPoolApplicationTests {
     private StringRedisTemplate redisTemplate;
 //
 //    @Autowired
-//    private RedisTemplate redisTemplate;
+//    private RedisTemplate redisTemplate2;
 
 
     @Test
     public void fun234() {
-        String s = redisTemplate.opsForValue().get("key222");
-        System.out.println(s);
+
+        CallDto callDto = new CallDto();
+        callDto.setCallid("awafawfe");
+        callDto.setAni("3242");
+        callDto.setGwMediaPort(1000);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("callid",callDto.getCallid());
+        hashMap.put("ani",callDto.getAni());
+        hashMap.put("gwMediaPort","2000");
+        BeanUtilsHashMapper beanUtilsHashMapper = new BeanUtilsHashMapper(CallDto.class);
+        Map map = beanUtilsHashMapper.toHash(callDto);
+        System.out.println(map);
+//        String json = JsonUtil.toString(callDto);
+//        HashMap<String, Object> hashMap = JsonUtil.toObject(json, HashMap.class);
+        redisTemplate.opsForHash().putAll("hash",map);
+        Map<Object, Object> hash = redisTemplate.opsForHash().entries("hash");
+
+        String s = JsonUtil.toString(hash);
+        CallDto callDto1 = JsonUtil.toObject(s, CallDto.class);
+        System.out.println(callDto1);
+//        rtVoiceRedisDaoUtil.setCallIdCache(callId, hashMap);
+//        String s = redisTemplate.opsForValue().get("key222");
+//        System.out.println(s);
     }
 
 

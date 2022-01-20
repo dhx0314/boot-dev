@@ -93,7 +93,8 @@ public class TcpClient {
         if (channel != null && channel.isActive()) {
             return;
         }
-        channelFuture = bootstrap.connect("127.0.0.1", 8899);
+//        channelFuture = bootstrap.connect("127.0.0.1", 8899);
+        channelFuture = bootstrap.connect(tcpHost, tcpPort);
         channelFuture.addListener(new ChannelFutureListener() {
             public void operationComplete(ChannelFuture futureListener) throws Exception {
                 if (futureListener.isSuccess()) {

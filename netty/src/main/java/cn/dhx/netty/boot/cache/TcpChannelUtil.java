@@ -2,6 +2,7 @@ package cn.dhx.netty.boot.cache;
 
 import cn.dhx.netty.boot.entity.AudioStream;
 import cn.dhx.netty.boot.tcp.client.TcpClient;
+import cn.dhx.netty.boot.util.JsonUtil;
 import cn.dhx.netty.boot.util.NetByteUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,19 +28,12 @@ public class TcpChannelUtil {
 
     public void OpenAudioStream() {
         AudioStream audioStream = new AudioStream();
-        audioStream.setCmd("aa");
-        audioStream.setCallid("38248268aw");
+        audioStream.setCmd("OpenAudioStream");
+        audioStream.setCallid("18270779730");
         audioStream.setCaller("1001");
         audioStream.setCallee("1002");
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonStr = "";
-        try {
-            jsonStr = objectMapper.writeValueAsString(audioStream);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        String jsonStr = JsonUtil.toString(audioStream);
         int length = jsonStr.length();
-        log.info("length {}", length);
         byte[] length4 = NetByteUtil.intToBytes(length);
         byte[] jsonStrBytes = jsonStr.getBytes();
         byte[] bytesAll = ArrayUtils.addAll(length4, jsonStrBytes);

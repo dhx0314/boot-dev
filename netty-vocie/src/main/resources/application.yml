@@ -1,0 +1,9 @@
+server:
+  port: 10004
+
+#netty:
+#  tcp:
+#    host: 127.0.0.1
+#    port: 10005
+#  ws:
+#    port: 10006
