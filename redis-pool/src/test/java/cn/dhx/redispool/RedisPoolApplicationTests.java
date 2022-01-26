@@ -81,7 +81,7 @@ class RedisPoolApplicationTests {
     @Test
     public void fun1aa() {
 
-        Boolean aBoolean = redisTemplate.opsForValue().setIfAbsent("key1", "mpsLocation", Duration.ofSeconds(100));
+        Boolean aBoolean = redisTemplate.opsForValue().setIfAbsent("key0125", "mpsLocation", Duration.ofSeconds(100));
         System.out.println(aBoolean);
 
         Boolean aBoolean2 = redisTemplate.opsForValue().setIfAbsent("key1", "mpsLocation", Duration.ofSeconds(100));

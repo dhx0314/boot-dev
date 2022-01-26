@@ -1,5 +1,6 @@
 package cn.dhx.nettyvoice.udpserver;
 
+import cn.dhx.nettyvoice.ali.AliASR;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
@@ -34,12 +35,21 @@ public class UdpServerHandler extends SimpleChannelInboundHandler<DatagramPacket
 
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket packet) {
+    protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket packet)  {
         ByteBuf content = packet.content();
         byte[] bytes = new byte[content.readableBytes()];
         content.readBytes(bytes);
         count++;
-        log.info("[{}] length {} count {}",port,bytes.length,count);
+
+        if (port == 9001) {
+            try {
+                AliASR.pkgQueue.put(bytes);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            log.info("[{}] length {} count {}",port,bytes.length,count);
+        }
 
 //        log.info("[{}] 服务端接收到消息：{}" ,port, packet.content().toString(StandardCharsets.UTF_8));
 //        // 向客户端发送消息
