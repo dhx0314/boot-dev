@@ -43,16 +43,16 @@ public class TcpDecoder extends ByteToMessageDecoder {
         int counter = inMessage.readableBytes() / POCKET_SIZE;
 
         for (int i = 0; i < counter; i++) {
-            System.out.println(i);
+//            System.out.println(i);
             int readable = inMessage.readableBytes();
             if (readable < 4) {
                 break;
             }
             inMessage.readBytes(bytes4);
             int length = NetByteUtil.bytesToInt(bytes4);
-            System.out.println(length);
+//            System.out.println(length);
             readable = inMessage.readableBytes();
-            System.out.println(readable);
+//            System.out.println(readable);
             if (readable < length) {
                 flag = true;
                 break;

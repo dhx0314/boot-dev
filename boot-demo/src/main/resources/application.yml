@@ -1,3 +1,6 @@
+
+aa:
+  cc: false
 server:
   port: 9999
 

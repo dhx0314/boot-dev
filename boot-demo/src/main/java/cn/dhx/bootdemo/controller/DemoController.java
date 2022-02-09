@@ -20,17 +20,23 @@ public class DemoController {
     @Value("${aa.bb:}")
     String string;
 
+    @Value("${aa.cc}")
+    private boolean flag;
 
     @GetMapping("/error")
     public void fun1awewa() {
 
-        String s="1";
-        try {
 
-            int i=1/0;
-        } catch (Exception e) {
-            log.error("[{}] aa ",s,e);
-        }
+        log.info("--"+flag);
+//        System.out.println(flag);
+
+//        String s="1";
+//        try {
+//
+//            int i=1/0;
+//        } catch (Exception e) {
+//            log.error("[{}] aa ",s,e);
+//        }
 
 
     }

@@ -9,9 +9,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class Demo20 {
 
 
-    public final static BlockingQueue<Byte[]> pkgQueue = new LinkedBlockingQueue<>();
+    public final static BlockingQueue<byte[]> pkgQueue = new LinkedBlockingQueue<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         byte[] bytes1 = new byte[2];
         bytes1[0]=0;
@@ -27,10 +27,18 @@ public class Demo20 {
         bytes4[1]=7;
         int length=2;
         byte[] joinedArray = new byte[10];
-        System.arraycopy(bytes1, 0, joinedArray, 0, length);
-        System.arraycopy(bytes2, 0, joinedArray, length*1, length);
-        System.arraycopy(bytes3, 0, joinedArray, length*2, length);
-        System.arraycopy(bytes4, 0, joinedArray, length*3, length);
+        pkgQueue.put(bytes1);
+        pkgQueue.put(bytes2);
+        pkgQueue.put(bytes3);
+        pkgQueue.put(bytes4);
+        for (int i = 0; i < 4; i++) {
+            byte[] take = pkgQueue.take();
+            System.arraycopy(take, 0, joinedArray, length*i, length);
+        }
+//        System.arraycopy(bytes1, 0, joinedArray, 0, length);
+//        System.arraycopy(bytes2, 0, joinedArray, length*1, length);
+//        System.arraycopy(bytes3, 0, joinedArray, length*2, length);
+//        System.arraycopy(bytes4, 0, joinedArray, length*3, length);
         System.out.println(Arrays.toString(joinedArray));
 
 //        ArrayUtils.addAll(bytes1,bytes2,bytes3,bytes4)

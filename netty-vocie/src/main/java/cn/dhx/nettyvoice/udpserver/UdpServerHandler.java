@@ -19,6 +19,8 @@ public class UdpServerHandler extends SimpleChannelInboundHandler<DatagramPacket
 
     private int count;
 
+    private boolean b=true;
+
     public UdpServerHandler(int port) {
         super();
         this.port=port;
@@ -40,16 +42,23 @@ public class UdpServerHandler extends SimpleChannelInboundHandler<DatagramPacket
         byte[] bytes = new byte[content.readableBytes()];
         content.readBytes(bytes);
         count++;
-
-        if (port == 9001) {
+        if (count % 2000 == 0) {
+            log.info("[{}] length {} count {}", port, bytes.length, count);
+        }
+        if (port == 9002) {
+            if (b) {
+                log.info("[{}] length {} start {}", port, bytes.length, count);
+                new AliASR().start();
+                b=false;
+            }
             try {
                 AliASR.pkgQueue.put(bytes);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        } else {
-            log.info("[{}] length {} count {}",port,bytes.length,count);
         }
+
+
 
 //        log.info("[{}] 服务端接收到消息：{}" ,port, packet.content().toString(StandardCharsets.UTF_8));
 //        // 向客户端发送消息
