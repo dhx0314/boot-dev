@@ -1,17 +1,20 @@
-package cn.dhx.mybatis.dao;
+package cn.dhx.dao.second22;
 
-import cn.dhx.mybatis.entity.Filedetail;
+import cn.dhx.entity.TAgentDetail;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 /**
- * (Filedetail)表数据库访问层
+ * (TAgentDetail)表数据库访问层
  *
  * @author dhx
- * @since 2022-02-15 16:26:58
+ * @since 2022-02-15 15:14:57
  */
-public interface FiledetailDao {
+@Mapper
+public interface TAgentDetailDao {
 
     /**
      * 通过ID查询单条数据
@@ -19,57 +22,57 @@ public interface FiledetailDao {
      * @param id 主键
      * @return 实例对象
      */
-    Filedetail queryById(Integer id);
+    TAgentDetail queryById(Long id);
 
     /**
      * 查询指定行数据
      *
-     * @param filedetail 查询条件
+     * @param tAgentDetail 查询条件
      * @param pageable         分页对象
      * @return 对象列表
      */
-    List<Filedetail> queryAllByLimit(Filedetail filedetail, @Param("pageable") Pageable pageable);
+    List<TAgentDetail> queryAllByLimit(TAgentDetail tAgentDetail, @Param("pageable") Pageable pageable);
 
     /**
      * 统计总行数
      *
-     * @param filedetail 查询条件
+     * @param tAgentDetail 查询条件
      * @return 总行数
      */
-    long count(Filedetail filedetail);
+    long count(TAgentDetail tAgentDetail);
 
     /**
      * 新增数据
      *
-     * @param filedetail 实例对象
+     * @param tAgentDetail 实例对象
      * @return 影响行数
      */
-    int insert(Filedetail filedetail);
+    int insert(TAgentDetail tAgentDetail);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *
-     * @param entities List<Filedetail> 实例对象列表
+     * @param entities List<TAgentDetail> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<Filedetail> entities);
+    int insertBatch(@Param("entities") List<TAgentDetail> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
      *
-     * @param entities List<Filedetail> 实例对象列表
+     * @param entities List<TAgentDetail> 实例对象列表
      * @return 影响行数
      * @throws org.springframework.jdbc.BadSqlGrammarException 入参是空List的时候会抛SQL语句错误的异常，请自行校验入参
      */
-    int insertOrUpdateBatch(@Param("entities") List<Filedetail> entities);
+    int insertOrUpdateBatch(@Param("entities") List<TAgentDetail> entities);
 
     /**
      * 修改数据
      *
-     * @param filedetail 实例对象
+     * @param tAgentDetail 实例对象
      * @return 影响行数
      */
-    int update(Filedetail filedetail);
+    int update(TAgentDetail tAgentDetail);
 
     /**
      * 通过主键删除数据
@@ -77,7 +80,7 @@ public interface FiledetailDao {
      * @param id 主键
      * @return 影响行数
      */
-    int deleteById(Integer id);
+    int deleteById(Long id);
 
 }
 

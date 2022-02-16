@@ -1,0 +1,31 @@
+server:
+  port: 10005
+
+#spring:
+#  datasource:
+#    test1:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      password: root
+#      url: jdbc:mysql://localhost:3307/multipledatasource1?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+#      username: root
+#    test2:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      password: root
+#      url: jdbc:mysql://localhost:3307/multipledatasource2?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+#      username: root
+
+
+# master 数据源配置  报表服务地址
+master:
+  datasource:
+    jdbc-url: jdbc:mysql://172.16.6.87:3306/laihu_report?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: opensips321
+    driver-class-name: com.mysql.jdbc.Driver
+# second 数据源配置 抓包录音地址
+second:
+  datasource:
+    jdbc-url: jdbc:mysql://172.16.2.108:3306/laihu_report?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: opensips321
+    driver-class-name: com.mysql.jdbc.Driver

@@ -3,33 +3,32 @@
 <mapper namespace="cn.dhx.mybatis.dao.FiledetailDao">
 
     <resultMap type="cn.dhx.mybatis.entity.Filedetail" id="FiledetailMap">
-        <result property="id" column="id" jdbcType=""/>
-        <result property="ani" column="ani" jdbcType=""/>
-        <result property="dnis" column="dnis" jdbcType=""/>
-        <result property="calldirect" column="callDirect" jdbcType=""/>
-        <result property="fileid" column="fileId" jdbcType=""/>
-        <result property="filename" column="fileName" jdbcType=""/>
-        <result property="agentfilename" column="agentFileName" jdbcType=""/>
-        <result property="customfilename" column="customFileName" jdbcType=""/>
-        <result property="fileinfo" column="fileInfo" jdbcType=""/>
-        <result property="deviceid" column="deviceId" jdbcType=""/>
-        <result property="agentid" column="agentId" jdbcType=""/>
-        <result property="startdatetime" column="startDateTime" jdbcType=""/>
-        <result property="enddatetime" column="endDateTime" jdbcType=""/>
-        <result property="callid" column="callid" jdbcType=""/>
-        <result property="contactid" column="contactId" jdbcType=""/>
-        <result property="calllenth" column="callLenth" jdbcType=""/>
-        <result property="recordtype" column="RecordType" jdbcType=""/>
-        <result property="servername" column="serverName" jdbcType=""/>
-        <result property="fileencodingfmt" column="fileEncodingFmt" jdbcType=""/>
-        <result property="separablefileencodingfmt" column="separableFileEncodingFmt" jdbcType=""/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="ani" column="ani" jdbcType="VARCHAR"/>
+        <result property="dnis" column="dnis" jdbcType="VARCHAR"/>
+        <result property="calldirect" column="callDirect" jdbcType="VARCHAR"/>
+        <result property="fileid" column="fileId" jdbcType="VARCHAR"/>
+        <result property="filename" column="fileName" jdbcType="VARCHAR"/>
+        <result property="agentfilename" column="agentFileName" jdbcType="VARCHAR"/>
+        <result property="customfilename" column="customFileName" jdbcType="VARCHAR"/>
+        <result property="fileinfo" column="fileInfo" jdbcType="VARCHAR"/>
+        <result property="deviceid" column="deviceId" jdbcType="VARCHAR"/>
+        <result property="agentid" column="agentId" jdbcType="VARCHAR"/>
+        <result property="startdatetime" column="startDateTime" jdbcType="TIMESTAMP"/>
+        <result property="enddatetime" column="endDateTime" jdbcType="TIMESTAMP"/>
+        <result property="callid" column="callid" jdbcType="VARCHAR"/>
+        <result property="contactid" column="contactId" jdbcType="VARCHAR"/>
+        <result property="calllenth" column="callLenth" jdbcType="INTEGER"/>
+        <result property="recordtype" column="RecordType" jdbcType="VARCHAR"/>
+        <result property="servername" column="serverName" jdbcType="VARCHAR"/>
+        <result property="fileencodingfmt" column="fileEncodingFmt" jdbcType="VARCHAR"/>
+        <result property="separablefileencodingfmt" column="separableFileEncodingFmt" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="FiledetailMap">
         select
-          #allSqlColumn()
-
+          id, ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt
         from filedetail
         where id = #{id}
     </select>
@@ -37,8 +36,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="FiledetailMap">
         select
-          #allSqlColumn()
-
+          id, ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt
         from filedetail
         <where>
             <if test="id != null">

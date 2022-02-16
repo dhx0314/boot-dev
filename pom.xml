@@ -32,6 +32,7 @@
         <module>mq</module>
         <module>boot-demo</module>
         <module>netty-vocie</module>
+        <module>mybatis-double</module>
     </modules>
 
     <properties>

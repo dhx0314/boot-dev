@@ -1,13 +1,16 @@
-#save("/entity", ".java")
+package cn.dhx.mybatis.entity;
 
-#setPackageSuffix("entity")
-
-
+import java.util.Date;
 import java.io.Serializable;
 
-#tableComment("实体类")
+/**
+ * (Filedetail)实体类
+ *
+ * @author dhx
+ * @since 2022-02-15 16:26:58
+ */
 public class Filedetail implements Serializable {
-    private static final long serialVersionUID = -29476395970683568L;
+    private static final long serialVersionUID = -11401873196566916L;
     
     private Integer id;
     
@@ -49,26 +52,6 @@ public class Filedetail implements Serializable {
     
     private String separablefileencodingfmt;
 
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
-#getSetMethod($column)
 
 }
 
