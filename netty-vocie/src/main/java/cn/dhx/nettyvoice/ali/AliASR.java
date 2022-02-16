@@ -21,7 +21,7 @@ public class AliASR {
         log.info("SpeechTranscriberDemo start");
 
         String appKey = "Wpiram4S7WXcyc6q";
-        String token = "13f9cb36d093484b90ee4db1e7f4bd77";
+        String token = "27f07c8ca9054649abc62397b0316fa2";
         String url = "wss://nls-gateway.cn-shanghai.aliyuncs.com/ws/v1";
         String filepath="";
 

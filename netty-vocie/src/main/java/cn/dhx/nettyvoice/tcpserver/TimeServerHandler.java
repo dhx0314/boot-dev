@@ -17,6 +17,7 @@ package cn.dhx.nettyvoice.tcpserver;
 
 import cn.dhx.nettyvoice.entity.AudioStream;
 import cn.dhx.nettyvoice.entity.AudioStreamResp;
+import cn.dhx.nettyvoice.entity.AudioStreamResp2;
 import cn.dhx.nettyvoice.util.JsonUtil;
 import cn.dhx.nettyvoice.util.NetByteUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -41,22 +42,29 @@ public class TimeServerHandler extends SimpleChannelInboundHandler<byte[]> {
         AudioStream audioStream = JsonUtil.toObject(body, AudioStream.class);
 
         String cmd = audioStream.getCmd();
+
         log.info("cmd [{}]",cmd);
-        if (!"OpenAudioStream".equals(cmd)) {
-            log.error("cmd [{}]",cmd);
-            return;
+        String jsonStr="";
+        if ("OpenAudioStream".equals(cmd)) {
+            AudioStreamResp audioStreamResp = new AudioStreamResp();
+            audioStreamResp.setCallid(audioStream.getCallid());
+            audioStreamResp.setResultNo(0);
+            audioStreamResp.setResultDesc("test");
+            audioStreamResp.setRespCmd("OpenAudioStreamResp");
+            audioStreamResp.setMediaIP("172.16.2.214");
+            audioStreamResp.setCallerPort(9001);
+            audioStreamResp.setCalleePort(9002);
+            jsonStr = JsonUtil.toString(audioStreamResp);
+        }else {
+            AudioStreamResp2 audioStreamResp2 = new AudioStreamResp2();
+            audioStreamResp2.setCallid(audioStream.getCallid());
+            audioStreamResp2.setRespCmd("CloseAudioStreamResp");
+            audioStreamResp2.setResultNo(0);
+            audioStreamResp2.setResultDesc("test");
+            jsonStr = JsonUtil.toString(audioStreamResp2);
         }
 
-        AudioStreamResp audioStreamResp = new AudioStreamResp();
-        audioStreamResp.setCallid(audioStream.getCallid());
-        audioStreamResp.setResultNo(0);
-        audioStreamResp.setResultDesc("test");
-        audioStreamResp.setRespCmd("OpenAudioStreamResp");
-        audioStreamResp.setMediaIP("172.16.2.214");
-        audioStreamResp.setCallerPort(9001);
-        audioStreamResp.setCalleePort(9002);
 
-        String jsonStr = JsonUtil.toString(audioStreamResp);
         int length = jsonStr.length();
 
         byte[] length4 = NetByteUtil.intToBytes(length);
