@@ -84,4 +84,9 @@ public class TimeServerHandler extends SimpleChannelInboundHandler<byte[]> {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         ctx.close();
     }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) {
+        log.info("tcp channelActive id {}", ctx.channel().id());
+    }
 }

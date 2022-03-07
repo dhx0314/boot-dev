@@ -173,21 +173,21 @@ public class SpeechTranscriberDemo {
             int len = 3200;
             int length = 320;
 
-            while (true) {
-                int size = AliASR.pkgQueue.size();
-                if (size >= 10) {
-                    for (int i = 0; i < 10; i++) {
-                        byte[] take = AliASR.pkgQueue.take();
-                        System.arraycopy(take, 0, b, length * i, length);
-                    }
-                    transcriber.send(b, len);
-                    b = new byte[3200];
-                }
-            }
 //            while (true) {
-//                byte[] take = AliASR.pkgQueue.take();
-//                transcriber.send(take, 320);
+//                int size = AliASR.pkgQueue.size();
+//                if (size >= 10) {
+//                    for (int i = 0; i < 10; i++) {
+//                        byte[] take = AliASR.pkgQueue.take();
+//                        System.arraycopy(take, 0, b, length * i, length);
+//                    }
+//                    transcriber.send(b, len);
+//                    b = new byte[3200];
+//                }
 //            }
+            while (true) {
+                byte[] take = AliASR.pkgQueue.take();
+                transcriber.send(take, 320);
+            }
 
 //
 //            File file = new File(filepath);

@@ -4,46 +4,46 @@
 
     <resultMap type="cn.dhx.mybatis.entity.TAgentDetail" id="TAgentDetailMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
-        <result property="agentid" column="agentId" jdbcType="VARCHAR"/>
-        <result property="agentname" column="agentName" jdbcType="VARCHAR"/>
-        <result property="stationid" column="stationId" jdbcType="VARCHAR"/>
-        <result property="skillid" column="skillId" jdbcType="VARCHAR"/>
-        <result property="skillname" column="skillName" jdbcType="VARCHAR"/>
-        <result property="begintime" column="beginTime" jdbcType="TIMESTAMP"/>
-        <result property="endtime" column="endTime" jdbcType="TIMESTAMP"/>
-        <result property="callduration" column="callDuration" jdbcType="INTEGER"/>
-        <result property="callid" column="callId" jdbcType="VARCHAR"/>
-        <result property="relatedcallid" column="relatedCallId" jdbcType="VARCHAR"/>
-        <result property="callscenario" column="callScenario" jdbcType="INTEGER"/>
-        <result property="calltype" column="callType" jdbcType="INTEGER"/>
-        <result property="callmode" column="callMode" jdbcType="INTEGER"/>
-        <result property="callresult" column="callResult" jdbcType="INTEGER"/>
-        <result property="localmediaip" column="localMediaIp" jdbcType="VARCHAR"/>
+        <result property="agentId" column="agentId" jdbcType="VARCHAR"/>
+        <result property="agentName" column="agentName" jdbcType="VARCHAR"/>
+        <result property="stationId" column="stationId" jdbcType="VARCHAR"/>
+        <result property="skillId" column="skillId" jdbcType="VARCHAR"/>
+        <result property="skillName" column="skillName" jdbcType="VARCHAR"/>
+        <result property="beginTime" column="beginTime" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="endTime" jdbcType="TIMESTAMP"/>
+        <result property="callDuration" column="callDuration" jdbcType="INTEGER"/>
+        <result property="callId" column="callId" jdbcType="VARCHAR"/>
+        <result property="relatedCallId" column="relatedCallId" jdbcType="VARCHAR"/>
+        <result property="callScenario" column="callScenario" jdbcType="INTEGER"/>
+        <result property="callType" column="callType" jdbcType="INTEGER"/>
+        <result property="callMode" column="callMode" jdbcType="INTEGER"/>
+        <result property="callResult" column="callResult" jdbcType="INTEGER"/>
+        <result property="localMediaIp" column="localMediaIp" jdbcType="VARCHAR"/>
         <result property="domain" column="domain" jdbcType="VARCHAR"/>
         <result property="originator" column="originator" jdbcType="VARCHAR"/>
         <result property="originatee" column="originatee" jdbcType="VARCHAR"/>
         <result property="caller" column="caller" jdbcType="VARCHAR"/>
         <result property="callee" column="callee" jdbcType="VARCHAR"/>
-        <result property="alerttime" column="alertTime" jdbcType="TIMESTAMP"/>
-        <result property="answertime" column="answerTime" jdbcType="TIMESTAMP"/>
-        <result property="alertduration" column="alertDuration" jdbcType="INTEGER"/>
-        <result property="answerduration" column="answerDuration" jdbcType="INTEGER"/>
-        <result property="consultintimes" column="consultInTimes" jdbcType="INTEGER"/>
-        <result property="consultinsucctimes" column="consultInSuccTimes" jdbcType="INTEGER"/>
-        <result property="consultouttimes" column="consultOutTimes" jdbcType="INTEGER"/>
-        <result property="consultoutsucctimes" column="consultOutSuccTimes" jdbcType="INTEGER"/>
-        <result property="holdduration" column="holdDuration" jdbcType="INTEGER"/>
-        <result property="holdtimes" column="holdTimes" jdbcType="INTEGER"/>
-        <result property="acwduration" column="acwDuration" jdbcType="INTEGER"/>
-        <result property="transfrom" column="transFrom" jdbcType="VARCHAR"/>
-        <result property="transto" column="transTo" jdbcType="VARCHAR"/>
-        <result property="transoutflag" column="transOutFlag" jdbcType="INTEGER"/>
-        <result property="satisfycode" column="satisfyCode" jdbcType="VARCHAR"/>
-        <result property="satisfyduration" column="satisfyDuration" jdbcType="INTEGER"/>
+        <result property="alertTime" column="alertTime" jdbcType="TIMESTAMP"/>
+        <result property="answerTime" column="answerTime" jdbcType="TIMESTAMP"/>
+        <result property="alertDuration" column="alertDuration" jdbcType="INTEGER"/>
+        <result property="answerDuration" column="answerDuration" jdbcType="INTEGER"/>
+        <result property="consultInTimes" column="consultInTimes" jdbcType="INTEGER"/>
+        <result property="consultInSuccTimes" column="consultInSuccTimes" jdbcType="INTEGER"/>
+        <result property="consultOutTimes" column="consultOutTimes" jdbcType="INTEGER"/>
+        <result property="consultOutSuccTimes" column="consultOutSuccTimes" jdbcType="INTEGER"/>
+        <result property="holdDuration" column="holdDuration" jdbcType="INTEGER"/>
+        <result property="holdTimes" column="holdTimes" jdbcType="INTEGER"/>
+        <result property="acwDuration" column="acwDuration" jdbcType="INTEGER"/>
+        <result property="transFrom" column="transFrom" jdbcType="VARCHAR"/>
+        <result property="transTo" column="transTo" jdbcType="VARCHAR"/>
+        <result property="transOutFlag" column="transOutFlag" jdbcType="INTEGER"/>
+        <result property="satisfyCode" column="satisfyCode" jdbcType="VARCHAR"/>
+        <result property="satisfyDuration" column="satisfyDuration" jdbcType="INTEGER"/>
         <result property="gateway" column="gateway" jdbcType="VARCHAR"/>
-        <result property="inserttime" column="insertTime" jdbcType="TIMESTAMP"/>
-        <result property="updatetime" column="updateTime" jdbcType="TIMESTAMP"/>
-        <result property="remoteagent" column="remoteAgent" jdbcType="INTEGER"/>
+        <result property="insertTime" column="insertTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="remoteAgent" column="remoteAgent" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->

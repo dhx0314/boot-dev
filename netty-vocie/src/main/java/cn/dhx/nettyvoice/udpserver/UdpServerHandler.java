@@ -45,18 +45,18 @@ public class UdpServerHandler extends SimpleChannelInboundHandler<DatagramPacket
         if (count % 2000 == 0) {
             log.info("[{}] length {} count {}", port, bytes.length, count);
         }
-//        if (port == 9002) {
-//            if (b) {
-//                log.info("[{}] length {} start {}", port, bytes.length, count);
-//                new AliASR().start();
-//                b=false;
-//            }
-//            try {
-//                AliASR.pkgQueue.put(bytes);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        if (port == 9002) {
+            if (b) {
+                log.info("[{}] length {} start {}", port, bytes.length, count);
+                new AliASR().start();
+                b=false;
+            }
+            try {
+                AliASR.pkgQueue.put(bytes);
+            } catch (InterruptedException e) {
+                log.info("error");
+            }
+        }
 
 
 

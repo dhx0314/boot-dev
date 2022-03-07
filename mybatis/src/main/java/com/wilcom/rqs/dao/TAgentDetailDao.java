@@ -1,6 +1,6 @@
-package cn.dhx.mybatis.dao;
+package com.wilcom.rqs.dao;
 
-import cn.dhx.mybatis.entity.TAgentDetail;
+import com.wilcom.rqs.entity.TAgentDetail;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
  * (TAgentDetail)表数据库访问层
  *
  * @author dhx
- * @since 2022-02-21 16:23:10
+ * @since 2022-02-21 16:24:06
  */
 public interface TAgentDetailDao {
 
