@@ -4,13 +4,14 @@ package cn.dhx.bootdemo.controller;
 
 import cn.dhx.bootdemo.annotation.Log;
 import cn.dhx.bootdemo.entity.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
 @RestController
-
+@Slf4j
 public class ParameterController2 {
 
 
@@ -53,6 +54,7 @@ public class ParameterController2 {
     @PostMapping("/requestBody")
     public void fun3(@RequestBody User user) {
         System.out.println(user.toString());
+
     }
 
 

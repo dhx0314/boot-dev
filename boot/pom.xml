@@ -115,6 +115,24 @@
             <version>4.4-1.5.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.snmp4j</groupId>
+            <artifactId>snmp4j</artifactId>
+            <version>3.6.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.10</version>
+        </dependency>
+
+
+<!--        <dependency>-->
+<!--            <groupId>org.pcap4j</groupId>-->
+<!--            <artifactId>pcap4j-core</artifactId>-->
+<!--            <version>1.7.3</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 

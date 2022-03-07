@@ -31,16 +31,15 @@
         <module>algorithm</module>
         <module>mq</module>
         <module>boot-demo</module>
+        <module>netty-vocie</module>
+        <module>mybatis-double</module>
+        <module>javase</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>

@@ -2,6 +2,7 @@ package cn.dhx.redispool.web;
 
 
 import cn.dhx.redispool.redisson.RedisLock;
+import cn.dhx.redispool.redisson.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -26,6 +27,13 @@ public class WebController {
 
     @Autowired
     private RedissonClient redissonClient;
+
+
+    @GetMapping("/a1")
+    public String fun1att() {
+        RedisUtil.fun1();
+        return "ok";
+    }
 
     @GetMapping("/add")
     public void fun2add() throws IOException {
