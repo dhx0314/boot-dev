@@ -33,6 +33,7 @@
         <module>boot-demo</module>
         <module>netty-vocie</module>
         <module>mybatis-double</module>
+        <module>javase</module>
     </modules>
 
     <properties>
