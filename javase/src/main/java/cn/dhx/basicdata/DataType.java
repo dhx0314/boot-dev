@@ -1,4 +1,4 @@
-package cn.dhx.a2;
+package cn.dhx.basicdata;
 
 import org.junit.Test;
 
