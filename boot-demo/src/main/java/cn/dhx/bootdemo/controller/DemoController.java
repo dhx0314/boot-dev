@@ -53,6 +53,20 @@ public class DemoController {
         return hashMap;
     }
 
+
+    @PostMapping("/prod-api/extension/isOnLine2")
+    @ResponseBody
+    public Object getpush2(@RequestBody String data) throws JsonProcessingException {
+        log.info("-"+data.toString());
+        ObjectMapper objectMapper = new ObjectMapper();
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        hashMap.put("code",200);
+        hashMap.put("push","1");
+        String s = objectMapper.writeValueAsString(hashMap);
+        return s;
+    }
+
+
     @GetMapping("/demo")
     public String aa() {
         new Thread(() -> {
@@ -85,7 +99,8 @@ public class DemoController {
         log.info("aa {}", string);
         boolean empty = string.isEmpty();
         log.info("{}", empty);
-        return "hello";
+        User2 user2 = new User2();
+        return user2;
     }
 
     @PostMapping("/hello2")

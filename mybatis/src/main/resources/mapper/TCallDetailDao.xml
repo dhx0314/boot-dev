@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wilcom.recordingpush.dao.TCallDetailDao">
+
+    <resultMap type="com.wilcom.recordingpush.entity.TCallDetail" id="TCallDetailMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="beginTime" column="beginTime" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="endTime" jdbcType="TIMESTAMP"/>
+        <result property="callTotalDuration" column="callTotalDuration" jdbcType="INTEGER"/>
+        <result property="callId" column="callId" jdbcType="VARCHAR"/>
+        <result property="relatedCallId" column="relatedCallId" jdbcType="VARCHAR"/>
+        <result property="callScenario" column="callScenario" jdbcType="INTEGER"/>
+        <result property="callType" column="callType" jdbcType="INTEGER"/>
+        <result property="callResult" column="callResult" jdbcType="INTEGER"/>
+        <result property="localMediaIp" column="localMediaIp" jdbcType="VARCHAR"/>
+        <result property="domain" column="domain" jdbcType="VARCHAR"/>
+        <result property="originator" column="originator" jdbcType="VARCHAR"/>
+        <result property="originatee" column="originatee" jdbcType="VARCHAR"/>
+        <result property="caller" column="caller" jdbcType="VARCHAR"/>
+        <result property="callee" column="callee" jdbcType="VARCHAR"/>
+        <result property="ringBackTime" column="ringBackTime" jdbcType="TIMESTAMP"/>
+        <result property="answerTime" column="answerTime" jdbcType="TIMESTAMP"/>
+        <result property="isAnswer" column="isAnswer" jdbcType="INTEGER"/>
+        <result property="ringBackDuration" column="ringBackDuration" jdbcType="INTEGER"/>
+        <result property="firstRoutePoint" column="firstRoutePoint" jdbcType="VARCHAR"/>
+        <result property="firstQueueRoutePoint" column="firstQueueRoutePoint" jdbcType="VARCHAR"/>
+        <result property="firstSkillId" column="firstSkillId" jdbcType="VARCHAR"/>
+        <result property="firstSkillName" column="firstSkillName" jdbcType="VARCHAR"/>
+        <result property="firstAgentId" column="firstAgentId" jdbcType="VARCHAR"/>
+        <result property="firstAgentName" column="firstAgentName" jdbcType="VARCHAR"/>
+        <result property="firstStationId" column="firstStationId" jdbcType="VARCHAR"/>
+        <result property="firstAgentAnswerTime" column="firstAgentAnswerTime" jdbcType="TIMESTAMP"/>
+        <result property="firstWaitDuration" column="firstWaitDuration" jdbcType="INTEGER"/>
+        <result property="acdBeforeDuration" column="acdBeforeDuration" jdbcType="INTEGER"/>
+        <result property="queueDuration" column="queueDuration" jdbcType="INTEGER"/>
+        <result property="alertTotalDuration" column="alertTotalDuration" jdbcType="INTEGER"/>
+        <result property="answerTotalDuration" column="answerTotalDuration" jdbcType="INTEGER"/>
+        <result property="consultInTotalTimes" column="consultInTotalTimes" jdbcType="INTEGER"/>
+        <result property="consultInSuccTotalTimes" column="consultInSuccTotalTimes" jdbcType="INTEGER"/>
+        <result property="consultOutTotalTimes" column="consultOutTotalTimes" jdbcType="INTEGER"/>
+        <result property="consultOutSuccTotalTimes" column="consultOutSuccTotalTimes" jdbcType="INTEGER"/>
+        <result property="holdTotalDuration" column="holdTotalDuration" jdbcType="INTEGER"/>
+        <result property="holdTotalTimes" column="holdTotalTimes" jdbcType="INTEGER"/>
+        <result property="conferenceTimes" column="conferenceTimes" jdbcType="INTEGER"/>
+        <result property="abandonPoint" column="abandonPoint" jdbcType="VARCHAR"/>
+        <result property="abandonType" column="abandonType" jdbcType="INTEGER"/>
+        <result property="hangupSide" column="hangupSide" jdbcType="INTEGER"/>
+        <result property="gateway" column="gateway" jdbcType="VARCHAR"/>
+        <result property="recordServer" column="recordServer" jdbcType="VARCHAR"/>
+        <result property="recordPath" column="recordPath" jdbcType="VARCHAR"/>
+        <result property="satisfyCode" column="satisfyCode" jdbcType="VARCHAR"/>
+        <result property="satisfyDuration" column="satisfyDuration" jdbcType="INTEGER"/>
+        <result property="insertTime" column="insertTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="firstSkillTime" column="firstSkillTime" jdbcType="TIMESTAMP"/>
+        <result property="firstAgentAlterTime" column="firstAgentAlterTime" jdbcType="TIMESTAMP"/>
+        <result property="recordFileSuffix" column="recordFileSuffix" jdbcType="VARCHAR"/>
+        <result property="remoteAgent" column="remoteAgent" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TCallDetailMap">
+        select
+          id, beginTime, endTime, callTotalDuration, callId, relatedCallId, callScenario, callType, callResult, localMediaIp, domain, originator, originatee, caller, callee, ringBackTime, answerTime, isAnswer, ringBackDuration, firstRoutePoint, firstQueueRoutePoint, firstSkillId, firstSkillName, firstAgentId, firstAgentName, firstStationId, firstAgentAnswerTime, firstWaitDuration, acdBeforeDuration, queueDuration, alertTotalDuration, answerTotalDuration, consultInTotalTimes, consultInSuccTotalTimes, consultOutTotalTimes, consultOutSuccTotalTimes, holdTotalDuration, holdTotalTimes, conferenceTimes, abandonPoint, abandonType, hangupSide, gateway, recordServer, recordPath, satisfyCode, satisfyDuration, insertTime, updateTime, firstSkillTime, firstAgentAlterTime, recordFileSuffix, remoteAgent
+        from t_call_detail
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TCallDetailMap">
+        select
+          id, beginTime, endTime, callTotalDuration, callId, relatedCallId, callScenario, callType, callResult, localMediaIp, domain, originator, originatee, caller, callee, ringBackTime, answerTime, isAnswer, ringBackDuration, firstRoutePoint, firstQueueRoutePoint, firstSkillId, firstSkillName, firstAgentId, firstAgentName, firstStationId, firstAgentAnswerTime, firstWaitDuration, acdBeforeDuration, queueDuration, alertTotalDuration, answerTotalDuration, consultInTotalTimes, consultInSuccTotalTimes, consultOutTotalTimes, consultOutSuccTotalTimes, holdTotalDuration, holdTotalTimes, conferenceTimes, abandonPoint, abandonType, hangupSide, gateway, recordServer, recordPath, satisfyCode, satisfyDuration, insertTime, updateTime, firstSkillTime, firstAgentAlterTime, recordFileSuffix, remoteAgent
+        from t_call_detail
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="begintime != null">
+                and beginTime = #{begintime}
+            </if>
+            <if test="endtime != null">
+                and endTime = #{endtime}
+            </if>
+            <if test="calltotalduration != null">
+                and callTotalDuration = #{calltotalduration}
+            </if>
+            <if test="callid != null and callid != ''">
+                and callId = #{callid}
+            </if>
+            <if test="relatedcallid != null and relatedcallid != ''">
+                and relatedCallId = #{relatedcallid}
+            </if>
+            <if test="callscenario != null">
+                and callScenario = #{callscenario}
+            </if>
+            <if test="calltype != null">
+                and callType = #{calltype}
+            </if>
+            <if test="callresult != null">
+                and callResult = #{callresult}
+            </if>
+            <if test="localmediaip != null and localmediaip != ''">
+                and localMediaIp = #{localmediaip}
+            </if>
+            <if test="domain != null and domain != ''">
+                and domain = #{domain}
+            </if>
+            <if test="originator != null and originator != ''">
+                and originator = #{originator}
+            </if>
+            <if test="originatee != null and originatee != ''">
+                and originatee = #{originatee}
+            </if>
+            <if test="caller != null and caller != ''">
+                and caller = #{caller}
+            </if>
+            <if test="callee != null and callee != ''">
+                and callee = #{callee}
+            </if>
+            <if test="ringbacktime != null">
+                and ringBackTime = #{ringbacktime}
+            </if>
+            <if test="answertime != null">
+                and answerTime = #{answertime}
+            </if>
+            <if test="isanswer != null">
+                and isAnswer = #{isanswer}
+            </if>
+            <if test="ringbackduration != null">
+                and ringBackDuration = #{ringbackduration}
+            </if>
+            <if test="firstroutepoint != null and firstroutepoint != ''">
+                and firstRoutePoint = #{firstroutepoint}
+            </if>
+            <if test="firstqueueroutepoint != null and firstqueueroutepoint != ''">
+                and firstQueueRoutePoint = #{firstqueueroutepoint}
+            </if>
+            <if test="firstskillid != null and firstskillid != ''">
+                and firstSkillId = #{firstskillid}
+            </if>
+            <if test="firstskillname != null and firstskillname != ''">
+                and firstSkillName = #{firstskillname}
+            </if>
+            <if test="firstagentid != null and firstagentid != ''">
+                and firstAgentId = #{firstagentid}
+            </if>
+            <if test="firstagentname != null and firstagentname != ''">
+                and firstAgentName = #{firstagentname}
+            </if>
+            <if test="firststationid != null and firststationid != ''">
+                and firstStationId = #{firststationid}
+            </if>
+            <if test="firstagentanswertime != null">
+                and firstAgentAnswerTime = #{firstagentanswertime}
+            </if>
+            <if test="firstwaitduration != null">
+                and firstWaitDuration = #{firstwaitduration}
+            </if>
+            <if test="acdbeforeduration != null">
+                and acdBeforeDuration = #{acdbeforeduration}
+            </if>
+            <if test="queueduration != null">
+                and queueDuration = #{queueduration}
+            </if>
+            <if test="alerttotalduration != null">
+                and alertTotalDuration = #{alerttotalduration}
+            </if>
+            <if test="answertotalduration != null">
+                and answerTotalDuration = #{answertotalduration}
+            </if>
+            <if test="consultintotaltimes != null">
+                and consultInTotalTimes = #{consultintotaltimes}
+            </if>
+            <if test="consultinsucctotaltimes != null">
+                and consultInSuccTotalTimes = #{consultinsucctotaltimes}
+            </if>
+            <if test="consultouttotaltimes != null">
+                and consultOutTotalTimes = #{consultouttotaltimes}
+            </if>
+            <if test="consultoutsucctotaltimes != null">
+                and consultOutSuccTotalTimes = #{consultoutsucctotaltimes}
+            </if>
+            <if test="holdtotalduration != null">
+                and holdTotalDuration = #{holdtotalduration}
+            </if>
+            <if test="holdtotaltimes != null">
+                and holdTotalTimes = #{holdtotaltimes}
+            </if>
+            <if test="conferencetimes != null">
+                and conferenceTimes = #{conferencetimes}
+            </if>
+            <if test="abandonpoint != null and abandonpoint != ''">
+                and abandonPoint = #{abandonpoint}
+            </if>
+            <if test="abandontype != null">
+                and abandonType = #{abandontype}
+            </if>
+            <if test="hangupside != null">
+                and hangupSide = #{hangupside}
+            </if>
+            <if test="gateway != null and gateway != ''">
+                and gateway = #{gateway}
+            </if>
+            <if test="recordserver != null and recordserver != ''">
+                and recordServer = #{recordserver}
+            </if>
+            <if test="recordpath != null and recordpath != ''">
+                and recordPath = #{recordpath}
+            </if>
+            <if test="satisfycode != null and satisfycode != ''">
+                and satisfyCode = #{satisfycode}
+            </if>
+            <if test="satisfyduration != null">
+                and satisfyDuration = #{satisfyduration}
+            </if>
+            <if test="inserttime != null">
+                and insertTime = #{inserttime}
+            </if>
+            <if test="updatetime != null">
+                and updateTime = #{updatetime}
+            </if>
+            <if test="firstskilltime != null">
+                and firstSkillTime = #{firstskilltime}
+            </if>
+            <if test="firstagentaltertime != null">
+                and firstAgentAlterTime = #{firstagentaltertime}
+            </if>
+            <if test="recordfilesuffix != null and recordfilesuffix != ''">
+                and recordFileSuffix = #{recordfilesuffix}
+            </if>
+            <if test="remoteagent != null">
+                and remoteAgent = #{remoteagent}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from t_call_detail
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="begintime != null">
+                and beginTime = #{begintime}
+            </if>
+            <if test="endtime != null">
+                and endTime = #{endtime}
+            </if>
+            <if test="calltotalduration != null">
+                and callTotalDuration = #{calltotalduration}
+            </if>
+            <if test="callid != null and callid != ''">
+                and callId = #{callid}
+            </if>
+            <if test="relatedcallid != null and relatedcallid != ''">
+                and relatedCallId = #{relatedcallid}
+            </if>
+            <if test="callscenario != null">
+                and callScenario = #{callscenario}
+            </if>
+            <if test="calltype != null">
+                and callType = #{calltype}
+            </if>
+            <if test="callresult != null">
+                and callResult = #{callresult}
+            </if>
+            <if test="localmediaip != null and localmediaip != ''">
+                and localMediaIp = #{localmediaip}
+            </if>
+            <if test="domain != null and domain != ''">
+                and domain = #{domain}
+            </if>
+            <if test="originator != null and originator != ''">
+                and originator = #{originator}
+            </if>
+            <if test="originatee != null and originatee != ''">
+                and originatee = #{originatee}
+            </if>
+            <if test="caller != null and caller != ''">
+                and caller = #{caller}
+            </if>
+            <if test="callee != null and callee != ''">
+                and callee = #{callee}
+            </if>
+            <if test="ringbacktime != null">
+                and ringBackTime = #{ringbacktime}
+            </if>
+            <if test="answertime != null">
+                and answerTime = #{answertime}
+            </if>
+            <if test="isanswer != null">
+                and isAnswer = #{isanswer}
+            </if>
+            <if test="ringbackduration != null">
+                and ringBackDuration = #{ringbackduration}
+            </if>
+            <if test="firstroutepoint != null and firstroutepoint != ''">
+                and firstRoutePoint = #{firstroutepoint}
+            </if>
+            <if test="firstqueueroutepoint != null and firstqueueroutepoint != ''">
+                and firstQueueRoutePoint = #{firstqueueroutepoint}
+            </if>
+            <if test="firstskillid != null and firstskillid != ''">
+                and firstSkillId = #{firstskillid}
+            </if>
+            <if test="firstskillname != null and firstskillname != ''">
+                and firstSkillName = #{firstskillname}
+            </if>
+            <if test="firstagentid != null and firstagentid != ''">
+                and firstAgentId = #{firstagentid}
+            </if>
+            <if test="firstagentname != null and firstagentname != ''">
+                and firstAgentName = #{firstagentname}
+            </if>
+            <if test="firststationid != null and firststationid != ''">
+                and firstStationId = #{firststationid}
+            </if>
+            <if test="firstagentanswertime != null">
+                and firstAgentAnswerTime = #{firstagentanswertime}
+            </if>
+            <if test="firstwaitduration != null">
+                and firstWaitDuration = #{firstwaitduration}
+            </if>
+            <if test="acdbeforeduration != null">
+                and acdBeforeDuration = #{acdbeforeduration}
+            </if>
+            <if test="queueduration != null">
+                and queueDuration = #{queueduration}
+            </if>
+            <if test="alerttotalduration != null">
+                and alertTotalDuration = #{alerttotalduration}
+            </if>
+            <if test="answertotalduration != null">
+                and answerTotalDuration = #{answertotalduration}
+            </if>
+            <if test="consultintotaltimes != null">
+                and consultInTotalTimes = #{consultintotaltimes}
+            </if>
+            <if test="consultinsucctotaltimes != null">
+                and consultInSuccTotalTimes = #{consultinsucctotaltimes}
+            </if>
+            <if test="consultouttotaltimes != null">
+                and consultOutTotalTimes = #{consultouttotaltimes}
+            </if>
+            <if test="consultoutsucctotaltimes != null">
+                and consultOutSuccTotalTimes = #{consultoutsucctotaltimes}
+            </if>
+            <if test="holdtotalduration != null">
+                and holdTotalDuration = #{holdtotalduration}
+            </if>
+            <if test="holdtotaltimes != null">
+                and holdTotalTimes = #{holdtotaltimes}
+            </if>
+            <if test="conferencetimes != null">
+                and conferenceTimes = #{conferencetimes}
+            </if>
+            <if test="abandonpoint != null and abandonpoint != ''">
+                and abandonPoint = #{abandonpoint}
+            </if>
+            <if test="abandontype != null">
+                and abandonType = #{abandontype}
+            </if>
+            <if test="hangupside != null">
+                and hangupSide = #{hangupside}
+            </if>
+            <if test="gateway != null and gateway != ''">
+                and gateway = #{gateway}
+            </if>
+            <if test="recordserver != null and recordserver != ''">
+                and recordServer = #{recordserver}
+            </if>
+            <if test="recordpath != null and recordpath != ''">
+                and recordPath = #{recordpath}
+            </if>
+            <if test="satisfycode != null and satisfycode != ''">
+                and satisfyCode = #{satisfycode}
+            </if>
+            <if test="satisfyduration != null">
+                and satisfyDuration = #{satisfyduration}
+            </if>
+            <if test="inserttime != null">
+                and insertTime = #{inserttime}
+            </if>
+            <if test="updatetime != null">
+                and updateTime = #{updatetime}
+            </if>
+            <if test="firstskilltime != null">
+                and firstSkillTime = #{firstskilltime}
+            </if>
+            <if test="firstagentaltertime != null">
+                and firstAgentAlterTime = #{firstagentaltertime}
+            </if>
+            <if test="recordfilesuffix != null and recordfilesuffix != ''">
+                and recordFileSuffix = #{recordfilesuffix}
+            </if>
+            <if test="remoteagent != null">
+                and remoteAgent = #{remoteagent}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into t_call_detail(beginTime, endTime, callTotalDuration, callId, relatedCallId, callScenario, callType, callResult, localMediaIp, domain, originator, originatee, caller, callee, ringBackTime, answerTime, isAnswer, ringBackDuration, firstRoutePoint, firstQueueRoutePoint, firstSkillId, firstSkillName, firstAgentId, firstAgentName, firstStationId, firstAgentAnswerTime, firstWaitDuration, acdBeforeDuration, queueDuration, alertTotalDuration, answerTotalDuration, consultInTotalTimes, consultInSuccTotalTimes, consultOutTotalTimes, consultOutSuccTotalTimes, holdTotalDuration, holdTotalTimes, conferenceTimes, abandonPoint, abandonType, hangupSide, gateway, recordServer, recordPath, satisfyCode, satisfyDuration, insertTime, updateTime, firstSkillTime, firstAgentAlterTime, recordFileSuffix, remoteAgent)
+        values (#{begintime}, #{endtime}, #{calltotalduration}, #{callid}, #{relatedcallid}, #{callscenario}, #{calltype}, #{callresult}, #{localmediaip}, #{domain}, #{originator}, #{originatee}, #{caller}, #{callee}, #{ringbacktime}, #{answertime}, #{isanswer}, #{ringbackduration}, #{firstroutepoint}, #{firstqueueroutepoint}, #{firstskillid}, #{firstskillname}, #{firstagentid}, #{firstagentname}, #{firststationid}, #{firstagentanswertime}, #{firstwaitduration}, #{acdbeforeduration}, #{queueduration}, #{alerttotalduration}, #{answertotalduration}, #{consultintotaltimes}, #{consultinsucctotaltimes}, #{consultouttotaltimes}, #{consultoutsucctotaltimes}, #{holdtotalduration}, #{holdtotaltimes}, #{conferencetimes}, #{abandonpoint}, #{abandontype}, #{hangupside}, #{gateway}, #{recordserver}, #{recordpath}, #{satisfycode}, #{satisfyduration}, #{inserttime}, #{updatetime}, #{firstskilltime}, #{firstagentaltertime}, #{recordfilesuffix}, #{remoteagent})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into t_call_detail(beginTime, endTime, callTotalDuration, callId, relatedCallId, callScenario, callType, callResult, localMediaIp, domain, originator, originatee, caller, callee, ringBackTime, answerTime, isAnswer, ringBackDuration, firstRoutePoint, firstQueueRoutePoint, firstSkillId, firstSkillName, firstAgentId, firstAgentName, firstStationId, firstAgentAnswerTime, firstWaitDuration, acdBeforeDuration, queueDuration, alertTotalDuration, answerTotalDuration, consultInTotalTimes, consultInSuccTotalTimes, consultOutTotalTimes, consultOutSuccTotalTimes, holdTotalDuration, holdTotalTimes, conferenceTimes, abandonPoint, abandonType, hangupSide, gateway, recordServer, recordPath, satisfyCode, satisfyDuration, insertTime, updateTime, firstSkillTime, firstAgentAlterTime, recordFileSuffix, remoteAgent)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.begintime}, #{entity.endtime}, #{entity.calltotalduration}, #{entity.callid}, #{entity.relatedcallid}, #{entity.callscenario}, #{entity.calltype}, #{entity.callresult}, #{entity.localmediaip}, #{entity.domain}, #{entity.originator}, #{entity.originatee}, #{entity.caller}, #{entity.callee}, #{entity.ringbacktime}, #{entity.answertime}, #{entity.isanswer}, #{entity.ringbackduration}, #{entity.firstroutepoint}, #{entity.firstqueueroutepoint}, #{entity.firstskillid}, #{entity.firstskillname}, #{entity.firstagentid}, #{entity.firstagentname}, #{entity.firststationid}, #{entity.firstagentanswertime}, #{entity.firstwaitduration}, #{entity.acdbeforeduration}, #{entity.queueduration}, #{entity.alerttotalduration}, #{entity.answertotalduration}, #{entity.consultintotaltimes}, #{entity.consultinsucctotaltimes}, #{entity.consultouttotaltimes}, #{entity.consultoutsucctotaltimes}, #{entity.holdtotalduration}, #{entity.holdtotaltimes}, #{entity.conferencetimes}, #{entity.abandonpoint}, #{entity.abandontype}, #{entity.hangupside}, #{entity.gateway}, #{entity.recordserver}, #{entity.recordpath}, #{entity.satisfycode}, #{entity.satisfyduration}, #{entity.inserttime}, #{entity.updatetime}, #{entity.firstskilltime}, #{entity.firstagentaltertime}, #{entity.recordfilesuffix}, #{entity.remoteagent})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into t_call_detail(beginTime, endTime, callTotalDuration, callId, relatedCallId, callScenario, callType, callResult, localMediaIp, domain, originator, originatee, caller, callee, ringBackTime, answerTime, isAnswer, ringBackDuration, firstRoutePoint, firstQueueRoutePoint, firstSkillId, firstSkillName, firstAgentId, firstAgentName, firstStationId, firstAgentAnswerTime, firstWaitDuration, acdBeforeDuration, queueDuration, alertTotalDuration, answerTotalDuration, consultInTotalTimes, consultInSuccTotalTimes, consultOutTotalTimes, consultOutSuccTotalTimes, holdTotalDuration, holdTotalTimes, conferenceTimes, abandonPoint, abandonType, hangupSide, gateway, recordServer, recordPath, satisfyCode, satisfyDuration, insertTime, updateTime, firstSkillTime, firstAgentAlterTime, recordFileSuffix, remoteAgent)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.begintime}, #{entity.endtime}, #{entity.calltotalduration}, #{entity.callid}, #{entity.relatedcallid}, #{entity.callscenario}, #{entity.calltype}, #{entity.callresult}, #{entity.localmediaip}, #{entity.domain}, #{entity.originator}, #{entity.originatee}, #{entity.caller}, #{entity.callee}, #{entity.ringbacktime}, #{entity.answertime}, #{entity.isanswer}, #{entity.ringbackduration}, #{entity.firstroutepoint}, #{entity.firstqueueroutepoint}, #{entity.firstskillid}, #{entity.firstskillname}, #{entity.firstagentid}, #{entity.firstagentname}, #{entity.firststationid}, #{entity.firstagentanswertime}, #{entity.firstwaitduration}, #{entity.acdbeforeduration}, #{entity.queueduration}, #{entity.alerttotalduration}, #{entity.answertotalduration}, #{entity.consultintotaltimes}, #{entity.consultinsucctotaltimes}, #{entity.consultouttotaltimes}, #{entity.consultoutsucctotaltimes}, #{entity.holdtotalduration}, #{entity.holdtotaltimes}, #{entity.conferencetimes}, #{entity.abandonpoint}, #{entity.abandontype}, #{entity.hangupside}, #{entity.gateway}, #{entity.recordserver}, #{entity.recordpath}, #{entity.satisfycode}, #{entity.satisfyduration}, #{entity.inserttime}, #{entity.updatetime}, #{entity.firstskilltime}, #{entity.firstagentaltertime}, #{entity.recordfilesuffix}, #{entity.remoteagent})
+        </foreach>
+        on duplicate key update
+        beginTime = values(beginTime),
+        endTime = values(endTime),
+        callTotalDuration = values(callTotalDuration),
+        callId = values(callId),
+        relatedCallId = values(relatedCallId),
+        callScenario = values(callScenario),
+        callType = values(callType),
+        callResult = values(callResult),
+        localMediaIp = values(localMediaIp),
+        domain = values(domain),
+        originator = values(originator),
+        originatee = values(originatee),
+        caller = values(caller),
+        callee = values(callee),
+        ringBackTime = values(ringBackTime),
+        answerTime = values(answerTime),
+        isAnswer = values(isAnswer),
+        ringBackDuration = values(ringBackDuration),
+        firstRoutePoint = values(firstRoutePoint),
+        firstQueueRoutePoint = values(firstQueueRoutePoint),
+        firstSkillId = values(firstSkillId),
+        firstSkillName = values(firstSkillName),
+        firstAgentId = values(firstAgentId),
+        firstAgentName = values(firstAgentName),
+        firstStationId = values(firstStationId),
+        firstAgentAnswerTime = values(firstAgentAnswerTime),
+        firstWaitDuration = values(firstWaitDuration),
+        acdBeforeDuration = values(acdBeforeDuration),
+        queueDuration = values(queueDuration),
+        alertTotalDuration = values(alertTotalDuration),
+        answerTotalDuration = values(answerTotalDuration),
+        consultInTotalTimes = values(consultInTotalTimes),
+        consultInSuccTotalTimes = values(consultInSuccTotalTimes),
+        consultOutTotalTimes = values(consultOutTotalTimes),
+        consultOutSuccTotalTimes = values(consultOutSuccTotalTimes),
+        holdTotalDuration = values(holdTotalDuration),
+        holdTotalTimes = values(holdTotalTimes),
+        conferenceTimes = values(conferenceTimes),
+        abandonPoint = values(abandonPoint),
+        abandonType = values(abandonType),
+        hangupSide = values(hangupSide),
+        gateway = values(gateway),
+        recordServer = values(recordServer),
+        recordPath = values(recordPath),
+        satisfyCode = values(satisfyCode),
+        satisfyDuration = values(satisfyDuration),
+        insertTime = values(insertTime),
+        updateTime = values(updateTime),
+        firstSkillTime = values(firstSkillTime),
+        firstAgentAlterTime = values(firstAgentAlterTime),
+        recordFileSuffix = values(recordFileSuffix),
+        remoteAgent = values(remoteAgent)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update t_call_detail
+        <set>
+            <if test="begintime != null">
+                beginTime = #{begintime},
+            </if>
+            <if test="endtime != null">
+                endTime = #{endtime},
+            </if>
+            <if test="calltotalduration != null">
+                callTotalDuration = #{calltotalduration},
+            </if>
+            <if test="callid != null and callid != ''">
+                callId = #{callid},
+            </if>
+            <if test="relatedcallid != null and relatedcallid != ''">
+                relatedCallId = #{relatedcallid},
+            </if>
+            <if test="callscenario != null">
+                callScenario = #{callscenario},
+            </if>
+            <if test="calltype != null">
+                callType = #{calltype},
+            </if>
+            <if test="callresult != null">
+                callResult = #{callresult},
+            </if>
+            <if test="localmediaip != null and localmediaip != ''">
+                localMediaIp = #{localmediaip},
+            </if>
+            <if test="domain != null and domain != ''">
+                domain = #{domain},
+            </if>
+            <if test="originator != null and originator != ''">
+                originator = #{originator},
+            </if>
+            <if test="originatee != null and originatee != ''">
+                originatee = #{originatee},
+            </if>
+            <if test="caller != null and caller != ''">
+                caller = #{caller},
+            </if>
+            <if test="callee != null and callee != ''">
+                callee = #{callee},
+            </if>
+            <if test="ringbacktime != null">
+                ringBackTime = #{ringbacktime},
+            </if>
+            <if test="answertime != null">
+                answerTime = #{answertime},
+            </if>
+            <if test="isanswer != null">
+                isAnswer = #{isanswer},
+            </if>
+            <if test="ringbackduration != null">
+                ringBackDuration = #{ringbackduration},
+            </if>
+            <if test="firstroutepoint != null and firstroutepoint != ''">
+                firstRoutePoint = #{firstroutepoint},
+            </if>
+            <if test="firstqueueroutepoint != null and firstqueueroutepoint != ''">
+                firstQueueRoutePoint = #{firstqueueroutepoint},
+            </if>
+            <if test="firstskillid != null and firstskillid != ''">
+                firstSkillId = #{firstskillid},
+            </if>
+            <if test="firstskillname != null and firstskillname != ''">
+                firstSkillName = #{firstskillname},
+            </if>
+            <if test="firstagentid != null and firstagentid != ''">
+                firstAgentId = #{firstagentid},
+            </if>
+            <if test="firstagentname != null and firstagentname != ''">
+                firstAgentName = #{firstagentname},
+            </if>
+            <if test="firststationid != null and firststationid != ''">
+                firstStationId = #{firststationid},
+            </if>
+            <if test="firstagentanswertime != null">
+                firstAgentAnswerTime = #{firstagentanswertime},
+            </if>
+            <if test="firstwaitduration != null">
+                firstWaitDuration = #{firstwaitduration},
+            </if>
+            <if test="acdbeforeduration != null">
+                acdBeforeDuration = #{acdbeforeduration},
+            </if>
+            <if test="queueduration != null">
+                queueDuration = #{queueduration},
+            </if>
+            <if test="alerttotalduration != null">
+                alertTotalDuration = #{alerttotalduration},
+            </if>
+            <if test="answertotalduration != null">
+                answerTotalDuration = #{answertotalduration},
+            </if>
+            <if test="consultintotaltimes != null">
+                consultInTotalTimes = #{consultintotaltimes},
+            </if>
+            <if test="consultinsucctotaltimes != null">
+                consultInSuccTotalTimes = #{consultinsucctotaltimes},
+            </if>
+            <if test="consultouttotaltimes != null">
+                consultOutTotalTimes = #{consultouttotaltimes},
+            </if>
+            <if test="consultoutsucctotaltimes != null">
+                consultOutSuccTotalTimes = #{consultoutsucctotaltimes},
+            </if>
+            <if test="holdtotalduration != null">
+                holdTotalDuration = #{holdtotalduration},
+            </if>
+            <if test="holdtotaltimes != null">
+                holdTotalTimes = #{holdtotaltimes},
+            </if>
+            <if test="conferencetimes != null">
+                conferenceTimes = #{conferencetimes},
+            </if>
+            <if test="abandonpoint != null and abandonpoint != ''">
+                abandonPoint = #{abandonpoint},
+            </if>
+            <if test="abandontype != null">
+                abandonType = #{abandontype},
+            </if>
+            <if test="hangupside != null">
+                hangupSide = #{hangupside},
+            </if>
+            <if test="gateway != null and gateway != ''">
+                gateway = #{gateway},
+            </if>
+            <if test="recordserver != null and recordserver != ''">
+                recordServer = #{recordserver},
+            </if>
+            <if test="recordpath != null and recordpath != ''">
+                recordPath = #{recordpath},
+            </if>
+            <if test="satisfycode != null and satisfycode != ''">
+                satisfyCode = #{satisfycode},
+            </if>
+            <if test="satisfyduration != null">
+                satisfyDuration = #{satisfyduration},
+            </if>
+            <if test="inserttime != null">
+                insertTime = #{inserttime},
+            </if>
+            <if test="updatetime != null">
+                updateTime = #{updatetime},
+            </if>
+            <if test="firstskilltime != null">
+                firstSkillTime = #{firstskilltime},
+            </if>
+            <if test="firstagentaltertime != null">
+                firstAgentAlterTime = #{firstagentaltertime},
+            </if>
+            <if test="recordfilesuffix != null and recordfilesuffix != ''">
+                recordFileSuffix = #{recordfilesuffix},
+            </if>
+            <if test="remoteagent != null">
+                remoteAgent = #{remoteagent},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from t_call_detail where id = #{id}
+    </delete>
+
+</mapper>
+

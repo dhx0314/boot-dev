@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wilcom.recordingpush.dao.RecpathmapDao">
+
+    <resultMap type="com.wilcom.recordingpush.entity.Recpathmap" id="RecpathmapMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="pathname" column="pathname" jdbcType="VARCHAR"/>
+        <result property="httpdURL" column="httpdURL" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="RecpathmapMap">
+        select
+          id, pathname, httpdURL
+        from recpathmap
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="RecpathmapMap">
+        select
+          id, pathname, httpdURL
+        from recpathmap
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="pathname != null and pathname != ''">
+                and pathname = #{pathname}
+            </if>
+            <if test="httpdurl != null and httpdurl != ''">
+                and httpdURL = #{httpdurl}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from recpathmap
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="pathname != null and pathname != ''">
+                and pathname = #{pathname}
+            </if>
+            <if test="httpdurl != null and httpdurl != ''">
+                and httpdURL = #{httpdurl}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into recpathmap(pathname, httpdURL)
+        values (#{pathname}, #{httpdurl})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into recpathmap(pathname, httpdURL)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.pathname}, #{entity.httpdurl})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into recpathmap(pathname, httpdURL)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.pathname}, #{entity.httpdurl})
+        </foreach>
+        on duplicate key update
+        pathname = values(pathname),
+        httpdURL = values(httpdURL)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update recpathmap
+        <set>
+            <if test="pathname != null and pathname != ''">
+                pathname = #{pathname},
+            </if>
+            <if test="httpdurl != null and httpdurl != ''">
+                httpdURL = #{httpdurl},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from recpathmap where id = #{id}
+    </delete>
+
+</mapper>
+

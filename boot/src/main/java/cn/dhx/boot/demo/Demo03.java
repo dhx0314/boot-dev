@@ -1,21 +1,38 @@
 package cn.dhx.boot.demo;
 
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+@Slf4j
 public class Demo03 {
     public static void main(String[] args) {
-        String s="478";
-        String s1="428";
-        String s2="438";
-        String s3="538";
-        String s4="4438";
-        String s5="^4\\d{2}$";
 
-        System.out.println(s.matches("^4\\d{2}$"));
-        System.out.println(s.matches(s5));
-        System.out.println(s.matches("478"));
-//        System.out.println(s1.matches("^4\\d{2}$"));
-//        System.out.println(s2.matches("^4\\d{2}$"));
-//        System.out.println(s3.matches("^4\\d{2}$"));
-//        System.out.println(s4.matches("^4\\d{2}$"));
-//        System.out.println(s.matches("^4\\d{2}$"));
+//        try {
+//           fun1();
+//            int i=1/0;
+//        } catch (Exception e) {
+//            System.out.println("main");
+//        }
+
+
+        Map<String, String> sipCalls = new HashMap<>(1024);
+        String s = sipCalls.get(null);
+        System.out.println(s);
+
+
+    }
+
+    public static String  fun1() {
+
+        try {
+            int i=1/0;
+        } catch (Exception e) {
+            log.info("",e);
+            System.out.println("-----");
+        }
+        return "ok";
     }
 }

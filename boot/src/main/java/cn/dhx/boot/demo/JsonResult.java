@@ -49,5 +49,13 @@ public class JsonResult {
 //    }
 
 
-
+    @Override
+    public String toString() {
+        return "JsonResult{" +
+                "code='" + code + '\'' +
+                ", success=" + success +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

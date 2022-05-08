@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.dhx.mybatis.dao.FiledetailDao">
+<mapper namespace="com.wilcom.recordinngpush.dao.FiledetailDao">
 
-    <resultMap type="cn.dhx.mybatis.entity.Filedetail" id="FiledetailMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+    <resultMap type="com.wilcom.recordinngpush.entity.Filedetail" id="FiledetailMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
         <result property="ani" column="ani" jdbcType="VARCHAR"/>
         <result property="dnis" column="dnis" jdbcType="VARCHAR"/>
-        <result property="calldirect" column="callDirect" jdbcType="VARCHAR"/>
-        <result property="fileid" column="fileId" jdbcType="VARCHAR"/>
-        <result property="filename" column="fileName" jdbcType="VARCHAR"/>
-        <result property="agentfilename" column="agentFileName" jdbcType="VARCHAR"/>
-        <result property="customfilename" column="customFileName" jdbcType="VARCHAR"/>
-        <result property="fileinfo" column="fileInfo" jdbcType="VARCHAR"/>
-        <result property="deviceid" column="deviceId" jdbcType="VARCHAR"/>
-        <result property="agentid" column="agentId" jdbcType="VARCHAR"/>
-        <result property="startdatetime" column="startDateTime" jdbcType="TIMESTAMP"/>
-        <result property="enddatetime" column="endDateTime" jdbcType="TIMESTAMP"/>
+        <result property="callDirect" column="callDirect" jdbcType="VARCHAR"/>
+        <result property="fileId" column="fileId" jdbcType="VARCHAR"/>
+        <result property="fileName" column="fileName" jdbcType="VARCHAR"/>
+        <result property="agentFileName" column="agentFileName" jdbcType="VARCHAR"/>
+        <result property="customFileName" column="customFileName" jdbcType="VARCHAR"/>
+        <result property="fileInfo" column="fileInfo" jdbcType="VARCHAR"/>
+        <result property="deviceId" column="deviceId" jdbcType="VARCHAR"/>
+        <result property="agentId" column="agentId" jdbcType="VARCHAR"/>
+        <result property="startDateTime" column="startDateTime" jdbcType="TIMESTAMP"/>
+        <result property="endDateTime" column="endDateTime" jdbcType="TIMESTAMP"/>
         <result property="callid" column="callid" jdbcType="VARCHAR"/>
-        <result property="contactid" column="contactId" jdbcType="VARCHAR"/>
-        <result property="calllenth" column="callLenth" jdbcType="INTEGER"/>
-        <result property="recordtype" column="RecordType" jdbcType="VARCHAR"/>
-        <result property="servername" column="serverName" jdbcType="VARCHAR"/>
-        <result property="fileencodingfmt" column="fileEncodingFmt" jdbcType="VARCHAR"/>
-        <result property="separablefileencodingfmt" column="separableFileEncodingFmt" jdbcType="VARCHAR"/>
+        <result property="contactId" column="contactId" jdbcType="VARCHAR"/>
+        <result property="callLenth" column="callLenth" jdbcType="INTEGER"/>
+        <result property="RecordType" column="RecordType" jdbcType="VARCHAR"/>
+        <result property="serverName" column="serverName" jdbcType="VARCHAR"/>
+        <result property="fileEncodingFmt" column="fileEncodingFmt" jdbcType="VARCHAR"/>
+        <result property="separableFileEncodingFmt" column="separableFileEncodingFmt" jdbcType="VARCHAR"/>
+        <result property="insertTime" column="insertTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="FiledetailMap">
         select
-          id, ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt
+          id, ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt, insertTime
         from filedetail
         where id = #{id}
     </select>
@@ -36,10 +37,10 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="FiledetailMap">
         select
-          id, ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt
+          id, ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt, insertTime
         from filedetail
         <where>
-            <if test="id != null">
+            <if test="id != null and id != ''">
                 and id = #{id}
             </if>
             <if test="ani != null and ani != ''">
@@ -98,6 +99,9 @@
             </if>
             <if test="separablefileencodingfmt != null and separablefileencodingfmt != ''">
                 and separableFileEncodingFmt = #{separablefileencodingfmt}
+            </if>
+            <if test="inserttime != null">
+                and insertTime = #{inserttime}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -108,7 +112,7 @@
         select count(1)
         from filedetail
         <where>
-            <if test="id != null">
+            <if test="id != null and id != ''">
                 and id = #{id}
             </if>
             <if test="ani != null and ani != ''">
@@ -168,28 +172,31 @@
             <if test="separablefileencodingfmt != null and separablefileencodingfmt != ''">
                 and separableFileEncodingFmt = #{separablefileencodingfmt}
             </if>
+            <if test="inserttime != null">
+                and insertTime = #{inserttime}
+            </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into filedetail(ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt)
-        values (#{ani}, #{dnis}, #{calldirect}, #{fileid}, #{filename}, #{agentfilename}, #{customfilename}, #{fileinfo}, #{deviceid}, #{agentid}, #{startdatetime}, #{enddatetime}, #{callid}, #{contactid}, #{calllenth}, #{recordtype}, #{servername}, #{fileencodingfmt}, #{separablefileencodingfmt})
+        insert into filedetail(ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt, insertTime)
+        values (#{ani}, #{dnis}, #{calldirect}, #{fileid}, #{filename}, #{agentfilename}, #{customfilename}, #{fileinfo}, #{deviceid}, #{agentid}, #{startdatetime}, #{enddatetime}, #{callid}, #{contactid}, #{calllenth}, #{recordtype}, #{servername}, #{fileencodingfmt}, #{separablefileencodingfmt}, #{inserttime})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into filedetail(ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt)
+        insert into filedetail(ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt, insertTime)
         values
         <foreach collection="entities" item="entity" separator=",">
-        (#{entity.ani}, #{entity.dnis}, #{entity.calldirect}, #{entity.fileid}, #{entity.filename}, #{entity.agentfilename}, #{entity.customfilename}, #{entity.fileinfo}, #{entity.deviceid}, #{entity.agentid}, #{entity.startdatetime}, #{entity.enddatetime}, #{entity.callid}, #{entity.contactid}, #{entity.calllenth}, #{entity.recordtype}, #{entity.servername}, #{entity.fileencodingfmt}, #{entity.separablefileencodingfmt})
+        (#{entity.ani}, #{entity.dnis}, #{entity.calldirect}, #{entity.fileid}, #{entity.filename}, #{entity.agentfilename}, #{entity.customfilename}, #{entity.fileinfo}, #{entity.deviceid}, #{entity.agentid}, #{entity.startdatetime}, #{entity.enddatetime}, #{entity.callid}, #{entity.contactid}, #{entity.calllenth}, #{entity.recordtype}, #{entity.servername}, #{entity.fileencodingfmt}, #{entity.separablefileencodingfmt}, #{entity.inserttime})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into filedetail(ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt)
+        insert into filedetail(ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt, insertTime)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.ani}, #{entity.dnis}, #{entity.calldirect}, #{entity.fileid}, #{entity.filename}, #{entity.agentfilename}, #{entity.customfilename}, #{entity.fileinfo}, #{entity.deviceid}, #{entity.agentid}, #{entity.startdatetime}, #{entity.enddatetime}, #{entity.callid}, #{entity.contactid}, #{entity.calllenth}, #{entity.recordtype}, #{entity.servername}, #{entity.fileencodingfmt}, #{entity.separablefileencodingfmt})
+            (#{entity.ani}, #{entity.dnis}, #{entity.calldirect}, #{entity.fileid}, #{entity.filename}, #{entity.agentfilename}, #{entity.customfilename}, #{entity.fileinfo}, #{entity.deviceid}, #{entity.agentid}, #{entity.startdatetime}, #{entity.enddatetime}, #{entity.callid}, #{entity.contactid}, #{entity.calllenth}, #{entity.recordtype}, #{entity.servername}, #{entity.fileencodingfmt}, #{entity.separablefileencodingfmt}, #{entity.inserttime})
         </foreach>
         on duplicate key update
         ani = values(ani),
@@ -210,7 +217,8 @@
         RecordType = values(RecordType),
         serverName = values(serverName),
         fileEncodingFmt = values(fileEncodingFmt),
-        separableFileEncodingFmt = values(separableFileEncodingFmt)
+        separableFileEncodingFmt = values(separableFileEncodingFmt),
+        insertTime = values(insertTime)
     </insert>
 
     <!--通过主键修改数据-->
@@ -273,6 +281,9 @@
             </if>
             <if test="separablefileencodingfmt != null and separablefileencodingfmt != ''">
                 separableFileEncodingFmt = #{separablefileencodingfmt},
+            </if>
+            <if test="inserttime != null">
+                insertTime = #{inserttime},
             </if>
         </set>
         where id = #{id}

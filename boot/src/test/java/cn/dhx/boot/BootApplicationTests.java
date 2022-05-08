@@ -3,6 +3,7 @@ package cn.dhx.boot;
 //import cn.dhx.boot.ftp.FileUtil;
 //import cn.dhx.boot.ftp.config.FtpConfigProperties;
 
+import cn.dhx.boot.entity.ResultDto;
 import cn.dhx.boot.httpd.Upload;
 //import cn.dhx.boot.thread2.StuDemo;
 import cn.dhx.boot.service.*;
@@ -200,5 +201,24 @@ class BootApplicationTests {
 //        }
 
 
+    }
+
+
+    @Test
+    public void fun1aaaa() {
+        HashMap<String, String> pushHashMap = new HashMap<>();
+        pushHashMap.put("deviceId", "deviceId");
+        pushHashMap.put("callId", "callId");
+//        PushResult result = new PushResult();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json="";
+        try {
+            json = objectMapper.writeValueAsString(pushHashMap);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        String url="http://127.0.0.1:9999/scsa-api/webext/iqas/v4/syncdr/000000001288023";
+        ResultDto requestBean = restTemplate.postForObject(url, json, ResultDto.class);
+        System.out.println(requestBean);
     }
 }

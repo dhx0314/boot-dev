@@ -79,6 +79,17 @@ class RedisPoolApplicationTests {
     }
 
     @Test
+    public void fun2aa() {
+        String s="";
+
+        s = (String) redisTemplate.opsForHash().get("k1aa23423", "aa");
+        System.out.println(s);
+        
+
+
+    }
+
+    @Test
     public void fun1aa() {
 
         Boolean aBoolean = redisTemplate.opsForValue().setIfAbsent("key0125", "mpsLocation", Duration.ofSeconds(100));
