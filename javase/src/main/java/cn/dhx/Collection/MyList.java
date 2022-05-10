@@ -2,10 +2,12 @@ package cn.dhx.Collection;
 
 import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
-public class MyCollection {
-
+public class MyList {
 
     @Test
     public void fun1() {
@@ -54,8 +56,32 @@ public class MyCollection {
         list.add(null);
         System.out.println(list.toString());
         //[null, bb, null]
+    }
+
+    @Test
+    public void fun5() {
+        String [] list = new String[]{"1","2"};
+        List<String> strings = Arrays.asList(list);
+        strings.add("333");
+        //java.lang.UnsupportedOperationException
+    }
+
+    @Test
+    public void fun5a() {
+        String [] list = new String[]{"1","2"};
+        List<String> strings = Arrays.asList(list);
+        System.out.println(strings.get(1));
+        System.out.println(strings.size());
+        //2
+        //2
+    }
 
 
-
+    @Test
+    public void fun6() {
+        String [] list = new String[]{"1","2"};
+        List<String> strings = Arrays.asList(list);
+        ArrayList<String> arrayList = new ArrayList<>(strings);
+        arrayList.add("333");
     }
 }
