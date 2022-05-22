@@ -2,9 +2,7 @@ package cn.dhx.bootdemo.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -12,9 +10,9 @@ public class Demo6 {
 
 
     @CrossOrigin
-    @GetMapping("/test0427")
-    public String fun1() {
-        log.info("test");
+    @GetMapping("/test")
+    public String fun1(@RequestParam(required = false) String id) {
+        log.info("test [{}]",id);
         return "ok";
     }
 }
