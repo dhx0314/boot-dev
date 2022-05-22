@@ -13,6 +13,13 @@ public class MyTest {
         System.out.println("-----1---------");
         System.out.println("-----2---------");
     }
+
+    @Test
+    public void fu1aaa() {
+        System.out.println("-------aaa-------");
+        System.out.println("-----1---aaaa------");
+        System.out.println("-----2----aaaa-----");
+    }
 }
 
 
