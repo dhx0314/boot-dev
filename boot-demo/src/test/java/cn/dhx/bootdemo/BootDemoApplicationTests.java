@@ -1,5 +1,6 @@
 package cn.dhx.bootdemo;
 
+import cn.dhx.bootdemo.config.Config;
 import cn.dhx.bootdemo.entity.User2;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
+
 @SpringBootTest
 @RunWith(SpringRunner.class)
 class BootDemoApplicationTests {
@@ -18,6 +21,19 @@ class BootDemoApplicationTests {
 
     @Autowired
     private RestTemplate template;
+
+
+    @Autowired
+    private Config config;
+
+
+    @Test
+    public void fun1() {
+        String cc = config.getTt();
+        System.out.println(cc);
+        HashMap<String, String> m = config.getMaps();
+        System.out.println(m);
+    }
 
     @Test
     void contextLoads() throws JsonProcessingException {

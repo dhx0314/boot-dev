@@ -33,6 +33,12 @@ class RedisPoolApplicationTests {
 
 
     @Test
+    public void funaa2() {
+        long expire = redisTemplate.opsForValue().getOperations().getExpire("key");
+        System.out.println(expire);
+    }
+
+    @Test
     public void fun234() {
 
         CallDto callDto = new CallDto();

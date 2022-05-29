@@ -1,6 +1,15 @@
 
 aa:
+  bb: 124
   cc: false
 server:
   port: 9999
 
+#k:
+#  k1: v1
+#  k2: v2
+#  k3: v3
+maps: "{'key1': 'value1', 'key2': 'value2'}"
+
+
+#maps: "{key1: 'value1', key2: 'value2'}"
