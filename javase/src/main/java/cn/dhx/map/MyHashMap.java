@@ -62,15 +62,42 @@ public class MyHashMap {
     }
 
 
+    // 树化
     @Test
     public void fun3() {
-        HashMap<Object, Object> hashMap = new HashMap<>();
-        for (int i = 0; i < 6; i++) {
+        HashMap<Object, Object> hashMap = new HashMap<>(64);
+        for (int i = 0; i < 8; i++) {
+//        for (int i = 0; i < 9; i++) {
             hashMap.put(new A(i),new Object());
         }
-        for (int i = 0; i < 10; i++) {
-            hashMap.put(String.valueOf(i),new Object());
+        System.out.println(hashMap);
+        for (int i = 8; i < 20; i++) {
+            hashMap.put(new A(i),new Object());
         }
+    }
+
+    @Test
+    public void fun4() {
+        HashMap<Object, Object> hashMap = new HashMap<>();
+        for (int i = 0; i < 11; i++) {
+            hashMap.put(i,new Object());
+        }
+        System.out.println(hashMap);
+        for (int i = 11; i < 20; i++) {
+            hashMap.put(i,new Object());
+        }
+    }
+
+
+    // table扩容
+    @Test
+    public void fun41() {
+        HashMap<Object, Object> hashMap = new HashMap<>();
+        for (int i = 10; i < 22; i++) {
+            hashMap.put(i, new Object());
+        }
+        System.out.println(hashMap);
+        hashMap.put(23, new Object());
     }
 }
 

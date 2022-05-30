@@ -13,13 +13,24 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MyTest {
 
     @Test
+    public void fun1aa() {
+        Object a = 1;
+        Object b = 2;
+        a = b;
+        b = "3";
+        System.out.println(a);
+        System.out.println(b);
+    }
+
+
+    @Test
     public void fu1() {
 //        String json="{\"method\":\"makeCall\",\"object\":\"cti\",\"params\":[{\"dest\":\"9018270779730\",\"deviceId\":\"6873\",\"origin\":\"6873\"}]}";
 
 //        String json = "{\"method\":\"makeCall\",\"object\":\"cti\",\"params\":[{\"userData\":{\"map\":{\"uui\":\"90007238test\"}},\"dest\":\"9018270779730\",\"deviceId\":null,\"origin\":null}]}";
 
 //        String json="{\"method\":\"makeCall\",\"object\":\"cti\",\"params\":[{\"userData\":{\"map\":{\"uui\":\"90007238test\"}},\"dest\":\"9018270779730\",\"deviceId\":\"\",\"origin\":\"\"}]}";
-        String json="{\"method\":\"makeCall\",\"object\":\"cti\",\"params\":[{\"userData\":{\"map\":{\"uui\":\"90007238test\"}},\"dest\":\"9018270779730\",\"deviceId\":\"\",\"origin\":null}]}";
+        String json = "{\"method\":\"makeCall\",\"object\":\"cti\",\"params\":[{\"userData\":{\"map\":{\"uui\":\"90007238test\"}},\"dest\":\"9018270779730\",\"deviceId\":\"\",\"origin\":null}]}";
 
 
         JsonParser parser = new JsonParser();
@@ -50,14 +61,12 @@ public class MyTest {
         System.out.println("----- ok");
 
 
-
-
     }
 
 
     @Test
     public void fu12() {
-            String s=null;
+        String s = null;
         System.out.println("aa".equals(s));
     }
 }
