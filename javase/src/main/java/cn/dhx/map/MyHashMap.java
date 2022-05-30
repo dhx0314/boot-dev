@@ -23,9 +23,6 @@ public class MyHashMap {
     }
 
 
-
-
-
     @Test
     public void fun1a() {
         HashMap<String, String> hashMap = new HashMap<>();
@@ -61,34 +58,6 @@ public class MyHashMap {
 
     }
 
-
-    // 树化
-    @Test
-    public void fun3() {
-        HashMap<Object, Object> hashMap = new HashMap<>(64);
-        for (int i = 0; i < 8; i++) {
-//        for (int i = 0; i < 9; i++) {
-            hashMap.put(new A(i),new Object());
-        }
-        System.out.println(hashMap);
-        for (int i = 8; i < 20; i++) {
-            hashMap.put(new A(i),new Object());
-        }
-    }
-
-    @Test
-    public void fun4() {
-        HashMap<Object, Object> hashMap = new HashMap<>();
-        for (int i = 0; i < 11; i++) {
-            hashMap.put(i,new Object());
-        }
-        System.out.println(hashMap);
-        for (int i = 11; i < 20; i++) {
-            hashMap.put(i,new Object());
-        }
-    }
-
-
     // table扩容
     @Test
     public void fun41() {
@@ -99,10 +68,63 @@ public class MyHashMap {
         System.out.println(hashMap);
         hashMap.put(23, new Object());
     }
+
+
+    // 树化
+    @Test
+    public void fun3() {
+        HashMap<Object, Object> hashMap = new HashMap<>(64);
+        for (int i = 0; i < 8; i++) {
+//        for (int i = 0; i < 9; i++) {
+            hashMap.put(new A(i), new Object());
+        }
+        System.out.println(hashMap);
+        for (int i = 8; i < 20; i++) {
+            hashMap.put(new A(i), new Object());
+        }
+    }
+
+
+
+    // 树化 -> 变回链表
+    @Test
+    public void fun3a() {
+        HashMap<Object, Object> hashMap = new HashMap<>(64);
+        for (int i = 0; i < 9; i++) {
+            hashMap.put(new A(i), new Object());
+        }
+        hashMap.remove(new A(8));
+        hashMap.remove(new A(7));
+        hashMap.remove(new A(6));
+        System.out.println(hashMap.size());
+        for (int i = 200; i <240 ; i++) {
+            hashMap.put(new A(i), new Object());
+        }
+        for (int i = 300; i <318 ; i++) {
+            hashMap.put(new A(i), new Object());
+        }
+        System.out.println(hashMap.toString());
+
+    }
+
+    @Test
+    public void fun4() {
+        HashMap<Object, Object> hashMap = new HashMap<>();
+        for (int i = 0; i < 11; i++) {
+            hashMap.put(i, new Object());
+        }
+        System.out.println(hashMap);
+        for (int i = 11; i < 20; i++) {
+            hashMap.put(i, new Object());
+        }
+    }
+
+
+
 }
 
 
-class A{
+class A {
 
     private int i;
 
@@ -111,16 +133,21 @@ class A{
     }
 
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        A a = (A) o;
-//        return i == a.i;
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        A a = (A) o;
+        return i == a.i;
+    }
 
     @Override
     public int hashCode() {
-        return 4;
+        if (i < 100) {
+            return 4;
+        }else {
+            return 101;
+        }
+
     }
 }
