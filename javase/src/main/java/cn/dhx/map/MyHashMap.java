@@ -9,18 +9,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class MyHashMap {
 
-    @Test
-    public void fun1() {
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("01", "aa");
-        hashMap.put("02", "bb");
-        System.out.println(hashMap.get("")); //null
-        System.out.println(hashMap.get(null)); // null
-
-        int size = hashMap.size();
-        System.out.println(size);
-
-    }
 
 
     @Test
@@ -47,6 +35,21 @@ public class MyHashMap {
         }
     }
 
+
+
+    @Test
+    public void fun1() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("01", "aa");
+        hashMap.put("02", "bb");
+        System.out.println(hashMap.get("")); //null
+        System.out.println(hashMap.get(null)); // null
+
+        int size = hashMap.size();
+        System.out.println(size);
+
+    }
+
     @Test
     public void fun2() {
         ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>();
@@ -54,8 +57,6 @@ public class MyHashMap {
         concurrentHashMap.put("02", "bb");
         System.out.println(concurrentHashMap.get(""));  //null
         System.out.println(concurrentHashMap.get(null)); //java.lang.NullPointerException
-
-
     }
 
     // table扩容
