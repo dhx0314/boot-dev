@@ -14,12 +14,25 @@ public class MyTest {
 
     @Test
     public void fun1aa() {
-        Object a = 1;
-        Object b = 2;
-        a = b;
-        b = "3";
-        System.out.println(a);
-        System.out.println(b);
+        String s=",(aa)";
+        String[] split = s.split(",");
+        System.out.println(split.length);
+        for (String s1 : split) {
+            System.out.println(s1);
+        }
+    }
+
+    @Test
+    public void fun1() {
+        String number="901827077973011111";
+//        String number="18270779730";
+        String regex="\\d{11,}";
+        boolean matches = number.matches(regex);
+        System.out.println(matches);
+        String firstNum = String.valueOf(number.charAt(0));
+        String secondNum = String.valueOf(number.charAt(1));
+        System.out.println(firstNum);
+        System.out.println(secondNum);
     }
 
 
