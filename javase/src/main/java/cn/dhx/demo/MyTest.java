@@ -14,12 +14,15 @@ public class MyTest {
 
     @Test
     public void fun1aa() {
-        String s=",(aa)";
-        String[] split = s.split(",");
-        System.out.println(split.length);
-        for (String s1 : split) {
-            System.out.println(s1);
+        System.out.println(digui(99));
+    }
+
+
+    public int digui(int i) {
+        if (i == 1) {
+            return 1;
         }
+        return i+digui(i-1);
     }
 
     @Test
