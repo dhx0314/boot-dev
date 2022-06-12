@@ -1,6 +1,17 @@
 package cn.dhx.demo;
 
-public class Stu {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import java.io.Serializable;
+
+
+@Data
+@AllArgsConstructor
+public class Stu implements Serializable {
+
+    private static final long serialVersionUID = -4392658638228508589L;
+
 
     private String id;
 
@@ -13,4 +24,6 @@ public class Stu {
     public long add(int a,int b){
         return 1;
     }
+
+
 }

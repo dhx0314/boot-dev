@@ -1,7 +1,8 @@
-package cn.dhx.io;
+package cn.dhx.io.inputstreamandoutstream;
 
 import org.junit.Test;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
@@ -31,5 +32,22 @@ public class MyOutputStream {
         byte[] bytes = s.getBytes();
         fileOutputStream.write(bytes,0, bytes.length);
         fileOutputStream.close();
+    }
+
+    @Test
+    public void fun3() throws Exception {
+        String filePath = "D:\\a2\\a\\copy.txt";
+        String filePath2 = "D:\\a2\\a\\copy2.txt";
+        FileInputStream fileInputStream = new FileInputStream(filePath);
+        FileOutputStream fileOutputStream = new FileOutputStream(filePath2,true);
+        byte[] bytes=new byte[1024];
+        int readLen=0;
+        while ((readLen = fileInputStream.read(bytes)) != -1) {
+            fileOutputStream.write(bytes,0,readLen);
+        }
+        fileOutputStream.close();
+        fileInputStream.close();
+
+
     }
 }

@@ -1,4 +1,4 @@
-package cn.dhx.io;
+package cn.dhx.io.readerandwriter;
 
 import org.junit.Test;
 
