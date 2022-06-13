@@ -44,6 +44,24 @@ public class MyHashMap {
         hashMap.put("02", "bb");
         System.out.println(hashMap.get("")); //null
         System.out.println(hashMap.get(null)); // null
+        System.out.println(hashMap.get("03")); // null
+
+        int size = hashMap.size();
+        System.out.println(size);
+
+    }
+
+
+    @Test
+    public void fun1b() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("01", "aa");
+        hashMap.put("02", "bb");
+        hashMap.put("", "cc");
+        hashMap.put(null, "dd");
+        System.out.println(hashMap.get("")); //cc
+        System.out.println(hashMap.get(null)); // dd
+        System.out.println(hashMap.get("03")); // null
 
         int size = hashMap.size();
         System.out.println(size);
