@@ -1,6 +1,7 @@
 package cn.dhx.redispool;
 
 import cn.dhx.redispool.entity.CallDto;
+import cn.dhx.redispool.redisson.RedisLock;
 import cn.dhx.redispool.util.JsonUtil;
 import cn.dhx.redispool.web.WebController;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -30,12 +32,26 @@ class RedisPoolApplicationTests {
 //
 //    @Autowired
 //    private RedisTemplate redisTemplate2;
+    @Autowired
+    private RedisLock redisLock;
 
 
     @Test
-    public void funaa2() {
-        long expire = redisTemplate.opsForValue().getOperations().getExpire("key");
-        System.out.println(expire);
+    public void funaa2() throws InterruptedException {
+//        long expire = redisTemplate.opsForValue().getOperations().getExpire("key");
+//        System.out.println(expire);
+
+//        for (int i = 0; i < 5; i++) {
+//            new Thread(()->{
+//                boolean lock = redisLock.lock("2");
+//                log.info("lock {} {}",Thread.currentThread().getName(),lock);
+//            }).start();
+//        }
+
+        redisLock.unlock("1");
+        redisLock.unlock("2");
+
+        TimeUnit.SECONDS.sleep(1000);
     }
 
     @Test

@@ -3,7 +3,7 @@ aa:
   bb: 124
   cc: false
 server:
-  port: 9999
+  port: 9998
 
 #k:
 #  k1: v1

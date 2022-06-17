@@ -1,6 +1,7 @@
 package cn.dhx.demo;
 
 
+import cn.dhx.util.NetByteUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -12,9 +13,34 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class MyTest {
 
+
+    @Test
+    public void arra() {
+        int[] arr1=new int[4];
+        int[] arr2=new int[1];
+
+        if (arr1.length < arr2.length * 2) {
+            System.out.println("aa");
+        }
+
+    }
+
     @Test
     public void fun1aa() {
-        System.out.println(digui(99));
+        System.out.println(digui(100));
+    }
+
+
+    @Test
+    public void funa2332() {
+        byte[] bytes = new byte[4];
+        bytes[0]= (byte) 0x00;
+        bytes[1]= (byte) 0x00;
+        bytes[2]= (byte) 0x00;
+        bytes[3]= (byte) 0xb9;
+        int i = NetByteUtil.bytesToInt(bytes);
+        System.out.println(i);
+
     }
 
 
@@ -23,6 +49,19 @@ public class MyTest {
             return 1;
         }
         return i+digui(i-1);
+    }
+
+
+    @Test
+    public void fun1a2() {
+        System.out.println(digui2(1));
+    }
+
+    public int digui2(int i) {
+        if (i == 100) {
+            return 100;
+        }
+        return i+digui2(i+1);
     }
 
     @Test
