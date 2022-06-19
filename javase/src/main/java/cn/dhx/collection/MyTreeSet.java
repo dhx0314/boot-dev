@@ -1,4 +1,4 @@
-package cn.dhx.Collection;
+package cn.dhx.collection;
 
 import org.junit.Test;
 
