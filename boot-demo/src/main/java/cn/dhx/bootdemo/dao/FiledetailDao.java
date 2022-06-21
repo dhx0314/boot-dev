@@ -1,16 +1,20 @@
-package com.wilcom.recordinngpush.dao;
+package cn.dhx.bootdemo.dao;
 
-import com.wilcom.recordinngpush.entity.Filedetail;
-import org.apache.ibatis.annotations.Param;
+import cn.dhx.bootdemo.entity.Filedetail;
+import io.lettuce.core.dynamic.annotation.Param;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.Mapping;
+
 import java.util.List;
 
 /**
  * (Filedetail)表数据库访问层
  *
  * @author dhx
- * @since 2022-03-31 16:07:12
+ * @since 2022-06-21 10:00:41
  */
+@Mapper
 public interface FiledetailDao {
 
     /**
@@ -54,13 +58,7 @@ public interface FiledetailDao {
      */
     int insertBatch(@Param("entities") List<Filedetail> entities);
 
-    /**
-     * 批量新增或按主键更新数据（MyBatis原生foreach方法）
-     *
-     * @param entities List<Filedetail> 实例对象列表
-     * @return 影响行数
-     * @throws org.springframework.jdbc.BadSqlGrammarException 入参是空List的时候会抛SQL语句错误的异常，请自行校验入参
-     */
+
     int insertOrUpdateBatch(@Param("entities") List<Filedetail> entities);
 
     /**

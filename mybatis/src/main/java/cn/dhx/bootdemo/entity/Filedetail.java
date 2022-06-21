@@ -1,4 +1,4 @@
-package com.wilcom.recordinngpush.entity;
+package entity;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -7,10 +7,10 @@ import java.io.Serializable;
  * (Filedetail)实体类
  *
  * @author dhx
- * @since 2022-03-31 16:07:13
+ * @since 2022-06-21 13:44:10
  */
 public class Filedetail implements Serializable {
-    private static final long serialVersionUID = -43550532238735902L;
+    private static final long serialVersionUID = 571345111864366213L;
     
     private String id;
     
@@ -51,8 +51,6 @@ public class Filedetail implements Serializable {
     private String fileEncodingFmt;
     
     private String separableFileEncodingFmt;
-    
-    private Date insertTime;
 
 
     public String getId() {
@@ -213,14 +211,6 @@ public class Filedetail implements Serializable {
 
     public void setSeparablefileencodingfmt(String separablefileencodingfmt) {
         this.separablefileencodingfmt = separablefileencodingfmt;
-    }
-
-    public Date getInserttime() {
-        return inserttime;
-    }
-
-    public void setInserttime(Date inserttime) {
-        this.inserttime = inserttime;
     }
 
 }
