@@ -1,10 +1,8 @@
-package cn.dhx.Collection;
+package cn.dhx.collection;
 
 import org.junit.Test;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Objects;
 
 public class MyHashSetIncrement {
 

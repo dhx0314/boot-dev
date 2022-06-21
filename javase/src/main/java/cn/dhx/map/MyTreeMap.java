@@ -12,11 +12,11 @@ public class MyTreeMap {
         TreeMap<String, String> treeMap = new TreeMap<>(new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
+                // 从小到大
                 return ((String)o1).compareTo((String)o2);
             }
         });
 
-        String s="1";
 
         treeMap.put("bb","22");
         treeMap.put("cc","33");
