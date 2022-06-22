@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wilcom.recordinngpush.dao.FiledetailDao">
+<mapper namespace=".dao.FiledetailDao">
 
-    <resultMap type="com.wilcom.recordinngpush.entity.Filedetail" id="FiledetailMap">
+    <resultMap type=".entity.Filedetail" id="FiledetailMap">
         <result property="id" column="id" jdbcType="VARCHAR"/>
         <result property="ani" column="ani" jdbcType="VARCHAR"/>
         <result property="dnis" column="dnis" jdbcType="VARCHAR"/>
@@ -23,13 +23,12 @@
         <result property="serverName" column="serverName" jdbcType="VARCHAR"/>
         <result property="fileEncodingFmt" column="fileEncodingFmt" jdbcType="VARCHAR"/>
         <result property="separableFileEncodingFmt" column="separableFileEncodingFmt" jdbcType="VARCHAR"/>
-        <result property="insertTime" column="insertTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="FiledetailMap">
         select
-          id, ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt, insertTime
+          id, ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt
         from filedetail
         where id = #{id}
     </select>
@@ -37,7 +36,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="FiledetailMap">
         select
-          id, ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt, insertTime
+          id, ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt
         from filedetail
         <where>
             <if test="id != null and id != ''">
@@ -49,59 +48,56 @@
             <if test="dnis != null and dnis != ''">
                 and dnis = #{dnis}
             </if>
-            <if test="calldirect != null and calldirect != ''">
-                and callDirect = #{calldirect}
+            <if test="callDirect != null and callDirect != ''">
+                and callDirect = #{callDirect}
             </if>
-            <if test="fileid != null and fileid != ''">
-                and fileId = #{fileid}
+            <if test="fileId != null and fileId != ''">
+                and fileId = #{fileId}
             </if>
-            <if test="filename != null and filename != ''">
-                and fileName = #{filename}
+            <if test="fileName != null and fileName != ''">
+                and fileName = #{fileName}
             </if>
-            <if test="agentfilename != null and agentfilename != ''">
-                and agentFileName = #{agentfilename}
+            <if test="agentFileName != null and agentFileName != ''">
+                and agentFileName = #{agentFileName}
             </if>
-            <if test="customfilename != null and customfilename != ''">
-                and customFileName = #{customfilename}
+            <if test="customFileName != null and customFileName != ''">
+                and customFileName = #{customFileName}
             </if>
-            <if test="fileinfo != null and fileinfo != ''">
-                and fileInfo = #{fileinfo}
+            <if test="fileInfo != null and fileInfo != ''">
+                and fileInfo = #{fileInfo}
             </if>
-            <if test="deviceid != null and deviceid != ''">
-                and deviceId = #{deviceid}
+            <if test="deviceId != null and deviceId != ''">
+                and deviceId = #{deviceId}
             </if>
-            <if test="agentid != null and agentid != ''">
-                and agentId = #{agentid}
+            <if test="agentId != null and agentId != ''">
+                and agentId = #{agentId}
             </if>
-            <if test="startdatetime != null">
-                and startDateTime = #{startdatetime}
+            <if test="startDateTime != null">
+                and startDateTime = #{startDateTime}
             </if>
-            <if test="enddatetime != null">
-                and endDateTime = #{enddatetime}
+            <if test="endDateTime != null">
+                and endDateTime = #{endDateTime}
             </if>
             <if test="callid != null and callid != ''">
                 and callid = #{callid}
             </if>
-            <if test="contactid != null and contactid != ''">
-                and contactId = #{contactid}
+            <if test="contactId != null and contactId != ''">
+                and contactId = #{contactId}
             </if>
-            <if test="calllenth != null">
-                and callLenth = #{calllenth}
+            <if test="callLenth != null">
+                and callLenth = #{callLenth}
             </if>
-            <if test="recordtype != null and recordtype != ''">
-                and RecordType = #{recordtype}
+            <if test="RecordType != null and RecordType != ''">
+                and RecordType = #{RecordType}
             </if>
-            <if test="servername != null and servername != ''">
-                and serverName = #{servername}
+            <if test="serverName != null and serverName != ''">
+                and serverName = #{serverName}
             </if>
-            <if test="fileencodingfmt != null and fileencodingfmt != ''">
-                and fileEncodingFmt = #{fileencodingfmt}
+            <if test="fileEncodingFmt != null and fileEncodingFmt != ''">
+                and fileEncodingFmt = #{fileEncodingFmt}
             </if>
-            <if test="separablefileencodingfmt != null and separablefileencodingfmt != ''">
-                and separableFileEncodingFmt = #{separablefileencodingfmt}
-            </if>
-            <if test="inserttime != null">
-                and insertTime = #{inserttime}
+            <if test="separableFileEncodingFmt != null and separableFileEncodingFmt != ''">
+                and separableFileEncodingFmt = #{separableFileEncodingFmt}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -121,82 +117,79 @@
             <if test="dnis != null and dnis != ''">
                 and dnis = #{dnis}
             </if>
-            <if test="calldirect != null and calldirect != ''">
-                and callDirect = #{calldirect}
+            <if test="callDirect != null and callDirect != ''">
+                and callDirect = #{callDirect}
             </if>
-            <if test="fileid != null and fileid != ''">
-                and fileId = #{fileid}
+            <if test="fileId != null and fileId != ''">
+                and fileId = #{fileId}
             </if>
-            <if test="filename != null and filename != ''">
-                and fileName = #{filename}
+            <if test="fileName != null and fileName != ''">
+                and fileName = #{fileName}
             </if>
-            <if test="agentfilename != null and agentfilename != ''">
-                and agentFileName = #{agentfilename}
+            <if test="agentFileName != null and agentFileName != ''">
+                and agentFileName = #{agentFileName}
             </if>
-            <if test="customfilename != null and customfilename != ''">
-                and customFileName = #{customfilename}
+            <if test="customFileName != null and customFileName != ''">
+                and customFileName = #{customFileName}
             </if>
-            <if test="fileinfo != null and fileinfo != ''">
-                and fileInfo = #{fileinfo}
+            <if test="fileInfo != null and fileInfo != ''">
+                and fileInfo = #{fileInfo}
             </if>
-            <if test="deviceid != null and deviceid != ''">
-                and deviceId = #{deviceid}
+            <if test="deviceId != null and deviceId != ''">
+                and deviceId = #{deviceId}
             </if>
-            <if test="agentid != null and agentid != ''">
-                and agentId = #{agentid}
+            <if test="agentId != null and agentId != ''">
+                and agentId = #{agentId}
             </if>
-            <if test="startdatetime != null">
-                and startDateTime = #{startdatetime}
+            <if test="startDateTime != null">
+                and startDateTime = #{startDateTime}
             </if>
-            <if test="enddatetime != null">
-                and endDateTime = #{enddatetime}
+            <if test="endDateTime != null">
+                and endDateTime = #{endDateTime}
             </if>
             <if test="callid != null and callid != ''">
                 and callid = #{callid}
             </if>
-            <if test="contactid != null and contactid != ''">
-                and contactId = #{contactid}
+            <if test="contactId != null and contactId != ''">
+                and contactId = #{contactId}
             </if>
-            <if test="calllenth != null">
-                and callLenth = #{calllenth}
+            <if test="callLenth != null">
+                and callLenth = #{callLenth}
             </if>
-            <if test="recordtype != null and recordtype != ''">
-                and RecordType = #{recordtype}
+            <if test="RecordType != null and RecordType != ''">
+                and RecordType = #{RecordType}
             </if>
-            <if test="servername != null and servername != ''">
-                and serverName = #{servername}
+            <if test="serverName != null and serverName != ''">
+                and serverName = #{serverName}
             </if>
-            <if test="fileencodingfmt != null and fileencodingfmt != ''">
-                and fileEncodingFmt = #{fileencodingfmt}
+            <if test="fileEncodingFmt != null and fileEncodingFmt != ''">
+                and fileEncodingFmt = #{fileEncodingFmt}
             </if>
-            <if test="separablefileencodingfmt != null and separablefileencodingfmt != ''">
-                and separableFileEncodingFmt = #{separablefileencodingfmt}
-            </if>
-            <if test="inserttime != null">
-                and insertTime = #{inserttime}
+            <if test="separableFileEncodingFmt != null and separableFileEncodingFmt != ''">
+                and separableFileEncodingFmt = #{separableFileEncodingFmt}
             </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into filedetail(ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt, insertTime)
-        values (#{ani}, #{dnis}, #{calldirect}, #{fileid}, #{filename}, #{agentfilename}, #{customfilename}, #{fileinfo}, #{deviceid}, #{agentid}, #{startdatetime}, #{enddatetime}, #{callid}, #{contactid}, #{calllenth}, #{recordtype}, #{servername}, #{fileencodingfmt}, #{separablefileencodingfmt}, #{inserttime})
+        insert into filedetail(ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt)
+        values (#{ani}, #{dnis}, #{callDirect}, #{fileId}, #{fileName}, #{agentFileName}, #{customFileName}, #{fileInfo}, #{deviceId}, #{agentId}, #{startDateTime}, #{endDateTime}, #{callid}, #{contactId}, #{callLenth}, #{RecordType}, #{serverName}, #{fileEncodingFmt}, #{separableFileEncodingFmt})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into filedetail(ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt, insertTime)
+        insert into filedetail(ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt)
         values
         <foreach collection="entities" item="entity" separator=",">
-        (#{entity.ani}, #{entity.dnis}, #{entity.calldirect}, #{entity.fileid}, #{entity.filename}, #{entity.agentfilename}, #{entity.customfilename}, #{entity.fileinfo}, #{entity.deviceid}, #{entity.agentid}, #{entity.startdatetime}, #{entity.enddatetime}, #{entity.callid}, #{entity.contactid}, #{entity.calllenth}, #{entity.recordtype}, #{entity.servername}, #{entity.fileencodingfmt}, #{entity.separablefileencodingfmt}, #{entity.inserttime})
+        (#{entity.ani}, #{entity.dnis}, #{entity.callDirect}, #{entity.fileId}, #{entity.fileName}, #{entity.agentFileName}, #{entity.customFileName}, #{entity.fileInfo}, #{entity.deviceId}, #{entity.agentId}, #{entity.startDateTime}, #{entity.endDateTime}, #{entity.callid}, #{entity.contactId}, #{entity.callLenth}, #{entity.RecordType}, #{entity.serverName}, #{entity.fileEncodingFmt}, #{entity.separableFileEncodingFmt})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into filedetail(ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt, insertTime)
+        insert into filedetail(ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.ani}, #{entity.dnis}, #{entity.calldirect}, #{entity.fileid}, #{entity.filename}, #{entity.agentfilename}, #{entity.customfilename}, #{entity.fileinfo}, #{entity.deviceid}, #{entity.agentid}, #{entity.startdatetime}, #{entity.enddatetime}, #{entity.callid}, #{entity.contactid}, #{entity.calllenth}, #{entity.recordtype}, #{entity.servername}, #{entity.fileencodingfmt}, #{entity.separablefileencodingfmt}, #{entity.inserttime})
+            (#{entity.ani}, #{entity.dnis}, #{entity.callDirect}, #{entity.fileId}, #{entity.fileName}, #{entity.agentFileName}, #{entity.customFileName}, #{entity.fileInfo}, #{entity.deviceId}, #{entity.agentId}, #{entity.startDateTime}, #{entity.endDateTime}, #{entity.callid}, #{entity.contactId}, #{entity.callLenth}, #{entity.RecordType}, #{entity.serverName}, #{entity.fileEncodingFmt}, #{entity.separableFileEncodingFmt})
         </foreach>
         on duplicate key update
         ani = values(ani),
@@ -217,8 +210,7 @@
         RecordType = values(RecordType),
         serverName = values(serverName),
         fileEncodingFmt = values(fileEncodingFmt),
-        separableFileEncodingFmt = values(separableFileEncodingFmt),
-        insertTime = values(insertTime)
+        separableFileEncodingFmt = values(separableFileEncodingFmt)
     </insert>
 
     <!--通过主键修改数据-->
@@ -231,59 +223,56 @@
             <if test="dnis != null and dnis != ''">
                 dnis = #{dnis},
             </if>
-            <if test="calldirect != null and calldirect != ''">
-                callDirect = #{calldirect},
+            <if test="callDirect != null and callDirect != ''">
+                callDirect = #{callDirect},
             </if>
-            <if test="fileid != null and fileid != ''">
-                fileId = #{fileid},
+            <if test="fileId != null and fileId != ''">
+                fileId = #{fileId},
             </if>
-            <if test="filename != null and filename != ''">
-                fileName = #{filename},
+            <if test="fileName != null and fileName != ''">
+                fileName = #{fileName},
             </if>
-            <if test="agentfilename != null and agentfilename != ''">
-                agentFileName = #{agentfilename},
+            <if test="agentFileName != null and agentFileName != ''">
+                agentFileName = #{agentFileName},
             </if>
-            <if test="customfilename != null and customfilename != ''">
-                customFileName = #{customfilename},
+            <if test="customFileName != null and customFileName != ''">
+                customFileName = #{customFileName},
             </if>
-            <if test="fileinfo != null and fileinfo != ''">
-                fileInfo = #{fileinfo},
+            <if test="fileInfo != null and fileInfo != ''">
+                fileInfo = #{fileInfo},
             </if>
-            <if test="deviceid != null and deviceid != ''">
-                deviceId = #{deviceid},
+            <if test="deviceId != null and deviceId != ''">
+                deviceId = #{deviceId},
             </if>
-            <if test="agentid != null and agentid != ''">
-                agentId = #{agentid},
+            <if test="agentId != null and agentId != ''">
+                agentId = #{agentId},
             </if>
-            <if test="startdatetime != null">
-                startDateTime = #{startdatetime},
+            <if test="startDateTime != null">
+                startDateTime = #{startDateTime},
             </if>
-            <if test="enddatetime != null">
-                endDateTime = #{enddatetime},
+            <if test="endDateTime != null">
+                endDateTime = #{endDateTime},
             </if>
             <if test="callid != null and callid != ''">
                 callid = #{callid},
             </if>
-            <if test="contactid != null and contactid != ''">
-                contactId = #{contactid},
+            <if test="contactId != null and contactId != ''">
+                contactId = #{contactId},
             </if>
-            <if test="calllenth != null">
-                callLenth = #{calllenth},
+            <if test="callLenth != null">
+                callLenth = #{callLenth},
             </if>
-            <if test="recordtype != null and recordtype != ''">
-                RecordType = #{recordtype},
+            <if test="RecordType != null and RecordType != ''">
+                RecordType = #{RecordType},
             </if>
-            <if test="servername != null and servername != ''">
-                serverName = #{servername},
+            <if test="serverName != null and serverName != ''">
+                serverName = #{serverName},
             </if>
-            <if test="fileencodingfmt != null and fileencodingfmt != ''">
-                fileEncodingFmt = #{fileencodingfmt},
+            <if test="fileEncodingFmt != null and fileEncodingFmt != ''">
+                fileEncodingFmt = #{fileEncodingFmt},
             </if>
-            <if test="separablefileencodingfmt != null and separablefileencodingfmt != ''">
-                separableFileEncodingFmt = #{separablefileencodingfmt},
-            </if>
-            <if test="inserttime != null">
-                insertTime = #{inserttime},
+            <if test="separableFileEncodingFmt != null and separableFileEncodingFmt != ''">
+                separableFileEncodingFmt = #{separableFileEncodingFmt},
             </if>
         </set>
         where id = #{id}

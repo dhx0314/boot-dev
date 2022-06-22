@@ -42,8 +42,11 @@ class BootDemoApplicationTests {
 
     @Test
     public void fun1aaa() {
-        Filedetail filedetail = filedetailDao.queryById("5393893");
+        Filedetail filedetail = filedetailDao.queryById("5396138");
         System.out.println(filedetail);
+
+
+
 
 
     }
