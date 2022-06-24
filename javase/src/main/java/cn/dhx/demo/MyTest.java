@@ -16,12 +16,15 @@ public class MyTest {
 
     @Test
     public void arra() {
-        int[] arr1=new int[4];
-        int[] arr2=new int[1];
-
-        if (arr1.length < arr2.length * 2) {
-            System.out.println("aa");
-        }
+//        int[] arr1=new int[4];
+//        int[] arr2=new int[1];
+//
+//        if (arr1.length < arr2.length * 2) {
+//            System.out.println("aa");
+//        }
+        Integer i1 = 33;
+        Integer i2 = 33;
+        System.out.println(i1 == i2);
 
     }
 

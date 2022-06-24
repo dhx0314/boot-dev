@@ -25,6 +25,8 @@ public interface FiledetailDao {
      */
     Filedetail queryById(String id);
 
+    List<Filedetail> queryAll();
+
     /**
      * 查询指定行数据
      *

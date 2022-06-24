@@ -12,7 +12,7 @@ import java.util.Map;
 @Configuration
 @Component
 @Data
-public class Config {
+public class ConfigurationConfig {
 
 
     @Value("${aa.bb}")

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dhx.bootdemo.dao.MyDetialDao">
+
+    <resultMap type="cn.dhx.bootdemo.entity.MyDetial" id="MyDetialMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="callid" column="callid" jdbcType="VARCHAR"/>
+        <result property="inboundno" column="inboundno" jdbcType="VARCHAR"/>
+        <result property="custphone" column="custphone" jdbcType="VARCHAR"/>
+        <result property="starttime" column="starttime" jdbcType="TIMESTAMP"/>
+        <result property="endtime" column="endtime" jdbcType="TIMESTAMP"/>
+        <result property="agentid" column="agentid" jdbcType="VARCHAR"/>
+        <result property="extension" column="extension" jdbcType="VARCHAR"/>
+        <result property="outboundno" column="outboundno" jdbcType="VARCHAR"/>
+        <result property="calltype" column="calltype" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="MyDetialMap">
+        select
+          id, callid, inboundno, custphone, starttime, endtime, agentid, extension, outboundno, calltype
+        from my_detial
+        where id = #{id}
+    </select>
+
+    <select id="queryAll" resultMap="MyDetialMap">
+        select
+            id, callid, inboundno, custphone, starttime, endtime, agentid, extension, outboundno, calltype
+        from my_detial
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="MyDetialMap">
+        select
+          id, callid, inboundno, custphone, starttime, endtime, agentid, extension, outboundno, calltype
+        from my_detial
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="callid != null and callid != ''">
+                and callid = #{callid}
+            </if>
+            <if test="inboundno != null and inboundno != ''">
+                and inboundno = #{inboundno}
+            </if>
+            <if test="custphone != null and custphone != ''">
+                and custphone = #{custphone}
+            </if>
+            <if test="starttime != null">
+                and starttime = #{starttime}
+            </if>
+            <if test="endtime != null">
+                and endtime = #{endtime}
+            </if>
+            <if test="agentid != null and agentid != ''">
+                and agentid = #{agentid}
+            </if>
+            <if test="extension != null and extension != ''">
+                and extension = #{extension}
+            </if>
+            <if test="outboundno != null and outboundno != ''">
+                and outboundno = #{outboundno}
+            </if>
+            <if test="calltype != null and calltype != ''">
+                and calltype = #{calltype}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from my_detial
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="callid != null and callid != ''">
+                and callid = #{callid}
+            </if>
+            <if test="inboundno != null and inboundno != ''">
+                and inboundno = #{inboundno}
+            </if>
+            <if test="custphone != null and custphone != ''">
+                and custphone = #{custphone}
+            </if>
+            <if test="starttime != null">
+                and starttime = #{starttime}
+            </if>
+            <if test="endtime != null">
+                and endtime = #{endtime}
+            </if>
+            <if test="agentid != null and agentid != ''">
+                and agentid = #{agentid}
+            </if>
+            <if test="extension != null and extension != ''">
+                and extension = #{extension}
+            </if>
+            <if test="outboundno != null and outboundno != ''">
+                and outboundno = #{outboundno}
+            </if>
+            <if test="calltype != null and calltype != ''">
+                and calltype = #{calltype}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into my_detial(callid, inboundno, custphone, starttime, endtime, agentid, extension, outboundno, calltype)
+        values (#{callid}, #{inboundno}, #{custphone}, #{starttime}, #{endtime}, #{agentid}, #{extension}, #{outboundno}, #{calltype})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into my_detial(callid, inboundno, custphone, starttime, endtime, agentid, extension, outboundno, calltype)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.callid}, #{entity.inboundno}, #{entity.custphone}, #{entity.starttime}, #{entity.endtime}, #{entity.agentid}, #{entity.extension}, #{entity.outboundno}, #{entity.calltype})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into my_detial(callid, inboundno, custphone, starttime, endtime, agentid, extension, outboundno, calltype)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.callid}, #{entity.inboundno}, #{entity.custphone}, #{entity.starttime}, #{entity.endtime}, #{entity.agentid}, #{entity.extension}, #{entity.outboundno}, #{entity.calltype})
+        </foreach>
+        on duplicate key update
+        callid = values(callid),
+        inboundno = values(inboundno),
+        custphone = values(custphone),
+        starttime = values(starttime),
+        endtime = values(endtime),
+        agentid = values(agentid),
+        extension = values(extension),
+        outboundno = values(outboundno),
+        calltype = values(calltype)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update my_detial
+        <set>
+            <if test="callid != null and callid != ''">
+                callid = #{callid},
+            </if>
+            <if test="inboundno != null and inboundno != ''">
+                inboundno = #{inboundno},
+            </if>
+            <if test="custphone != null and custphone != ''">
+                custphone = #{custphone},
+            </if>
+            <if test="starttime != null">
+                starttime = #{starttime},
+            </if>
+            <if test="endtime != null">
+                endtime = #{endtime},
+            </if>
+            <if test="agentid != null and agentid != ''">
+                agentid = #{agentid},
+            </if>
+            <if test="extension != null and extension != ''">
+                extension = #{extension},
+            </if>
+            <if test="outboundno != null and outboundno != ''">
+                outboundno = #{outboundno},
+            </if>
+            <if test="calltype != null and calltype != ''">
+                calltype = #{calltype},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from my_detial where id = #{id}
+    </delete>
+
+</mapper>
+

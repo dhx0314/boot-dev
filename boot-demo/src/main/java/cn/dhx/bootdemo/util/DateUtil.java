@@ -40,4 +40,16 @@ public class DateUtil {
 //        return format;
 
     }
+
+    public static Date stringDate(String now) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = sdf.parse(now);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
 }
