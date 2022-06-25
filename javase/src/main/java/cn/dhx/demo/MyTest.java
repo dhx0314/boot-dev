@@ -8,11 +8,66 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.junit.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MyTest {
+
+
+    @Test
+    public void fun1c0625() {
+//        String s = new String("18270779730");
+//        byte[] sessionID = new byte[48];
+//        for (int i = 0; i < s.length(); i++) {
+//            char c = s.charAt(i);
+//            sessionID[i]= (byte) c;
+//        }
+//        for (byte b : sessionID) {
+//            System.out.println(b);
+//        }
+
+        byte[] bytes = new byte[3];
+        bytes[0]=(byte) '1';
+        System.out.println(bytes[0]);
+        for (byte aByte : bytes) {
+            System.out.println(aByte);
+        }
+    }
+
+
+    @Test
+    public void fun1b0625() {
+        byte[] bytes = NetByteUtil.intToByteLittle(188);
+        int i = NetByteUtil.bytesToIntLittle(bytes);
+        System.out.println(i);
+
+        Stu stu = new Stu();
+        byte[] wavDirect = stu.getWavDirect();
+        System.out.println(wavDirect.length);
+    }
+
+
+    @Test
+    public void funa0625() {
+        String s="68731";
+        byte[] wavDirectCustom = {1, 0, 0, 0};
+        String s1 = new String(wavDirectCustom);
+        System.out.println(s1);
+        byte[] bytes1 = NetByteUtil.intToBytes(1);
+//        String s1 = bytes1.toString();
+        System.out.println(bytes1.length);
+        int i = NetByteUtil.bytesToInt(bytes1);
+        System.out.println(i);
+        byte[] bytes = Stu.bytes;
+        System.out.println(bytes.length);
+//        System.out.println(s1);
+//        String s1 = new String(wavDirectCustom);
+//        System.out.println(s1);
+//        byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
+//        System.out.println(bytes.length);
+    }
 
 
     @Test
@@ -25,6 +80,9 @@ public class MyTest {
         String s = new String(bytes);
         System.out.println(s);
     }
+
+
+
 
 
     @Test
