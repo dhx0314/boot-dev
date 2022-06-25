@@ -10,8 +10,34 @@ import org.junit.Test;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MyTest {
+
+
+    @Test
+    public void fun1awe() {
+//        byte[] bytes={'V','C'};
+        byte[] bytes={86,67};
+        for (byte aByte : bytes) {
+            System.out.println(aByte);
+        }
+        String s = new String(bytes);
+        System.out.println(s);
+    }
+
+
+    @Test
+    public void fun1awea() {
+        byte[] bytes = new byte[4];
+        for (byte aByte : bytes) {
+            System.out.println(aByte);
+        }
+
+        AtomicInteger atomicInteger = new AtomicInteger();
+        int i = atomicInteger.get();
+        System.out.println(i);
+    }
 
 
     @Test
