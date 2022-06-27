@@ -52,8 +52,10 @@ class BootDemoApplicationTests {
 
     @Test
     public void fun2() {
-        List<Filedetail> filedetails = filedetailDao.queryAll();
-        HashMap<String, List<Filedetail>> filedetailMap = new HashMap<>();
+//        List<Filedetail> filedetails = filedetailDao.queryAll();
+//        HashMap<String, List<Filedetail>> filedetailMap = new HashMap<>();
+
+
     }
 
 
@@ -119,7 +121,7 @@ class BootDemoApplicationTests {
 
     @Test
     public void fun1awawf() {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 7; i++) {
             try {
                 fun1sqlold(i);
             } catch (Exception e) {
@@ -134,7 +136,7 @@ class BootDemoApplicationTests {
         System.out.println(i);
 
 //        String path = "D:\\a\\0621\\media20220618-20\\2022-06-18\\MPS.Info.20220618-1.logs";
-        String path = "D:\\a\\0621\\media20220618-20\\2022-06-19\\MPS.Info.20220619-" + i + ".logs";
+        String path = "D:\\a\\0621\\media20220618-20\\2022-06-18\\MPS.Info.20220618-" + i + ".logs";
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
         String line;
         ArrayList<Filedetail> filedetails = new ArrayList<>();
@@ -174,7 +176,8 @@ class BootDemoApplicationTests {
 
         System.out.println("filedetails "+filedetails.size());
 //        System.out.println("filedetails "+filedetails2.size());
-        filedetailDao.insertBatch(filedetails);
+        int i1 = filedetailDao.insertBatch(filedetails);
+        System.out.println(i1);
     }
 
 
@@ -183,7 +186,7 @@ class BootDemoApplicationTests {
     public void fun1sqlold2() throws Exception {
 //        System.out.println(i);
 
-        String path = "D:\\a\\0621\\media20220618-20\\2022-06-18\\MPS.Info.20220618-1.logs";
+        String path = "D:\\a\\0621\\media20220618-20\\2022-06-18\\MPS.Info.20220618-0.logs";
 //        String path = "D:\\a\\0621\\media20220618-20\\2022-06-19\\MPS.Info.20220619-" + i + ".logs";
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
         String line;

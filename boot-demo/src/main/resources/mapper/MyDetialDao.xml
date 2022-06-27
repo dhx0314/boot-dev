@@ -27,6 +27,7 @@
         select
             id, callid, inboundno, custphone, starttime, endtime, agentid, extension, outboundno, calltype
         from my_detial
+        order by starttime asc
     </select>
 
     <!--查询指定行数据-->

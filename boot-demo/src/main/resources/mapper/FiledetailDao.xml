@@ -38,6 +38,7 @@
         select
             id, ani, dnis, callDirect, fileId, fileName, agentFileName, customFileName, fileInfo, deviceId, agentId, startDateTime, endDateTime, callid, contactId, callLenth, RecordType, serverName, fileEncodingFmt, separableFileEncodingFmt
         from filedetail
+        order by startDateTime asc
     </select>
 
     <!--查询指定行数据-->
