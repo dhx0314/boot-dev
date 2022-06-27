@@ -178,6 +178,59 @@ class BootDemoApplicationTests {
     }
 
 
+
+    @Test
+    public void fun1sqlold2() throws Exception {
+//        System.out.println(i);
+
+        String path = "D:\\a\\0621\\media20220618-20\\2022-06-18\\MPS.Info.20220618-1.logs";
+//        String path = "D:\\a\\0621\\media20220618-20\\2022-06-19\\MPS.Info.20220619-" + i + ".logs";
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+        String line;
+        ArrayList<Filedetail> filedetails = new ArrayList<>();
+        ArrayList<Filedetail> filedetails2 = new ArrayList<>();
+        while ((line = bufferedReader.readLine()) != null) {
+            boolean contains = line.contains("notice recFile to RCS");
+            if (contains) {
+//                System.out.println(line);
+                int start = line.indexOf("fileName");
+                int end = line.indexOf("sessionId");
+                String substring = line.substring(start, end).trim();
+                String substring2 = substring.substring(0, substring.length() - 1).trim();
+                Map<String, String> map = mapStringToMap(substring2);
+//                System.out.println(map);
+                String recordType = map.get("recordType");
+                Integer recLength = Integer.valueOf(map.get("recLength"));
+                String deviceId = map.get("deviceId");
+                String fileName = map.get("fileName");
+                String agentFileName = map.get("agentFileName");
+                Date startTime = new Date(Long.valueOf(map.get("startTime")));
+                Date endTime = new Date(Long.valueOf(map.get("endTime")));
+                Filedetail filedetail = new Filedetail();
+                filedetail.setStartDateTime(startTime);
+                filedetail.setEndDateTime(endTime);
+                filedetail.setRecordType(recordType);
+                filedetail.setDeviceId(deviceId);
+                filedetail.setCallLenth(recLength);
+                filedetail.setFileName(fileName);
+                filedetail.setAgentFileName(agentFileName);
+                filedetails.add(filedetail);
+//                if (recLength >= 5) {
+//                    filedetails2.add(filedetail);
+//                }
+            }
+        }
+        bufferedReader.close();
+
+        System.out.println("filedetails "+filedetails.size());
+//        System.out.println("filedetails "+filedetails2.size());
+        filedetailDao.insertBatch(filedetails);
+    }
+
+
+
+
+
     @Test
     public void fun1waer32() {
         String s = "fileName=MPS1:2022/06/20/13/20220620_131224_1103_82.wav, agentFileName=MPS1:2022/06/20/13/20220620_131224_1103_82_stereo.wav, customFileName=, filePath=/home/usr/vox/2022/06/20/13, ani=, dnis=, callDirect=null, callId=null, startTime=1655701944038, endTime=1655702026112, recLength=82, deviceId=1103, deviceIp=172.20.9.3, appName=MPS1, fileType=Active, recordType=station";

@@ -17,6 +17,15 @@ public class MyTest {
 
 
     @Test
+    public void fun10628() {
+        byte[] udpByte = new byte[2];
+        udpByte[1] = 0x60;
+        int payloadType = udpByte[1] & 0x7F;
+        System.out.println(payloadType);
+    }
+
+
+    @Test
     public void fun1c0625() {
 //        String s = new String("18270779730");
 //        byte[] sessionID = new byte[48];

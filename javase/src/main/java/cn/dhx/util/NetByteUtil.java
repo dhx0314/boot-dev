@@ -1,5 +1,7 @@
 package cn.dhx.util;
 
+import org.junit.Test;
+
 public class NetByteUtil {
 
     public static byte[] intToBytes(int n) {
@@ -50,6 +52,28 @@ public class NetByteUtil {
                 | (b[1] & 0xff) << 8
                 | (b[2] & 0xff) << 16
                 | (b[3] & 0xff) << 24;
+    }
+
+    @Test
+    public void fun1() {
+        int i=10;
+        byte[] bytes2 = intToBytes(320);
+        for (byte aByte : bytes2) {
+            System.out.println(aByte);
+        }
+
+        byte[] bytes = new byte[4];
+        bytes[0]= (byte) 0;
+        bytes[1]= (byte) 0;
+        bytes[2]= (byte) 1;
+        bytes[3]= (byte) 64;
+        int i1 = bytesToInt(bytes);
+        System.out.println(i1);
+
+        String s = Integer.toHexString(11);
+        System.out.println(s);
+        int b = Integer.parseInt("b", 16);
+        System.out.println(b);
     }
 
 }
