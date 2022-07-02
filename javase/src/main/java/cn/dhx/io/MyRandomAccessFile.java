@@ -33,4 +33,21 @@ public class MyRandomAccessFile {
         //原始内容  abcd1234
         //修改后    abcdzz34
     }
+
+    @Test
+    public void fun3() throws Exception {
+        String path="e:\\a\\Random2.txt";
+        // 文件内容 abcdzz34
+        File file = new File(path);
+        RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
+        randomAccessFile.seek(4);
+        System.out.println(randomAccessFile.getFilePointer());//4
+//        randomAccessFile.write("zz".getBytes());
+//        randomAccessFile.close();
+        int readLength = 0;
+        byte[] bytes = new byte[1024];
+        while ((readLength = randomAccessFile.read(bytes)) != -1) {
+            System.out.println(new String(bytes,0,readLength));
+        }
+    }
 }
