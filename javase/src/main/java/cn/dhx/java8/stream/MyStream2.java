@@ -28,6 +28,7 @@ public class MyStream2 {
     }
 
 
+    // filter 过滤
     @Test
     public void fun2() {
 
@@ -51,6 +52,9 @@ public class MyStream2 {
         });
     }
 
+
+
+    //map
     @Test
     public void fun3() {
         ArrayList<String> arrayList = new ArrayList<>();
@@ -64,6 +68,8 @@ public class MyStream2 {
         });
     }
 
+
+    //sorted 排序
     @Test
     public void fun4() {
         ArrayList<Integer> arrayList = new ArrayList<>();
@@ -80,6 +86,7 @@ public class MyStream2 {
         });
     }
 
+    //distinct 去重
     @Test
     public void fun5() {
         ArrayList<String> arrayList = new ArrayList<>();
@@ -125,6 +132,10 @@ public class MyStream2 {
         System.out.println(b3);
     }
 
+
+    //findFirst 查找第一个元素
+    //
+    //findAny 串行地情况下，一般会返回第一个结果，如果是并行的情况，那就不能确保是第一个
     @Test
     public void fun7() {
 
@@ -161,6 +172,8 @@ public class MyStream2 {
         Thread.sleep(5000);
     }
 
+    //max 排序后最后一个值
+    //min  排序后第一个值
     @Test
     public void fun8() {
         ArrayList<Integer> arrayList = new ArrayList<>();
@@ -176,6 +189,8 @@ public class MyStream2 {
     }
 
 
+    //reduce
+    //将所有数据归纳得到一个数据，可以使用 reduce 方法
     @Test
     public void fun9() {
         ArrayList<Integer> arrayList = new ArrayList<>();
@@ -191,4 +206,8 @@ public class MyStream2 {
         });
         System.out.println(reduce1);
     }
+
+
+
+
 }
