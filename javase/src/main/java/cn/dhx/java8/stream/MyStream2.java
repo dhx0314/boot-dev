@@ -4,6 +4,7 @@ import cn.dhx.pojo.Person;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class MyStream2 {
@@ -51,7 +52,6 @@ public class MyStream2 {
             System.out.println(x);
         });
     }
-
 
 
     //map
@@ -207,7 +207,82 @@ public class MyStream2 {
         System.out.println(reduce1);
     }
 
+    @Test
+    public void fun10() {
+        ArrayList<Person> list = new ArrayList<>();
+        list.add(new Person("aa", 12));
+        list.add(new Person("cc", 20));
+        list.add(new Person("dd", 88));
+        list.add(new Person("aa1", 77));
+
+        Integer reduce = list.stream().map(o -> {
+            return o.getAge();
+        }).reduce(0, (x, y) -> {
+            return x + y;
+        });
+        System.out.println(reduce);
+    }
 
 
+    @Test
+    public void fun11() {
+        ArrayList<Person> list = new ArrayList<>();
+        list.add(new Person("aa", 12));
+        list.add(new Person("cc", 20));
+        list.add(new Person("dd", 88));
+        list.add(new Person("aa1", 77));
+
+        Optional<Integer> max = list.stream().map(o -> {
+            return o.getAge();
+        }).max((x, y) -> {
+            return x - y;
+        });
+        System.out.println(max.get());
+    }
+
+    @Test
+    public void fun12() {
+        Stream<String> stream = Stream.of("a", "b", "c", "a", "d", "a");
+        Integer a = stream.map((x) -> {
+            if (x.equals("a")) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }).reduce(0, (x, y) -> {
+            return x + y;
+        });
+        System.out.println(a);
+
+
+    }
+
+
+    @Test
+    public void fun13() {
+        Stream<Integer> stream = Stream.of(3, 5, 1, 22, 9, 12);
+
+        IntStream intStream = stream.mapToInt(x -> {
+            return x.intValue();
+        });
+
+        intStream.filter(x -> {
+            return x > 3;
+        }).forEach(x -> {
+            System.out.println(x);
+        });
+    }
+
+
+    @Test
+    public void fun14() {
+        Stream<String> aa = Stream.of("aa");
+        Stream<String> bb = Stream.of("bb");
+        Stream<String> concat = Stream.concat(aa, bb);
+        //合并后 不能操作之前的流
+        concat.forEach(x->{
+            System.out.println(x);
+        });
+    }
 
 }
