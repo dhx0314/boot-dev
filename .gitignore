@@ -169,6 +169,8 @@ Icon
 !wrapper/*.jar
 !**/wrapper/*.jar
 
+*/src/test/*
+
 
 mvnw.cmd
 mvnw

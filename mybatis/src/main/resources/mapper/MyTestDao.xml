@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.dhx.dao.TestDao">
+<mapper namespace="cn.dhx.mybatis.dao.MyTestDao">
 
-    <resultMap type="cn.dhx.entity.Test" id="TestMap">
+    <resultMap type="cn.dhx.mybatis.entity.MyTest" id="MyTestMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="info" column="info" jdbcType="INTEGER"/>
         <result property="xx" column="xx" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
-    <select id="queryById" resultMap="TestMap">
+    <select id="queryById" resultMap="MyTestMap">
         select
           id, info, xx
-        from test
+        from my_test
         where id = #{id}
     </select>
 
     <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="TestMap">
+    <select id="queryAllByLimit" resultMap="MyTestMap">
         select
           id, info, xx
-        from test
+        from my_test
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -38,7 +38,7 @@
     <!--统计总行数-->
     <select id="count" resultType="java.lang.Long">
         select count(1)
-        from test
+        from my_test
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -54,12 +54,12 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into test(info, xx)
+        insert into my_test(info, xx)
         values (#{info}, #{xx})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into test(info, xx)
+        insert into my_test(info, xx)
         values
         <foreach collection="entities" item="entity" separator=",">
         (#{entity.info}, #{entity.xx})
@@ -67,7 +67,7 @@
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into test(info, xx)
+        insert into my_test(info, xx)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.info}, #{entity.xx})
@@ -79,7 +79,7 @@
 
     <!--通过主键修改数据-->
     <update id="update">
-        update test
+        update my_test
         <set>
             <if test="info != null">
                 info = #{info},
@@ -93,7 +93,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from test where id = #{id}
+        delete from my_test where id = #{id}
     </delete>
 
 </mapper>

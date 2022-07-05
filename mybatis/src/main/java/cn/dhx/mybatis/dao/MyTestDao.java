@@ -1,17 +1,20 @@
-package cn.dhx.bootdemo.dao;
+package cn.dhx.mybatis.dao;
 
-import cn.dhx.bootdemo.entity.MyDetial;
+import cn.dhx.mybatis.entity.MyTest;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 /**
- * (MyDetial)表数据库访问层
+ * (MyTest)表数据库访问层
  *
  * @author dhx
- * @since 2022-06-21 17:15:28
+ * @since 2022-06-29 14:13:08
  */
-public interface MyDetialDao {
+
+@Mapper
+public interface MyTestDao {
 
     /**
      * 通过ID查询单条数据
@@ -19,57 +22,57 @@ public interface MyDetialDao {
      * @param id 主键
      * @return 实例对象
      */
-    MyDetial queryById(Integer id);
+    MyTest queryById(Integer id);
 
     /**
      * 查询指定行数据
      *
-     * @param myDetial 查询条件
+     * @param myTest 查询条件
      * @param pageable         分页对象
      * @return 对象列表
      */
-    List<MyDetial> queryAllByLimit(MyDetial myDetial, @Param("pageable") Pageable pageable);
+    List<MyTest> queryAllByLimit(MyTest myTest, @Param("pageable") Pageable pageable);
 
     /**
      * 统计总行数
      *
-     * @param myDetial 查询条件
+     * @param myTest 查询条件
      * @return 总行数
      */
-    long count(MyDetial myDetial);
+    long count(MyTest myTest);
 
     /**
      * 新增数据
      *
-     * @param myDetial 实例对象
+     * @param myTest 实例对象
      * @return 影响行数
      */
-    int insert(MyDetial myDetial);
+    int insert(MyTest myTest);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *
-     * @param entities List<MyDetial> 实例对象列表
+     * @param entities List<MyTest> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<MyDetial> entities);
+    int insertBatch(@Param("entities") List<MyTest> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
      *
-     * @param entities List<MyDetial> 实例对象列表
+     * @param entities List<MyTest> 实例对象列表
      * @return 影响行数
      * @throws org.springframework.jdbc.BadSqlGrammarException 入参是空List的时候会抛SQL语句错误的异常，请自行校验入参
      */
-    int insertOrUpdateBatch(@Param("entities") List<MyDetial> entities);
+    int insertOrUpdateBatch(@Param("entities") List<MyTest> entities);
 
     /**
      * 修改数据
      *
-     * @param myDetial 实例对象
+     * @param myTest 实例对象
      * @return 影响行数
      */
-    int update(MyDetial myDetial);
+    int update(MyTest myTest);
 
     /**
      * 通过主键删除数据

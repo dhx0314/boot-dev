@@ -74,7 +74,7 @@ public class MyTest {
                     Date starttime = myDetial.getStarttime();
                     Date endtime = myDetial.getEndtime();
                     if (endtime == null) {
-                        System.out.println(myDetial);
+//                        System.out.println(myDetial);
                         continue;
                     }
                     boolean flag = false;
@@ -94,6 +94,7 @@ public class MyTest {
                         BeanUtils.copyProperties(filedetail,filedetail1);
                         filedetail1.setAgentId(agentid);
                         filedetail1.setCallid(myDetial.getCallid());
+                        filedetail1.setFileEncodingFmt("pcm");
                         if ("3".equals(calltype)) {
                             filedetail1.setAni(extension);
                             filedetail1.setDnis(custphone);
@@ -116,10 +117,13 @@ public class MyTest {
     }
 
 
-
-
-
-
+    @Test
+    public void fun2() {
+        List<MyDetial> myDetials = myDetialDao.queryAll();
+        System.out.println(myDetials.size());
+        List<Filedetail> filedetails = filedetailDao.queryAll();
+        System.out.println(filedetails.size());
+    }
 
 
 

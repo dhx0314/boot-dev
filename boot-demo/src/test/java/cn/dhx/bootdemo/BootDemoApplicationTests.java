@@ -121,7 +121,7 @@ class BootDemoApplicationTests {
 
     @Test
     public void fun1awawf() {
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 14; i++) {
             try {
                 fun1sqlold(i);
             } catch (Exception e) {
@@ -136,7 +136,7 @@ class BootDemoApplicationTests {
         System.out.println(i);
 
 //        String path = "D:\\a\\0621\\media20220618-20\\2022-06-18\\MPS.Info.20220618-1.logs";
-        String path = "D:\\a\\0621\\media20220618-20\\2022-06-18\\MPS.Info.20220618-" + i + ".logs";
+        String path = "D:\\a\\0621\\media20220618-20\\2022-06-20\\MPS.Info.20220620-" + i + ".logs";
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
         String line;
         ArrayList<Filedetail> filedetails = new ArrayList<>();

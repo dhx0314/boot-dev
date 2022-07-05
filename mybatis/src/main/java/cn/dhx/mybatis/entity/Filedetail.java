@@ -1,16 +1,17 @@
-package entity;
+package cn.dhx.mybatis.entity;
 
 import java.util.Date;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
 
 /**
- * (Filedetail)实体类
+ * (Filedetail)表实体类
  *
  * @author dhx
- * @since 2022-06-21 13:44:10
+ * @since 2022-07-05 09:45:26
  */
-public class Filedetail implements Serializable {
-    private static final long serialVersionUID = 571345111864366213L;
+@SuppressWarnings("serial")
+public class Filedetail extends Model<Filedetail> {
     
     private String id;
     
@@ -18,39 +19,45 @@ public class Filedetail implements Serializable {
     
     private String dnis;
     
-    private String callDirect;
+    private String calldirect;
     
-    private String fileId;
+    private String fileid;
     
-    private String fileName;
+    private String filename;
     
-    private String agentFileName;
+    private String agentfilename;
     
-    private String customFileName;
+    private String customfilename;
     
-    private String fileInfo;
+    private String fileinfo;
     
-    private String deviceId;
+    private String deviceid;
     
-    private String agentId;
+    private String agentid;
     
-    private Date startDateTime;
+    private Date startdatetime;
     
-    private Date endDateTime;
+    private Date enddatetime;
     
     private String callid;
     
-    private String contactId;
+    private String contactid;
     
-    private Integer callLenth;
+    private Integer calllenth;
     
-    private String RecordType;
+    private String recordtype;
     
-    private String serverName;
+    private String servername;
     
-    private String fileEncodingFmt;
+    private String fileencodingfmt;
     
-    private String separableFileEncodingFmt;
+    private String separablefileencodingfmt;
+    
+    private Date inserttime;
+    
+    private String uui;
+    
+    private String genesysuuid;
 
 
     public String getId() {
@@ -213,5 +220,38 @@ public class Filedetail implements Serializable {
         this.separablefileencodingfmt = separablefileencodingfmt;
     }
 
-}
+    public Date getInserttime() {
+        return inserttime;
+    }
+
+    public void setInserttime(Date inserttime) {
+        this.inserttime = inserttime;
+    }
+
+    public String getUui() {
+        return uui;
+    }
+
+    public void setUui(String uui) {
+        this.uui = uui;
+    }
+
+    public String getGenesysuuid() {
+        return genesysuuid;
+    }
+
+    public void setGenesysuuid(String genesysuuid) {
+        this.genesysuuid = genesysuuid;
+    }
+
+    /**
+     * 获取主键值
+     *
+     * @return 主键值
+     */
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
+    }
 
