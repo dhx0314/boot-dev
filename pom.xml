@@ -33,6 +33,7 @@
         <module>netty-vocie</module>
         <module>mybatis-double</module>
         <module>javase</module>
+        <module>sharding-jdbc</module>
     </modules>
 
     <properties>

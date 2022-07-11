@@ -285,4 +285,10 @@ public class MyStream2 {
         });
     }
 
+    @Test
+    public void fun15() {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        Collections.shuffle();
+    }
+
 }

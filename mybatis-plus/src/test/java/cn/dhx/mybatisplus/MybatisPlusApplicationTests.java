@@ -1,16 +1,19 @@
 package cn.dhx.mybatisplus;
 
 
-import cn.dhx.mybatisplus.entity.Filedetail;
-
 
 import cn.dhx.mybatisplus.service.impl.FiledetailServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -18,15 +21,14 @@ class MybatisPlusApplicationTests {
 
 
     @Autowired
-    FiledetailServiceImpl filedetailService;
+    FiledetailServiceImpl filedetail2Service;
 
     @Test
     public void ffun1() {
-        Filedetail filedetail = new Filedetail();
-        filedetail.setAni("1234");
-        filedetail.setDnis("3789");
-        boolean save = filedetailService.save(filedetail);
-        System.out.println(save);
+//        Filedetail2 byId = filedetail2Service.getById(1);
+//        System.out.println(byId);
+
+        filedetail2Service.fun1();
     }
 
 }
