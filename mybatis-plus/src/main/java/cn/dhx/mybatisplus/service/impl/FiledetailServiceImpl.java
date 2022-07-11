@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.dhx.mybatisplus.dao.FiledetailDao;
 import cn.dhx.mybatisplus.entity.Filedetail;
 import cn.dhx.mybatisplus.service.FiledetailService;
+import org.junit.Test;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 @Service("filedetailService")
 //@DS("slave_1")
 public class FiledetailServiceImpl extends ServiceImpl<FiledetailDao, Filedetail> implements FiledetailService {
+
+
 
 }
 

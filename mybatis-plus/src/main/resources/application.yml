@@ -14,11 +14,11 @@ spring:
 #          username: root
 #          password: opensips321
 #          driver-class-name: com.mysql.cj.jdbc.Driver
-        slave_1:
-          url: jdbc:oracle:thin:@172.16.6.77:1521:helowin
-          username: dhx
-          password: root
-          driver-class-name: oracle.jdbc.OracleDriver
+#        slave_1:
+#          url: jdbc:oracle:thin:@172.16.6.77:1521:helowin
+#          username: dhx
+#          password: root
+#          driver-class-name: oracle.jdbc.OracleDriver
 
 mybatis-plus:
   configuration:

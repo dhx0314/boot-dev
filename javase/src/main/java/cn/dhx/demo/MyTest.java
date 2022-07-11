@@ -9,11 +9,41 @@ import com.google.gson.JsonParser;
 import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MyTest {
+
+
+    @Test
+    public void fun132223() {
+        Instant now = Instant.now();
+        System.out.println(now);
+        System.out.println(System.currentTimeMillis());
+        System.out.println(new Date().getTime());
+
+        Timestamp timestamp = new Timestamp(1644803779);
+        System.out.println(timestamp);
+        int time=1644803779;
+        Date date = new Date(time * 1000L);
+        System.out.println(date);
+    }
+
+
+    @Test
+    public void fun0706() throws InterruptedException {
+        for (int i = 0; i < 100; i++) {
+            LocalDateTime now = LocalDateTime.now();
+            System.out.println(now);
+            Thread.sleep(20);
+        }
+
+
+    }
 
 
     @Test

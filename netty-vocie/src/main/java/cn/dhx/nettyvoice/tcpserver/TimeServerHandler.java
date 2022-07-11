@@ -51,7 +51,7 @@ public class TimeServerHandler extends SimpleChannelInboundHandler<byte[]> {
             audioStreamResp.setResultNo(0);
             audioStreamResp.setResultDesc("test");
             audioStreamResp.setRespCmd("OpenAudioStreamResp");
-            audioStreamResp.setMediaIP("172.16.2.214");
+            audioStreamResp.setMediaIP("172.16.2.144");
             audioStreamResp.setCallerPort(9001);
             audioStreamResp.setCalleePort(9002);
             jsonStr = JsonUtil.toString(audioStreamResp);
