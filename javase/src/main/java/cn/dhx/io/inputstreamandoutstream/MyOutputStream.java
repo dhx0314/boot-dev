@@ -50,4 +50,20 @@ public class MyOutputStream {
 
 
     }
+
+
+    @Test
+    public void fun4() throws Exception {
+        //output.txt 文件不存在的话 会自动创建,目录需要手动创建
+        String filePath = "D:\\a\\output.txt";
+        //当写入内容时会追加在原来的内容的后面
+        //    public FileOutputStream(String name, boolean append)
+        FileOutputStream fileOutputStream = new FileOutputStream(filePath, true);
+//        fileOutputStream.write('a');
+//        fileOutputStream.write("info2222".getBytes());
+        String s = "hello";
+        byte[] bytes = s.getBytes();
+        fileOutputStream.write(bytes,2, 3);
+        fileOutputStream.close();
+    }
 }

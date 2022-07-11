@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.dhx.mybatisplus.dao.FiledetailDao;
 import cn.dhx.mybatisplus.entity.Filedetail;
 import cn.dhx.mybatisplus.service.FiledetailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
