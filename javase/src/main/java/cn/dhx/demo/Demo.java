@@ -15,13 +15,16 @@ public class Demo {
 //        byte[] bytes2 = NetByteUtil.intToByteBig(100);
 //        System.out.println(Arrays.toString(bytes2));
 
-        byte[] bytes = new byte[4];
-        bytes[0]= (byte) 0x90;
-        bytes[1]= (byte) 0x01;
-        bytes[2]= 0;
-        bytes[3]= 0;
-        int i1 = NetByteUtil.bytesToIntLittle(bytes);
-        System.out.println(i1);
+//        byte[] bytes = new byte[4];
+//        bytes[0]= (byte) 0x90;
+//        bytes[1]= (byte) 0x01;
+//        bytes[2]= 0;
+//        bytes[3]= 0;
+//        int i1 = NetByteUtil.bytesToIntLittle(bytes);
+//        System.out.println(i1);
+
+        String s=null;
+        System.out.println("aa".equals(s));
     }
 
     @Test

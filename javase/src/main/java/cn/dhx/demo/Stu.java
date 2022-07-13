@@ -19,6 +19,8 @@ public class Stu implements Serializable {
 
     private String name;
 
+    private Boolean aa;
+
     public static byte[] bytes = {1};
 
     private byte[] wavDirect;
