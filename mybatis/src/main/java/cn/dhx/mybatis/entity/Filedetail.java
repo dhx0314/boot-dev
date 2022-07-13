@@ -1,18 +1,25 @@
 package cn.dhx.mybatis.entity;
 
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
  * (Filedetail)表实体类
  *
  * @author dhx
- * @since 2022-07-05 09:45:26
+ * @since 2022-07-13 23:05:50
  */
 @SuppressWarnings("serial")
+@Data
 public class Filedetail extends Model<Filedetail> {
-    
+
+    @TableId(type = IdType.AUTO)
     private String id;
     
     private String ani;
@@ -21,15 +28,11 @@ public class Filedetail extends Model<Filedetail> {
     
     private String calldirect;
     
-    private String fileid;
-    
     private String filename;
     
     private String agentfilename;
     
     private String customfilename;
-    
-    private String fileinfo;
     
     private String deviceid;
     
@@ -41,15 +44,19 @@ public class Filedetail extends Model<Filedetail> {
     
     private String callid;
     
-    private String contactid;
-    
     private Integer calllenth;
     
     private String recordtype;
     
-    private String servername;
-    
     private String fileencodingfmt;
+    
+    private String fileid;
+    
+    private String fileinfo;
+    
+    private String contactid;
+    
+    private String servername;
     
     private String separablefileencodingfmt;
     
@@ -92,14 +99,6 @@ public class Filedetail extends Model<Filedetail> {
         this.calldirect = calldirect;
     }
 
-    public String getFileid() {
-        return fileid;
-    }
-
-    public void setFileid(String fileid) {
-        this.fileid = fileid;
-    }
-
     public String getFilename() {
         return filename;
     }
@@ -122,14 +121,6 @@ public class Filedetail extends Model<Filedetail> {
 
     public void setCustomfilename(String customfilename) {
         this.customfilename = customfilename;
-    }
-
-    public String getFileinfo() {
-        return fileinfo;
-    }
-
-    public void setFileinfo(String fileinfo) {
-        this.fileinfo = fileinfo;
     }
 
     public String getDeviceid() {
@@ -172,14 +163,6 @@ public class Filedetail extends Model<Filedetail> {
         this.callid = callid;
     }
 
-    public String getContactid() {
-        return contactid;
-    }
-
-    public void setContactid(String contactid) {
-        this.contactid = contactid;
-    }
-
     public Integer getCalllenth() {
         return calllenth;
     }
@@ -196,20 +179,44 @@ public class Filedetail extends Model<Filedetail> {
         this.recordtype = recordtype;
     }
 
-    public String getServername() {
-        return servername;
-    }
-
-    public void setServername(String servername) {
-        this.servername = servername;
-    }
-
     public String getFileencodingfmt() {
         return fileencodingfmt;
     }
 
     public void setFileencodingfmt(String fileencodingfmt) {
         this.fileencodingfmt = fileencodingfmt;
+    }
+
+    public String getFileid() {
+        return fileid;
+    }
+
+    public void setFileid(String fileid) {
+        this.fileid = fileid;
+    }
+
+    public String getFileinfo() {
+        return fileinfo;
+    }
+
+    public void setFileinfo(String fileinfo) {
+        this.fileinfo = fileinfo;
+    }
+
+    public String getContactid() {
+        return contactid;
+    }
+
+    public void setContactid(String contactid) {
+        this.contactid = contactid;
+    }
+
+    public String getServername() {
+        return servername;
+    }
+
+    public void setServername(String servername) {
+        this.servername = servername;
     }
 
     public String getSeparablefileencodingfmt() {
