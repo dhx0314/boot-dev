@@ -20,6 +20,14 @@ public class MyTest {
 
 
     @Test
+    public void funa2a() {
+        Stu stu = new Stu();
+        System.out.println(stu);
+    }
+
+
+
+    @Test
     public void fun132223() {
         Instant now = Instant.now();
         System.out.println(now);

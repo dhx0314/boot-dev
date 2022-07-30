@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dhx.mybatis.dao.TCallDetailDao">
+
+    <resultMap type="cn.dhx.mybatis.entity.TCallDetail" id="TCallDetailMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
+        <result property="ani" column="ani" jdbcType="VARCHAR"/>
+        <result property="dnis" column="dnis" jdbcType="VARCHAR"/>
+        <result property="mediaType" column="media_type" jdbcType="VARCHAR"/>
+        <result property="callType" column="call_type" jdbcType="VARCHAR"/>
+        <result property="connid" column="connid" jdbcType="VARCHAR"/>
+        <result property="guid" column="guid" jdbcType="VARCHAR"/>
+        <result property="interactionId" column="interaction_id" jdbcType="INTEGER"/>
+        <result property="firstAgentRp" column="first_agent_rp" jdbcType="VARCHAR"/>
+        <result property="firstQueue" column="first_queue" jdbcType="VARCHAR"/>
+        <result property="firstQueueStartTime" column="first_queue_start_time" jdbcType="TIMESTAMP"/>
+        <result property="firstAgent" column="first_agent" jdbcType="VARCHAR"/>
+        <result property="firstStation" column="first_station" jdbcType="VARCHAR"/>
+        <result property="firstAgentQueue" column="first_agent_queue" jdbcType="VARCHAR"/>
+        <result property="firstAgentAswDuration" column="first_agent_asw_duration" jdbcType="INTEGER"/>
+        <result property="abandonDuration" column="abandon_duration" jdbcType="INTEGER"/>
+        <result property="mediationDuration" column="mediation_duration" jdbcType="INTEGER"/>
+        <result property="queueDuration" column="queue_duration" jdbcType="INTEGER"/>
+        <result property="callDuration" column="call_duration" jdbcType="INTEGER"/>
+        <result property="talkCount" column="talk_count" jdbcType="INTEGER"/>
+        <result property="talkDuration" column="talk_duration" jdbcType="INTEGER"/>
+        <result property="ringDuration" column="ring_duration" jdbcType="INTEGER"/>
+        <result property="acwCount" column="acw_count" jdbcType="INTEGER"/>
+        <result property="acwDuration" column="acw_duration" jdbcType="INTEGER"/>
+        <result property="callResult" column="call_result" jdbcType="VARCHAR"/>
+        <result property="holdCount" column="hold_count" jdbcType="INTEGER"/>
+        <result property="holdDuration" column="hold_duration" jdbcType="INTEGER"/>
+        <result property="stopParty" column="stop_party" jdbcType="VARCHAR"/>
+        <result property="consInitCount" column="cons_init_count" jdbcType="INTEGER"/>
+        <result property="transferCount" column="transfer_count" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TCallDetailMap">
+        select
+          id, start_time, end_time, ani, dnis, media_type, call_type, connid, guid, interaction_id, first_agent_rp, first_queue, first_queue_start_time, first_agent, first_station, first_agent_queue, first_agent_asw_duration, abandon_duration, mediation_duration, queue_duration, call_duration, talk_count, talk_duration, ring_duration, acw_count, acw_duration, call_result, hold_count, hold_duration, stop_party, cons_init_count, transfer_count, create_time, update_time
+        from t_call_detail
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TCallDetailMap">
+        select
+          id, start_time, end_time, ani, dnis, media_type, call_type, connid, guid, interaction_id, first_agent_rp, first_queue, first_queue_start_time, first_agent, first_station, first_agent_queue, first_agent_asw_duration, abandon_duration, mediation_duration, queue_duration, call_duration, talk_count, talk_duration, ring_duration, acw_count, acw_duration, call_result, hold_count, hold_duration, stop_party, cons_init_count, transfer_count, create_time, update_time
+        from t_call_detail
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="start_time != null">
+                and start_time = #{start_time}
+            </if>
+            <if test="end_time != null">
+                and end_time = #{end_time}
+            </if>
+            <if test="ani != null and ani != ''">
+                and ani = #{ani}
+            </if>
+            <if test="dnis != null and dnis != ''">
+                and dnis = #{dnis}
+            </if>
+            <if test="media_type != null and media_type != ''">
+                and media_type = #{media_type}
+            </if>
+            <if test="call_type != null and call_type != ''">
+                and call_type = #{call_type}
+            </if>
+            <if test="connid != null and connid != ''">
+                and connid = #{connid}
+            </if>
+            <if test="guid != null and guid != ''">
+                and guid = #{guid}
+            </if>
+            <if test="interaction_id != null">
+                and interaction_id = #{interaction_id}
+            </if>
+            <if test="first_agent_rp != null and first_agent_rp != ''">
+                and first_agent_rp = #{first_agent_rp}
+            </if>
+            <if test="first_queue != null and first_queue != ''">
+                and first_queue = #{first_queue}
+            </if>
+            <if test="first_queue_start_time != null">
+                and first_queue_start_time = #{first_queue_start_time}
+            </if>
+            <if test="first_agent != null and first_agent != ''">
+                and first_agent = #{first_agent}
+            </if>
+            <if test="first_station != null and first_station != ''">
+                and first_station = #{first_station}
+            </if>
+            <if test="first_agent_queue != null and first_agent_queue != ''">
+                and first_agent_queue = #{first_agent_queue}
+            </if>
+            <if test="first_agent_asw_duration != null">
+                and first_agent_asw_duration = #{first_agent_asw_duration}
+            </if>
+            <if test="abandon_duration != null">
+                and abandon_duration = #{abandon_duration}
+            </if>
+            <if test="mediation_duration != null">
+                and mediation_duration = #{mediation_duration}
+            </if>
+            <if test="queue_duration != null">
+                and queue_duration = #{queue_duration}
+            </if>
+            <if test="call_duration != null">
+                and call_duration = #{call_duration}
+            </if>
+            <if test="talk_count != null">
+                and talk_count = #{talk_count}
+            </if>
+            <if test="talk_duration != null">
+                and talk_duration = #{talk_duration}
+            </if>
+            <if test="ring_duration != null">
+                and ring_duration = #{ring_duration}
+            </if>
+            <if test="acw_count != null">
+                and acw_count = #{acw_count}
+            </if>
+            <if test="acw_duration != null">
+                and acw_duration = #{acw_duration}
+            </if>
+            <if test="call_result != null and call_result != ''">
+                and call_result = #{call_result}
+            </if>
+            <if test="hold_count != null">
+                and hold_count = #{hold_count}
+            </if>
+            <if test="hold_duration != null">
+                and hold_duration = #{hold_duration}
+            </if>
+            <if test="stop_party != null and stop_party != ''">
+                and stop_party = #{stop_party}
+            </if>
+            <if test="cons_init_count != null">
+                and cons_init_count = #{cons_init_count}
+            </if>
+            <if test="transfer_count != null">
+                and transfer_count = #{transfer_count}
+            </if>
+            <if test="create_time != null">
+                and create_time = #{create_time}
+            </if>
+            <if test="update_time != null">
+                and update_time = #{update_time}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from t_call_detail
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="start_time != null">
+                and start_time = #{start_time}
+            </if>
+            <if test="end_time != null">
+                and end_time = #{end_time}
+            </if>
+            <if test="ani != null and ani != ''">
+                and ani = #{ani}
+            </if>
+            <if test="dnis != null and dnis != ''">
+                and dnis = #{dnis}
+            </if>
+            <if test="media_type != null and media_type != ''">
+                and media_type = #{media_type}
+            </if>
+            <if test="call_type != null and call_type != ''">
+                and call_type = #{call_type}
+            </if>
+            <if test="connid != null and connid != ''">
+                and connid = #{connid}
+            </if>
+            <if test="guid != null and guid != ''">
+                and guid = #{guid}
+            </if>
+            <if test="interaction_id != null">
+                and interaction_id = #{interaction_id}
+            </if>
+            <if test="first_agent_rp != null and first_agent_rp != ''">
+                and first_agent_rp = #{first_agent_rp}
+            </if>
+            <if test="first_queue != null and first_queue != ''">
+                and first_queue = #{first_queue}
+            </if>
+            <if test="first_queue_start_time != null">
+                and first_queue_start_time = #{first_queue_start_time}
+            </if>
+            <if test="first_agent != null and first_agent != ''">
+                and first_agent = #{first_agent}
+            </if>
+            <if test="first_station != null and first_station != ''">
+                and first_station = #{first_station}
+            </if>
+            <if test="first_agent_queue != null and first_agent_queue != ''">
+                and first_agent_queue = #{first_agent_queue}
+            </if>
+            <if test="first_agent_asw_duration != null">
+                and first_agent_asw_duration = #{first_agent_asw_duration}
+            </if>
+            <if test="abandon_duration != null">
+                and abandon_duration = #{abandon_duration}
+            </if>
+            <if test="mediation_duration != null">
+                and mediation_duration = #{mediation_duration}
+            </if>
+            <if test="queue_duration != null">
+                and queue_duration = #{queue_duration}
+            </if>
+            <if test="call_duration != null">
+                and call_duration = #{call_duration}
+            </if>
+            <if test="talk_count != null">
+                and talk_count = #{talk_count}
+            </if>
+            <if test="talk_duration != null">
+                and talk_duration = #{talk_duration}
+            </if>
+            <if test="ring_duration != null">
+                and ring_duration = #{ring_duration}
+            </if>
+            <if test="acw_count != null">
+                and acw_count = #{acw_count}
+            </if>
+            <if test="acw_duration != null">
+                and acw_duration = #{acw_duration}
+            </if>
+            <if test="call_result != null and call_result != ''">
+                and call_result = #{call_result}
+            </if>
+            <if test="hold_count != null">
+                and hold_count = #{hold_count}
+            </if>
+            <if test="hold_duration != null">
+                and hold_duration = #{hold_duration}
+            </if>
+            <if test="stop_party != null and stop_party != ''">
+                and stop_party = #{stop_party}
+            </if>
+            <if test="cons_init_count != null">
+                and cons_init_count = #{cons_init_count}
+            </if>
+            <if test="transfer_count != null">
+                and transfer_count = #{transfer_count}
+            </if>
+            <if test="create_time != null">
+                and create_time = #{create_time}
+            </if>
+            <if test="update_time != null">
+                and update_time = #{update_time}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into t_call_detail(start_time, end_time, ani, dnis, media_type, call_type, connid, guid, interaction_id, first_agent_rp, first_queue, first_queue_start_time, first_agent, first_station, first_agent_queue, first_agent_asw_duration, abandon_duration, mediation_duration, queue_duration, call_duration, talk_count, talk_duration, ring_duration, acw_count, acw_duration, call_result, hold_count, hold_duration, stop_party, cons_init_count, transfer_count, create_time, update_time)
+        values (#{start_time}, #{end_time}, #{ani}, #{dnis}, #{media_type}, #{call_type}, #{connid}, #{guid}, #{interaction_id}, #{first_agent_rp}, #{first_queue}, #{first_queue_start_time}, #{first_agent}, #{first_station}, #{first_agent_queue}, #{first_agent_asw_duration}, #{abandon_duration}, #{mediation_duration}, #{queue_duration}, #{call_duration}, #{talk_count}, #{talk_duration}, #{ring_duration}, #{acw_count}, #{acw_duration}, #{call_result}, #{hold_count}, #{hold_duration}, #{stop_party}, #{cons_init_count}, #{transfer_count}, #{create_time}, #{update_time})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into t_call_detail(start_time, end_time, ani, dnis, media_type, call_type, connid, guid, interaction_id, first_agent_rp, first_queue, first_queue_start_time, first_agent, first_station, first_agent_queue, first_agent_asw_duration, abandon_duration, mediation_duration, queue_duration, call_duration, talk_count, talk_duration, ring_duration, acw_count, acw_duration, call_result, hold_count, hold_duration, stop_party, cons_init_count, transfer_count, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.start_time}, #{entity.end_time}, #{entity.ani}, #{entity.dnis}, #{entity.media_type}, #{entity.call_type}, #{entity.connid}, #{entity.guid}, #{entity.interaction_id}, #{entity.first_agent_rp}, #{entity.first_queue}, #{entity.first_queue_start_time}, #{entity.first_agent}, #{entity.first_station}, #{entity.first_agent_queue}, #{entity.first_agent_asw_duration}, #{entity.abandon_duration}, #{entity.mediation_duration}, #{entity.queue_duration}, #{entity.call_duration}, #{entity.talk_count}, #{entity.talk_duration}, #{entity.ring_duration}, #{entity.acw_count}, #{entity.acw_duration}, #{entity.call_result}, #{entity.hold_count}, #{entity.hold_duration}, #{entity.stop_party}, #{entity.cons_init_count}, #{entity.transfer_count}, #{entity.create_time}, #{entity.update_time})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into t_call_detail(start_time, end_time, ani, dnis, media_type, call_type, connid, guid, interaction_id, first_agent_rp, first_queue, first_queue_start_time, first_agent, first_station, first_agent_queue, first_agent_asw_duration, abandon_duration, mediation_duration, queue_duration, call_duration, talk_count, talk_duration, ring_duration, acw_count, acw_duration, call_result, hold_count, hold_duration, stop_party, cons_init_count, transfer_count, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.start_time}, #{entity.end_time}, #{entity.ani}, #{entity.dnis}, #{entity.media_type}, #{entity.call_type}, #{entity.connid}, #{entity.guid}, #{entity.interaction_id}, #{entity.first_agent_rp}, #{entity.first_queue}, #{entity.first_queue_start_time}, #{entity.first_agent}, #{entity.first_station}, #{entity.first_agent_queue}, #{entity.first_agent_asw_duration}, #{entity.abandon_duration}, #{entity.mediation_duration}, #{entity.queue_duration}, #{entity.call_duration}, #{entity.talk_count}, #{entity.talk_duration}, #{entity.ring_duration}, #{entity.acw_count}, #{entity.acw_duration}, #{entity.call_result}, #{entity.hold_count}, #{entity.hold_duration}, #{entity.stop_party}, #{entity.cons_init_count}, #{entity.transfer_count}, #{entity.create_time}, #{entity.update_time})
+        </foreach>
+        on duplicate key update
+        start_time = values(start_time),
+        end_time = values(end_time),
+        ani = values(ani),
+        dnis = values(dnis),
+        media_type = values(media_type),
+        call_type = values(call_type),
+        connid = values(connid),
+        guid = values(guid),
+        interaction_id = values(interaction_id),
+        first_agent_rp = values(first_agent_rp),
+        first_queue = values(first_queue),
+        first_queue_start_time = values(first_queue_start_time),
+        first_agent = values(first_agent),
+        first_station = values(first_station),
+        first_agent_queue = values(first_agent_queue),
+        first_agent_asw_duration = values(first_agent_asw_duration),
+        abandon_duration = values(abandon_duration),
+        mediation_duration = values(mediation_duration),
+        queue_duration = values(queue_duration),
+        call_duration = values(call_duration),
+        talk_count = values(talk_count),
+        talk_duration = values(talk_duration),
+        ring_duration = values(ring_duration),
+        acw_count = values(acw_count),
+        acw_duration = values(acw_duration),
+        call_result = values(call_result),
+        hold_count = values(hold_count),
+        hold_duration = values(hold_duration),
+        stop_party = values(stop_party),
+        cons_init_count = values(cons_init_count),
+        transfer_count = values(transfer_count),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update t_call_detail
+        <set>
+            <if test="start_time != null">
+                start_time = #{start_time},
+            </if>
+            <if test="end_time != null">
+                end_time = #{end_time},
+            </if>
+            <if test="ani != null and ani != ''">
+                ani = #{ani},
+            </if>
+            <if test="dnis != null and dnis != ''">
+                dnis = #{dnis},
+            </if>
+            <if test="media_type != null and media_type != ''">
+                media_type = #{media_type},
+            </if>
+            <if test="call_type != null and call_type != ''">
+                call_type = #{call_type},
+            </if>
+            <if test="connid != null and connid != ''">
+                connid = #{connid},
+            </if>
+            <if test="guid != null and guid != ''">
+                guid = #{guid},
+            </if>
+            <if test="interaction_id != null">
+                interaction_id = #{interaction_id},
+            </if>
+            <if test="first_agent_rp != null and first_agent_rp != ''">
+                first_agent_rp = #{first_agent_rp},
+            </if>
+            <if test="first_queue != null and first_queue != ''">
+                first_queue = #{first_queue},
+            </if>
+            <if test="first_queue_start_time != null">
+                first_queue_start_time = #{first_queue_start_time},
+            </if>
+            <if test="first_agent != null and first_agent != ''">
+                first_agent = #{first_agent},
+            </if>
+            <if test="first_station != null and first_station != ''">
+                first_station = #{first_station},
+            </if>
+            <if test="first_agent_queue != null and first_agent_queue != ''">
+                first_agent_queue = #{first_agent_queue},
+            </if>
+            <if test="first_agent_asw_duration != null">
+                first_agent_asw_duration = #{first_agent_asw_duration},
+            </if>
+            <if test="abandon_duration != null">
+                abandon_duration = #{abandon_duration},
+            </if>
+            <if test="mediation_duration != null">
+                mediation_duration = #{mediation_duration},
+            </if>
+            <if test="queue_duration != null">
+                queue_duration = #{queue_duration},
+            </if>
+            <if test="call_duration != null">
+                call_duration = #{call_duration},
+            </if>
+            <if test="talk_count != null">
+                talk_count = #{talk_count},
+            </if>
+            <if test="talk_duration != null">
+                talk_duration = #{talk_duration},
+            </if>
+            <if test="ring_duration != null">
+                ring_duration = #{ring_duration},
+            </if>
+            <if test="acw_count != null">
+                acw_count = #{acw_count},
+            </if>
+            <if test="acw_duration != null">
+                acw_duration = #{acw_duration},
+            </if>
+            <if test="call_result != null and call_result != ''">
+                call_result = #{call_result},
+            </if>
+            <if test="hold_count != null">
+                hold_count = #{hold_count},
+            </if>
+            <if test="hold_duration != null">
+                hold_duration = #{hold_duration},
+            </if>
+            <if test="stop_party != null and stop_party != ''">
+                stop_party = #{stop_party},
+            </if>
+            <if test="cons_init_count != null">
+                cons_init_count = #{cons_init_count},
+            </if>
+            <if test="transfer_count != null">
+                transfer_count = #{transfer_count},
+            </if>
+            <if test="create_time != null">
+                create_time = #{create_time},
+            </if>
+            <if test="update_time != null">
+                update_time = #{update_time},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from t_call_detail where id = #{id}
+    </delete>
+
+</mapper>
+

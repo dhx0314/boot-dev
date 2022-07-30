@@ -6,9 +6,13 @@ server:
 #    password: opensips321
 #    url: jdbc:mysql://172.16.2.144:3306/recorder2?autoReconnect=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
 #    username: root
-spring:
-  datasource:
-    driver-class-name: oracle.jdbc.OracleDriver
-    password: root
-    url: jdbc:oracle:thin:@172.16.6.77:1521:helowin
-    username: dhx
+#spring:
+#  datasource:
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    password: root
+#    url: jdbc:oracle:thin:@172.16.6.77:1521:helowin
+#    username: dhx
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志

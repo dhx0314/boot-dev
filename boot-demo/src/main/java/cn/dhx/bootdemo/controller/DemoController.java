@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 @RestController
@@ -22,6 +23,15 @@ public class DemoController {
 
     @Value("${aa.cc}")
     private boolean flag;
+
+
+    @GetMapping("/test")
+    public void fun22() throws UnsupportedEncodingException {
+        String s = new String(string.getBytes("ISO-8859-1"), "UTF-8");
+
+        log.info("old {} ",string);
+        log.info("UTF-8 {} ",s);
+    }
 
     @GetMapping("/error")
     public void fun1awewa() {
