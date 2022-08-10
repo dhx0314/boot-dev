@@ -21,9 +21,11 @@ public class TSkillDetailServiceImpl extends ServiceImpl<TSkillDetailDao, TSkill
 
 
     public void fun1() {
-        List<TSkillDetail> list = new LambdaQueryChainWrapper<>(this.baseMapper).eq(TSkillDetail::getId, 1).list();
+        List<TSkillDetail> list = new LambdaQueryChainWrapper<>(this.baseMapper).eq(TSkillDetail::getId, 13).list();
 
         System.out.println(list.size());
+        saveBatch(list);
+//        updateBatchById()
     }
 }
 

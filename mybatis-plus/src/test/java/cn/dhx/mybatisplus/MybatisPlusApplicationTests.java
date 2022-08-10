@@ -2,6 +2,7 @@ package cn.dhx.mybatisplus;
 
 
 
+import cn.dhx.mybatisplus.dao.TSkillDetailDao;
 import cn.dhx.mybatisplus.entity.TSkillDetail;
 import cn.dhx.mybatisplus.service.impl.TSkillDetailServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,10 @@ import java.util.List;
 class MybatisPlusApplicationTests {
 
 
+
+    @Autowired
+    private TSkillDetailDao tSkillDetailDao;
+
     @Autowired
     private TSkillDetailServiceImpl tSkillDetailService;
 
@@ -27,6 +32,8 @@ class MybatisPlusApplicationTests {
 //        System.out.println(byId);
 
         tSkillDetailService.fun1();
+        TSkillDetail tSkillDetail = tSkillDetailDao.selectById(13);
+        System.out.println(tSkillDetail);
     }
 
 

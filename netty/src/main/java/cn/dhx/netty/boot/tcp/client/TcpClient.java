@@ -79,7 +79,7 @@ public class TcpClient {
         }
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void startTcpConnect() {
         log.info("start tcp connect");
         new Thread(() -> {

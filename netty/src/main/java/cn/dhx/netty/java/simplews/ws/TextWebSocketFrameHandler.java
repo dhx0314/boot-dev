@@ -11,6 +11,8 @@ import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
+import java.time.LocalDateTime;
+
 
 //处理文本协议数据，处理TextWebSocketFrame类型的数据，websocket专门处理文本的frame就是TextWebSocketFrame
 public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
@@ -26,7 +28,7 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
         //单个回应
 //        ctx.channel().writeAndFlush(new TextWebSocketFrame("服务时间："+ msg.text().toUpperCase()+" "+ LocalDateTime.now()));
         //全部channle都推送
-//        channelGroup.writeAndFlush(new TextWebSocketFrame("服务时间："+ msg.text().toUpperCase()+" "+ LocalDateTime.now()));
+        channelGroup.writeAndFlush(new TextWebSocketFrame("服务时间："+ msg.text().toUpperCase()+" "+ LocalDateTime.now()));
 
     }
 

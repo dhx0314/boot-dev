@@ -1,59 +1,48 @@
-package cn.dhx.mybatisplus.entity;
+package cn.com.wilcom.repository.entity;
 
 import java.util.Date;
-
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
-import lombok.Data;
-
 import java.io.Serializable;
 
 /**
- * (TSkillDetail)表实体类
+ * (TSkillDetail)实体类
  *
  * @author dhx
- * @since 2022-07-16 14:08:16
+ * @since 2022-07-20 11:28:36
  */
-@SuppressWarnings("serial")
-@Data
-@TableName("t_skill_detail")
-public class TSkillDetail {
-//public class TSkillDetail extends Model<TSkillDetail> {
-
-    @TableId(type = IdType.AUTO)
+public class TSkillDetail implements Serializable {
+    private static final long serialVersionUID = -63551890637127228L;
+    
     private Integer id;
-
-    private Date startTime;
-
-    private Date endTime;
-
+    
+    private Date start_time;
+    
+    private Date end_time;
+    
     private String ani;
-
+    
     private String dnis;
-
-    private String mediaType;
-
-    private String callType;
-
+    
+    private String media_type;
+    
+    private String call_type;
+    
     private String connid;
-
+    
     private String guid;
-
-    private Long interactionId;
-
-    private String queueId;
-
-    private Integer queueDuration;
-
-    private String queueResult;
-
-    private String queueScene;
-
-    private Date createTime;
-
-    private Date updateTime;
+    
+    private Long interaction_id;
+    
+    private String queue_id;
+    
+    private Integer queue_duration;
+    
+    private String queue_result;
+    
+    private String queue_scene;
+    
+    private Date create_time;
+    
+    private Date update_time;
 
 
     public Integer getId() {
@@ -185,3 +174,4 @@ public class TSkillDetail {
     }
 
 }
+

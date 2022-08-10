@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.wilcom.repository.dao.TAgentDetailDao">
+
+    <resultMap type="cn.com.wilcom.repository.entity.TAgentDetail" id="TAgentDetailMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
+        <result property="ani" column="ani" jdbcType="VARCHAR"/>
+        <result property="dnis" column="dnis" jdbcType="VARCHAR"/>
+        <result property="mediaType" column="media_type" jdbcType="VARCHAR"/>
+        <result property="callType" column="call_type" jdbcType="VARCHAR"/>
+        <result property="connid" column="connid" jdbcType="VARCHAR"/>
+        <result property="guid" column="guid" jdbcType="VARCHAR"/>
+        <result property="interactionId" column="interaction_id" jdbcType="INTEGER"/>
+        <result property="agentId" column="agent_id" jdbcType="VARCHAR"/>
+        <result property="agentName" column="agent_name" jdbcType="VARCHAR"/>
+        <result property="stationId" column="station_id" jdbcType="VARCHAR"/>
+        <result property="queue" column="queue" jdbcType="VARCHAR"/>
+        <result property="dialCount" column="dial_count" jdbcType="INTEGER"/>
+        <result property="dialDuration" column="dial_duration" jdbcType="INTEGER"/>
+        <result property="ringCount" column="ring_count" jdbcType="INTEGER"/>
+        <result property="ringDuration" column="ring_duration" jdbcType="INTEGER"/>
+        <result property="talkCount" column="talk_count" jdbcType="INTEGER"/>
+        <result property="talkDuration" column="talk_duration" jdbcType="INTEGER"/>
+        <result property="holdCount" column="hold_count" jdbcType="INTEGER"/>
+        <result property="holdDuration" column="hold_duration" jdbcType="INTEGER"/>
+        <result property="acwDuration" column="acw_duration" jdbcType="INTEGER"/>
+        <result property="callSegmentResult" column="call_segment_result" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TAgentDetailMap">
+        select
+          id, start_time, end_time, ani, dnis, media_type, call_type, connid, guid, interaction_id, agent_id, agent_name, station_id, queue, dial_count, dial_duration, ring_count, ring_duration, talk_count, talk_duration, hold_count, hold_duration, acw_duration, call_segment_result, create_time, update_time
+        from t_agent_detail
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TAgentDetailMap">
+        select
+          id, start_time, end_time, ani, dnis, media_type, call_type, connid, guid, interaction_id, agent_id, agent_name, station_id, queue, dial_count, dial_duration, ring_count, ring_duration, talk_count, talk_duration, hold_count, hold_duration, acw_duration, call_segment_result, create_time, update_time
+        from t_agent_detail
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="ani != null and ani != ''">
+                and ani = #{ani}
+            </if>
+            <if test="dnis != null and dnis != ''">
+                and dnis = #{dnis}
+            </if>
+            <if test="mediaType != null and mediaType != ''">
+                and media_type = #{mediaType}
+            </if>
+            <if test="callType != null and callType != ''">
+                and call_type = #{callType}
+            </if>
+            <if test="connid != null and connid != ''">
+                and connid = #{connid}
+            </if>
+            <if test="guid != null and guid != ''">
+                and guid = #{guid}
+            </if>
+            <if test="interactionId != null">
+                and interaction_id = #{interactionId}
+            </if>
+            <if test="agentId != null and agentId != ''">
+                and agent_id = #{agentId}
+            </if>
+            <if test="agentName != null and agentName != ''">
+                and agent_name = #{agentName}
+            </if>
+            <if test="stationId != null and stationId != ''">
+                and station_id = #{stationId}
+            </if>
+            <if test="queue != null and queue != ''">
+                and queue = #{queue}
+            </if>
+            <if test="dialCount != null">
+                and dial_count = #{dialCount}
+            </if>
+            <if test="dialDuration != null">
+                and dial_duration = #{dialDuration}
+            </if>
+            <if test="ringCount != null">
+                and ring_count = #{ringCount}
+            </if>
+            <if test="ringDuration != null">
+                and ring_duration = #{ringDuration}
+            </if>
+            <if test="talkCount != null">
+                and talk_count = #{talkCount}
+            </if>
+            <if test="talkDuration != null">
+                and talk_duration = #{talkDuration}
+            </if>
+            <if test="holdCount != null">
+                and hold_count = #{holdCount}
+            </if>
+            <if test="holdDuration != null">
+                and hold_duration = #{holdDuration}
+            </if>
+            <if test="acwDuration != null">
+                and acw_duration = #{acwDuration}
+            </if>
+            <if test="callSegmentResult != null and callSegmentResult != ''">
+                and call_segment_result = #{callSegmentResult}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from t_agent_detail
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="ani != null and ani != ''">
+                and ani = #{ani}
+            </if>
+            <if test="dnis != null and dnis != ''">
+                and dnis = #{dnis}
+            </if>
+            <if test="mediaType != null and mediaType != ''">
+                and media_type = #{mediaType}
+            </if>
+            <if test="callType != null and callType != ''">
+                and call_type = #{callType}
+            </if>
+            <if test="connid != null and connid != ''">
+                and connid = #{connid}
+            </if>
+            <if test="guid != null and guid != ''">
+                and guid = #{guid}
+            </if>
+            <if test="interactionId != null">
+                and interaction_id = #{interactionId}
+            </if>
+            <if test="agentId != null and agentId != ''">
+                and agent_id = #{agentId}
+            </if>
+            <if test="agentName != null and agentName != ''">
+                and agent_name = #{agentName}
+            </if>
+            <if test="stationId != null and stationId != ''">
+                and station_id = #{stationId}
+            </if>
+            <if test="queue != null and queue != ''">
+                and queue = #{queue}
+            </if>
+            <if test="dialCount != null">
+                and dial_count = #{dialCount}
+            </if>
+            <if test="dialDuration != null">
+                and dial_duration = #{dialDuration}
+            </if>
+            <if test="ringCount != null">
+                and ring_count = #{ringCount}
+            </if>
+            <if test="ringDuration != null">
+                and ring_duration = #{ringDuration}
+            </if>
+            <if test="talkCount != null">
+                and talk_count = #{talkCount}
+            </if>
+            <if test="talkDuration != null">
+                and talk_duration = #{talkDuration}
+            </if>
+            <if test="holdCount != null">
+                and hold_count = #{holdCount}
+            </if>
+            <if test="holdDuration != null">
+                and hold_duration = #{holdDuration}
+            </if>
+            <if test="acwDuration != null">
+                and acw_duration = #{acwDuration}
+            </if>
+            <if test="callSegmentResult != null and callSegmentResult != ''">
+                and call_segment_result = #{callSegmentResult}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into t_agent_detail(start_time, end_time, ani, dnis, media_type, call_type, connid, guid, interaction_id, agent_id, agent_name, station_id, queue, dial_count, dial_duration, ring_count, ring_duration, talk_count, talk_duration, hold_count, hold_duration, acw_duration, call_segment_result, create_time, update_time)
+        values (#{startTime}, #{endTime}, #{ani}, #{dnis}, #{mediaType}, #{callType}, #{connid}, #{guid}, #{interactionId}, #{agentId}, #{agentName}, #{stationId}, #{queue}, #{dialCount}, #{dialDuration}, #{ringCount}, #{ringDuration}, #{talkCount}, #{talkDuration}, #{holdCount}, #{holdDuration}, #{acwDuration}, #{callSegmentResult}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into t_agent_detail(start_time, end_time, ani, dnis, media_type, call_type, connid, guid, interaction_id, agent_id, agent_name, station_id, queue, dial_count, dial_duration, ring_count, ring_duration, talk_count, talk_duration, hold_count, hold_duration, acw_duration, call_segment_result, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.startTime}, #{entity.endTime}, #{entity.ani}, #{entity.dnis}, #{entity.mediaType}, #{entity.callType}, #{entity.connid}, #{entity.guid}, #{entity.interactionId}, #{entity.agentId}, #{entity.agentName}, #{entity.stationId}, #{entity.queue}, #{entity.dialCount}, #{entity.dialDuration}, #{entity.ringCount}, #{entity.ringDuration}, #{entity.talkCount}, #{entity.talkDuration}, #{entity.holdCount}, #{entity.holdDuration}, #{entity.acwDuration}, #{entity.callSegmentResult}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into t_agent_detail(start_time, end_time, ani, dnis, media_type, call_type, connid, guid, interaction_id, agent_id, agent_name, station_id, queue, dial_count, dial_duration, ring_count, ring_duration, talk_count, talk_duration, hold_count, hold_duration, acw_duration, call_segment_result, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.startTime}, #{entity.endTime}, #{entity.ani}, #{entity.dnis}, #{entity.mediaType}, #{entity.callType}, #{entity.connid}, #{entity.guid}, #{entity.interactionId}, #{entity.agentId}, #{entity.agentName}, #{entity.stationId}, #{entity.queue}, #{entity.dialCount}, #{entity.dialDuration}, #{entity.ringCount}, #{entity.ringDuration}, #{entity.talkCount}, #{entity.talkDuration}, #{entity.holdCount}, #{entity.holdDuration}, #{entity.acwDuration}, #{entity.callSegmentResult}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        start_time = values(start_time),
+        end_time = values(end_time),
+        ani = values(ani),
+        dnis = values(dnis),
+        media_type = values(media_type),
+        call_type = values(call_type),
+        connid = values(connid),
+        guid = values(guid),
+        interaction_id = values(interaction_id),
+        agent_id = values(agent_id),
+        agent_name = values(agent_name),
+        station_id = values(station_id),
+        queue = values(queue),
+        dial_count = values(dial_count),
+        dial_duration = values(dial_duration),
+        ring_count = values(ring_count),
+        ring_duration = values(ring_duration),
+        talk_count = values(talk_count),
+        talk_duration = values(talk_duration),
+        hold_count = values(hold_count),
+        hold_duration = values(hold_duration),
+        acw_duration = values(acw_duration),
+        call_segment_result = values(call_segment_result),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update t_agent_detail
+        <set>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="ani != null and ani != ''">
+                ani = #{ani},
+            </if>
+            <if test="dnis != null and dnis != ''">
+                dnis = #{dnis},
+            </if>
+            <if test="mediaType != null and mediaType != ''">
+                media_type = #{mediaType},
+            </if>
+            <if test="callType != null and callType != ''">
+                call_type = #{callType},
+            </if>
+            <if test="connid != null and connid != ''">
+                connid = #{connid},
+            </if>
+            <if test="guid != null and guid != ''">
+                guid = #{guid},
+            </if>
+            <if test="interactionId != null">
+                interaction_id = #{interactionId},
+            </if>
+            <if test="agentId != null and agentId != ''">
+                agent_id = #{agentId},
+            </if>
+            <if test="agentName != null and agentName != ''">
+                agent_name = #{agentName},
+            </if>
+            <if test="stationId != null and stationId != ''">
+                station_id = #{stationId},
+            </if>
+            <if test="queue != null and queue != ''">
+                queue = #{queue},
+            </if>
+            <if test="dialCount != null">
+                dial_count = #{dialCount},
+            </if>
+            <if test="dialDuration != null">
+                dial_duration = #{dialDuration},
+            </if>
+            <if test="ringCount != null">
+                ring_count = #{ringCount},
+            </if>
+            <if test="ringDuration != null">
+                ring_duration = #{ringDuration},
+            </if>
+            <if test="talkCount != null">
+                talk_count = #{talkCount},
+            </if>
+            <if test="talkDuration != null">
+                talk_duration = #{talkDuration},
+            </if>
+            <if test="holdCount != null">
+                hold_count = #{holdCount},
+            </if>
+            <if test="holdDuration != null">
+                hold_duration = #{holdDuration},
+            </if>
+            <if test="acwDuration != null">
+                acw_duration = #{acwDuration},
+            </if>
+            <if test="callSegmentResult != null and callSegmentResult != ''">
+                call_segment_result = #{callSegmentResult},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from t_agent_detail where id = #{id}
+    </delete>
+
+</mapper>
+

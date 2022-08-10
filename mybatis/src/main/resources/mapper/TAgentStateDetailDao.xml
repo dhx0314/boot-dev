@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.wilcom.repository.dao.TAgentStateDetailDao">
+
+    <resultMap type="cn.com.wilcom.repository.entity.TAgentStateDetail" id="TAgentStateDetailMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="stateId" column="state_id" jdbcType="INTEGER"/>
+        <result property="agentId" column="agent_id" jdbcType="VARCHAR"/>
+        <result property="agentName" column="agent_name" jdbcType="VARCHAR"/>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
+        <result property="mediaType" column="media_type" jdbcType="VARCHAR"/>
+        <result property="reasonStartTime" column="reason_start_time" jdbcType="TIMESTAMP"/>
+        <result property="reasonEndTime" column="reason_end_time" jdbcType="TIMESTAMP"/>
+        <result property="state" column="state" jdbcType="VARCHAR"/>
+        <result property="reason" column="reason" jdbcType="VARCHAR"/>
+        <result property="duration" column="duration" jdbcType="INTEGER"/>
+        <result property="headClipDuration" column="head_clip_duration" jdbcType="INTEGER"/>
+        <result property="trailClipDuration" column="trail_clip_duration" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TAgentStateDetailMap">
+        select
+          id, state_id, agent_id, agent_name, start_time, end_time, media_type, reason_start_time, reason_end_time, state, reason, duration, head_clip_duration, trail_clip_duration, create_time, update_time
+        from t_agent_state_detail
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TAgentStateDetailMap">
+        select
+          id, state_id, agent_id, agent_name, start_time, end_time, media_type, reason_start_time, reason_end_time, state, reason, duration, head_clip_duration, trail_clip_duration, create_time, update_time
+        from t_agent_state_detail
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="stateId != null">
+                and state_id = #{stateId}
+            </if>
+            <if test="agentId != null and agentId != ''">
+                and agent_id = #{agentId}
+            </if>
+            <if test="agentName != null and agentName != ''">
+                and agent_name = #{agentName}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="mediaType != null and mediaType != ''">
+                and media_type = #{mediaType}
+            </if>
+            <if test="reasonStartTime != null">
+                and reason_start_time = #{reasonStartTime}
+            </if>
+            <if test="reasonEndTime != null">
+                and reason_end_time = #{reasonEndTime}
+            </if>
+            <if test="state != null and state != ''">
+                and state = #{state}
+            </if>
+            <if test="reason != null and reason != ''">
+                and reason = #{reason}
+            </if>
+            <if test="duration != null">
+                and duration = #{duration}
+            </if>
+            <if test="headClipDuration != null">
+                and head_clip_duration = #{headClipDuration}
+            </if>
+            <if test="trailClipDuration != null">
+                and trail_clip_duration = #{trailClipDuration}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from t_agent_state_detail
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="stateId != null">
+                and state_id = #{stateId}
+            </if>
+            <if test="agentId != null and agentId != ''">
+                and agent_id = #{agentId}
+            </if>
+            <if test="agentName != null and agentName != ''">
+                and agent_name = #{agentName}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="mediaType != null and mediaType != ''">
+                and media_type = #{mediaType}
+            </if>
+            <if test="reasonStartTime != null">
+                and reason_start_time = #{reasonStartTime}
+            </if>
+            <if test="reasonEndTime != null">
+                and reason_end_time = #{reasonEndTime}
+            </if>
+            <if test="state != null and state != ''">
+                and state = #{state}
+            </if>
+            <if test="reason != null and reason != ''">
+                and reason = #{reason}
+            </if>
+            <if test="duration != null">
+                and duration = #{duration}
+            </if>
+            <if test="headClipDuration != null">
+                and head_clip_duration = #{headClipDuration}
+            </if>
+            <if test="trailClipDuration != null">
+                and trail_clip_duration = #{trailClipDuration}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into t_agent_state_detail(state_id, agent_id, agent_name, start_time, end_time, media_type, reason_start_time, reason_end_time, state, reason, duration, head_clip_duration, trail_clip_duration, create_time, update_time)
+        values (#{stateId}, #{agentId}, #{agentName}, #{startTime}, #{endTime}, #{mediaType}, #{reasonStartTime}, #{reasonEndTime}, #{state}, #{reason}, #{duration}, #{headClipDuration}, #{trailClipDuration}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into t_agent_state_detail(state_id, agent_id, agent_name, start_time, end_time, media_type, reason_start_time, reason_end_time, state, reason, duration, head_clip_duration, trail_clip_duration, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.stateId}, #{entity.agentId}, #{entity.agentName}, #{entity.startTime}, #{entity.endTime}, #{entity.mediaType}, #{entity.reasonStartTime}, #{entity.reasonEndTime}, #{entity.state}, #{entity.reason}, #{entity.duration}, #{entity.headClipDuration}, #{entity.trailClipDuration}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into t_agent_state_detail(state_id, agent_id, agent_name, start_time, end_time, media_type, reason_start_time, reason_end_time, state, reason, duration, head_clip_duration, trail_clip_duration, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.stateId}, #{entity.agentId}, #{entity.agentName}, #{entity.startTime}, #{entity.endTime}, #{entity.mediaType}, #{entity.reasonStartTime}, #{entity.reasonEndTime}, #{entity.state}, #{entity.reason}, #{entity.duration}, #{entity.headClipDuration}, #{entity.trailClipDuration}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        state_id = values(state_id),
+        agent_id = values(agent_id),
+        agent_name = values(agent_name),
+        start_time = values(start_time),
+        end_time = values(end_time),
+        media_type = values(media_type),
+        reason_start_time = values(reason_start_time),
+        reason_end_time = values(reason_end_time),
+        state = values(state),
+        reason = values(reason),
+        duration = values(duration),
+        head_clip_duration = values(head_clip_duration),
+        trail_clip_duration = values(trail_clip_duration),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update t_agent_state_detail
+        <set>
+            <if test="stateId != null">
+                state_id = #{stateId},
+            </if>
+            <if test="agentId != null and agentId != ''">
+                agent_id = #{agentId},
+            </if>
+            <if test="agentName != null and agentName != ''">
+                agent_name = #{agentName},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="mediaType != null and mediaType != ''">
+                media_type = #{mediaType},
+            </if>
+            <if test="reasonStartTime != null">
+                reason_start_time = #{reasonStartTime},
+            </if>
+            <if test="reasonEndTime != null">
+                reason_end_time = #{reasonEndTime},
+            </if>
+            <if test="state != null and state != ''">
+                state = #{state},
+            </if>
+            <if test="reason != null and reason != ''">
+                reason = #{reason},
+            </if>
+            <if test="duration != null">
+                duration = #{duration},
+            </if>
+            <if test="headClipDuration != null">
+                head_clip_duration = #{headClipDuration},
+            </if>
+            <if test="trailClipDuration != null">
+                trail_clip_duration = #{trailClipDuration},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from t_agent_state_detail where id = #{id}
+    </delete>
+
+</mapper>
+

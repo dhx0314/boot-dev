@@ -9,12 +9,13 @@ import java.util.HashMap;
 
 public class Demo01 {
     public static void main(String[] args) throws JsonProcessingException {
-        User user = new User();
-        ArrayList<User> users = new ArrayList<>();
-        users.add(user);
-        user.setName("a");
-        for (User user1 : users) {
-            System.out.println(user);
-        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        HashMap<String, Object> hashMap = new HashMap<>();
+        HashMap<String, Object> hashMap2 = new HashMap<>();
+        hashMap.put("aa","bbb");
+        hashMap.put("bb",hashMap2);
+        hashMap2.put("ee","cc");
+        String s = objectMapper.writeValueAsString(hashMap);
+        System.out.println(s);
     }
 }

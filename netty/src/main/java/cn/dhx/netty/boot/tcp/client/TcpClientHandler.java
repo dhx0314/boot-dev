@@ -32,9 +32,9 @@ import java.util.concurrent.TimeUnit;
 @ChannelHandler.Sharable
 public class TcpClientHandler extends SimpleChannelInboundHandler<byte[]> {
 
-
-    @Autowired
-    private TcpClient client;
+//
+//    @Autowired
+//    private TcpClient client;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
@@ -76,7 +76,7 @@ public class TcpClientHandler extends SimpleChannelInboundHandler<byte[]> {
     public void channelInactive(ChannelHandlerContext ctx) {
         log.info("tcp channelInactive id {}",ctx.channel().id());
         ctx.close();
-        client.doConnect();
+//        client.doConnect();
     }
 
 }

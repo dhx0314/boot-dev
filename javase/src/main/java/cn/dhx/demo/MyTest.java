@@ -1,6 +1,7 @@
 package cn.dhx.demo;
 
 
+import cn.dhx.util.DateToolUtil;
 import cn.dhx.util.NetByteUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -8,16 +9,154 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.time.DayOfWeek;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.WeekFields;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MyTest {
 
+
+    @Test
+    public void funaaa() {
+
+//        LocalDate now = LocalDate.now();
+//        int monthValue = now.getMonthValue();
+//        System.out.println(monthValue);
+//        LocalDate currDate = LocalDate.now();
+
+        String s="2022-02-09";
+
+
+        LocalDate currDate   = DateToolUtil.strDayToLocalDate(s);
+
+        // 当月第一天
+        LocalDate firstDayOfMonth = currDate.with(TemporalAdjusters.firstDayOfMonth());
+        System.out.println(firstDayOfMonth);
+
+        // 当月最后一天
+        LocalDate lastDayOfMonth = currDate.with(TemporalAdjusters.lastDayOfMonth());
+        System.out.println(lastDayOfMonth);
+    }
+
+    @Test
+    public void funwaiefiaweg() {
+
+
+        LocalDate now = LocalDate.now();
+        Date date = DateToolUtil.localDateToDate(now);
+        System.out.println(date);
+
+        String s="2022-02-09";
+
+
+        LocalDate localDate   = DateToolUtil.strDayToLocalDate(s);
+        int value = localDate.getDayOfWeek().getValue();
+        LocalDate localDate1 = localDate.minusDays(value - 1);
+        System.out.println(localDate1);
+        LocalDate localDate2 = localDate1.plusDays(6);
+        System.out.println(localDate2);
+    }
+
+    @Test
+    public void fun22aaa() {
+
+        //获取当前时间
+//        LocalDateTime currentDate = LocalDateTime.now();
+
+        String s="2022-08-07";
+
+        Date date = DateToolUtil.strToDate(s);
+        System.out.println(date);
+        String s1 = DateToolUtil.dateToStr(date);
+        System.out.println(s1);
+        LocalDate currentDate = DateToolUtil.strDayToLocalDate(s);
+        //获取年份
+        int year = currentDate.getYear();
+        System.out.println("获取当前年份:" + year);
+        //获取月份
+        int month = currentDate.getMonthValue();
+        System.out.println("获取当前月份:" + month);
+        //获取当前周
+        int week = currentDate.getDayOfWeek().getValue();
+        System.out.println("获取当前周:" + week);
+        //获取当前时间第X周
+        /*
+        public static WeekFields of​(DayOfWeek firstDayOfWeek, int minimalDaysInFirstWeek)
+        从第一天和最小日期获得WeekFields的实例。
+        第一天的每周定义ISO DayOfWeek ，即一周中的第一天。 第一周的最小天数定义一个月或一年中必须存在的天数，从第一天开始，在将一周计算为第一周之前。 值1将计算作为第一周的一部分的月或年的第一天，而值7将要求整个七天在新的月或年中。
+
+        WeekFields实例是单例; 对于firstDayOfWeek和minimalDaysInFirstWeek的每个唯一组合，将返回相同的实例。
+
+        参数
+        firstDayOfWeek - 一周的第一天，不是null
+        minimalDaysInFirstWeek - 第一周的最小天数，从1到7
+         */
+        WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY,1);
+        int weeks = currentDate.get(weekFields.weekOfYear());
+        System.out.println("获取当前时间第" + weeks + "周");
+
+    }
+
+
+    public static LocalDate strDayToLocalDateTime(String strTime) {
+        DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dateTime = LocalDate.parse(strTime, ofPattern);
+        return dateTime;
+    }
+
+
+    @Test
+    public void fun123432() {
+        String s="2022-08-02";
+        LocalDate localDateTime = strDayToLocalDateTime(s);
+        System.out.println(localDateTime);
+    }
+
+    @Test
+    public void fun1232() {
+
+//        BigDecimal b = new BigDecimal(2).multiply(new BigDecimal(10000));
+        BigDecimal b = new BigDecimal(2);
+        b = b.divide(new BigDecimal(7), 4, BigDecimal.ROUND_HALF_UP);
+        System.out.println(b);
+
+        //输出是0.71
+        BigDecimal b2 = new BigDecimal(5);
+        b2 = b2.divide(new BigDecimal(7), 4, BigDecimal.ROUND_HALF_UP);
+        System.out.println(b2);
+
+
+
+        //2857
+        //7142
+
+    }
+
+    @Test
+    public void fuwaef() {
+        HashSet<String> strings = new HashSet<>();
+        strings.add("2022-08-02 10:45:00");
+        strings.add("2022-08-02 11:00:00");
+        strings.add("2022-08-02 18:00:00");
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : strings) {
+            stringBuilder.append(s).append(",");
+        }
+        System.out.println(stringBuilder);
+        String substring = stringBuilder.substring(0, stringBuilder.length() - 1);
+        System.out.println(substring);
+    }
 
     @Test
     public void funa2a() {
