@@ -4,9 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -14,42 +19,60 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class WebDemo {
 
-
-    @PostMapping("/test2")
-    public String fun1() {
-        log.info("test1-------------------------");
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return "ok92475897937";
-    }
-
-    @PostMapping("/test3")
-    public Object fun3() throws JsonProcessingException {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("a", "fffffffffffffff");
-        map.put("2", "2");
-        map.put("3", "2");
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String s1 = objectMapper.writeValueAsString(map);
-//        JsonNode jsonNode = objectMapper.readTree(s1);
-//        String s = jsonNode.get("a").asText();
-//        log.info("---s"+s);
-//        System.out.println(s);
-        return map;
+    @GetMapping("/mono")
+    public Mono<HashMap> map() {
+//        Mono.create()
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("k1","v1");
+        return Mono.just(hashMap);
     }
 
 
-    @PostMapping("/test1")
-    public String fun2() {
-        try {
-            TimeUnit.SECONDS.sleep(20);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        log.info("test1-------------------------");
-        return "ok-111";
+    public void funmono() {
+        String url = "http://127.0.0.1:8088/mono";
+        WebClient.create(url)
+                .get()
+                .retrieve()
+                .bodyToMono(String.class)
+                .timeout(Duration.ofSeconds(3))
+                .doOnError(x -> {
+                    System.out.println("----------------------------");
+//                        System.out.println(x);
+                    System.out.println("----------------------------");
+                })
+                .doOnSuccess(x->{
+                    log.info("success {}",x);
+                })
+
+                .subscribe(x -> {
+            log.info(x);
+        });
     }
+
+    public void funmono2() {
+        String url = "http://127.0.0.1:8088/mono";
+        String block = WebClient.create(url)
+                .get()
+                .retrieve()
+                .bodyToMono(String.class)
+                .doOnError(x -> {
+                    System.out.println("----------------------------");
+//                        System.out.println(x);
+                    System.out.println("----------------------------");
+                }).block();
+        log.info(block);
+    }
+
+    public void test(){
+//        HashMap<String, String> pushHashMap = new HashMap<>();
+//        result = WebClient.create(url)
+//                .post()
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .bodyValue(pushHashMap)
+//                .retrieve()
+//                .bodyToMono(PushResult.class)
+//                .timeout(Duration.ofMillis(TIMEOUT))
+//                .block();
+    }
+
 }

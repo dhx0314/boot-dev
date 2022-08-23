@@ -1,2 +1,5 @@
 server:
   port: 8088
+connector:
+  login:
+    reason-codes: 1:小休|2:会议|3:就餐

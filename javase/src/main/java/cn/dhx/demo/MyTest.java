@@ -27,6 +27,14 @@ public class MyTest {
 
 
     @Test
+    public void fun237ss() {
+        String s=null;
+        if (s != null) {
+            System.out.println("a");
+        }
+    }
+
+    @Test
     public void funaaa() {
 
 //        LocalDate now = LocalDate.now();
