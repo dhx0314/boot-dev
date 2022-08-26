@@ -1,19 +1,13 @@
-package cn.dhx.webflux.Controller;
+package cn.dhx.webflux.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @Slf4j
@@ -24,6 +18,7 @@ public class WebDemo {
 //        Mono.create()
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("k1","v1");
+
         return Mono.just(hashMap);
     }
 

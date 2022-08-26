@@ -22,9 +22,65 @@ import java.time.temporal.WeekFields;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
 public class MyTest {
 
+
+    @Test
+    public void fun155rwewew() {
+        ArrayList<Stu> stus = new ArrayList<>();
+        for (Stu stu : stus) {
+            byte[] wavDirect = stu.getWavDirect();
+        }
+    }
+
+
+    @Test
+    public void fun1aa23() {
+        List<String> list = Arrays.asList("tom", "jame", "jerry", "hello");
+        Stream<String> stream = list.stream();
+        Stream<String[]> streamString = stream.map(s->s.split(""));
+//        Stream<Stream<String>> map = streamString.map(Arrays::stream);
+        Stream<Stream<String>> map = streamString.map(x -> {
+            return Arrays.stream(x);
+        });
+        // List<Stream<String>> collect = map.collect(Collectors.toList());
+        // System.out.println(collect);
+
+        map.forEach(x->{
+            x.forEach(s->{
+                System.out.println(s);
+            });
+        });
+    }
+
+    @Test
+    public void fun1aa23b() {
+        List<String> list = Arrays.asList("tom", "jame", "jerry", "hello");
+        Stream<String> stream = list.stream();
+        Stream<String[]> streamString = stream.map(s->s.split(""));
+        Stream<String> map = streamString.flatMap(Arrays::stream);
+
+        map.forEach(x->{
+            System.out.println(x);
+        });
+    }
+
+
+    @Test
+    public void fun2347() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        for (int i = 1; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+
+
+    }
 
     @Test
     public void fun237ss() {

@@ -1,6 +1,5 @@
-
 aa:
-  bb: 124
+  bb: 测试我的
   cc: false
 server:
   port: 9998
@@ -13,3 +12,12 @@ maps: "{'key1': 'value1', 'key2': 'value2'}"
 
 
 #maps: "{key1: 'value1', key2: 'value2'}"
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: *
+#  endpoint:
+#   health:
+#    show-details: always
