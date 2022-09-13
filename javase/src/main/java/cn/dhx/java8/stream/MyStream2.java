@@ -4,13 +4,14 @@ import cn.dhx.pojo.Person;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class MyStream2 {
 
     @Test
-    public void fun1() {
+    public void forEach() {
 
         ArrayList<String> arrayList = new ArrayList<>();
         Collections.addAll(arrayList, "aa", "bbbb", "ccc", "dd");
@@ -31,7 +32,7 @@ public class MyStream2 {
 
     // filter 过滤
     @Test
-    public void fun2() {
+    public void filter() {
 
         ArrayList<String> arrayList = new ArrayList<>();
         Collections.addAll(arrayList, "aa", "bbbb", "ccc", "dd");
@@ -56,7 +57,7 @@ public class MyStream2 {
 
     //map
     @Test
-    public void fun3() {
+    public void map() {
         ArrayList<String> arrayList = new ArrayList<>();
         Collections.addAll(arrayList, "11", "1234", "223", "33");
 
@@ -71,7 +72,7 @@ public class MyStream2 {
 
     //sorted 排序
     @Test
-    public void fun4() {
+    public void sorted() {
         ArrayList<Integer> arrayList = new ArrayList<>();
         Collections.addAll(arrayList, 11, 55, 1234, 223, 33);
         arrayList.stream().sorted().forEach(x -> {
@@ -88,7 +89,7 @@ public class MyStream2 {
 
     //distinct 去重
     @Test
-    public void fun5() {
+    public void distinct() {
         ArrayList<String> arrayList = new ArrayList<>();
         Collections.addAll(arrayList, "aa", "bbbb", "ccc", "dd", "ccc");
         arrayList.stream().distinct().forEach(x -> {
@@ -109,7 +110,7 @@ public class MyStream2 {
     }
 
     @Test
-    public void fun6() {
+    public void match() {
 
         //allMatch: 元素是否全部满足条件
         //anyMatch: 元素是否任意有一个满足条件
@@ -137,7 +138,7 @@ public class MyStream2 {
     //
     //findAny 串行地情况下，一般会返回第一个结果，如果是并行的情况，那就不能确保是第一个
     @Test
-    public void fun7() {
+    public void find() {
 
         ArrayList<Integer> arrayList = new ArrayList<>();
         Collections.addAll(arrayList, 3, 5, 9, 12);
@@ -175,7 +176,7 @@ public class MyStream2 {
     //max 排序后最后一个值
     //min  排序后第一个值
     @Test
-    public void fun8() {
+    public void maxAndMin() {
         ArrayList<Integer> arrayList = new ArrayList<>();
         Collections.addAll(arrayList, 3, 5, 1, 22, 9, 12);
         Optional<Integer> max = arrayList.stream().max(((o1, o2) -> {
@@ -192,7 +193,7 @@ public class MyStream2 {
     //reduce
     //将所有数据归纳得到一个数据，可以使用 reduce 方法
     @Test
-    public void fun9() {
+    public void reduce() {
         ArrayList<Integer> arrayList = new ArrayList<>();
         Collections.addAll(arrayList, 3, 5, 9, 12);
         // 将return 的结果返回给x
@@ -207,8 +208,24 @@ public class MyStream2 {
         System.out.println(reduce1);
     }
 
+
     @Test
-    public void fun10() {
+    public void reducea() {
+//        Integer reduce = Stream.of(4, 5, 3, 9).reduce(0, (x, y) -> {
+//            return x + y;
+//        });
+
+
+//        Integer reduce = Stream.of(4, 5, 3, 9).reduce(0, (x, y) -> {
+//            return Integer.sum(x,y);
+//        });
+//        Integer reduce = Stream.of(4, 5, 3, 9).reduce(0, Integer::sum);
+
+
+    }
+
+    @Test
+    public void reduce2() {
         ArrayList<Person> list = new ArrayList<>();
         list.add(new Person("aa", 12));
         list.add(new Person("cc", 20));
@@ -225,7 +242,7 @@ public class MyStream2 {
 
 
     @Test
-    public void fun11() {
+    public void mapAndMax() {
         ArrayList<Person> list = new ArrayList<>();
         list.add(new Person("aa", 12));
         list.add(new Person("cc", 20));
@@ -253,15 +270,12 @@ public class MyStream2 {
             return x + y;
         });
         System.out.println(a);
-
-
     }
 
 
     @Test
     public void fun13() {
         Stream<Integer> stream = Stream.of(3, 5, 1, 22, 9, 12);
-
         IntStream intStream = stream.mapToInt(x -> {
             return x.intValue();
         });
@@ -274,21 +288,55 @@ public class MyStream2 {
     }
 
 
+    //将流的数据收集到集合
     @Test
-    public void fun14() {
+    public void concat() {
         Stream<String> aa = Stream.of("aa");
         Stream<String> bb = Stream.of("bb");
         Stream<String> concat = Stream.concat(aa, bb);
         //合并后 不能操作之前的流
-        concat.forEach(x->{
+        concat.forEach(x -> {
             System.out.println(x);
         });
     }
 
     @Test
     public void fun15() {
-//        ArrayList<Integer> arrayList = new ArrayList<>();
-//        Collections.shuffle();
+        Stream<String> stream = Stream.of("aa", "bb", "cc", "aa");
+        List<String> list = stream.collect(Collectors.toList());
+        System.out.println("list " + list);
+    }
+
+    @Test
+    public void fun16() {
+        Stream<String> stream = Stream.of("aa", "bb", "cc", "aa");
+        Set<String> set = stream.collect(Collectors.toSet());
+        System.out.println("set " + set);
+    }
+
+    @Test
+    public void fun17() {
+        Stream<String> stream = Stream.of("aa", "bb", "cc", "aa");
+        ArrayList<String> collect = stream.collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    @Test
+    public void fun18() {
+        Stream<String> stream = Stream.of("aa", "bb", "cc", "aa");
+        HashSet<String> collect = stream.collect(Collectors.toCollection(HashSet::new));
+    }
+
+
+    //将流中的数据收集到数组中
+    @Test
+    public void fun19() {
+//        Stream<String> stream = Stream.of("aa", "bb", "cc","aa");
+//        Object[] objects = stream.toArray();
+//        System.out.println(Arrays.toString(objects));
+
+        Stream<String> stream = Stream.of("aa", "bb", "cc", "aa");
+        String[] strings = stream.toArray(String[]::new);
+        System.out.println(Arrays.toString(strings));
     }
 
 }
