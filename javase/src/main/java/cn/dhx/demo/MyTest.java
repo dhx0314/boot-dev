@@ -40,7 +40,7 @@ public class MyTest {
                 hashMap.put(dnis, integer);
             } else {
                 integer++;
-//                hashMap.put(dnis, integer);
+                hashMap.put(dnis, integer);
             }
         }
 
