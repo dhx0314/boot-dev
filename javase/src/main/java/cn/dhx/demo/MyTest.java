@@ -3,6 +3,7 @@ package cn.dhx.demo;
 
 import cn.dhx.util.DateToolUtil;
 import cn.dhx.util.NetByteUtil;
+import cn.hutool.core.util.StrUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -28,6 +29,27 @@ public class MyTest {
 
 
     @Test
+    public void fun1Map() {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+
+        for (int i = 0; i < 10; i++) {
+            String dnis = "1";
+            Integer integer = hashMap.get(dnis);
+            if (integer == null) {
+                integer = new Integer(1);
+                hashMap.put(dnis, integer);
+            } else {
+                integer++;
+//                hashMap.put(dnis, integer);
+            }
+        }
+
+        System.out.println(hashMap.toString());
+    }
+
+
+
+    @Test
     public void fun155rwewew() {
         ArrayList<Stu> stus = new ArrayList<>();
         for (Stu stu : stus) {
@@ -40,7 +62,7 @@ public class MyTest {
     public void fun1aa23() {
         List<String> list = Arrays.asList("tom", "jame", "jerry", "hello");
         Stream<String> stream = list.stream();
-        Stream<String[]> streamString = stream.map(s->s.split(""));
+        Stream<String[]> streamString = stream.map(s -> s.split(""));
 //        Stream<Stream<String>> map = streamString.map(Arrays::stream);
         Stream<Stream<String>> map = streamString.map(x -> {
             return Arrays.stream(x);
@@ -48,8 +70,8 @@ public class MyTest {
         // List<Stream<String>> collect = map.collect(Collectors.toList());
         // System.out.println(collect);
 
-        map.forEach(x->{
-            x.forEach(s->{
+        map.forEach(x -> {
+            x.forEach(s -> {
                 System.out.println(s);
             });
         });
@@ -59,10 +81,10 @@ public class MyTest {
     public void fun1aa23b() {
         List<String> list = Arrays.asList("tom", "jame", "jerry", "hello");
         Stream<String> stream = list.stream();
-        Stream<String[]> streamString = stream.map(s->s.split(""));
+        Stream<String[]> streamString = stream.map(s -> s.split(""));
         Stream<String> map = streamString.flatMap(Arrays::stream);
 
-        map.forEach(x->{
+        map.forEach(x -> {
             System.out.println(x);
         });
     }
@@ -84,7 +106,7 @@ public class MyTest {
 
     @Test
     public void fun237ss() {
-        String s=null;
+        String s = null;
         if (s != null) {
             System.out.println("a");
         }
@@ -98,10 +120,10 @@ public class MyTest {
 //        System.out.println(monthValue);
 //        LocalDate currDate = LocalDate.now();
 
-        String s="2022-02-09";
+        String s = "2022-02-09";
 
 
-        LocalDate currDate   = DateToolUtil.strDayToLocalDate(s);
+        LocalDate currDate = DateToolUtil.strDayToLocalDate(s);
 
         // 当月第一天
         LocalDate firstDayOfMonth = currDate.with(TemporalAdjusters.firstDayOfMonth());
@@ -120,10 +142,10 @@ public class MyTest {
         Date date = DateToolUtil.localDateToDate(now);
         System.out.println(date);
 
-        String s="2022-02-09";
+        String s = "2022-02-09";
 
 
-        LocalDate localDate   = DateToolUtil.strDayToLocalDate(s);
+        LocalDate localDate = DateToolUtil.strDayToLocalDate(s);
         int value = localDate.getDayOfWeek().getValue();
         LocalDate localDate1 = localDate.minusDays(value - 1);
         System.out.println(localDate1);
@@ -137,7 +159,7 @@ public class MyTest {
         //获取当前时间
 //        LocalDateTime currentDate = LocalDateTime.now();
 
-        String s="2022-08-07";
+        String s = "2022-08-07";
 
         Date date = DateToolUtil.strToDate(s);
         System.out.println(date);
@@ -165,7 +187,7 @@ public class MyTest {
         firstDayOfWeek - 一周的第一天，不是null
         minimalDaysInFirstWeek - 第一周的最小天数，从1到7
          */
-        WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY,1);
+        WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY, 1);
         int weeks = currentDate.get(weekFields.weekOfYear());
         System.out.println("获取当前时间第" + weeks + "周");
 
@@ -181,7 +203,7 @@ public class MyTest {
 
     @Test
     public void fun123432() {
-        String s="2022-08-02";
+        String s = "2022-08-02";
         LocalDate localDateTime = strDayToLocalDateTime(s);
         System.out.println(localDateTime);
     }
@@ -198,7 +220,6 @@ public class MyTest {
         BigDecimal b2 = new BigDecimal(5);
         b2 = b2.divide(new BigDecimal(7), 4, BigDecimal.ROUND_HALF_UP);
         System.out.println(b2);
-
 
 
         //2857
@@ -229,7 +250,6 @@ public class MyTest {
     }
 
 
-
     @Test
     public void fun132223() {
         Instant now = Instant.now();
@@ -239,7 +259,7 @@ public class MyTest {
 
         Timestamp timestamp = new Timestamp(1644803779);
         System.out.println(timestamp);
-        int time=1644803779;
+        int time = 1644803779;
         Date date = new Date(time * 1000L);
         System.out.println(date);
     }
@@ -279,7 +299,7 @@ public class MyTest {
 //        }
 
         byte[] bytes = new byte[3];
-        bytes[0]=(byte) '1';
+        bytes[0] = (byte) '1';
         System.out.println(bytes[0]);
         for (byte aByte : bytes) {
             System.out.println(aByte);
@@ -301,7 +321,7 @@ public class MyTest {
 
     @Test
     public void funa0625() {
-        String s="68731";
+        String s = "68731";
         byte[] wavDirectCustom = {1, 0, 0, 0};
         String s1 = new String(wavDirectCustom);
         System.out.println(s1);
@@ -323,16 +343,13 @@ public class MyTest {
     @Test
     public void fun1awe() {
 //        byte[] bytes={'V','C'};
-        byte[] bytes={86,67};
+        byte[] bytes = {86, 67};
         for (byte aByte : bytes) {
             System.out.println(aByte);
         }
         String s = new String(bytes);
         System.out.println(s);
     }
-
-
-
 
 
     @Test
@@ -371,10 +388,10 @@ public class MyTest {
     @Test
     public void funa2332() {
         byte[] bytes = new byte[4];
-        bytes[0]= (byte) 0x00;
-        bytes[1]= (byte) 0x00;
-        bytes[2]= (byte) 0x00;
-        bytes[3]= (byte) 0xb9;
+        bytes[0] = (byte) 0x00;
+        bytes[1] = (byte) 0x00;
+        bytes[2] = (byte) 0x00;
+        bytes[3] = (byte) 0xb9;
         int i = NetByteUtil.bytesToInt(bytes);
         System.out.println(i);
 
@@ -385,7 +402,7 @@ public class MyTest {
         if (i == 1) {
             return 1;
         }
-        return i+digui(i-1);
+        return i + digui(i - 1);
     }
 
 
@@ -398,14 +415,14 @@ public class MyTest {
         if (i == 100) {
             return 100;
         }
-        return i+digui2(i+1);
+        return i + digui2(i + 1);
     }
 
     @Test
     public void fun1() {
-        String number="901827077973011111";
+        String number = "901827077973011111";
 //        String number="18270779730";
-        String regex="\\d{11,}";
+        String regex = "\\d{11,}";
         boolean matches = number.matches(regex);
         System.out.println(matches);
         String firstNum = String.valueOf(number.charAt(0));
