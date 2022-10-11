@@ -41,6 +41,7 @@ public class MyTest {
             } else {
                 integer++;
                 hashMap.put(dnis, integer);
+                System.out.println("----");
             }
         }
 
