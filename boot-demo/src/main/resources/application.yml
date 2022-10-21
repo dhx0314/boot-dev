@@ -2,7 +2,7 @@ aa:
   bb: 测试我的
   cc: false
 server:
-  port: 9998
+  port: 8001
 
 #k:
 #  k1: v1

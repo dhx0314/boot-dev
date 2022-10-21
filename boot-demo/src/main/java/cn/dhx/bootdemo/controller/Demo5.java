@@ -15,6 +15,12 @@ import java.util.List;
 public class Demo5 {
 
 
+    @GetMapping("put")
+    public void fun1tt() {
+
+    }
+
+
     @PostMapping("/scsa-api/webext/iqas/v4/syncdr/00000000128802")
     @ResponseBody
     public Object getpush(@RequestBody String data) {

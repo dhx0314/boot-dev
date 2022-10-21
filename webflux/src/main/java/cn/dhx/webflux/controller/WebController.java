@@ -1,8 +1,7 @@
 package cn.dhx.webflux.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -11,15 +10,32 @@ import java.util.HashMap;
 
 @RestController
 @Slf4j
-public class WebDemo {
+public class WebController {
 
-    @GetMapping("/mono")
-    public Mono<HashMap> map() {
-//        Mono.create()
+    @PostMapping("/mono")
+    public Mono<HashMap> map(@RequestBody String s) {
+        log.info("s {}",s);
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("k1","v1");
-
+        hashMap.put("k2","v2");
         return Mono.just(hashMap);
+    }
+
+
+
+
+    @GetMapping("/hello")
+    public Mono<HashMap> hello() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("k1","v1");
+        hashMap.put("k2","v2");
+        return Mono.just(hashMap);
+    }
+
+    @GetMapping("/user/{id}/{name}")
+    public Mono<String> user(@PathVariable("id") String id, @PathVariable("name") String name) {
+        log.info("id {} name {}",id,name);
+        return Mono.just("ok");
     }
 
 

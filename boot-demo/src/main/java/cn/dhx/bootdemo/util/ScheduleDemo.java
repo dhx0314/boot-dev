@@ -1,11 +1,9 @@
-package cn.dhx.boot.schedule;
+package cn.dhx.bootdemo.util;
 
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.TimeUnit;
 
 @Component
 @Slf4j
@@ -34,7 +32,7 @@ public class ScheduleDemo {
 
 
 
-    @Scheduled(cron = "0/10 * * * * ?")
+    @Scheduled(cron = "0 0/10 * * * ?")
     public void fun2() {
         log.info("-------5 -start--------");
 
@@ -42,7 +40,7 @@ public class ScheduleDemo {
     }
 
 
-    @Scheduled(cron = "*/10 * * * * ?")
+    @Scheduled(cron = "0 */10 * * * ?")
     public void fun3() {
         log.info("-------3 -start--------");
 

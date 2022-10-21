@@ -1,21 +1,29 @@
 package cn.dhx.webflux.Webclient;
 
 
+import cn.dhx.util.DateToolUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.crypto.spec.PSource;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -28,6 +36,100 @@ import java.util.concurrent.TimeUnit;
 public class WebClientDemo {
 
     volatile List<String> availableSwitchList = new ArrayList<>();
+
+    private final static String uri = "";
+
+
+    @Test
+    public void testExchange() {
+        Mono<ClientResponse> clientResponseMono = WebClient
+                .create()
+                .get()
+                .uri("http://127.0.0.1:8088/hello")
+                .exchange();
+        ClientResponse clientResponse = clientResponseMono.block();
+        //响应头
+        ClientResponse.Headers headers = clientResponse.headers();
+        //响应状态
+        HttpStatus httpStatus = clientResponse.statusCode();
+        //响应状态码
+        int rawStatusCode = clientResponse.rawStatusCode();
+        //响应体
+        Mono<String> mono = clientResponse.bodyToMono(String.class);
+        String body = mono.block();
+        log.info("headers {}", headers.toString());
+        log.info("httpStatus {}", httpStatus);
+        log.info("rawStatusCode {}", rawStatusCode);
+        log.info("mono body {}", body);
+    }
+
+
+    @Test
+    public void testGet() {
+        String url = "http://127.0.0.1:8088/user/{id}/{name}";
+        String id = "123";
+        String name = "boss";
+        Mono<String> mono = WebClient.create()
+                .get()
+                .uri(url, id, name)
+                .retrieve()
+                .bodyToMono(String.class);
+        String result = mono.block();
+        log.info("result {}", result);
+    }
+
+
+    @Test
+    public void testClient() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("k1", "v1");
+        hashMap.put("k2", "v2");
+        String uri = "http://127.0.0.1:8088/mono";
+        WebClient.create(uri)
+                .post()
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(hashMap)
+                .retrieve()
+                .bodyToMono(String.class)
+                .timeout(Duration.ofSeconds(5))
+                .doOnError(e -> {
+                    log.error("[{}] deviceId [{}] ERROR post start MRCP request [{}]!", e);
+                })
+                .subscribe(res -> {
+                    if (res != null) {
+                        log.info("success {} ", res.toString());
+                    } else {
+                        log.info("fail ");
+                    }
+                });
+
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     @GetMapping("hi1")
@@ -43,7 +145,6 @@ public class WebClientDemo {
 //        System.out.println("=====" + mono.block());
 
 
-
         System.out.println("start");
         String url = "http://127.0.0.1:8088/test1";
         Mono<String> stringMono = WebClient.create(url)
@@ -54,15 +155,6 @@ public class WebClientDemo {
         for (int i = 0; i < 100; i++) {
             System.out.println(i);
         }
-    }
-
-
-    @GetMapping("/a/a1")
-    public String werewra(){
-        log.info("-------------");
-        fun2watae();
-        log.info("------awef-------");
-        return "awf";
     }
 
 
@@ -77,8 +169,8 @@ public class WebClientDemo {
 //                        System.out.println(x);
                     System.out.println("----------------------------");
                 }).subscribe(x -> {
-            log.info(x);
-        });
+                    log.info(x);
+                });
     }
 
 
@@ -86,8 +178,6 @@ public class WebClientDemo {
     public String fun22aa() throws InterruptedException {
 
         System.out.println("start");
-
-
 
 
 //        HashSet<String> strings = new HashSet<>();
@@ -108,11 +198,11 @@ public class WebClientDemo {
                             countDownLatch.countDown();
                             System.out.println("----------------------------");
                         }).subscribe(x -> {
-                    log.info(x);
-                    strings.add("1--" + finalI);
-                    countDownLatch.countDown();
+                            log.info(x);
+                            strings.add("1--" + finalI);
+                            countDownLatch.countDown();
 
-                });
+                        });
             } catch (Exception e) {
                 log.info("-----tttttttttttttttt---------------------");
                 System.out.println("-----e------------------");
@@ -122,9 +212,9 @@ public class WebClientDemo {
         }
         log.info("---------------------------");
         countDownLatch.await();
-        new Thread(()-> {
+        new Thread(() -> {
             for (int i = 0; i < 100; i++) {
-                log.info("---"+availableSwitchList.size());
+                log.info("---" + availableSwitchList.size());
             }
         }).start();
 
@@ -133,7 +223,7 @@ public class WebClientDemo {
         for (String string : strings) {
             System.out.println(string);
         }
-        System.out.println(strings.size()+"------------------");
+        System.out.println(strings.size() + "------------------");
 //        availableSwitchList=new ArrayList<>(strings);
         availableSwitchList.clear();
         availableSwitchList.addAll(strings);
@@ -160,8 +250,8 @@ public class WebClientDemo {
 //                        System.out.println(x);
                         System.out.println("----------------------------");
                     }).subscribe(x -> {
-                log.info(x);
-            });
+                        log.info(x);
+                    });
         } catch (Exception e) {
             log.info("-----tttttttttttttttt---------------------");
             System.out.println("-----e------------------");

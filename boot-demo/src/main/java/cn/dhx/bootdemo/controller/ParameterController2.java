@@ -12,6 +12,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
+@CrossOrigin
 public class ParameterController2 {
 
 
@@ -51,6 +52,7 @@ public class ParameterController2 {
     //    "name":"aa",
     //    "age":18
     //}'
+    @CrossOrigin
     @PostMapping("/requestBody")
     public void fun3(@RequestBody User user) {
         System.out.println(user.toString());

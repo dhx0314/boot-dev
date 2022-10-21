@@ -1,6 +1,6 @@
 package cn.dhx.webflux;
 
-import cn.dhx.webflux.controller.WebDemo;
+import cn.dhx.webflux.controller.WebController;
 import cn.dhx.webflux.Webclient.WebClientDemo;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ class WebfluxApplicationTests {
     WebClientDemo webClientDemo;
 
     @Autowired
-    private WebDemo webDemo;
+    private WebController webDemo;
 
     @Test
     public void funa23() throws InterruptedException {

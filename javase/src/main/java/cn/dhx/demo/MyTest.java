@@ -29,19 +29,47 @@ public class MyTest {
 
 
     @Test
+    public void fun1data() {
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now);
+        Instant now1 = Instant.now();
+        System.out.println(now1);
+        long l = System.currentTimeMillis();
+        System.out.println(l);
+
+        long l1 = System.nanoTime();
+        System.out.println(l1);
+
+        String nowTime = getNowTime();
+        System.out.println(nowTime);
+//        2021 0223 084848 455141
+       // 2022  1021    103258  424000
+    }
+
+    public static String getNowTime() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter dfDateTime = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String time = dfDateTime.format(localDateTime);
+        int i = localDateTime.getNano() / 1000;
+        return time + i;
+    }
+
+
+
+    @Test
     public void fun1Map() {
         HashMap<String, Integer> hashMap = new HashMap<>();
 
         for (int i = 0; i < 10; i++) {
-            String dnis = "1";
+            String dnis = "1234";
             Integer integer = hashMap.get(dnis);
             if (integer == null) {
-                integer = new Integer(1);
+                integer = 1000;
                 hashMap.put(dnis, integer);
             } else {
                 integer++;
                 hashMap.put(dnis, integer);
-                System.out.println("----");
+//                System.out.println("----");
             }
         }
 
