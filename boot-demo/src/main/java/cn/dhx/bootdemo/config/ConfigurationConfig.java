@@ -27,7 +27,10 @@ public class ConfigurationConfig {
 
     @PostConstruct
     public void fun() {
+        String s = System.getProperty("user.dir") + "/mrcp";
+
         log.info("fun {}",tt);
+        log.info("System s {}",s);
     }
 
 

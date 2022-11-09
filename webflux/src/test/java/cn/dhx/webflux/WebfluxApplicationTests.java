@@ -11,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -34,6 +36,24 @@ class WebfluxApplicationTests {
         if (StringUtils.isNotBlank(name) && name.contains("Windows")) {
             return;
         }
+    }
+
+
+    @Test
+    public void testGet() throws InterruptedException {
+        String url = "http://127.0.0.1:8088/header";
+        String id = "123";
+        String name = "boss";
+        Mono<String> mono = WebClient.create()
+                .get()
+                .uri(url, id, name)
+                .header("x-lga-sec-sign", "1")
+                .retrieve()
+                .bodyToMono(String.class);
+        String result = mono.block();
+        log.info("result {}", result);
+
+        TimeUnit.SECONDS.sleep(10);
     }
 
     @Test

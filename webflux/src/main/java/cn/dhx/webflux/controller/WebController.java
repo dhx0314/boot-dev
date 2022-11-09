@@ -4,9 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import reactor.netty.http.server.HttpServerRequest;
 
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -15,6 +17,22 @@ public class WebController {
     @PostMapping("/mono")
     public Mono<HashMap> map(@RequestBody String s) {
         log.info("s {}",s);
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("k1","v1");
+        hashMap.put("k2","v2");
+        return Mono.just(hashMap);
+    }
+
+
+    @GetMapping("/header")
+    public Mono<HashMap> map2(@RequestHeader Map<String, String> headers) {
+
+//        log.info("s {}",s);
+
+        headers.forEach((key,value)->{
+            log.info("key {},value{}",key,value);
+        });
+
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("k1","v1");
         hashMap.put("k2","v2");

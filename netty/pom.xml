@@ -6,9 +6,9 @@
         <groupId>cn.dhx</groupId>
         <artifactId>boot-dev</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
     </parent>
-    <groupId>cn.dhx</groupId>
+<!--    <groupId>cn.dhx</groupId>-->
     <artifactId>netty</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>netty</name>
