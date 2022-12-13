@@ -61,7 +61,7 @@ public class ParameterController2 {
 
 
     // 127.0.0.1:8001/requestBody2?id=1&name=aa&age=18
-    @PostMapping("/requestBody2")
+    @GetMapping("/requestBody2")
     public void fun4(User user) {
         System.out.println(user.toString());
     }

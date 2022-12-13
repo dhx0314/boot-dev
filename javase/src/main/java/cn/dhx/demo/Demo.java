@@ -1,20 +1,142 @@
 package cn.dhx.demo;
 
-import cn.dhx.util.ConverterUtil;
-import cn.dhx.util.NetByteUtil;
+import cn.dhx.util.DateToolUtil;
+import cn.dhx.util.JsonUtil;
+import cn.dhx.util.MySecurityUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.symmetric.AES;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.Test;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
+import javax.crypto.KeyGenerator;
+import java.io.File;
+import java.io.RandomAccessFile;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Demo {
 
     private final ConcurrentLinkedQueue<byte[]> pool = new ConcurrentLinkedQueue<>();
+
+
+    @Test
+    public void fun22test() throws Exception{
+
+//        String filePath="D:\\a\\audio-dtmf\\Dtmf-0.wav";
+        String filePath="/home/wilcom/media-processor-service/dtmf/Dtmf-0.wav";
+        File file = new File(filePath);
+        long length = file.length();
+        System.out.println(length);
+        RandomAccessFile raf = new RandomAccessFile(filePath, "r");
+        long length1 = raf.length();
+        System.out.println(length1);
+        raf.seek(58);
+
+        List<byte[]> blists = new ArrayList<>();
+        byte[] bs1 = new byte[160];
+        while (raf.read(bs1)!=-1) {
+            blists.add(bs1);
+        }
+
+        System.out.println(blists.size());
+
+
+
+//        String s="ZSmTRKlczDaGxa1UTKghZUh7zpR7kVUv8xVUpZThqEWB4sqBcmKRSxUoaZ2D1eYYRnhZ7PF/iel/XVEl5MOmyCjnYv1OEQi8kOfGJgmhXZBDD/Tsk3qZAVUxitMs6M5l";
+//
+//        String decode1 = MySecurityUtil.decode(s);
+//        System.out.println(decode1);
+
+
+         Long l;
+//        System.out.println(null == l);
+//        System.out.println(0==l);
+//        String key="wilcomwilcom@123";
+//        byte[] bytes = key.getBytes(StandardCharsets.UTF_8);
+//        AES aes = SecureUtil.aes(bytes);
+//        HashMap<String, String> map = new HashMap<>();
+//        map.put("key","1");
+//        map.put("value","1");
+//        String s = JsonUtil.toString(map);
+//        String hello = aes.encryptBase64(s);
+//        System.out.println(hello);
+
+
+//        osName=properties.getProperty("os.name");
+
+//        LinkedHashMap<String, String> hashMap = new LinkedHashMap<>();
+//        hashMap.put("11","22");
+//        hashMap.put("11a","22");
+//        hashMap.put("11ac","22");
+//        System.out.println(hashMap);
+//        Iterator<Map.Entry<String, String>> iterator = hashMap.entrySet().iterator();
+//        while (iterator.hasNext()) {
+//            iterator.next();
+//            iterator.remove();
+//            break;
+//        }
+//        System.out.println(hashMap);
+
+
+//        String password="wilcom1234";
+//        byte[] keyBytes = Arrays.copyOf(password.getBytes("ASCII"), password.length());
+//        KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+//        keyGen.init(128);//128,192,256三者选一
+//        Key key = keyGen.generateKey();
+//        System.out.println("Finish generating DES key");
+//        // save key
+//        byte[] encoded = key.getEncoded();
+//        System.out.println(new String(encoded));
+//        System.out.println(encoded.length);
+//        System.out.println(new String(keyBytes));
+    }
+
+    @Test
+    public void funae() throws InterruptedException {
+        ArrayBlockingQueue<String> arrayBlockingQueue = new ArrayBlockingQueue<>(100);
+        arrayBlockingQueue.add("1");
+        arrayBlockingQueue.add("2");
+        arrayBlockingQueue.add("3");
+        arrayBlockingQueue.add("4");
+        String take = arrayBlockingQueue.take();
+        System.out.println(take);
+
+        System.out.println("------------");
+        for (String s : arrayBlockingQueue) {
+            System.out.println(s);
+        }
+
+    }
+
+
+
+    @Test
+    public void fun1aa232() {
+        int a=1767224700;
+//        Date date = DateToolUtil.;
+//        LocalDateTime localDateTime = DateToolUtil.dateToLocalDateTime(date);
+
+        Date date = DateToolUtil.timeStampToDate(a);
+        LocalDateTime localDateTime = DateToolUtil.dateToLocalDateTime(date);
+        System.out.println(localDateTime);
+
+        String s = DateToolUtil.localDateTimeToStr(localDateTime);
+        Long aLong = DateToolUtil.strToTimeStamp(s);
+        System.out.println(aLong);
+    }
+
+
+
+
+
 
     @Test
     public void fun2a() {
