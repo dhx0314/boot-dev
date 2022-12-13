@@ -59,7 +59,7 @@ public class Test1 {
         System.out.println(s);
 
         int sum = 0;
-        for (MyArray myArray : myArrays2) {
+        for (MyArray myArray : myArraysAll) {
             Integer i = myArray.getI();
             if (null != i) {
                 sum = sum + i;
@@ -87,7 +87,7 @@ public class Test1 {
         ArrayList<MyArray> myArrays = myArray.getMyArrays();
         if (myArrays != null) {
             for (MyArray array : myArrays) {
-                Integer anInt = getInt(myArray);
+                Integer anInt = getInt(array);
                 sum = sum + anInt;
             }
         }
