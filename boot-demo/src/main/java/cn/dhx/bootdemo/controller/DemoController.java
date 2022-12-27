@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
@@ -23,6 +25,18 @@ public class DemoController {
 
     @Value("${aa.cc}")
     private boolean flag;
+
+    @PostMapping("/test23")
+    public String fun23(HttpServletRequest request)  throws Exception{
+        BufferedReader bufferReader = new BufferedReader(request.getReader());
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ((line = bufferReader.readLine()) != null) {
+            sb.append(line);
+        }
+        log.info("data {}",sb.toString());
+        return sb.toString();
+    }
 
 
     @GetMapping("/test")

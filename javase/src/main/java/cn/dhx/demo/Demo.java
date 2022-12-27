@@ -18,8 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Demo {
@@ -28,10 +27,39 @@ public class Demo {
 
 
     @Test
-    public void fun22test() throws Exception{
+    public void fun2eawiueh() {
+
+        int corePoolSize = 2;
+        int maximumPoolSize = 2;
+        long keepAliveTime = 60L;
+        LinkedBlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<Runnable>();
+//        Executor cachedThread = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.MILLISECONDS,
+//                workQueue);
+        Executor cachedThread=Executors.newFixedThreadPool(2);
+        for (int i = 0; i < 22; i++) {
+            System.out.println("=====" + i);//设置i==3的时候或20的时候断点生效
+            cachedThread.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        //此处等待10秒，用于观察各参数值的变化
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("threadName:" + Thread.currentThread().getName());
+                }
+            });
+        }
+
+    }
+
+
+    @Test
+    public void fun22test() throws Exception {
 
 //        String filePath="D:\\a\\audio-dtmf\\Dtmf-0.wav";
-        String filePath="/home/wilcom/media-processor-service/dtmf/Dtmf-0.wav";
+        String filePath = "/home/wilcom/media-processor-service/dtmf/Dtmf-0.wav";
         File file = new File(filePath);
         long length = file.length();
         System.out.println(length);
@@ -42,12 +70,11 @@ public class Demo {
 
         List<byte[]> blists = new ArrayList<>();
         byte[] bs1 = new byte[160];
-        while (raf.read(bs1)!=-1) {
+        while (raf.read(bs1) != -1) {
             blists.add(bs1);
         }
 
         System.out.println(blists.size());
-
 
 
 //        String s="ZSmTRKlczDaGxa1UTKghZUh7zpR7kVUv8xVUpZThqEWB4sqBcmKRSxUoaZ2D1eYYRnhZ7PF/iel/XVEl5MOmyCjnYv1OEQi8kOfGJgmhXZBDD/Tsk3qZAVUxitMs6M5l";
@@ -56,7 +83,7 @@ public class Demo {
 //        System.out.println(decode1);
 
 
-         Long l;
+        Long l;
 //        System.out.println(null == l);
 //        System.out.println(0==l);
 //        String key="wilcomwilcom@123";
@@ -117,10 +144,9 @@ public class Demo {
     }
 
 
-
     @Test
     public void fun1aa232() {
-        int a=1767224700;
+        int a = 1767224700;
 //        Date date = DateToolUtil.;
 //        LocalDateTime localDateTime = DateToolUtil.dateToLocalDateTime(date);
 
@@ -134,29 +160,24 @@ public class Demo {
     }
 
 
-
-
-
-
     @Test
     public void fun2a() {
 
         byte[] voiceBytes = new byte[320];
         for (int i = 0; i < 100; i++) {
-            voiceBytes[i]= (byte) i;
+            voiceBytes[i] = (byte) i;
         }
         byte[] bytes = new byte[320];
-        System.arraycopy(voiceBytes,0,bytes,0,voiceBytes.length);
+        System.arraycopy(voiceBytes, 0, bytes, 0, voiceBytes.length);
         for (byte aByte : bytes) {
             System.out.println(aByte);
         }
     }
 
 
-
     @Test
     public void fun22() {
-        for (int i = 0; i <100; i++) {
+        for (int i = 0; i < 100; i++) {
             byte[] bytes = new byte[320];
             pool.add(bytes);
 //            System.out.println(pool.size());
@@ -175,7 +196,6 @@ public class Demo {
     }
 
 
-
     @Test
     public void fun1aa() {
 //        byte[] headerOfPCMU = WaveFIle.headerOfPCMU;
@@ -190,7 +210,7 @@ public class Demo {
 
         byte[] bytes = new byte[172];
         for (int i = 0; i < bytes.length; i++) {
-            bytes[i]=1;
+            bytes[i] = 1;
         }
         System.out.println(Arrays.toString(bytes));
         byte[] bytes1 = new byte[160];
@@ -202,11 +222,10 @@ public class Demo {
         System.out.println(Arrays.toString(bytes1));
     }
 
-    private String byteToHexString(byte[] bytes)
-    {
+    private String byteToHexString(byte[] bytes) {
         StringBuilder resultHexString = new StringBuilder();
         String tempStr;
-        for (byte b: bytes) {
+        for (byte b : bytes) {
             //这里需要对b与0xff做位与运算，
             //若b为负数，强制转换将高位位扩展，导致错误，
             //故需要高位清零
@@ -221,29 +240,6 @@ public class Demo {
         }
         return resultHexString.toString();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public static void main(String[] args) throws JsonProcessingException {
@@ -276,8 +272,8 @@ public class Demo {
         AtomicInteger atomicInteger = new AtomicInteger(1);
 
         for (int i = 0; i < 10; i++) {
-        int andIncrement = atomicInteger.getAndIncrement();
-        System.out.println(andIncrement);
+            int andIncrement = atomicInteger.getAndIncrement();
+            System.out.println(andIncrement);
         }
         System.out.println(atomicInteger);
         System.out.println(atomicInteger);

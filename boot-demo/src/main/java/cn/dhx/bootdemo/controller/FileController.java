@@ -12,16 +12,16 @@ import java.util.HashMap;
 public class FileController {
 
 
-    @PostMapping("/test")
-    public String mkdirs(@RequestBody HashMap<String,String> data) {
-        String path = data.get("path");
-        log.info("path {}",path);
-        File file = new File(path);
-        if (!file.exists()) {
-            boolean mkdirs = file.mkdirs();
-            log.info("mkdirs {}",mkdirs);
-        }
-        log.info("file {}",file.isDirectory());
-        return "ok";
-    }
+//    @PostMapping("/test")
+//    public String mkdirs(@RequestBody HashMap<String,String> data) {
+//        String path = data.get("path");
+//        log.info("path {}",path);
+//        File file = new File(path);
+//        if (!file.exists()) {
+//            boolean mkdirs = file.mkdirs();
+//            log.info("mkdirs {}",mkdirs);
+//        }
+//        log.info("file {}",file.isDirectory());
+//        return "ok";
+//    }
 }
