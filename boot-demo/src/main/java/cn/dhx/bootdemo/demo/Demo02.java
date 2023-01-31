@@ -1,20 +1,31 @@
 package cn.dhx.bootdemo.demo;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Demo02 {
     public static void main(String[] args) {
 
-//        boolean isAgent=true;
-//        String owner = isAgent ? "AGENT" : "CUSTOM";
-//        String s = Boolean.toString(isAgent);
-//        System.out.println(s);
-//        String name = TransferModeEnum.MRCP.name();
-//        System.out.println(name);
-        ArrayList<String> strings = new ArrayList<>();
-//        strings = null;
-        if (strings != null) {
-            System.out.println("--------------");
-        }
+
+        HashMap<String, String> stringStringHashMap = new HashMap<>();
+
+//        stringStringHashMap.put("1","a");
+//        stringStringHashMap.put("2","b");
+//        stringStringHashMap.put("3","c");
+
+        Collection<String> values = stringStringHashMap.values();
+
+
+        ArrayList<String> strings = new ArrayList<>(values);
+
+
+
+
     }
+
+
 }

@@ -30,6 +30,12 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
 
     }
 
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("channelActive："+ctx.channel().id().asLongText());
+    }
+
+
     //每个channel都有一个唯一的id值
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {

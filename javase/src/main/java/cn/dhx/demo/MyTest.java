@@ -3,6 +3,7 @@ package cn.dhx.demo;
 
 import cn.dhx.util.DateToolUtil;
 import cn.dhx.util.NetByteUtil;
+import cn.dhx.util.util.ListUtils;
 import cn.hutool.core.util.StrUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -27,6 +28,23 @@ import java.util.stream.Stream;
 
 public class MyTest {
 
+
+    @Test
+    public void testList(){
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("1");
+        strings.add("2");
+        strings.add("3");
+//        strings.add("4");
+//        strings.add("5");
+//        strings.add("6");
+//        strings.add("7");
+
+        List<List<String>> lists = ListUtils.splitListByGroupSize(strings, 2);
+        for (List<String> list : lists) {
+            System.out.println(list);
+        }
+    }
 
     @Test
     public void fun1data() {
