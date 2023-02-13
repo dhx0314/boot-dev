@@ -1,7 +1,7 @@
-package cn.dhx.redispool.jedisconfig.jedis;
+package cn.dhx.redispool.old.jedisconfig.jedis;
 
-import cn.dhx.redispool.clusterpool.ClusterPool;
-import cn.dhx.redispool.clusterpool.ClusterPoolConfiguration;
+import cn.dhx.redispool.old.jedisconfig.clusterpool.ClusterPool;
+import cn.dhx.redispool.old.jedisconfig.clusterpool.ClusterPoolConfiguration;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 

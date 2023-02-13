@@ -1,4 +1,4 @@
-package cn.dhx.redispool.jedisconfig;
+package cn.dhx.redispool.old.jedisconfig;
 
 import cn.dhx.redispool.entity.RedisAgent;
 import com.google.gson.JsonObject;

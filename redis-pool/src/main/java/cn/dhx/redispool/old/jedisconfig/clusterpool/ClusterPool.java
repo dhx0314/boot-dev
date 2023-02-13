@@ -1,4 +1,4 @@
-package cn.dhx.redispool.clusterpool;
+package cn.dhx.redispool.old.jedisconfig.clusterpool;
 
 import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.AbandonedConfig;

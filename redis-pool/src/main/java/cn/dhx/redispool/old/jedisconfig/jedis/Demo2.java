@@ -1,6 +1,6 @@
-package cn.dhx.redispool.jedisconfig.jedis;
+package cn.dhx.redispool.old.jedisconfig.jedis;
 
-import cn.dhx.redispool.jedisconfig.RedisCluster;
+import cn.dhx.redispool.old.jedisconfig.RedisCluster;
 import redis.clients.jedis.JedisCluster;
 
 import java.util.concurrent.CountDownLatch;

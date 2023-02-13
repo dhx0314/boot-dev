@@ -39,13 +39,42 @@ class RedisPoolApplicationTests {
 
     @Test
     public void fun1test() {
-        Stu stu = new Stu();
-        stu.setAni("123");
-        stu.setDnis("456");
-        redisTemplate.opsForHash().put("a","c",JsonUtil.toString(stu));
-        Object o = redisTemplate.opsForHash().get("a", "c");
-        Stu stu1 = JsonUtil.toObject((String) o, Stu.class);
-        System.out.println(stu1);
+
+//        boolean a = redisLock.lockTimeout("a", 10);
+        if (true) {
+            try {
+                log.info("get lock");
+            } catch (Exception e) {
+                log.info("Exception ",e);
+            }finally {
+//                redisLock.unlock("a");
+            }
+        }
+
+        new Thread(()->{
+
+            while (true) {
+                boolean a1 = redisLock.lock("a");
+                log.info("name {} b {}",Thread.currentThread().getName(),a1);
+                if (a1) {
+//                    break;
+                }else {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+        try {
+            TimeUnit.SECONDS.sleep(20);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
 
 
     }

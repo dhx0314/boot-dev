@@ -1,12 +1,16 @@
 package cn.dhx.redispool.redisson;
 
+import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.TimeUnit;
+
 
 @Component
+@Slf4j
 public class RedisLock {
 
 
@@ -23,10 +27,23 @@ public class RedisLock {
         return fairLock.tryLock();
     }
 
+    public boolean lockTimeout(String deviceId,int time) {
+        String key = generateKey(STATION_LOCK_TAG, deviceId);
+        RLock a = redissonClient.getFairLock(key);
+        try {
+            boolean b = a.tryLock(0, time, TimeUnit.SECONDS);
+            return b;
+        } catch (InterruptedException e) {
+            log.error("lockTimeout ",e);
+        }
+        return false;
+    }
+
     public void unlock(String deviceId) {
         String key = generateKey(STATION_LOCK_TAG, deviceId);
         RLock fairLock = redissonClient.getFairLock(key);
         fairLock.unlock();
+        log.info("unlock");
     }
 
 

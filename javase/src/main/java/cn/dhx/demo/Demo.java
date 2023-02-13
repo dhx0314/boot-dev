@@ -3,6 +3,8 @@ package cn.dhx.demo;
 import cn.dhx.util.DateToolUtil;
 import cn.dhx.util.JsonUtil;
 import cn.dhx.util.MySecurityUtil;
+import cn.hutool.core.date.DateUnit;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.symmetric.AES;
@@ -12,10 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
 import javax.crypto.KeyGenerator;
+import javax.management.DescriptorKey;
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.security.Timestamp;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.*;
@@ -25,7 +29,73 @@ public class Demo {
 
     private final ConcurrentLinkedQueue<byte[]> pool = new ConcurrentLinkedQueue<>();
 
+//    private static AtomicLong counter = new AtomicLong(101 0000 0000);
+//    public static long addOne() {
+//        return counter.incrementAndGet();
+//    }
 
+
+    @Test
+    public void funcopy() {
+        CopyOnWriteArrayList<String> strings = new CopyOnWriteArrayList<>();
+//        ArrayList<String> strings = new ArrayList<>();
+        strings.add("1");
+        strings.add("2");
+        strings.add("3");
+        strings.add("4");
+        strings.add("5");
+        strings.add("6");
+        System.out.println(strings);
+        String remove = strings.remove(0);
+        System.out.println(remove);
+        String remove1 = strings.remove(1);
+        System.out.println(remove1);
+
+//        for (String string : strings) {
+//            System.out.println(string);
+//        }
+        System.out.println(strings);
+    }
+
+
+    @Test
+    public void fun1aaa() {
+        LinkedHashMap<String, String> hashMap = new LinkedHashMap<>();
+//        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("22113213","bb");
+        hashMap.put("1","aa");
+
+        hashMap.put("3","cc");
+        ArrayList<String> strings = new ArrayList<>(hashMap.values());
+        System.out.println(strings);
+
+        Optional<Map.Entry<String, String>> first = hashMap.entrySet().stream().findFirst();
+        if (first.isPresent()) {
+            System.out.println("------");
+            System.out.println(first.get().getValue());
+        }
+    }
+
+
+    @Test
+    public void fun2aaaa() {
+        LinkedHashMap<String, Integer> lmap = new LinkedHashMap<String, Integer>();
+        lmap.put("语文", 1);
+        lmap.put("数学", 2);
+        lmap.put("英语", 3);
+        lmap.put("历史", 4);
+        lmap.put("政治", 5);
+        lmap.put("地理", 6);
+        lmap.put("生物", 7);
+        lmap.put("化学", 8);
+        for(Map.Entry<String, Integer> entry : lmap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+
+
+
+    }
 
 
     @Test

@@ -1,6 +1,6 @@
-package cn.dhx.redispool.jedisconfig.jedis;
+package cn.dhx.redispool.old.jedisconfig.jedis;
 
-import cn.dhx.redispool.jedisconfig.RedisPool;
+import cn.dhx.redispool.old.jedisconfig.RedisPool;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
