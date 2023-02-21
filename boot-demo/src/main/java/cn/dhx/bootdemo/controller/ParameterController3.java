@@ -13,7 +13,8 @@ import java.util.Map;
 @RestController
 @Slf4j
 @CrossOrigin
-public class ParameterController2 {
+@RequestMapping("/hi3")
+public class ParameterController3 {
 
 
 

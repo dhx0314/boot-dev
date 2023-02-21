@@ -21,3 +21,5 @@ maps: "{'key1': 'value1', 'key2': 'value2'}"
 #  endpoint:
 #   health:
 #    show-details: always
+ftp:
+  host: 127.0.0.1

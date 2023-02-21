@@ -1,90 +1,70 @@
 package cn.dhx.bootdemo.aop;
 
-import cn.dhx.bootdemo.annotation.Log;
-import cn.dhx.bootdemo.entity.SysLog;
-import cn.dhx.bootdemo.http.HttpContextUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-//import sun.rmi.runtime.Log;
 
-import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Method;
-import java.util.Date;
-
+/**
+ * @author : zhouhailin
+ */
+@Slf4j
 @Aspect
 @Component
-@Slf4j
 public class LogAspect {
-//    @Autowired
-//    private SysLogDao sysLogDao;
 
+
+    /**
+     * log pointcut
+     */
     @Pointcut("@annotation(cn.dhx.bootdemo.annotation.Log)")
-    public void pointcut() { }
-
-    @Around("pointcut()")
-    public Object around(ProceedingJoinPoint point) {
-        Object result = null;
-        long beginTime = System.currentTimeMillis();
-        try {
-            // 执行方法
-            result = point.proceed();
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
-        // 执行时长(毫秒)
-        long time = System.currentTimeMillis() - beginTime;
-        // 保存日志
-        saveLog(point, time);
-        return result;
+    public void log() {
     }
 
-    private void saveLog(ProceedingJoinPoint joinPoint, long time) {
-        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        Method method = signature.getMethod();
-        SysLog sysLog = new SysLog();
-        Log logAnnotation = method.getAnnotation(Log.class);
-        if (logAnnotation != null) {
-            // 注解上的描述
-            sysLog.setOperation(logAnnotation.value());
-        }
-        // 请求的方法名
-        String className = joinPoint.getTarget().getClass().getName();
-        String methodName = signature.getName();
-        sysLog.setMethod(className + "." + methodName + "()");
-        // 请求的方法参数值
+    /**
+     * 前置通知，执行目标方法之前，执行的操作
+     *
+     * @param joinPoint 切面对象
+     */
+    @Before("log()")
+    public void doBefore(JoinPoint joinPoint) {
+        doLog(joinPoint);
+    }
+
+    /**
+     * 日志输出
+     *
+     * @param joinPoint 切面对象
+     */
+    private void doLog(JoinPoint joinPoint) {
+        Signature signature = joinPoint.getSignature();
+        MethodSignature methodSignature = (MethodSignature) signature;
+        StringBuilder sb = new StringBuilder();
+        String[] parameterNames = methodSignature.getParameterNames();
         Object[] args = joinPoint.getArgs();
-        // 请求的方法参数名称
-        LocalVariableTableParameterNameDiscoverer u = new LocalVariableTableParameterNameDiscoverer();
-
-
-
-        String[] paramNames = u.getParameterNames(method);
-        if (args != null && paramNames != null) {
-            String params = "";
-            for (int i = 0; i < args.length; i++) {
-                params += "  " + paramNames[i] + ": " + args[i];
-            }
-            sysLog.setParams(params);
+        for (int i = 0; i < parameterNames.length; i++) {
+            sb.append(parameterNames[i]).append(" : ").append(args[i]).append(", ");
         }
-        // 获取request
-        HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
-        // 设置IP地址
-//        sysLog.setIp(IpUtils.getIpAddr(request));
-        sysLog.setIp("127.0.0.1");
-        // 模拟一个用户名
-        sysLog.setUsername("mrbird");
-        sysLog.setTime((int) time);
-        sysLog.setCreateTime(new Date());
-        // 保存系统日志
-        log.info(sysLog.toString());
-//        sysLogDao.saveSysLog(sysLog);
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 2);
+        }
+        getLogger(joinPoint).info("[log] [{}] {}", joinPoint.getSignature().getName(), sb);
     }
-}
 
+    /**
+     * 根据切面的方法获取Logger
+     *
+     * @param joinPoint 切面对象
+     * @return logger
+     */
+    private Logger getLogger(JoinPoint joinPoint) {
+        return LoggerFactory.getLogger(joinPoint.getTarget().getClass());
+    }
+
+}

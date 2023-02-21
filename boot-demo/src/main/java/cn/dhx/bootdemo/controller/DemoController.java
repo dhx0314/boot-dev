@@ -1,6 +1,7 @@
 package cn.dhx.bootdemo.controller;
 
 
+import cn.dhx.bootdemo.annotation.Log;
 import cn.dhx.bootdemo.entity.User2;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,7 +40,7 @@ public class DemoController {
     }
 
 
-    @GetMapping("/test")
+    @GetMapping("/test2")
     public void fun22() throws UnsupportedEncodingException {
         String s = new String(string.getBytes("ISO-8859-1"), "UTF-8");
 
@@ -116,7 +117,8 @@ public class DemoController {
 
 
 
-    @GetMapping("/hello")
+    @GetMapping("/hello2233")
+    @Log
     public Object fun1() {
 
         log.info("---------------");

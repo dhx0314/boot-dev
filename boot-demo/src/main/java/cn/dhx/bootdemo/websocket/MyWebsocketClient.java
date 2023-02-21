@@ -18,26 +18,26 @@ public class MyWebsocketClient extends WebSocketClient {
 
     public MyWebsocketClient(URI serverUri) {
         super(serverUri);
-        this.websocketUri=serverUri.toString();
+        this.websocketUri = serverUri.toString();
     }
 
     @Override
     public void onOpen(ServerHandshake handshakes) {
-        log.info("websocket {} open",websocketUri);
+        log.info("websocket {} open", websocketUri);
     }
 
     @Override
     public void onMessage(String message) {
-        log.info("websocket message {}",message);
+        log.info("websocket message {}", message);
     }
 
     @Override
     public void onClose(int code, String reason, boolean remote) {
-        log.info("websocket {} close",websocketUri);
+        log.info("websocket {} close", websocketUri);
     }
 
     @Override
     public void onError(Exception ex) {
-        log.error("websocket {} error",websocketUri);
+        log.error("websocket {} error", websocketUri);
     }
 }

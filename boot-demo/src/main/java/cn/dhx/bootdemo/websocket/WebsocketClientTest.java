@@ -7,7 +7,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @Slf4j
-public class Test {
+public class WebsocketClientTest {
 
     public static void main(String[] args) throws URISyntaxException {
         String path = "ws://127.0.0.1:8091/websocket";

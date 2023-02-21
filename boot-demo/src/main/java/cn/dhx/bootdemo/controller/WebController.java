@@ -1,5 +1,6 @@
 package cn.dhx.bootdemo.controller;
 
+import cn.dhx.bootdemo.annotation.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -14,6 +15,7 @@ import java.util.Map;
 public class WebController {
 
     @PostMapping("/mono")
+    @Log
     public Mono<HashMap> map(@RequestBody String s) {
         log.info("s {}",s);
         HashMap<String, String> hashMap = new HashMap<>();

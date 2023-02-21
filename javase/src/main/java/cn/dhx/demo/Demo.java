@@ -36,6 +36,14 @@ public class Demo {
 
 
     @Test
+    public void funwaeohfeawo() {
+        int i = 4 % 5;
+        System.out.println(i);
+    }
+
+
+
+    @Test
     public void funcopy() {
         CopyOnWriteArrayList<String> strings = new CopyOnWriteArrayList<>();
 //        ArrayList<String> strings = new ArrayList<>();
