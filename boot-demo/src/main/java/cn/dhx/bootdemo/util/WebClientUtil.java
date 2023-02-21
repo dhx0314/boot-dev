@@ -13,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 public class WebClientUtil {
+
     private static final Map<String, WebClient> webClients = new ConcurrentHashMap<>();
 
     private static final int TIMEOUT = 5000;
