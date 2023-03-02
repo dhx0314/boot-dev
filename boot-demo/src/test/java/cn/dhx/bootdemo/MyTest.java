@@ -3,6 +3,7 @@ package cn.dhx.bootdemo;
 
 import cn.dhx.bootdemo.entity.Filedetail;
 import cn.dhx.bootdemo.entity.MyDetial;
+import cn.dhx.bootdemo.util.HostUtil;
 import cn.dhx.bootdemo.util.JasyptUtil;
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.Test;
@@ -47,8 +48,8 @@ public class MyTest {
 
     @Test
     public void fun122() {
-        String aa = encryptor.encrypt("laihu123");
-        System.out.println(aa);
+        String hostName = HostUtil.getHostName();
+        System.out.println(hostName);
 //        redisTemplate.opsForValue().set("k","v");
     }
 
