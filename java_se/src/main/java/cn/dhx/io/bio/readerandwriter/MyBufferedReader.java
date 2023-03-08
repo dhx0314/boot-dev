@@ -1,9 +1,8 @@
-package cn.dhx.io.readerandwriter;
+package cn.dhx.io.bio.readerandwriter;
 
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class MyBufferedReader {

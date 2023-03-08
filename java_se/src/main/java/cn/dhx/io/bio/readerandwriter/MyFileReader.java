@@ -1,8 +1,7 @@
-package cn.dhx.io.readerandwriter;
+package cn.dhx.io.bio.readerandwriter;
 
 import org.junit.Test;
 
-import java.io.File;
 import java.io.FileReader;
 
 public class MyFileReader {

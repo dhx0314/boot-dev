@@ -1,9 +1,8 @@
-package cn.dhx.io.readerandwriter;
+package cn.dhx.io.bio.readerandwriter;
 
 import org.junit.Test;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 
 public class MyBufferedWriter {
 

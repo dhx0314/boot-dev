@@ -1,9 +1,8 @@
-package cn.dhx.io.inputstreamandoutstream;
+package cn.dhx.io.bio.inputstreamandoutstream;
 
 import cn.dhx.demo.Stu;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 

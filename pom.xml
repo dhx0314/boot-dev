@@ -28,7 +28,7 @@
         <module>mq</module>
         <module>boot-demo</module>
         <module>netty-vocie</module>
-        <module>javase</module>
+        <module>java_se</module>
         <module>sharding-jdbc</module>
         <module>common</module>
         <module>boot</module>

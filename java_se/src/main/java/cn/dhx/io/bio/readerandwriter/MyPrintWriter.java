@@ -1,9 +1,8 @@
-package cn.dhx.io.readerandwriter;
+package cn.dhx.io.bio.readerandwriter;
 
 import org.junit.Test;
 
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 public class MyPrintWriter {

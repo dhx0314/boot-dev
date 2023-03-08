@@ -1,4 +1,4 @@
-package cn.dhx.io;
+package cn.dhx.io.bio;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package cn.dhx.io;
+package cn.dhx.io.bio;
 
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ public class MyFile {
 
     @Test
     public void fun1() throws IOException {
-        File file = new File("D:\\a2\\a\\a1.txt");
+        File file = new File("a.txt");
         file.createNewFile();
     }
 
@@ -29,7 +29,7 @@ public class MyFile {
 
     @Test
     public void fun4() throws IOException {
-        File file = new File("D:\\a2\\a\\a1.txt");
+        File file = new File("java_se/src/main/java/cn/dhx/io/bio/file/a.txt");
         //绝对路径
         System.out.println(file.getAbsolutePath());//D:\a2\a\a1.txt
         //父目录

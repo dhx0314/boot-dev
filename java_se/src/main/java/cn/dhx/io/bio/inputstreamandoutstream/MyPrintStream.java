@@ -1,8 +1,7 @@
-package cn.dhx.io.inputstreamandoutstream;
+package cn.dhx.io.bio.inputstreamandoutstream;
 
 import org.junit.Test;
 
-import java.io.IOException;
 import java.io.PrintStream;
 
 public class MyPrintStream {
