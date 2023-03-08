@@ -1,18 +1,17 @@
 package cn.dhx.util.util;
 
 
-
 import jcifs.UniAddress;
 import jcifs.smb.*;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.junit.Test;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 
 /**
- *
  * @author weizhaohui
- *
  */
 public final class SambaUtils {
 
@@ -57,21 +56,28 @@ public final class SambaUtils {
                 String remoteSmbFileName = remoteSmbFile.getName();
 
                 System.out.println(remoteSmbFileName);
-                if (1 == 1) {
-                    return;
-                }
+
 
                 // 本地文件由本地目录，路径分隔符，文件名拼接而成
                 File localFile = new File(localDir + File.separator + remoteSmbFileName);
 
-                // 如果路径不存在,则创建
-                File parentFile = localFile.getParentFile();
-                if (!parentFile.exists()) {
-                    parentFile.mkdirs();
-                }
+
+
+//                System.out.println(s);
+//                if (1 == 1) {
+//                    return;
+//                }
+//                // 如果路径不存在,则创建
+//                File parentFile = localFile.getParentFile();
+//                if (!parentFile.exists()) {
+//                    parentFile.mkdirs();
+//                }
 
                 // 打开文件输入流，指向远程的smb服务器上的文件，特别注意，这里流包装器包装了SmbFileInputStream
                 in = new BufferedInputStream(new SmbFileInputStream(remoteSmbFile));
+//                String s = DigestUtils.md5Hex(new FileInputStream(new File(in)));
+                String s = DigestUtils.md5Hex(in);
+                System.out.println(s);
                 // 打开文件输出流，指向新创建的本地文件，作为最终复制到的目的地
                 out = new BufferedOutputStream(new FileOutputStream(localFile));
 
@@ -86,12 +92,12 @@ public final class SambaUtils {
                 e.printStackTrace();
 
             } finally {
-                try {
-                    out.close();
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    out.close();
+//                    in.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
             }
         }
     }
@@ -203,8 +209,8 @@ public final class SambaUtils {
         String password = "Wilcom021!";
 
         // samba服务器上的文件 注意不是linux服务器的文件路径，只是共享文件夹
-        String filePath = "/samba_share/";
-        String demo1LocalDir = "E:\\test\\";
+        String filePath = "/samba_share/a2.txt";
+        String demo1LocalDir = "C:\\D\\";
         UniAddress ua = UniAddress.getByName(host);
         NtlmPasswordAuthentication auth = new NtlmPasswordAuthentication(host, username, password);
         SmbSession.logon(ua, auth);// 验证是否能够成功登录
@@ -220,6 +226,19 @@ public final class SambaUtils {
 //        String url = "smb://" + host + filePathUpload;
 //        SambaUtils.uploadAllFileToSamba(url, auth, demo2LocalFile);
 //        System.out.println("upload success");
+    }
+
+
+    @Test
+    public void fun1() {
+        String str = "C:\\D\\a.txt";
+        try {
+            String s = DigestUtils.md5Hex(new FileInputStream(str));
+            System.out.println(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
