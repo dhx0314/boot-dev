@@ -22,7 +22,6 @@
         <module>design-pattern</module>
         <module>juc</module>
         <module>jvm</module>
-        <module>util</module>
         <module>redis-pool</module>
         <module>algorithm</module>
         <module>mq</module>

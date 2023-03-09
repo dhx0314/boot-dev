@@ -1,6 +1,7 @@
 package cn.dhx.boot.demo;
 
 import org.apache.commons.io.IOUtils;
+import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,5 +25,12 @@ public class NIO {
 
         InputStream inputStream = new FileInputStream("a");
         byte[] bytes = IOUtils.toByteArray(inputStream);
+    }
+
+
+    @Test
+    public void fun2() {
+
+
     }
 }

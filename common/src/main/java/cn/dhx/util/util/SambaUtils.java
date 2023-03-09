@@ -138,6 +138,7 @@ public final class SambaUtils {
             // 打开一个远程Samba文件输出流，作为复制到的目的地
             out = new BufferedOutputStream(new SmbFileOutputStream(remoteSmbFile));
 
+
             // 缓冲内存
             byte[] buffer = new byte[1024];
             while (in.read(buffer) != -1) {
