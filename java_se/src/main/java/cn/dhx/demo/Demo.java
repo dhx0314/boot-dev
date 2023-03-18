@@ -16,7 +16,11 @@ import org.junit.Test;
 import javax.crypto.KeyGenerator;
 import javax.management.DescriptorKey;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.security.Timestamp;
@@ -25,7 +29,30 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
+enum Color { BLACK, WHITE };
+
 public class Demo {
+
+
+    @Test
+    public void funwaseiuhawi() throws IOException {
+        FileOutputStream os = new FileOutputStream("abc.txt");
+        FileChannel channel = os.getChannel();
+        ByteBuffer buffer = ByteBuffer.allocate(26);
+
+        //向buffer 中写入26个英文字母
+        for(byte i= 65;i<65+26;i++){
+            buffer.put(i);
+        }
+        buffer.flip();
+        channel.write(buffer);
+        channel.close();
+    }
+
+
+
+
 
     private final ConcurrentLinkedQueue<byte[]> pool = new ConcurrentLinkedQueue<>();
 

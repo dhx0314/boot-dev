@@ -1,9 +1,8 @@
-package cn.dhx.io.bio;
+package cn.dhx.io.old.bio;
 
 import org.junit.Test;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 
 public class MyRandomAccessFile {

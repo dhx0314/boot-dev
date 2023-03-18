@@ -1,5 +1,7 @@
 package cn.dhx.bootdemo.demo;
 
+import cn.hutool.core.util.StrUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.net.InetAddress;
@@ -12,23 +14,26 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Demo01 {
 
-    public String long2String(long l1) {
-        Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(l1);
-        Date time = c.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String datef = sdf.format(time);
-        return datef;
-    }
 
     @Test
-    public void fun1() {
-        long l = System.currentTimeMillis();
-        System.out.println(long2String(l));
-        long add_8 = 24 * 3600 * 1000;
-        long l1 = l + add_8;
-        System.out.println(long2String(l1));
+    public void long2String() {
+        long time = new Date().getTime();
+        System.out.println(time);
+
+        long time2=time+5*60*1000;
+        System.out.println(time2);
+
+        long abs = Math.abs(time - time2);
+        System.out.println(abs);
+
+
+//        StrUtil.isBlank
+
+        StringUtils.isBlank()
     }
+
+
+
 
 
     @Test

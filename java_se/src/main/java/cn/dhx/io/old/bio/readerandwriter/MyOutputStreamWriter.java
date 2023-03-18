@@ -1,4 +1,4 @@
-package cn.dhx.io.bio.readerandwriter;
+package cn.dhx.io.old.bio.readerandwriter;
 
 import org.junit.Test;
 
