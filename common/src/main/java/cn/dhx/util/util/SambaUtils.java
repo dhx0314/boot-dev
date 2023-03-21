@@ -4,6 +4,7 @@ package cn.dhx.util.util;
 import jcifs.UniAddress;
 import jcifs.smb.*;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.junit.Test;
 
 import java.io.*;
@@ -240,6 +241,30 @@ public final class SambaUtils {
             e.printStackTrace();
         }
 
+    }
+
+
+
+    @Test
+    public void fun2() {
+
+
+//        String str2 = "smb://smbuser1:Wilcom021!@172.16.6.89/samba_share/a2.txt";
+
+
+        String smbFormat = "smb://%s:%s@%s";
+        String host = "172.16.6.89";
+        String username = "smbuser1";
+        String password = "Wilcom021!";
+        try {
+            String smb = String.format(smbFormat, username, password, host);
+            String filePath = smb + "/filepath/2023/03/10/17/a.wav";
+            BufferedInputStream in = new BufferedInputStream(new SmbFileInputStream(filePath));
+            FileOutputStream fileOutputStream = new FileOutputStream("a2.wav");
+            IOUtils.copy(in, fileOutputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
