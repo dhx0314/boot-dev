@@ -9,7 +9,9 @@ import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Demo01 {
@@ -17,19 +19,33 @@ public class Demo01 {
 
     @Test
     public void long2String() {
-        long time = new Date().getTime();
-        System.out.println(time);
+        CopyOnWriteArrayList<String> strings = new CopyOnWriteArrayList<>();
+        strings.add("1");
+        strings.add("2");
 
-        long time2=time+5*60*1000;
-        System.out.println(time2);
+        ArrayList<String> strings1 = new ArrayList<>(strings);
+//        strings.add("3");
+        strings.add("3");
+        System.out.println(strings);
+        System.out.println(strings1);
+        boolean remove = strings.removeAll(strings1);
+        System.out.println(strings);
 
-        long abs = Math.abs(time - time2);
-        System.out.println(abs);
+    }
 
 
-//        StrUtil.isBlank
+    @Test
+    public void fun2wuuu() {
+        ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>();
+        concurrentHashMap.put("aaa","2");
+        concurrentHashMap.put("bbb","2");
+        System.out.println(concurrentHashMap.size());
 
-        StringUtils.isBlank()
+        ConcurrentHashMap.KeySetView<String, String> strings = concurrentHashMap.keySet();
+        for (String string : strings) {
+            System.out.println(string);
+        }
+
     }
 
 
