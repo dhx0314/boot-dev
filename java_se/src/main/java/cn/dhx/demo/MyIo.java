@@ -34,5 +34,7 @@ public class MyIo {
             }
         }
         bufferedReader.close();
+
+        System.exit(0);
     }
 }

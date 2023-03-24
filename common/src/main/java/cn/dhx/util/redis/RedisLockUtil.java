@@ -1,4 +1,4 @@
-package cn.dhx.redispool.redisson;
+package cn.dhx.util.redis;
 
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
-
-@Component
+/**
+ * @Author daihongxin
+ * @create 2023/3/23 18:23
+ */
 @Slf4j
-public class RedisLock {
-
-
+@Component
+public class RedisLockUtil {
 
     private  static String  STATION_LOCK_TAG = "station_lock";
 
@@ -27,12 +28,24 @@ public class RedisLock {
         return fairLock.tryLock();
     }
 
-    public boolean lockTimeout(String deviceId,int time) {
+    public boolean lockTimeoutRelease(String deviceId,int timeOut) {
         String key = generateKey(STATION_LOCK_TAG, deviceId);
-        RLock a = redissonClient.getFairLock(key);
+        RLock fairLock = redissonClient.getFairLock(key);
         try {
-//            boolean b = a.tryLock(0, time, TimeUnit.SECONDS);
-            boolean b = a.tryLock(0, time, TimeUnit.SECONDS);
+            boolean b = fairLock.tryLock(0, timeOut, TimeUnit.SECONDS);
+            return b;
+        } catch (InterruptedException e) {
+            log.error("lockTimeout ",e);
+        }
+        return false;
+    }
+
+
+    public boolean lockTimeoutReleaseWait(String deviceId,int timeOut,int waitTime) {
+        String key = generateKey(STATION_LOCK_TAG, deviceId);
+        RLock fairLock = redissonClient.getFairLock(key);
+        try {
+            boolean b = fairLock.tryLock(waitTime, timeOut, TimeUnit.SECONDS);
             return b;
         } catch (InterruptedException e) {
             log.error("lockTimeout ",e);
@@ -61,5 +74,4 @@ public class RedisLock {
         }
         return builder.toString().toLowerCase();
     }
-
 }
