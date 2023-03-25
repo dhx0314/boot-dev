@@ -19,17 +19,12 @@ public class Demo01 {
 
     @Test
     public void long2String() {
-        CopyOnWriteArrayList<String> strings = new CopyOnWriteArrayList<>();
-        strings.add("1");
-        strings.add("2");
+        String str = "a20323f2-7de5-4a98-8ec6-9b234571fe2e.wav";
+        String str2 = "tmp_" + str;
+        System.out.println(str2);
+        String tmp = str2.replace("tmp_", "");
 
-        ArrayList<String> strings1 = new ArrayList<>(strings);
-//        strings.add("3");
-        strings.add("3");
-        System.out.println(strings);
-        System.out.println(strings1);
-        boolean remove = strings.removeAll(strings1);
-        System.out.println(strings);
+        System.out.println(tmp);
 
     }
 
@@ -37,8 +32,8 @@ public class Demo01 {
     @Test
     public void fun2wuuu() {
         ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>();
-        concurrentHashMap.put("aaa","2");
-        concurrentHashMap.put("bbb","2");
+        concurrentHashMap.put("aaa", "2");
+        concurrentHashMap.put("bbb", "2");
         System.out.println(concurrentHashMap.size());
 
         ConcurrentHashMap.KeySetView<String, String> strings = concurrentHashMap.keySet();
@@ -47,9 +42,6 @@ public class Demo01 {
         }
 
     }
-
-
-
 
 
     @Test
@@ -65,14 +57,14 @@ public class Demo01 {
 
     @Test
     public void fun3() {
-        byte[] voiceBytes=new byte[4];
-        voiceBytes[0]=1;
-        voiceBytes[1]=2;
-        voiceBytes[2]=3;
+        byte[] voiceBytes = new byte[4];
+        voiceBytes[0] = 1;
+        voiceBytes[1] = 2;
+        voiceBytes[2] = 3;
 
         byte[] voiceBytes2 = new byte[voiceBytes.length];
-        System.arraycopy(voiceBytes,0,voiceBytes2,0,voiceBytes2.length);
-        voiceBytes[1]=11;
+        System.arraycopy(voiceBytes, 0, voiceBytes2, 0, voiceBytes2.length);
+        voiceBytes[1] = 11;
 
         System.out.println(Arrays.toString(voiceBytes));
         System.out.println(Arrays.toString(voiceBytes2));
