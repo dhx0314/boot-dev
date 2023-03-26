@@ -18,5 +18,13 @@ public class ClassInitTest2 {
     public static void main(String[] args) {
         ClassInitTest2 classInitTest2 = new ClassInitTest2();
         ClassInitTest2 classInitTest3 = new ClassInitTest2();
+
+        try {
+            Class<?> aClass = Class.forName("java.lang.String");
+            ClassLoader classLoader = aClass.getClassLoader();
+            System.out.println(classLoader);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
