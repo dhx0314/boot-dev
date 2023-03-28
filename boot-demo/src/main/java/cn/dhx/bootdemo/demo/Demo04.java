@@ -5,10 +5,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Demo04 {
 
     public static void main(String[] args) {
+        String filePath="2023/03/24/36541931-25d5-4da0-b12b-ffa455227b1f_1.wav";
 
-        ConcurrentHashMap<String, String> hashMap = new ConcurrentHashMap<>();
-        String put = hashMap.put("k1", "v1");
-        String k1 = hashMap.remove("k1");
-        System.out.println(k1);
+        String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
+        String endPath = filePath.substring(0, filePath.lastIndexOf("/"));
+        System.out.println(fileName);
+        System.out.println(endPath);
     }
 }

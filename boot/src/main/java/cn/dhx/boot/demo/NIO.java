@@ -20,9 +20,6 @@ public class NIO {
 
     public static void main(String[] args) throws IOException {
         FileChannel open = FileChannel.open(Paths.get(""), StandardOpenOption.READ);
-
-//        FileOutputStream fileOutputStream = new FileOutputStream();
-
         InputStream inputStream = new FileInputStream("a");
         byte[] bytes = IOUtils.toByteArray(inputStream);
     }

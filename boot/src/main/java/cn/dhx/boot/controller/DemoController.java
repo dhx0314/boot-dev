@@ -3,6 +3,7 @@ package cn.dhx.boot.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,12 @@ import java.util.HashMap;
 @Slf4j
 public class DemoController {
 
+
+    @GetMapping("hi")
+    public Object hi() {
+        log.info("aa");
+        return "aa";
+    }
 
     @PostMapping("md5")
     public Object md5(@RequestBody HashMap<String, String> hashMap) {

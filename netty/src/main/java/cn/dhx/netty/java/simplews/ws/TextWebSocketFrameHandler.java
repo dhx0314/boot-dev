@@ -10,10 +10,12 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.concurrent.GlobalEventExecutor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 
 
+@Slf4j
 //处理文本协议数据，处理TextWebSocketFrame类型的数据，websocket专门处理文本的frame就是TextWebSocketFrame
 public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
 
@@ -60,6 +62,13 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
                 Channel channel = ctx.channel();
                 ChannelId channelId = channel.id();
                 System.out.println(channel);
+            } else if (event.state() == IdleState.READER_IDLE) {
+                log.info("READER_IDLE");
+                System.out.println("READER_IDLE");
+                ctx.channel().writeAndFlush(new TextWebSocketFrame("服务时间："+" "+ LocalDateTime.now()));
+            } else if (event.state() == IdleState.WRITER_IDLE) {
+                System.out.println("WRITER_IDLE");
+                log.info("WRITER_IDLE");
             }
         }
     }
