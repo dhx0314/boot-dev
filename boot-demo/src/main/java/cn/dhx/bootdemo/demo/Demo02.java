@@ -18,6 +18,7 @@ public class Demo02 {
 //        stringStringHashMap.put("3","c");
 
         Collection<String> values = stringStringHashMap.values();
+        Collection<String> values2 = stringStringHashMap.values();
 
 
         ArrayList<String> strings = new ArrayList<>(values);
