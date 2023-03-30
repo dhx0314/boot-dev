@@ -20,7 +20,7 @@ public class Demo01 {
     @Test
     public void long2String() {
         String str = "a20323f2-7de5-4a98-8ec6-9b234571fe2e.wav";
-        String str2 = "tmp_" + str;
+        String str2 = "tmp_12312312asfdsafasf" + str;
         System.out.println(str2);
         String tmp = str2.replace("tmp_", "");
 
