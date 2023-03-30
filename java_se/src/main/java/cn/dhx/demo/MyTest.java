@@ -9,8 +9,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
@@ -26,24 +30,32 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
+@Slf4j
 public class MyTest {
 
 
     @Test
-    public void testList(){
-        ArrayList<String> strings = new ArrayList<>();
-        strings.add("1");
-        strings.add("2");
-        strings.add("3");
-//        strings.add("4");
-//        strings.add("5");
-//        strings.add("6");
-//        strings.add("7");
+    public void testList() {
+//        String filePath="MPS-89:2023/03/29/272b41eb-9b4b-468c-917e-e4f828734cf3_1.wav";
+//
+//        String endPath = filePath.substring(0, filePath.lastIndexOf("/")+1);
+//        System.out.println(endPath);
 
-        List<List<String>> lists = ListUtils.splitListByGroupSize(strings, 2);
-        for (List<String> list : lists) {
-            System.out.println(list);
-        }
+//        HashMap<String, String> map = new HashMap<>();
+//        map.put("aa","bb");
+//        map.put("aa1","bb");
+//        map.put("aa2","bb");
+//        map.forEach((k,v)->{
+//            if ("aa1".equals(k)) {
+//                return;
+//            }
+//            log.info("key {} value {}",k,v);
+//        });
+
+        int i=0%1;
+        System.out.println(i);
+
+
     }
 
     @Test
@@ -61,7 +73,7 @@ public class MyTest {
         String nowTime = getNowTime();
         System.out.println(nowTime);
 //        2021 0223 084848 455141
-       // 2022  1021    103258  424000
+        // 2022  1021    103258  424000
     }
 
     public static String getNowTime() {
@@ -71,7 +83,6 @@ public class MyTest {
         int i = localDateTime.getNano() / 1000;
         return time + i;
     }
-
 
 
     @Test
@@ -93,7 +104,6 @@ public class MyTest {
 
         System.out.println(hashMap.toString());
     }
-
 
 
     @Test
