@@ -21,7 +21,7 @@ public class Demo01 {
     public void long2String() {
         String str = "a20323f2-7de5-4a98-8ec6-9b234571fe2e.wav";
         String str2 = "tmp_1232dsafasf" + str;
-        String str2 = "tmp_123123" + str+"aaaa";
+//        String str2 = "tmp_123123" + str+"aaaa";
         System.out.println(str2);
         String tmp = str2.replace("tmp_", "");
 

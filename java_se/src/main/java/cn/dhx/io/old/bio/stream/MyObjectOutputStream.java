@@ -1,4 +1,4 @@
-package cn.dhx.io.old.bio.inputstreamandoutstream;
+package cn.dhx.io.old.bio.stream;
 
 import cn.dhx.demo.Stu;
 import org.junit.Test;

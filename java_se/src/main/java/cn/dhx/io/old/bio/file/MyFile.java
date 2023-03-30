@@ -1,4 +1,4 @@
-package cn.dhx.io.old.bio;
+package cn.dhx.io.old.bio.file;
 
 import org.junit.Test;
 
@@ -9,25 +9,24 @@ public class MyFile {
 
 
     @Test
-    public void fun1() throws IOException {
+    public void newFile() throws IOException {
         File file = new File("a.txt");
         boolean newFile = file.createNewFile();
-        System.out.println(newFile);
-    }
 
-    @Test
-    public void fun2() throws IOException {
-        File file = new File("D:\\a2\\a", "a2.txt");
-        boolean newFile = file.createNewFile();
-        System.out.println(newFile);
-    }
-
-    @Test
-    public void fun3() throws IOException {
-        File file = new File("D:\\a2\\a");
+        File file1 = new File("D:");
         File file2 = new File(file, "a3.txt");
-        boolean newFile = file2.createNewFile();
-        System.out.println(newFile);
+
+        File file3 = new File("D:", "a2.txt");
+    }
+
+
+    @Test
+    public void list() {
+        File file = new File(".");
+        String[] list = file.list();
+        for (String s : list) {
+            System.out.println(s);
+        }
     }
 
     @Test
@@ -60,13 +59,13 @@ public class MyFile {
 
 
     @Test
-    public void fun5() throws IOException {
+    public void delete() throws IOException {
         File file = new File("D:\\a2\\a\\a1.txt");
         file.delete();
     }
 
     @Test
-    public void fun6() throws IOException {
+    public void mkdirs() throws IOException {
         File file = new File("aa\\bb\\cc");
         file.mkdirs();
     }
