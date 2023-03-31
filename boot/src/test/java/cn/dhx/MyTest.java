@@ -20,61 +20,6 @@ import java.util.concurrent.TimeUnit;
 public class MyTest {
 
 
-    @Autowired
-    private RedisLockUtil redisLockUtil;
 
-    @Test
-    public void lockTimeoutRelease() {
-        boolean b = redisLockUtil.lockTimeoutRelease("11",60);
-        log.info(" true {}",b);
-        new Thread(()->{
-            while (true) {
-                boolean lock = redisLockUtil.lockTimeoutRelease("11",10);
-                if (lock) {
-                    log.info("true");
-                    break;
-                }else {
-                    log.error("no get");
-                    try {
-                        TimeUnit.SECONDS.sleep(1);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-        try {
-            TimeUnit.SECONDS.sleep(70);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void lockTimeoutReleaseWait() {
-        boolean b = redisLockUtil.lockTimeoutRelease("11",10);
-        log.info(" true {}",b);
-        new Thread(()->{
-            while (true) {
-                boolean lock = redisLockUtil.lockTimeoutReleaseWait("11",10,2);
-                if (lock) {
-                    log.info("true");
-                    break;
-                }else {
-                    log.error("no get");
-                    try {
-                        TimeUnit.SECONDS.sleep(1);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-        try {
-            TimeUnit.SECONDS.sleep(70);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

@@ -1,0 +1,64 @@
+
+
+###
+GET http://127.0.0.1:9001/requestParam?name=xiaoA&age=20
+
+
+###
+GET http://127.0.0.1:9001/requestParam?name=20
+
+###
+GET http://127.0.0.1:9001/requestParam?age=20
+
+
+
+
+###
+GET http://127.0.0.1:9001/requestParam2?name=xiaoA&age=20
+
+###
+GET http://127.0.0.1:9001/requestParam2?age=20
+
+###
+GET http://127.0.0.1:9001/requestParam2?name=20
+
+###
+GET http://127.0.0.1:9001/getToBody?name=xiaoA&age=20
+
+
+###
+GET http://127.0.0.1:9001/pathVariable/xiaoA/20
+
+###
+POST http://127.0.0.1:9001/requestBody
+Content-Type: application/json
+
+{
+  "name": "xiaoA",
+  "age": 20
+}
+
+
+###
+POST http://127.0.0.1:9001/requestBody/map
+Content-Type: application/json
+
+{
+  "name": "xiaoA",
+  "age": 20
+}
+
+###
+POST http://127.0.0.1:9001/requestBody/list
+Content-Type: application/json
+
+[
+  {
+    "name": "xiaoA",
+    "age": 20
+  },
+  {
+    "name": "xiaoA",
+    "age": 20
+  }
+]

@@ -19,14 +19,9 @@ public class Demo01 {
 
     @Test
     public void long2String() {
-        String str = "a20323f2-7de5-4a98-8ec6-9b234571fe2e.wav";
-        String str2 = "tmp_1232dsafasf" + str;
-//        String str2 = "tmp_123123" + str+"aaaa";
-        System.out.println(str2);
-        String tmp = str2.replace("tmp_", "");
-
-        System.out.println(tmp);
-
+        String str = "2023/03/30/";
+        String substring = str.substring(0, str.lastIndexOf("/"));
+        System.out.println(substring);
     }
 
 
