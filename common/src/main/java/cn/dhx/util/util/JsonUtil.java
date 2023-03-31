@@ -28,7 +28,7 @@ public class JsonUtil {
         try {
             json = mapper.writeValueAsString(object);
         } catch (Exception e) {
-            log.error("parse Object to JSON String ERROR!", e);
+            log.error("parse Object to JSON String ERROR! {}", object, e);
         }
         return json;
     }
@@ -37,7 +37,7 @@ public class JsonUtil {
         try {
             return mapper.readValue(json, valueType);
         } catch (Exception e) {
-            log.error("parse String to Java Object ERROR!", e);
+            log.error("parse String  to Java Object ERROR! {}", json, e);
             return null;
         }
     }
@@ -46,7 +46,7 @@ public class JsonUtil {
         try {
             return mapper.readValue(json, valueType);
         } catch (Exception e) {
-            log.error("parse String to Java Object ERROR!", e);
+            log.error("parse String to Java Object ERROR! {}", json, e);
             return null;
         }
     }
@@ -55,7 +55,7 @@ public class JsonUtil {
         try {
             return mapper.readTree(json);
         } catch (Exception e) {
-            log.error("parse String to JsonNode ERROR!", e);
+            log.error("parse String to JsonNode ERROR! {}", json, e);
             return null;
         }
     }
