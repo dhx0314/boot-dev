@@ -25,7 +25,6 @@ GET http://127.0.0.1:9001/requestParam2?name=20
 ###
 GET http://127.0.0.1:9001/getToBody?name=xiaoA&age=20
 
-
 ###
 GET http://127.0.0.1:9001/pathVariable/xiaoA/20
 
