@@ -18,7 +18,7 @@ import io.netty.util.internal.SocketUtils;
 
 public final class UdpClient {
 
-    static final int PORT = Integer.parseInt(System.getProperty("port", "7686"));
+    static final int PORT = Integer.parseInt(System.getProperty("port", "7685"));
 
     public static void main(String[] args) throws Exception {
 

@@ -25,6 +25,10 @@ public final class UdpServer {
 
     public static void main(String[] args) throws Exception {
             bind();
+
+        while (true) {
+            Thread.sleep(10000000);
+        }
     }
 
 
@@ -50,7 +54,10 @@ public final class UdpServer {
                     });
 
             Channel channel = bootstrap.bind(7686).sync().channel();
-            channel.closeFuture().await();
+            System.out.println(channel);
+            Channel channel1 = bootstrap.bind(7685).sync().channel();
+            System.out.println(channel1);
+//            channel.closeFuture().await();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
