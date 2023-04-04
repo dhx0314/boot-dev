@@ -1,4 +1,4 @@
-package cn.dhx.util.util;
+package cn.dhx.util;
 
 import org.springframework.util.CollectionUtils;
 

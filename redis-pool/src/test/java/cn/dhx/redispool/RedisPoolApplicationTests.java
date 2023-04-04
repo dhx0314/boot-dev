@@ -4,7 +4,6 @@ import cn.dhx.redispool.entity.CallDto;
 import cn.dhx.redispool.redisson.RedisLock;
 import cn.dhx.redispool.util.JsonUtil;
 import cn.dhx.redispool.web.WebController;
-import cn.dhx.util.pojo.Stu;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
@@ -16,8 +15,6 @@ import org.springframework.data.redis.hash.BeanUtilsHashMapper;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.rmi.CORBA.Stub;
-import java.io.IOException;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;

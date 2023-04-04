@@ -1,4 +1,4 @@
-package cn.dhx.util.util;
+package cn.dhx.util;
 
 import jcifs.smb.SmbFile;
 import jcifs.smb.SmbFileInputStream;

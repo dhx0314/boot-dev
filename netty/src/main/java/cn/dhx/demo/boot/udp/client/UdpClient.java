@@ -45,7 +45,6 @@ public final class UdpClient {
             Channel ch = bootstrap.bind(0).sync().channel();
 
 
-            // Broadcast the QOTM request to port 8080.
 
             StringBuilder stringBuilder = new StringBuilder();
             for (int j = 0; j < 1000; j++) {
@@ -56,7 +55,7 @@ public final class UdpClient {
 
             ch.writeAndFlush(new DatagramPacket(
                     Unpooled.copiedBuffer(stringBuilder.toString(), CharsetUtil.UTF_8),
-                    SocketUtils.socketAddress("127.0.0.1", PORT))).sync();
+                    SocketUtils.socketAddress("127.0.0.1", PORT)));
             ch.closeFuture().await();
         } finally {
 

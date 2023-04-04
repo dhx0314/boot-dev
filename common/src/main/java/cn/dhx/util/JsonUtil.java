@@ -1,4 +1,4 @@
-package cn.dhx.util.util;
+package cn.dhx.util;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

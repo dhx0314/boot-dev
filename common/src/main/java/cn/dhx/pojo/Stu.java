@@ -1,4 +1,4 @@
-package cn.dhx.util.pojo;
+package cn.dhx.pojo;
 
 
 import lombok.Data;

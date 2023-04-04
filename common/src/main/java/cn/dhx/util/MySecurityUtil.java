@@ -1,4 +1,4 @@
-package cn.dhx.util.util;
+package cn.dhx.util;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.StrUtil;

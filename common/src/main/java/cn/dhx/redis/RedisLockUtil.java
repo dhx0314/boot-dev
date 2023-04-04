@@ -1,4 +1,4 @@
-package cn.dhx.util.redis;
+package cn.dhx.redis;
 
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;

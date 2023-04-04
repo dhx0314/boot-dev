@@ -1,6 +1,6 @@
-package cn.dhx.util.pojo;
+package cn.dhx.pojo;
 
-import cn.dhx.util.util.JsonUtil;
+import cn.dhx.util.JsonUtil;
 import lombok.Getter;
 import lombok.Setter;
 
