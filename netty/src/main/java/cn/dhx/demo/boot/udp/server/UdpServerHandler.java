@@ -2,6 +2,7 @@ package cn.dhx.demo.boot.udp.server;
 
 
 import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.DatagramPacket;
@@ -13,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
  * @create 2023/4/3 11:07
  */
 @Slf4j
+@ChannelHandler.Sharable
 public class UdpServerHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 
 

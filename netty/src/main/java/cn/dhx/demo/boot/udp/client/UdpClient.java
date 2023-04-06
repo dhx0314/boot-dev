@@ -5,22 +5,50 @@ package cn.dhx.demo.boot.udp.client;
  * @create 2023/4/3 11:08
  */
 
-import cn.dhx.demo.boot.udp.server.UdpServerHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.*;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.FixedRecvByteBufAllocator;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.util.CharsetUtil;
 import io.netty.util.internal.SocketUtils;
 
+import java.util.concurrent.TimeUnit;
+
 
 public final class UdpClient {
 
     static final int PORT = Integer.parseInt(System.getProperty("port", "7686"));
 
-    public static void main(String[] args) throws Exception {
+
+    public static void main(String[] args) {
+
+
+
+        try {
+            new Thread(()->{
+                try {
+                    bind();
+                    System.out.println("test");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+
+            System.out.println("----");
+            TimeUnit.MINUTES.sleep(10);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public static void bind() throws Exception {
 
         EventLoopGroup group = new NioEventLoopGroup();
         try {
@@ -38,17 +66,11 @@ public final class UdpClient {
 
             Channel ch = b.bind(0).sync().channel();
 
-            // Broadcast the QOTM request to port 8080.
-//            ch.writeAndFlush(new DatagramPacket(
-//                    Unpooled.copiedBuffer("4444444", CharsetUtil.UTF_8),
-//                    SocketUtils.socketAddress("255.255.255.255", PORT))).sync();
-
-
-
             ch.writeAndFlush(new DatagramPacket(
                     Unpooled.copiedBuffer("4444444", CharsetUtil.UTF_8),
                     SocketUtils.socketAddress("127.0.0.1", PORT)));
-            ch.closeFuture().await();
+            ch.closeFuture().sync();
+            System.out.println("-------");
         } finally {
             group.shutdownGracefully();
         }
