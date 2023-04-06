@@ -20,7 +20,6 @@ public class UdpServerHandler extends SimpleChannelInboundHandler<DatagramPacket
     public void channelRead0(ChannelHandlerContext ctx, DatagramPacket packet) throws Exception {
         String msg = packet.content().toString(CharsetUtil.UTF_8);
         System.err.println("服务端接收消息:" + msg);
-        System.err.println("服务端接收消息:" + msg.length());
         if (msg.startsWith("1")) {
             ctx.write(new DatagramPacket(
                     Unpooled.copiedBuffer("QOTM:111111", CharsetUtil.UTF_8), packet.sender()));
@@ -42,9 +41,4 @@ public class UdpServerHandler extends SimpleChannelInboundHandler<DatagramPacket
         // We don't close the channel because we can keep serving requests.
     }
 
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        log.info("-------");
-        ctx.fireChannelActive();
-    }
 }
