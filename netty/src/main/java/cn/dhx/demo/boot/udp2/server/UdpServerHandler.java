@@ -43,4 +43,17 @@ public class UdpServerHandler extends SimpleChannelInboundHandler<DatagramPacket
         // We don't close the channel because we can keep serving requests.
     }
 
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) {
+        log.info("Channel {} became active, remote address {}.", ctx.channel(), ctx.channel().remoteAddress());
+
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) {
+        log.info("Channel {} became inactive, remote address {}.", ctx.channel(), ctx.channel().remoteAddress());
+        ctx.close();
+    }
+
 }

@@ -53,9 +53,8 @@ public final class UdpClient {
             Bootstrap b = new Bootstrap();
             b.group(group)
                     .channel(NioDatagramChannel.class)
-                    .option(ChannelOption.SO_BROADCAST, true)
                     // 设置读缓冲区为 10M
-                    .option(ChannelOption.SO_RCVBUF, 1024 * 1024*10)
+                    .option(ChannelOption.SO_RCVBUF, 1024 * 1024 * 10)
                     // 设置写缓冲区为1M
                     .option(ChannelOption.SO_SNDBUF, 1024 * 1024)
                     //解决最大接收2048个字节
@@ -72,11 +71,12 @@ public final class UdpClient {
                 TimeUnit.MILLISECONDS.sleep(500);
             }
 
-            ch.closeFuture().sync();
+//            ch.closeFuture().sync();
             System.out.println("-------");
-        } finally {
-            group.shutdownGracefully();
+        } catch (Exception e) {
+
         }
+
 
     }
 }

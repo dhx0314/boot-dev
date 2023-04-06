@@ -29,4 +29,16 @@ public class UdpClientHandler extends SimpleChannelInboundHandler<DatagramPacket
         ctx.close();
     }
 
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) {
+        log.info("Channel {} became active, remote address {}.", ctx.channel(), ctx.channel().remoteAddress());
+
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) {
+        log.info("Channel {} became inactive, remote address {}.", ctx.channel(), ctx.channel().remoteAddress());
+        ctx.close();
+    }
+
 }

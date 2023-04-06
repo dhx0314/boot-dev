@@ -5,14 +5,15 @@ package cn.dhx.demo.boot.udp2.server;
  * @create 2023/4/3 11:07
  */
 
+import cn.dhx.demo.boot.udp2.server.UdpServerHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -22,32 +23,29 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
-public final class UdpServer {
+public final class UdpServer2 {
 
+    Bootstrap bootstrap;
 
     private static final int PORT = Integer.parseInt(System.getProperty("port", "7686"));
 
-    public static void main(String[] args) {
+
+    public void bind(int port) {
         try {
-                try {
-                    bind();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            new CountDownLatch(1).await();
+            Channel channel = bootstrap.bind(port).sync().channel();
+            log.info("channel {}",channel);
+            channel.closeFuture().sync();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("bind error ",e);
         }
-
-
     }
 
-    public static void bind() throws Exception {
+    public Bootstrap bootstrap() {
         EventLoopGroup group = new NioEventLoopGroup();
-            Bootstrap b = new Bootstrap();
-            b.group(group)
+        try {
+            bootstrap = new Bootstrap();
+            bootstrap.group(group)
                     .channel(NioDatagramChannel.class)
-//                    .option(ChannelOption.SO_BROADCAST, true)
                     // 设置读缓冲区为 10M
                     .option(ChannelOption.SO_RCVBUF, 1024 * 1024 * 10)
                     // 设置写缓冲区为1M
@@ -55,10 +53,11 @@ public final class UdpServer {
                     //解决最大接收2048个字节
                     .option(ChannelOption.RCVBUF_ALLOCATOR, new FixedRecvByteBufAllocator(65535))
                     .handler(new UdpServerHandler());
+            return bootstrap;
 
-            Channel channel = b.bind(PORT).sync().channel();
+        } catch (Exception e) {
 
-            log.info("channel {}", channel.toString());
-
+        }
+        return bootstrap;
     }
 }
