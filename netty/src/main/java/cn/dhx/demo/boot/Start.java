@@ -1,5 +1,6 @@
 package cn.dhx.demo.boot;
 
+import cn.dhx.demo.boot.udp2.server.UdpServer;
 import cn.dhx.demo.boot.udp2.server.UdpServer2;
 import cn.dhx.util.ExecutorHelper;
 import lombok.extern.slf4j.Slf4j;
@@ -25,14 +26,20 @@ public class Start {
     @PostConstruct
     public void start() {
 
-        udpServer2.bootstrap();
-        ExecutorHelper.execute(()->{
-            try {
-                udpServer2.bind(7686);
-            } catch (Exception e) {
-                log.error("error",e);
-            }
-        });
+        try {
+            UdpServer.bind();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+//        udpServer2.bootstrap();
+//        ExecutorHelper.execute(()->{
+//            try {
+//                udpServer2.bind(7686);
+//            } catch (Exception e) {
+//                log.error("error",e);
+//            }
+//        });
 
     }
 }

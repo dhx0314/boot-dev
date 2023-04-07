@@ -7,6 +7,8 @@ package cn.dhx.demo.boot.udp2.client;
 
 import cn.hutool.core.lang.UUID;
 import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -31,13 +33,11 @@ public final class UdpClient {
             new Thread(()->{
                 try {
                     bind();
-                    System.out.println("test");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }).start();
 
-            System.out.println("----");
             TimeUnit.MINUTES.sleep(10);
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,10 +66,18 @@ public final class UdpClient {
             for (int i = 0; i < 10; i++) {
                 ch.writeAndFlush(new DatagramPacket(
                         Unpooled.copiedBuffer(UUID.fastUUID().toString(), CharsetUtil.UTF_8),
-                        SocketUtils.socketAddress("172.16.6.89", PORT)));
+                        SocketUtils.socketAddress("127.0.0.1", PORT)));
+
+//                ch.writeAndFlush(new DatagramPacket(
+//                        Unpooled.copiedBuffer(UUID.fastUUID().toString(), CharsetUtil.UTF_8),
+//                        SocketUtils.socketAddress("172.16.6.89", PORT)));
 
                 TimeUnit.MILLISECONDS.sleep(500);
             }
+
+
+            ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer();
+
 
 //            ch.closeFuture().sync();
             System.out.println("-------");

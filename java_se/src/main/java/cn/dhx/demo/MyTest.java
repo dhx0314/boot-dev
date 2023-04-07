@@ -40,22 +40,16 @@ public class MyTest {
     public void testList() {
 
 
-        String s = UUID.randomUUID().toString();
-        System.out.println(s);
-        byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
-        System.out.println(bytes.length);
-        byte[] bytes1 = new byte[40];
-        System.arraycopy(bytes, 0, bytes1, 0, bytes.length);
-        System.out.println(bytes1.length);
-        for (byte b : bytes1) {
-            System.out.println(b);
-            char s2 = (char) b;
-            System.out.println(s2);
+        String abc = new String("abc");
+        byte[] bytes = abc.getBytes(StandardCharsets.UTF_8);
 
+        byte[] bytes1 = abc.getBytes(StandardCharsets.UTF_8);
 
-        }
+        String s = new String(bytes1);
+        System.out.println(bytes1.equals(bytes));
 
-        System.out.println("-------------");
+        System.out.println(s.equals(abc));
+
 
     }
 

@@ -29,12 +29,15 @@ public final class UdpServer {
 
     public static void main(String[] args) {
         try {
+            new Thread(()->{
                 try {
                     bind();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            new CountDownLatch(1).await();
+            }).start();
+
+            TimeUnit.MINUTES.sleep(10);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,6 +60,7 @@ public final class UdpServer {
                     .handler(new UdpServerHandler());
 
             Channel channel = b.bind(PORT).sync().channel();
+            Channel channel2 = b.bind(PORT+1).sync().channel();
 
             log.info("channel {}", channel.toString());
 

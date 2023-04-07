@@ -26,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
 
@@ -79,22 +80,26 @@ public class TcpClient {
     }
 
 //    @PostConstruct
-    public void startTcpConnect() {
-        log.info("start tcp connect");
-        new Thread(() -> {
-            this.connect(tcpHost, tcpPort);
-        }).start();
+//    public void startTcpConnect() {
+//        log.info("start tcp connect");
+//        new Thread(() -> {
+//            this.connect(tcpHost, tcpPort);
+//        }).start();
+//
+//    }
 
-    }
+
+
 
     public void doConnect() {
-        log.info("channel {}",channel);
+        log.info("channel {}", channel);
         if (channel != null && channel.isActive()) {
             return;
         }
 //        channelFuture = bootstrap.connect("127.0.0.1", 8899);
         channelFuture = bootstrap.connect(tcpHost, tcpPort);
         channelFuture.addListener(new ChannelFutureListener() {
+            @Override
             public void operationComplete(ChannelFuture futureListener) throws Exception {
                 if (futureListener.isSuccess()) {
                     log.info("channel set");

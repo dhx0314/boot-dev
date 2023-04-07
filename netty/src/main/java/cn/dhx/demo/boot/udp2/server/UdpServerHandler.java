@@ -26,7 +26,7 @@ public class UdpServerHandler extends SimpleChannelInboundHandler<DatagramPacket
             ctx.write(new DatagramPacket(
                     Unpooled.copiedBuffer("QOTM:111111", CharsetUtil.UTF_8), packet.sender()));
         } else {
-            ctx.write(new DatagramPacket(
+            ctx.writeAndFlush(new DatagramPacket(
                     Unpooled.copiedBuffer("QOTM:2222222222", CharsetUtil.UTF_8), packet.sender()));
         }
 
