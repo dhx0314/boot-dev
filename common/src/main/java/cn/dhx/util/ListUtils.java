@@ -5,6 +5,9 @@ import org.springframework.util.CollectionUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author dhx
+ */
 public class ListUtils {
 
     public static <T> List<List<T>> splitListByGroupSize(List<T> list, int groupSize) {

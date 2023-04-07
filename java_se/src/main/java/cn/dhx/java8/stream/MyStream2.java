@@ -330,8 +330,8 @@ public class MyStream2 {
     //将流中的数据收集到数组中
     @Test
     public void fun19() {
-//        Stream<String> stream = Stream.of("aa", "bb", "cc","aa");
-//        Object[] objects = stream.toArray();
+//        Stream<String> bytestream = Stream.of("aa", "bb", "cc","aa");
+//        Object[] objects = bytestream.toArray();
 //        System.out.println(Arrays.toString(objects));
 
         Stream<String> stream = Stream.of("aa", "bb", "cc", "aa");
