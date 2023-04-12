@@ -7,6 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -29,9 +31,12 @@ public class RestDemoController {
 
     @Log
     @PostMapping(value = "/form/data/file", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Object formDataFile(String name, Integer age, @RequestParam(value = "file") MultipartFile multipartFile) {
+    public Object formDataFile(String name, Integer age, @RequestParam(value = "file") MultipartFile multipartFile) throws IOException {
         String originalFilename = multipartFile.getOriginalFilename();
         log.info("originalFilename    {}", originalFilename);
+
+        byte[] bytes = multipartFile.getBytes();
+        log.info("file size {}", bytes.length);
 
         return new User(name, age);
     }

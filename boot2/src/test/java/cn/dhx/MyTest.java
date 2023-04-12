@@ -2,6 +2,7 @@ package cn.dhx;
 
 
 
+import cn.dhx.boot.util.RestTemplateFileUtil;
 import cn.dhx.boot.util.RestTemplateUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +21,9 @@ public class MyTest {
     @Autowired
     private RestTemplateUtil restTemplateUtil;
 
+    @Autowired
+    private RestTemplateFileUtil restTemplateFileUtil;
+
 
     @Test
     public void getAndPost() {
@@ -35,8 +39,17 @@ public class MyTest {
         //post
 //        restTemplateUtil.postForObject();
 //        restTemplateUtil.postForObjectFormData();
-        restTemplateUtil.postForObjectFormDataFile();
+//        restTemplateUtil.postForObjectFormDataFile();
 
+        restTemplateUtil.postForEntity();
+    }
+
+
+    @Test
+    public void fileTest() {
+//        restTemplateFileUtil.downLoad();
+        restTemplateFileUtil.upload();
+//        restTemplateFileUtil.testDownLoadBigFile();
     }
 
 

@@ -124,8 +124,8 @@ public class RestTemplateUtil {
 
         MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
         map.add("name","formdata");
-        map.add("title", "zimug 发布文章第二篇");
-        map.add("body", "zimug 发布文章第二篇 测试内容");
+        map.add("title", "testTitle");
+        map.add("body", "testBody");
 
         // 组装请求体
         HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(map, headers);
@@ -147,11 +147,11 @@ public class RestTemplateUtil {
 
         MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
         map.add("name","formDataFile");
-        String filePath = "send.txt";
+        String filePath = "file\\send.txt";
         File file = new File(filePath);
         boolean exists = file.exists();
         log.info("file exists {}", exists);
-        FileSystemResource resource = new FileSystemResource(new File(filePath));
+        FileSystemResource resource = new FileSystemResource(file);
         map.add("file", resource);
 
 
@@ -162,4 +162,25 @@ public class RestTemplateUtil {
         System.out.println(result);
     }
 
+
+    public void postForEntity() {
+        String url = "http://127.0.0.1:9001/requestBody";
+        String name = "zhangsan_postForEntity";
+        int age = 30;
+        User user = new User(name, age);
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, user, String.class);
+        String body = responseEntity.getBody();
+        log.info("user {} ", body);
+
+        //以下是postForEntity比postForObject多出来的内容
+        HttpStatus statusCode = responseEntity.getStatusCode(); // 获取响应码
+        int statusCodeValue = responseEntity.getStatusCodeValue(); // 获取响应码值
+        HttpHeaders headers = responseEntity.getHeaders(); // 获取响应头
+
+
+        System.out.println("HTTP 响应状态：" + statusCode);
+        System.out.println("HTTP 响应状态码：" + statusCodeValue);
+        System.out.println("HTTP Headers信息：" + headers);
+
+    }
 }
