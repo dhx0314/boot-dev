@@ -22,11 +22,9 @@
         <module>design-pattern</module>
         <module>juc</module>
         <module>jvm</module>
-        <module>redis-pool</module>
         <module>algorithm</module>
         <module>mq</module>
         <module>boot-demo</module>
-        <module>netty-vocie</module>
         <module>java_se</module>
         <module>sharding-jdbc</module>
         <module>common</module>
