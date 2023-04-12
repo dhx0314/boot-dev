@@ -69,11 +69,7 @@ public class FileController {
         System.out.println(tips);
         // 强制将HttpServletRequest转为MultipartHttpServletRequest
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-        //获取指定MultipartFile文件
-        MultipartFile file = multipartRequest.getFile("file1");
-        //获取文件名称
-        String originalFilename = file.getOriginalFilename();
-        System.out.println(originalFilename);
+
 
         //不指定上传文件参数,而是获取整个上传文件集合
         MultiValueMap<String, MultipartFile> multiFileMap = multipartRequest.getMultiFileMap();
@@ -81,9 +77,10 @@ public class FileController {
         Iterator<String> MultipartFileIterator = multiFileMap.keySet().iterator();
         while (MultipartFileIterator.hasNext()) {
             String key = MultipartFileIterator.next();
+            System.out.println("当前上传文件参数: " + key);
             //这里是集合的原因是，可能一个参数上传多个文件。
             List<MultipartFile> multipartFiles = multiFileMap.get(key);
-            System.out.println("当前上传文件参数: " + key);
+
             multipartFiles.forEach(multipartFile -> {
                 System.out.println("上传文件名称: " + multipartFile.getOriginalFilename() + ", 上传文件类型:" + multipartFile.getContentType());
             });
