@@ -12,7 +12,7 @@ import lombok.Data;
 
 public class Stu2 {
 
-        String callDirectEnum2;
+    String callDirectEnum2;
     CallDirectEnum callDirectEnum;
     String id;
 

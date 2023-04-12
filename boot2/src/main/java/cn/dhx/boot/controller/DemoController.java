@@ -19,8 +19,6 @@ import org.springframework.web.client.RestTemplate;
 public class DemoController {
 
 
-    @Autowired
-    private RestTemplate restTemplate;
 
     @Log
     @GetMapping("hi")
