@@ -62,3 +62,13 @@ Content-Type: application/json
     "age": 20
   }
 ]
+
+
+###
+POST http://127.0.0.1:9001/requestBody/str
+Content-Type: application/json
+
+{
+  "name": "xiaoA",
+  "age": 20
+}

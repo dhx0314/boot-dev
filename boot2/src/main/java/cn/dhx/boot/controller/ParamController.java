@@ -5,12 +5,16 @@ package cn.dhx.boot.controller;
 
 import cn.dhx.boot.aop.Log;
 import cn.dhx.boot.entity.User;
+import cn.dhx.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 参数demo
+ */
 
 /**
  * @Author daihongxin
@@ -29,6 +33,21 @@ public class ParamController {
         System.out.println(name);
         System.out.println(age);
     }
+
+
+    /**
+     * 表单
+     *
+     * @param name
+     * @param age
+     */
+    @Log
+    @PostMapping("/requestParamFromData")
+    public void requestParamFromData(@RequestParam( "name") String name, @RequestParam(value = "age",required = false) Integer age) {
+        System.out.println(name);
+        System.out.println(age);
+    }
+
 
     @Log
     @GetMapping("/requestParam2")
@@ -75,9 +94,15 @@ public class ParamController {
     }
 
 
+
+
+
     @Log
-    @PostMapping("fromData")
-    public void formData() {
+    @PostMapping("/requestBody/str")
+    public void requestBodyStr(@RequestBody String user) {
+        System.out.println("para "+user.toString());
+        User user1 = JsonUtil.toObject(user, User.class);
+        System.out.println(user1);
 
     }
 
