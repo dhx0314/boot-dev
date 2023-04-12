@@ -4,9 +4,6 @@ package cn.dhx.boot.controller;
 import cn.dhx.boot.aop.Log;
 import cn.hutool.core.io.IoUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.http.MediaType;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,7 +12,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 
@@ -34,6 +30,7 @@ import java.util.List;
 public class FileController {
 
 
+    @Log
     @PostMapping(value = "/upload")
     public void uploadFile(@RequestParam(value = "file1") MultipartFile multipartFile) throws IOException {
         //获取上传文件名称
@@ -43,12 +40,12 @@ public class FileController {
         //获取上传文件输入流，便于文件内容读写操作
         InputStream inputStream = multipartFile.getInputStream();
         String upLoadPath = "file\\upload.txt";
-        File file = new File(upLoadPath);
-        IoUtil.copy(inputStream, new BufferedOutputStream(new FileOutputStream(upLoadPath)));
+        IoUtil.copy(inputStream, new BufferedOutputStream(new FileOutputStream(upLoadPath,true)));
         System.out.println("fileName = " + fileName + ", contentType = " + contentType);
     }
 
 
+    @Log
     @PostMapping(value = "/upload1")
     public void uploadFile1(HttpServletRequest request) throws IOException {
 
@@ -63,6 +60,7 @@ public class FileController {
     }
 
 
+    @Log
     @PostMapping(value = "/upload2")
     public void uploadFile2(HttpServletRequest request, @RequestParam("tips") String tips) throws IOException {
 
@@ -89,6 +87,7 @@ public class FileController {
     }
 
 
+    @Log
     @GetMapping("download")
     public void downLoad(HttpServletResponse response) throws IOException {
         String downloadFileName = "download_demo.txt";

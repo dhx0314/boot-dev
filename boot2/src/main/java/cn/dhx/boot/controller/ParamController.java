@@ -29,9 +29,10 @@ public class ParamController {
 
     @Log
     @GetMapping("/requestParam")
-    public void requestParam(@RequestParam(value = "name",required = false) String name, @RequestParam(value = "age",required = false) Integer age) {
-        System.out.println(name);
-        System.out.println(age);
+    public Object requestParam(@RequestParam(value = "name",required = false) String name, @RequestParam(value = "age",required = false) Integer age) {
+        log.info(name);
+        log.info(String.valueOf(age));
+        return new User(name, age);
     }
 
 
@@ -43,45 +44,49 @@ public class ParamController {
      */
     @Log
     @PostMapping("/requestParamFromData")
-    public void requestParamFromData(@RequestParam( "name") String name, @RequestParam(value = "age",required = false) Integer age) {
-        System.out.println(name);
-        System.out.println(age);
+    public Object requestParamFromData(@RequestParam( "name") String name, @RequestParam(value = "age",required = false) Integer age) {
+        log.info(name);
+        log.info(String.valueOf(age));
+        return new User(name, age);
     }
 
 
     @Log
     @GetMapping("/requestParam2")
-    public void requestParam2(String name, String age) {
-        System.out.println(name);
-        System.out.println(age);
+    public Object requestParam2(String name, String age) {
+        log.info(name);
+        log.info(age);
+        return new User(name, Integer.valueOf(age));
     }
 
     @Log
     @GetMapping("/getToBody")
-    public void getBody(User user) {
-        System.out.println(user.toString());
+    public Object getBody(User user) {
+        log.info(user.toString());
+        return user;
     }
 
     @Log
     @GetMapping("/pathVariable/{name}/{age}")
-    public void pathVariable(@PathVariable("name") String name, @PathVariable("age") int age) {
-        System.out.println(name);
-        System.out.println(age);
+    public Object pathVariable(@PathVariable("name") String name, @PathVariable("age") int age) {
+        log.info(name);
+        log.info(String.valueOf(age));
+        return new User(name, age);
     }
 
     @Log
     @PostMapping("/requestBody")
-    public void requestBody(@RequestBody User user) {
-        System.out.println(user.toString());
-
+    public Object requestBody(@RequestBody User user) {
+        log.info(user.toString());
+        return user;
     }
 
     @Log
     @PostMapping("/requestBody/map")
-    public String map(@RequestBody Map<String, String> map) {
-        System.out.println(map.toString());
-        System.out.println(map.get("name"));
-        System.out.println(map.get("age"));
+    public Object map(@RequestBody Map<String, String> map) {
+        log.info(map.toString());
+        log.info(map.get("name"));
+        log.info(map.get("age"));
         return map.toString();
     }
 
@@ -89,7 +94,7 @@ public class ParamController {
     @PostMapping("/requestBody/list")
     public void list(@RequestBody List<User> user) {
         user.forEach(x->{
-            System.out.println(x);
+            log.info(x.toString());
         });
     }
 
@@ -100,9 +105,9 @@ public class ParamController {
     @Log
     @PostMapping("/requestBody/str")
     public void requestBodyStr(@RequestBody String user) {
-        System.out.println("para "+user.toString());
+        log.info("para "+user.toString());
         User user1 = JsonUtil.toObject(user, User.class);
-        System.out.println(user1);
+        log.info(user1.toString());
 
     }
 
