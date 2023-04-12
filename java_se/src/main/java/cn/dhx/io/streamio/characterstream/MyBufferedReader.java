@@ -8,7 +8,7 @@ import java.io.FileReader;
 public class MyBufferedReader {
 
     @Test
-    public void fun1() throws Exception {
+    public void read() throws Exception {
         String path = "io\\Stu.java";
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
         String line;

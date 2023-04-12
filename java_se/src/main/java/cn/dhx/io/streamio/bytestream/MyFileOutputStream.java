@@ -5,12 +5,12 @@ import org.junit.Test;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-public class MyOutputStream {
+public class MyFileOutputStream {
 
     @Test
-    public void fun1() throws Exception {
+    public void write() throws Exception {
         //output.txt 文件不存在的话 会自动创建,目录需要手动创建
-        String filePath = "D:\\a2\\a\\output.txt";
+        String filePath = "io\\FileOutputStream.txt";
         //当写入内容时会覆盖原来的内容
         FileOutputStream fileOutputStream = new FileOutputStream(filePath);
         fileOutputStream.write("info".getBytes());
@@ -19,9 +19,9 @@ public class MyOutputStream {
 
 
     @Test
-    public void fun2() throws Exception {
+    public void write2() throws Exception {
         //output.txt 文件不存在的话 会自动创建,目录需要手动创建
-        String filePath = "D:\\a2\\a\\output.txt";
+        String filePath = "io\\FileOutputStream2.txt";
         //当写入内容时会追加在原来的内容的后面
         //    public FileOutputStream(String name, boolean append)
         FileOutputStream fileOutputStream = new FileOutputStream(filePath, true);
@@ -34,11 +34,11 @@ public class MyOutputStream {
     }
 
     @Test
-    public void fun3() throws Exception {
-        String filePath = "D:\\a2\\a\\copy.txt";
-        String filePath2 = "D:\\a2\\a\\copy2.txt";
-        FileInputStream fileInputStream = new FileInputStream(filePath);
-        FileOutputStream fileOutputStream = new FileOutputStream(filePath2,true);
+    public void readAndWrite() throws Exception {
+        String readFilePath = "io\\Stu.java";
+        String writeFilePath = "io\\fileOutputStream3.txt";
+        FileInputStream fileInputStream = new FileInputStream(readFilePath);
+        FileOutputStream fileOutputStream = new FileOutputStream(writeFilePath,true);
         byte[] bytes=new byte[1024];
         int readLen=0;
         while ((readLen = fileInputStream.read(bytes)) != -1) {

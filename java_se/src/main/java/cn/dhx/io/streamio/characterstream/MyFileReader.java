@@ -7,10 +7,11 @@ import java.io.FileReader;
 public class MyFileReader {
 
     @Test
-    public void fun1() throws Exception{
-        String filePath = "D:\\a2\\a\\bytestream.txt";
+    public void readOne() throws Exception{
+        String filePath = "io\\characterStream.txt";
         FileReader fileReader = new FileReader(filePath);
         int data=0;
+        //Reads a single character.
         while ((data = fileReader.read()) != -1) {
             System.out.println((char) data);
         }
@@ -20,8 +21,8 @@ public class MyFileReader {
 
 
     @Test
-    public void fun2() throws Exception{
-        String filePath = "D:\\a2\\a\\bytestream.txt";
+    public void read() throws Exception{
+        String filePath = "io\\characterStream.txt";
         FileReader fileReader = new FileReader(filePath);
         int readLen=0;
         char[] chars=new char[8];

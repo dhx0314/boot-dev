@@ -29,7 +29,7 @@ public class MyFile {
 
     @Test
     public void fun4() throws IOException {
-        File file = new File("io/a.txt");
+        File file = new File("io/file.txt");
         //绝对路径
         String absolutePath = file.getAbsolutePath();
         System.out.println(file.getAbsolutePath());
@@ -47,13 +47,13 @@ public class MyFile {
         System.out.println(file2.getAbsolutePath());
         System.out.println(file2.getParent());
 
-        //C:\D\gitee\boot-dev\java_se\io\a.txt
+        //C:\D\gitee\boot-dev\java_se\io\file.txt
         //io
-        //5
-        //true
-        //true
+        //0
         //false
-        //C:\D\gitee\boot-dev\java_se\io\a.txt
+        //false
+        //false
+        //C:\D\gitee\boot-dev\java_se\io\file.txt
         //C:\D\gitee\boot-dev\java_se\io
     }
 

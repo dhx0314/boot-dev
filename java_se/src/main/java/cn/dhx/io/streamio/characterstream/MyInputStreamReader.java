@@ -8,10 +8,11 @@ import java.io.InputStreamReader;
 
 public class MyInputStreamReader {
 
+    //转换流
     @Test
     public void fun() throws Exception {
         // gbk编码的文件
-        String path = "e:\\a\\gbk.txt";
+        String path = "io\\gbk.txt";
         InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(path), "GBK");
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         String s = bufferedReader.readLine();

@@ -4,11 +4,11 @@ import org.junit.Test;
 
 import java.io.FileInputStream;
 
-public class MyInputStream {
+public class MyFileInputStream {
 
     @Test
-    public void fun1() throws Exception {
-        String filePath = "D:\\a2\\a\\a1.txt";
+    public void read() throws Exception {
+        String filePath = "io\\fileInputStream.txt";
         FileInputStream fileInputStream = new FileInputStream(filePath);
         int readDate = 0;
         while ((readDate = fileInputStream.read()) != -1) {
@@ -18,9 +18,9 @@ public class MyInputStream {
     }
 
     @Test
-    public void fun2() throws Exception {
+    public void read2() throws Exception {
         //hello,world
-        String filePath = "D:\\a2\\a\\a1.txt";
+        String filePath = "io\\fileInputStream.txt";
         FileInputStream fileInputStream = new FileInputStream(filePath);
         int readLength = 0;
         byte[] buf = new byte[8];
