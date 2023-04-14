@@ -1,13 +1,16 @@
-package cn.dhx.io.streamio.bytestream;
+package cn.dhx.util;
 
 import cn.hutool.core.io.IoUtil;
 import org.apache.commons.io.IOUtils;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 
-public class Byte2Stream {
+public class Byte2StreamUtil {
 
 
 

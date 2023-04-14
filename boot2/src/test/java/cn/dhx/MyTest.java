@@ -2,8 +2,10 @@ package cn.dhx;
 
 
 
+import cn.dhx.boot.util.HttpdAndNginxFileUtil;
 import cn.dhx.boot.util.RestTemplateFileUtil;
 import cn.dhx.boot.util.RestTemplateUtil;
+import cn.dhx.util.SambaUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,16 @@ public class MyTest {
 
 
     @Autowired
+    private SambaUtils sambaUtils;
+
+    @Autowired
     private RestTemplateUtil restTemplateUtil;
 
     @Autowired
     private RestTemplateFileUtil restTemplateFileUtil;
+
+    @Autowired
+    private HttpdAndNginxFileUtil httpdAndNginxFileUtil;
 
 
     @Test
@@ -48,8 +56,23 @@ public class MyTest {
     @Test
     public void fileTest() {
 //        restTemplateFileUtil.downLoad();
-        restTemplateFileUtil.upload();
+//        restTemplateFileUtil.upload();
 //        restTemplateFileUtil.testDownLoadBigFile();
+    }
+
+    @Test
+    public void nginxFileTest() {
+//        httpdAndNginxFileUtil.downLoadFile();
+//        httpdAndNginxFileUtil.uploadFile();
+    }
+
+
+    @Test
+    public void fun1() {
+//        sambaUtils.down();
+        sambaUtils.down2();
+
+//        sambaUtils.upload2();
     }
 
 

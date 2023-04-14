@@ -1,9 +1,6 @@
 package cn.dhx.demo.java.simplews.ws;
 
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelId;
-import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.*;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
@@ -41,6 +38,24 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
         System.out.println("handlerAdded："+ctx.channel().id().asLongText());
         channelGroup.add(ctx.channel());
         System.out.println("channelGroup"+ channelGroup.size());
+    }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) {
+        log.info("Channel {} became active, remote address {}.", ctx.channel(), ctx.channel().remoteAddress());
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) {
+        log.info("Channel {} became inactive, remote address {}.", ctx.channel(), ctx.channel().remoteAddress());
+        ctx.channel().close().addListener(new ChannelFutureListener() {
+            @Override
+            public void operationComplete(ChannelFuture future) throws Exception {
+                log.warn("Close channel {} because of e,result is {}", ctx.channel(), future.isSuccess());
+            }
+        });
+
+
     }
 
     @Override
