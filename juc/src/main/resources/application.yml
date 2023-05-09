@@ -1,0 +1,4 @@
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger : %msg%n'

@@ -1,9 +1,11 @@
 package cn.dhx.juc.thread;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class MyThread {
 
     @Test
@@ -22,7 +24,7 @@ public class MyThread {
 
         @Override
         public void run() {
-            System.out.println(Thread.currentThread().getName() + " extends Thread");
+            log.info("extends Thread");
         }
 
         public Thread1(String name) {
@@ -35,7 +37,7 @@ public class MyThread {
 
         @Override
         public void run() {
-            System.out.println(Thread.currentThread().getName() + " implements Runnable");
+            log.info("implements Runnable");
         }
     }
 
