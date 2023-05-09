@@ -15,7 +15,7 @@ public class ThreadStage {
         new Thread(()->{
 
         }).start();
-        Thread thread1 = new Thread(() -> {
+        Thread thread1 = new Thread(() -> { //NEW
 
         });
 
@@ -43,7 +43,7 @@ public class ThreadStage {
         });
         thread4.start();
 
-        Thread thread5 = new Thread(() -> { //TIMED_WAITING
+        Thread thread5 = new Thread(() -> { //WAITING
             try {
                 thread2.join();
             } catch (InterruptedException e) {
@@ -61,7 +61,7 @@ public class ThreadStage {
         });
         thread5_1.start();
 
-        Thread thread6 = new Thread(() -> { //TIMED_WAITING
+        Thread thread6 = new Thread(() -> { //BLOCKED
             synchronized (ThreadStage.class) {
                 log.info("running");
             }
