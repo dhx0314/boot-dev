@@ -27,7 +27,7 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
         //单个回应
 //        ctx.channel().writeAndFlush(new TextWebSocketFrame("服务时间："+ msg.text().toUpperCase()+" "+ LocalDateTime.now()));
         //全部channle都推送
-        channelGroup.writeAndFlush(new TextWebSocketFrame("服务时间："+ msg.text().toUpperCase()+" "+ LocalDateTime.now()));
+//        channelGroup.writeAndFlush(new TextWebSocketFrame("服务时间："+ msg.text().toUpperCase()+" "+ LocalDateTime.now()));
 
     }
 
@@ -80,7 +80,7 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
             } else if (event.state() == IdleState.READER_IDLE) {
                 log.info("READER_IDLE");
                 System.out.println("READER_IDLE");
-                ctx.channel().writeAndFlush(new TextWebSocketFrame("服务时间："+" "+ LocalDateTime.now()));
+//                ctx.channel().writeAndFlush(new TextWebSocketFrame("服务时间："+" "+ LocalDateTime.now()));
             } else if (event.state() == IdleState.WRITER_IDLE) {
                 System.out.println("WRITER_IDLE");
                 log.info("WRITER_IDLE");

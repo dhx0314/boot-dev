@@ -19,9 +19,16 @@ public class Demo01 {
 
     @Test
     public void long2String() {
-        String str = "2023/03/30/";
-        String substring = str.substring(0, str.lastIndexOf("/"));
-        System.out.println(substring);
+
+        String num = "^6\\d{0,7}";
+
+        String deviceId = "66623";
+//        String deviceId = "66623";
+        if (num.contains("^") || num.contains("$")) {
+            boolean matches = deviceId.matches(num);
+            System.out.println(matches);
+//
+        }
     }
 
 

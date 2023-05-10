@@ -20,10 +20,10 @@ import java.util.concurrent.*;
 public class ExecutorTest {
 
 
-    //2023-04-26 21:27:22   FixedRate
-    //2023-04-26 21:27:27   FixedRate
-    //2023-04-26 21:27:32   FixedRate
-    //2023-04-26 21:27:37   FixedRate
+    //2023-04-26 21:27:20   FixedRate
+    //2023-04-26 21:27:25   FixedRate
+    //2023-04-26 21:27:30   FixedRate
+    //2023-04-26 21:27:35   FixedRate
     @Test
     public void scheduleAtFixedRate() throws InterruptedException {
         ExecutorHelper.scheduleAtFixedRate(() -> {
@@ -40,10 +40,10 @@ public class ExecutorTest {
 
     }
 
-    //2023-04-26 21:28:14   FixedDelay
-    //2023-04-26 21:28:22   FixedDelay
-    //2023-04-26 21:28:30   FixedDelay
-    //2023-04-26 21:28:38   FixedDelay
+    //2023-04-26 21:28:10   FixedDelay
+    //2023-04-26 21:28:18   FixedDelay
+    //2023-04-26 21:28:26   FixedDelay
+    //2023-04-26 21:28:34   FixedDelay
     @Test
     public void scheduleWithFixedDelay() throws InterruptedException {
         ExecutorHelper.scheduleWithFixedDelay(() -> {

@@ -35,6 +35,14 @@ public class ParamController {
         return new User(name, age);
     }
 
+    @Log
+    @GetMapping("/requestParamNo")
+    public Object requestParam2(@RequestParam(value = "name",required = false,defaultValue = "defaultName") String name, @RequestParam(value = "age",required = false) Integer age) {
+        log.info(name);
+        log.info(String.valueOf(age));
+        return new User(name, age);
+    }
+
 
     /**
      * 表单

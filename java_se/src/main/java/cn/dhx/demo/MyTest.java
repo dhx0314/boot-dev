@@ -29,9 +29,14 @@ public class MyTest {
     @Test
     public void fun21() {
 
-        String endPath = "2023/03/30/";
-        String endPathStr = endPath.substring(0, endPath.lastIndexOf("/"));
-        System.out.println(endPathStr);
+        String p = "^1\\\\d{1,8}$";
+        String deviceId="1003";
+        boolean matches = deviceId.matches(p);
+        System.out.println(matches);
+
+//        String endPath = "2023/03/30/";
+//        String endPathStr = endPath.substring(0, endPath.lastIndexOf("/"));
+//        System.out.println(endPathStr);
 
 
     }

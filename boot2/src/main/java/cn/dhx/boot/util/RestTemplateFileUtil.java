@@ -81,7 +81,7 @@ public class RestTemplateFileUtil {
                     .setAccept(Arrays.asList(MediaType.APPLICATION_OCTET_STREAM, MediaType.ALL));
             //对响应进行流式处理而不是将其全部加载到内存中
             ResponseExtractor<Void> responseExtractor = response -> {
-                // Here you can write the inputstream to a file or any other place
+                // Here you can write the inputstream to JULTest file or any other place
                 String targetPath = "file\\downLoadBig.txt";
                 Path path = Paths.get(targetPath);
                 Files.copy(response.getBody(), path);
