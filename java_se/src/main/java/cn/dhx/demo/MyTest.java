@@ -16,6 +16,11 @@ public class MyTest {
     @Test
     public void fun1() {
 
+//        String[] record = {"call_id", "call_direct", "agent_id"};
+//
+//        for (int i = 0; i < record.length - 1; i++) {
+//            System.out.println(record[i]);
+//        }
 //        int i=0;
 //        String s = String.valueOf(++i);
 //        String s = String.valueOf(i++);
@@ -24,6 +29,13 @@ public class MyTest {
 //        System.currentTimeMillis()
 //        Instant now = Instant.now();
 //        System.out.println(now.);
+
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < 7; i++) {
+            s.append("%s").append("|");
+        }
+
+        System.out.println(s);
     }
 
     @Test
