@@ -20,15 +20,11 @@ public class Demo01 {
     @Test
     public void long2String() {
 
-        String num = "^6\\d{0,7}";
 
-        String deviceId = "66623";
-//        String deviceId = "66623";
-        if (num.contains("^") || num.contains("$")) {
-            boolean matches = deviceId.matches(num);
-            System.out.println(matches);
-//
-        }
+
+        String s="http://172.16.2.88:8010";
+        String[] split = s.replace("//", "").split(":");
+        System.out.println(split[1]);
     }
 
 
