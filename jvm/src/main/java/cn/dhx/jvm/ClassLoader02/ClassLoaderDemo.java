@@ -10,7 +10,7 @@ public class ClassLoaderDemo {
 
 //    protected Class<?> loadClass(String name, boolean resolve)
 //            throws ClassNotFoundException {
-//        synchronized (getClassLoadingLock(name)) { //同步操作,保证只能加载一次
+//        synchronize (getClassLoadingLock(name)) { //同步操作,保证只能加载一次
 //            // First, check if the class has already been loaded
 //            // 判断缓存中是否已经加载同名的类
 //            Class<?> c = findLoadedClass(name);

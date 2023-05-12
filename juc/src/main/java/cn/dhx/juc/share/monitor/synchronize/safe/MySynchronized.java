@@ -1,7 +1,6 @@
-package cn.dhx.juc.share.monitor;
+package cn.dhx.juc.share.monitor.synchronize.safe;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 
 /**
  * @Author daihongxin
