@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Author daihongxin
  * @create 2023/5/12 23:46
+ * 偏向锁
  */
 @Slf4j
 public class BiasedLockDemo {
@@ -88,11 +89,9 @@ public class BiasedLockDemo {
 
 }
 
-class Dog {
 
-}
-
-
+// 关闭偏向锁延迟
+//-XX:BiasedLockingStartupDelay=0
 class BiasedLock {
     static final Object obj = new Object();
 

@@ -6,7 +6,9 @@ import org.junit.Test;
 /**
  * @Author daihongxin
  * @create 2023/5/12 23:25
+ * 轻量级锁
  */
+
 @Slf4j
 public class LightweightLocked {
 
