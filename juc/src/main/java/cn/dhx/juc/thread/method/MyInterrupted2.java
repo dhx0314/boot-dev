@@ -20,17 +20,17 @@ public class MyInterrupted2 {
 
 
 @Slf4j
-class TowPhaseTermination{
+class TowPhaseTermination {
     private Thread monitor;
 
     public void start() {
-        monitor=new Thread(()->{
-            while (true){
+        monitor = new Thread(() -> {
+            while (true) {
                 Thread thread = Thread.currentThread();
                 if (thread.isInterrupted()) {
                     log.info("interrupt");
                     break;
-                }else {
+                } else {
                     try {
                         TimeUnit.SECONDS.sleep(1);
                         log.info("monitor");
@@ -45,7 +45,7 @@ class TowPhaseTermination{
         monitor.start();
     }
 
-    public void stop(){
+    public void stop() {
         monitor.interrupt();
     }
 }

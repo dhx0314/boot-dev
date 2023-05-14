@@ -9,6 +9,7 @@ import java.util.concurrent.locks.LockSupport;
 /**
  * @Author daihongxin
  * @create 2023/5/13 13:32
+ * 批量撤销
  */
 @Slf4j
 public class BatchRevocation {
