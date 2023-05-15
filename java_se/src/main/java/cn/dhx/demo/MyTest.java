@@ -1,11 +1,13 @@
 package cn.dhx.demo;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author daihongxin
@@ -14,42 +16,54 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MyTest {
 
     @Test
-    public void fun1() {
+    public void fun1() throws InterruptedException {
+        new Thread(()->{
+            b b = new b();
+            while (true) {
+                b.to2();
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
 
-//        String[] record = {"call_id", "call_direct", "agent_id"};
-//
-//        for (int i = 0; i < record.length - 1; i++) {
-//            System.out.println(record[i]);
-//        }
-//        int i=0;
-//        String s = String.valueOf(++i);
-//        String s = String.valueOf(i++);
-//        System.out.println(s);
+        }).start();
 
-//        System.currentTimeMillis()
-//        Instant now = Instant.now();
-//        System.out.println(now.);
+        TimeUnit.SECONDS.sleep(2);
+        new Thread(()->{
+            A.set();
+            A.to3();
+        }).start();
 
-        StringBuilder s = new StringBuilder();
-        for (int i = 0; i < 7; i++) {
-            s.append("%s").append("|");
-        }
-
-        System.out.println(s);
-    }
-
-    @Test
-    public void fun21() {
-
-        String p = "^1\\\\d{1,8}$";
-        String deviceId="1003";
-        boolean matches = deviceId.matches(p);
-        System.out.println(matches);
-
-//        String endPath = "2023/03/30/";
-//        String endPathStr = endPath.substring(0, endPath.lastIndexOf("/"));
-//        System.out.println(endPathStr);
-
-
+        TimeUnit.SECONDS.sleep(10);
     }
 }
+
+@Slf4j
+class A{
+    public static String filePathTemp="ok";
+
+    public static void set() {
+        filePathTemp="not ok";
+    }
+
+    public static void to3() {
+        log.info("to3 {}", filePathTemp);
+    }
+}
+
+
+@Slf4j
+class b{
+    private String temp = A.filePathTemp;
+
+    public void to() {
+        log.info("temp {}", temp);
+    }
+
+    public void to2() {
+        log.info("temp to2 {}", A.filePathTemp);
+    }
+}
+
