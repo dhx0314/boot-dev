@@ -1,13 +1,16 @@
-package cn.dhx.juc.thread.method;
+package cn.dhx.juc.mode;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
 
 
+/**
+ * 两阶段终止模式
+ * 在一个线程 T1 中如何“优雅”终止线程 T2？这里的【优雅】指的是给 T2 一个料理后事的机会。
+ */
 @Slf4j
-public class MyInterrupted2 {
+public class TowPhaseTerminationDemo {
 
     public static void main(String[] args) throws InterruptedException {
         TowPhaseTermination towPhaseTermination = new TowPhaseTermination();

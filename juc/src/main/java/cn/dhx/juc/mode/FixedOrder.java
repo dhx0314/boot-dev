@@ -1,4 +1,4 @@
-package cn.dhx.juc.share.monitor.mode;
+package cn.dhx.juc.mode;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

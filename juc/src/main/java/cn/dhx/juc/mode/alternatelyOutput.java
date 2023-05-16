@@ -1,13 +1,12 @@
-package cn.dhx.juc.share.monitor.mode;
+package cn.dhx.juc.mode;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 
 /**
  * @Author daihongxin
  * @create 2023/5/16 22:43
- * 交替输出
+ * 交替输出  aabbcc aabbcc
  */
 @Slf4j
 public class alternatelyOutput {
