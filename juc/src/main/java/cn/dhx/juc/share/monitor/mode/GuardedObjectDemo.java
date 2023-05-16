@@ -1,4 +1,4 @@
-package cn.dhx.juc.share.monitor.method;
+package cn.dhx.juc.share.monitor.mode;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -7,65 +7,50 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Author daihongxin
  * @create 2023/5/14 13:51
+ * 保护性暂停
  */
 @Slf4j
-public class GuardedObjectDemoV2 {
+public class GuardedObjectDemo {
 
     public static void main(String[] args) {
-        GuardedObjectV2 guardedObjectV2 = new GuardedObjectV2();
+        GuardedObject guardedObject = new GuardedObject();
 
         new Thread(()->{
             log.info("waiting----");
-            Object o = guardedObjectV2.get(6000);
-            log.info("response {}", o);
+            Object o = guardedObject.get();
+            log.info("response {}",o);
         }).start();
-
         new Thread(() -> {
             log.info("start");
             try {
-                TimeUnit.SECONDS.sleep(4);
+                TimeUnit.SECONDS.sleep(3);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             String str = "done result";
-            guardedObjectV2.complete(str);
+            guardedObject.complete(str);
 
         }).start();
-
-
 
 
     }
 }
 
 @Slf4j
-class GuardedObjectV2 {
+class GuardedObject{
 
     private Object response;
     private final Object lock = new Object();
 
-    public Object get(long timeout) {
+
+    public Object get() {
         synchronized (lock) {
-            long begin = System.currentTimeMillis();
-            long timePassed = 0;//已经经历的时间
             while (response == null) {
-
-                //处理虚假唤醒的时间
-                long waitTime = timeout - timePassed;
-                if (waitTime <= 0) {
-                    log.info("break");
-                    break;
-                }
-
-
                 try {
-                    lock.wait(waitTime);
+                    lock.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                timePassed = System.currentTimeMillis() - begin;
-                log.info("timePassed {},response is  {}", timePassed, response);
             }
             return response;
         }
