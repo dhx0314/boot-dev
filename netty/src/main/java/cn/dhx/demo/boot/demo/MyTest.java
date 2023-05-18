@@ -2,6 +2,7 @@ package cn.dhx.demo.boot.demo;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
+import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.buffer.Unpooled;
 import io.netty.util.CharsetUtil;
 import org.junit.Test;
@@ -30,6 +31,7 @@ public class MyTest {
 
 
         ByteBuf buf = ByteBufAllocator.DEFAULT.buffer(10);
+        ByteBuf byteBuf = PooledByteBufAllocator.DEFAULT.directBuffer();
         System.out.println(buf);
         for (int j = 0; j < 100; j++) {
 
