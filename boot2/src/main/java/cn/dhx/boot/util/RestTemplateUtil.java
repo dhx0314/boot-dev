@@ -3,6 +3,7 @@ package cn.dhx.boot.util;
 import cn.dhx.boot.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,6 +56,12 @@ public class RestTemplateUtil {
         String name = "zhangsan0";
         int age = 20;
         String str = restTemplate.getForObject(url, String.class, name, age);
+        log.info(str);
+    }
+
+    public void getForParam() {
+        String url = "http://127.0.0.1:9001/requestParam?name=zhangsan&age=10";
+        String str = restTemplate.getForObject(url, String.class);
         log.info(str);
     }
 
@@ -118,12 +126,11 @@ public class RestTemplateUtil {
         String url = "http://127.0.0.1:9001/form/data";
 
 
-
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
         MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-        map.add("name","formdata");
+        map.add("name", "formdata");
         map.add("title", "testTitle");
         map.add("body", "testBody");
 
@@ -146,7 +153,7 @@ public class RestTemplateUtil {
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
         MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-        map.add("name","formDataFile");
+        map.add("name", "formDataFile");
         String filePath = "file\\send.txt";
         File file = new File(filePath);
         boolean exists = file.exists();
@@ -182,5 +189,18 @@ public class RestTemplateUtil {
         System.out.println("HTTP 响应状态码：" + statusCodeValue);
         System.out.println("HTTP Headers信息：" + headers);
 
+    }
+
+
+    public void getBytesFromApi() {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        String url = "http://127.0.0.1:9001/requestDemo3?name=zhangsan&age=10";
+        String str = "Hello world!";
+        byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
+        HttpEntity<ByteArrayResource> httpEntity = new HttpEntity<>(new ByteArrayResource(bytes), httpHeaders);
+        ResponseEntity<String> exchange = restTemplate.exchange(url, HttpMethod.POST, httpEntity, String.class);
+        String body = exchange.getBody();
+        log.info("body {}",body);
     }
 }

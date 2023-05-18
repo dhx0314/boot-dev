@@ -49,7 +49,7 @@ public class MyFileTest {
 //        restTemplateUtil.postForObjectFormData();
 //        restTemplateUtil.postForObjectFormDataFile();
 
-        restTemplateUtil.postForEntity();
+        restTemplateUtil.getBytesFromApi();
     }
 
 
