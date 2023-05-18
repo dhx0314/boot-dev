@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Singleton4 {
 
-
     // volatile   防止指令重排序
     private static volatile Singleton4 INSTANCE = null;
 
@@ -31,5 +30,4 @@ public class Singleton4 {
         }
 
     }
-
 }
