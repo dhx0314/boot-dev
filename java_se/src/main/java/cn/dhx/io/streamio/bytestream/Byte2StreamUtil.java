@@ -6,6 +6,9 @@ import org.apache.commons.io.IOUtils;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * java基于流的IO模型
+ */
 
 public class Byte2StreamUtil {
 
