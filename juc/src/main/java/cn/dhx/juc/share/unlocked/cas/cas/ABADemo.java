@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * @Author daihongxin
  * @create 2023/5/18 21:48
+ * ABA问题
  */
 @Slf4j
 public class ABADemo {

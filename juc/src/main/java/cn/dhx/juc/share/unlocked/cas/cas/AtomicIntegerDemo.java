@@ -7,9 +7,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @Author daihongxin
  * @create 2023/5/18 20:36
+ * 原子
  */
 @Slf4j
-public class ReferenceDemo {
+public class AtomicIntegerDemo {
 
     public static void main(String[] args) {
         AtomicInteger i = new AtomicInteger(0);
