@@ -21,12 +21,13 @@ public class BatchBias {
     //-XX:BiasedLockingStartupDelay=0
     public static void batchBias() throws InterruptedException {
         CopyOnWriteArrayList<Dog> list = new CopyOnWriteArrayList<>();
+        int loopNumber = 30;
         Thread thread = new Thread(() -> {
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < loopNumber; i++) {
                 Dog d = new Dog();
                 list.add(d);
                 synchronized (d) {
-                    log.info("i {} lock stage {}", i, ClassLayout.parseInstance(d).toPrintable());
+                    log.info("i {} lock stage {}", i, MyClassLayout.printMarkDown(d));
                 }
             }
 
@@ -45,13 +46,13 @@ public class BatchBias {
                 }
             }
 
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < 20; i++) {
                 Dog d = list.get(i);
-                log.info("i {} start {}", i, ClassLayout.parseInstance(d).toPrintable());
+                log.info("i {} start {}", i, MyClassLayout.printMarkDown(d));
                 synchronized (d) {
-                    log.info("i {} lock in {}", i, ClassLayout.parseInstance(d).toPrintable());
+                    log.info("i {} lock in {}", i, MyClassLayout.printMarkDown(d));
                 }
-                log.info("i {} end {}", i, ClassLayout.parseInstance(d).toPrintable());
+                log.info("i {} end {}", i, MyClassLayout.printMarkDown(d));
 
             }
         });

@@ -25,7 +25,7 @@ public class BatchRevocation {
 
     //-XX:BiasedLockingStartupDelay=0
     public static void batchRevocation() throws InterruptedException {
-        log.info("lock {}", ClassLayout.parseInstance(new Dog()).toPrintable());
+//        log.info("lock {}", ClassLayout.parseInstance(new Dog()).toPrintable());
         CopyOnWriteArrayList<Dog> list = new CopyOnWriteArrayList<>();
         int loopNumber = 39;
         t1 = new Thread(() -> {
@@ -33,7 +33,7 @@ public class BatchRevocation {
                 Dog d = new Dog();
                 list.add(d);
                 synchronized (d) {
-                    log.info("i {} lock stage {}", i, ClassLayout.parseInstance(d).toPrintable());
+                    log.info("i {} lock stage {}", i, MyClassLayout.printMarkDown(d));
                 }
             }
             LockSupport.unpark(t2);
@@ -45,11 +45,11 @@ public class BatchRevocation {
             log.info("t2----------------->");
             for (int i = 0; i < loopNumber; i++) {
                 Dog d = list.get(i);
-                log.info("i {} start {}", i, ClassLayout.parseInstance(d).toPrintable());
+                log.info("i {} start {}", i, MyClassLayout.printMarkDown(d));
                 synchronized (d) {
-                    log.info("i {} lock in {}", i, ClassLayout.parseInstance(d).toPrintable());
+                    log.info("i {} lock in {}", i, MyClassLayout.printMarkDown(d));
                 }
-                log.info("i {} end {}", i, ClassLayout.parseInstance(d).toPrintable());
+                log.info("i {} end {}", i, MyClassLayout.printMarkDown(d));
             }
             LockSupport.unpark(t3);
         });
@@ -58,13 +58,13 @@ public class BatchRevocation {
         t3 = new Thread(() -> {
             LockSupport.park();
             log.info("t3----------------->");
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < loopNumber; i++) {
                 Dog d = list.get(i);
-                log.info("i {} start {}", i, ClassLayout.parseInstance(d).toPrintable());
+                log.info("i {} start {}", i, MyClassLayout.printMarkDown(d));
                 synchronized (d) {
-                    log.info("i {} lock in {}", i, ClassLayout.parseInstance(d).toPrintable());
+                    log.info("i {} lock in {}", i, MyClassLayout.printMarkDown(d));
                 }
-                log.info("i {} end {}", i, ClassLayout.parseInstance(d).toPrintable());
+                log.info("i {} end {}", i, MyClassLayout.printMarkDown(d));
             }
             LockSupport.unpark(t3);
         });
