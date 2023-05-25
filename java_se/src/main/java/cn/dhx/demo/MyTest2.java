@@ -2,6 +2,9 @@ package cn.dhx.demo;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -13,16 +16,11 @@ public class MyTest2 {
 
     public static void main(String[] args) {
 
-        new Thread(()->{
 
-            while (true) {
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                    log.info("start");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        },"myThread_test").start();
+        int length=5;
+        for (int i = 0; i < 20; i++) {
+            System.out.println(i%length);
+        }
+
     }
 }
