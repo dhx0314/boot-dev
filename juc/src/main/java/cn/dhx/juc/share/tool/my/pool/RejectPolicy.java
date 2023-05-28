@@ -1,6 +1,4 @@
-package cn.dhx.juc.share.tool.pool;
-
-import lombok.extern.slf4j.Slf4j;
+package cn.dhx.juc.share.tool.my.pool;
 
 /**
  * @Author daihongxin
