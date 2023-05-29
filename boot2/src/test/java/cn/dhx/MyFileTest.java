@@ -57,6 +57,7 @@ public class MyFileTest {
     public void fileTest() {
 //        restTemplateFileUtil.downLoad();
 //        restTemplateFileUtil.upload();
+        restTemplateFileUtil.upload2();
 //        restTemplateFileUtil.testDownLoadBigFile();
     }
 

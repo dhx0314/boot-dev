@@ -1,5 +1,6 @@
 package cn.dhx.demo;
 
+import cn.hutool.core.lang.UUID;
 import lombok.extern.slf4j.Slf4j;
 
 import java.nio.ByteBuffer;

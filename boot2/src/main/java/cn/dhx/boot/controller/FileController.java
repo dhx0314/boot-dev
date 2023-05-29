@@ -86,6 +86,19 @@ public class FileController {
         }
     }
 
+    /*上传文件的接口*/
+    @PostMapping("/uplode")
+    @ResponseBody
+    public String getUpload(@RequestPart("one") MultipartFile mf,
+                            @RequestPart("any") MultipartFile[] mfs) throws IOException {
+
+        System.out.println("单文件上传信息为:"+mf.getOriginalFilename());
+        System.out.println("多文件个数:"+mfs.length);
+        for (MultipartFile m:mfs){
+            System.out.println("多文件信息:文件名称:"+m.getOriginalFilename()+",文件大小:"+m.getSize()/1000+"kb");
+        }
+        return "成功";
+    }
 
     @Log
     @GetMapping("download")

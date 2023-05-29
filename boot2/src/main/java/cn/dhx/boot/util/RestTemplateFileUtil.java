@@ -1,6 +1,7 @@
 package cn.dhx.boot.util;
 
 import cn.dhx.boot.entity.User;
+import cn.dhx.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,35 @@ public class RestTemplateFileUtil {
         log.info("file exists {}", exists);
         FileSystemResource resource = new FileSystemResource(file);
         map.add("file", resource);
+
+
+        // 组装请求体
+        HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(map, headers);
+
+        String result = restTemplate.postForObject(url, request, String.class);
+        System.out.println(result);
+    }
+
+    public void upload2() {
+
+        String url = "http://127.0.0.1:9001/form/data/file2";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+        MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+        map.add("name","formDataFile");
+        String filePath = "file\\send.txt";
+        File file = new File(filePath);
+        boolean exists = file.exists();
+        log.info("file exists {}", exists);
+        FileSystemResource resource = new FileSystemResource(file);
+        map.add("file", resource);
+        User user = new User();
+        user.setId(1234);
+        user.setName("test");
+        String json = JsonUtil.toString(user);
+        map.add("json", json);
 
 
         // 组装请求体
