@@ -4,8 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @Author daihongxin
@@ -13,6 +17,22 @@ import java.nio.channels.FileChannel;
  */
 @Slf4j
 public class FileChannelDemo {
+
+
+    @Test
+    public void fun1() {
+        String fileName = "nio/channel.txt";
+
+        try (FileChannel toChannel = new FileOutputStream(fileName).getChannel()) {
+            ByteBuffer byteBuffer = ByteBuffer.allocate(10);
+//            byteBuffer.putInt(1);
+            byteBuffer.put("aa".getBytes(StandardCharsets.UTF_8));
+            byteBuffer.flip();
+            toChannel.write(byteBuffer);
+        } catch (Exception e) {
+            log.error("error");
+        }
+    }
 
     @Test
     public void transferTo() {
