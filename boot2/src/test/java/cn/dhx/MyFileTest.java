@@ -5,6 +5,7 @@ package cn.dhx;
 import cn.dhx.boot.util.HttpdAndNginxFileUtil;
 import cn.dhx.boot.util.RestTemplateFileUtil;
 import cn.dhx.boot.util.RestTemplateUtil;
+import cn.dhx.boot.util.RestTemplateUtilV2;
 import cn.dhx.util.SambaUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +33,9 @@ public class MyFileTest {
     @Autowired
     private HttpdAndNginxFileUtil httpdAndNginxFileUtil;
 
+    @Autowired
+    private RestTemplateUtilV2 restTemplateUtilV2;
+
 
     @Test
     public void getAndPost() {
@@ -49,7 +53,8 @@ public class MyFileTest {
 //        restTemplateUtil.postForObjectFormData();
 //        restTemplateUtil.postForObjectFormDataFile();
 
-        restTemplateUtil.getBytesFromApi();
+//        restTemplateUtil.getBytesFromApi();
+        restTemplateUtilV2.timeout();
     }
 
 

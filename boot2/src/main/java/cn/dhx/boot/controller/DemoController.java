@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @Author daihongxin
  * @create 2023/3/8 15:27
@@ -25,6 +27,13 @@ public class DemoController {
     public Object hi() {
         log.info("aa");
         return "aa";
+    }
+
+    @GetMapping("timeout")
+    public Object timeout() throws InterruptedException {
+        log.info("timeout");
+        TimeUnit.SECONDS.sleep(10);
+        return "ok";
     }
 
 

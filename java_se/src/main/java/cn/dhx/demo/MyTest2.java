@@ -1,5 +1,6 @@
 package cn.dhx.demo;
 
+import cn.dhx.util.JsonUtil;
 import cn.hutool.core.lang.UUID;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,10 +19,10 @@ public class MyTest2 {
     public static void main(String[] args) {
 
 
-        int length=5;
-        for (int i = 0; i < 20; i++) {
-            System.out.println(i%length);
-        }
-
+        String uri = "127.0.0.1:8087";
+        String receiverPath = "aaa";
+        String urlFormat = "http://%s/%s";
+        String url = String.format(urlFormat, uri, receiverPath);
+        System.out.println(url);
     }
 }
