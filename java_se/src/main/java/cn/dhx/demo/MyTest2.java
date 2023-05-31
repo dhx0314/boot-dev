@@ -1,11 +1,14 @@
 package cn.dhx.demo;
 
+import cn.dhx.util.DateToolUtil;
 import cn.dhx.util.JsonUtil;
 import cn.hutool.core.lang.UUID;
 import lombok.extern.slf4j.Slf4j;
 
 import java.nio.ByteBuffer;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -17,12 +20,14 @@ import java.util.concurrent.TimeUnit;
 public class MyTest2 {
 
     public static void main(String[] args) {
+//        System.out.println("hello world");
 
+        Date date = new Date();
+        LocalDate localDate = DateToolUtil.dateToLocalDate(date);
+        String s = DateToolUtil.localDateToStrPath(localDate);
+        System.out.println(s);
 
-        String uri = "127.0.0.1:8087";
-        String receiverPath = "aaa";
-        String urlFormat = "http://%s/%s";
-        String url = String.format(urlFormat, uri, receiverPath);
-        System.out.println(url);
+        String s1 = DateToolUtil.dateToStrPath(date);
+        System.out.println(s1);
     }
 }

@@ -26,6 +26,11 @@ public class DateToolUtil {
         return localDate.format(ofPattern);
     }
 
+    public static String localDateToStrPath(LocalDate localDate) {
+        DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern("/yyyy/MM/dd/");
+        return localDate.format(ofPattern);
+    }
+
     public static LocalDateTime strToLocalDateTime(String strTime) {
         DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(strTime, ofPattern);
@@ -88,6 +93,13 @@ public class DateToolUtil {
         LocalDateTime localDateTime = strToLocalDateTime(strTime);
         long l = localDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
         return l / 1000;
+    }
+
+
+    public static String dateToStrPath(Date date) {
+        LocalDate localDate = dateToLocalDate(date);
+        DateTimeFormatter ofPattern = DateTimeFormatter.ofPattern("/yyyy/MM/dd/");
+        return localDate.format(ofPattern);
     }
 
 }

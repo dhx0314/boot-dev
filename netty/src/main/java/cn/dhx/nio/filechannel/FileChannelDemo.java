@@ -66,4 +66,25 @@ public class FileChannelDemo {
             log.error("error", e);
         }
     }
+
+
+    @Test
+    public void readWrite() {
+        try (FileChannel channel = new FileInputStream("nio/data.txt").getChannel();
+             FileChannel outChannel = new FileOutputStream("nio/data_out.txt").getChannel()) {
+            ByteBuffer buffer = ByteBuffer.allocate(10);
+            while (channel.read(buffer) != -1) {
+//                int len = channel.read(buffer);
+//                log.info("read length {}", len);
+//                if (len == -1) {
+//                    break;
+//                }
+                buffer.flip();
+                outChannel.write(buffer);
+                buffer.clear();
+            }
+        } catch (Exception e) {
+            log.error("error", e);
+        }
+    }
 }
