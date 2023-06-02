@@ -312,4 +312,25 @@ public class StreamDemo {
                 .reduce((result, element) -> result > element ? result : element);
         reduce.ifPresent(System.out::println);
     }
+
+    @Test
+    public  void test27() {
+
+        List<Author> authors = Author.getAuthors();
+        authors.stream()
+                .mapToInt(Author::getAge)
+                .map(age -> age + 10)
+                .filter(age->age>18)
+                .map(age->age+2)
+                .forEach(System.out::println);
+
+
+
+        authors.stream()
+                .map(author -> author.getAge())
+                .map(age -> age + 10)
+                .filter(age->age>18)
+                .map(age->age+2)
+                .forEach(System.out::println);
+    }
 }
