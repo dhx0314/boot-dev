@@ -20,14 +20,30 @@ import java.util.concurrent.TimeUnit;
 public class MyTest2 {
 
     public static void main(String[] args) {
-//        System.out.println("hello world");
+        byte b=0x58;
+        System.out.println((char) b);
 
-        Date date = new Date();
-        LocalDate localDate = DateToolUtil.dateToLocalDate(date);
-        String s = DateToolUtil.localDateToStrPath(localDate);
-        System.out.println(s);
+        char c1 = 'X';
 
-        String s1 = DateToolUtil.dateToStrPath(date);
-        System.out.println(s1);
+        byte b2 = (byte) c1;
+        System.out.println(b2);
+        System.out.println(intToHex(b2));
+
+
+
+    }
+
+
+    private static String intToHex(int n) {
+        //StringBuffer s = new StringBuffer();
+        StringBuilder sb = new StringBuilder(8);
+        String a;
+        char []b = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+        while(n != 0){
+            sb = sb.append(b[n%16]);
+            n = n/16;
+        }
+        a = sb.reverse().toString();
+        return a;
     }
 }

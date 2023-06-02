@@ -275,4 +275,41 @@ public class StreamDemo {
                 .findFirst();
         first.ifPresent(System.out::println);
     }
+
+    @Test
+    public void reduce() {
+        List<Author> authors = Author.getAuthors();
+        Integer reduce = authors.stream()
+                .distinct()
+                .map(Author::getAge)
+                .reduce(0, ((result, age) -> result + age));
+
+        System.out.println(reduce);
+
+
+        Integer reduce2 = authors.stream()
+                .distinct()
+                .map(Author::getAge)
+                .reduce(0, (Integer::sum));
+    }
+
+    @Test
+    public void reduce2() {
+        List<Author> authors = Author.getAuthors();
+        Integer reduce = authors.stream()
+                .distinct()
+                .map(Author::getAge)
+                .reduce(Integer.MIN_VALUE, ((result, element) -> result > element ? result : element));
+        System.out.println(reduce);
+    }
+
+    @Test
+    public void reduce3() {
+        List<Author> authors = Author.getAuthors();
+        Optional<Integer> reduce = authors.stream()
+                .distinct()
+                .map(Author::getAge)
+                .reduce((result, element) -> result > element ? result : element);
+        reduce.ifPresent(System.out::println);
+    }
 }
