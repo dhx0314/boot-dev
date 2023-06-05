@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.nio.ByteBuffer;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -28,6 +29,8 @@ public class MyTest2 {
         byte b2 = (byte) c1;
         System.out.println(b2);
         System.out.println(intToHex(b2));
+
+//        Arrays.copyOf()
 
 
 
