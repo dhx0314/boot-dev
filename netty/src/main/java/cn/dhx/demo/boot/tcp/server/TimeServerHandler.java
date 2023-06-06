@@ -16,7 +16,7 @@
 package cn.dhx.demo.boot.tcp.server;
 
 import cn.dhx.demo.boot.entity.AudioStream;
-import cn.dhx.util.NetByteUtil;
+import cn.dhx.demo.util.NetByteUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.buffer.ByteBuf;

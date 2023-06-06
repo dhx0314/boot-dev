@@ -1,6 +1,6 @@
 package cn.dhx.demo.boot.tcp.client;
 
-import cn.dhx.util.NetByteUtil;
+import cn.dhx.demo.util.NetByteUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;

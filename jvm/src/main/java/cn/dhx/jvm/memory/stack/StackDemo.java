@@ -23,6 +23,11 @@ public class StackDemo {
 
 
     // -Xss256k
+
+    /**
+     * 栈内存溢出
+     * java.lang.StackOverflowError: null
+     */
     @Test
     public void fun1() {
         try {

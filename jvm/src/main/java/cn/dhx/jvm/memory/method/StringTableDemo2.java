@@ -16,6 +16,11 @@ public class StringTableDemo2 {
 
     // -Xmx10m
     // -Xmx10m -XX:-UseGCOverheadLimit
+
+    /**
+     * StringTable
+     * java.lang.OutOfMemoryError: Java heap space
+     */
     @Test
     public void fun1() {
         List<String> list = new ArrayList<String>();
@@ -34,6 +39,10 @@ public class StringTableDemo2 {
 
 
     //-Xmx10m -XX:+PrintStringTableStatistics -XX:+PrintGCDetails -verbose:gc
+
+    /**
+     * StringTable 内存回收
+     */
     @Test
     public void fun2() {
         int i = 0;

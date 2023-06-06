@@ -15,6 +15,10 @@ public class HeapDemo {
 
 
     // -Xmx8m
+
+    /**
+     * 堆内存溢出
+     */
     @Test
     public void fun1() {
         int i = 0;
