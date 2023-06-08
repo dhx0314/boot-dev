@@ -26,8 +26,6 @@ public class Stu implements Serializable {
     }
 
 
-    public void finalize() throws Throwable {
-        super.finalize();
-    }
+
 
 }
