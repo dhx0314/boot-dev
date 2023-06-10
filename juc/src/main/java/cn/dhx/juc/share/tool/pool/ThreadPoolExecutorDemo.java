@@ -77,7 +77,6 @@ public class ThreadPoolExecutorDemo {
         });
 
 
-
         Future<String> future = executorService.submit(() -> {
             log.info("task2");
             int i = 1 / 0;
@@ -85,9 +84,49 @@ public class ThreadPoolExecutorDemo {
         });
 
         String s = future.get();
-        log.info("future {}",s);
+        log.info("future {}", s);
 
         TimeUnit.SECONDS.sleep(10);
+
+    }
+
+    @Test
+    public void fun2() {
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        for (int i = 0; i < 10; i++) {
+            executorService.execute(() -> {
+                log.info("current {}", Thread.currentThread());
+                int j = 1 / 0;
+            });
+        }
+
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void fun3() {
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        for (int i = 0; i < 10; i++) {
+            executorService.execute(() -> {
+                log.info("current {}", Thread.currentThread());
+                try {
+                    int j = 1 / 0;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 }
