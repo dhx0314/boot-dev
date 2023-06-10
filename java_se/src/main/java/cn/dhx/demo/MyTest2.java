@@ -21,19 +21,19 @@ import java.util.concurrent.TimeUnit;
 public class MyTest2 {
 
     public static void main(String[] args) {
-        byte b=0x58;
-        System.out.println((char) b);
-
-        char c1 = 'X';
-
-        byte b2 = (byte) c1;
-        System.out.println(b2);
-        System.out.println(intToHex(b2));
-
-//        Arrays.copyOf()
 
 
+        String str = "11011101";
+        String start = str.substring(0, str.length() / 2);
+        String end = str.substring( str.length() / 2);
+        System.out.println(start);
+        System.out.println(end);
 
+    }
+
+    public static void fun1() throws Exception {
+        int i = 100;
+        throw new Exception("error");
     }
 
 
