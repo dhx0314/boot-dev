@@ -5,7 +5,7 @@ package cn.dhx.boot.controller;
 
 import cn.dhx.boot.aop.Log;
 import cn.dhx.boot.entity.User;
-import cn.dhx.util.JsonUtil;
+import cn.dhx.boot.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package cn.dhx.util;
+package cn.dhx.boot.util;
 
 import cn.hutool.core.io.IoUtil;
 import org.apache.commons.io.IOUtils;
@@ -8,8 +8,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 
 public class Byte2StreamUtil {
@@ -40,11 +38,6 @@ public class Byte2StreamUtil {
     public static byte[] toByteArray3(InputStream inputStream) throws IOException {
         byte[] bytes = IoUtil.readBytes(inputStream);
         return bytes;
-    }
-
-    public static byte[] toByteArray4(InputStream inputStream,String path) throws IOException {
-        byte[] content = Files.readAllBytes(Paths.get(path));
-        return content;
     }
 
     public static void main(String[] args) {

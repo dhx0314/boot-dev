@@ -1,0 +1,11 @@
+
+
+
+minio:
+  endpoint: 172.16.2.89
+  port: 9000
+  accessKey: qieLwPrIwE8sjAfPNcmH
+  secretKey: goHr9Qa4554rDCvp7jcmQGKB8sBA9UZBxvpaqfTa
+  bucketName: myio
+  defaultBucketName: myio
+  secure: false

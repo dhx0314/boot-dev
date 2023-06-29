@@ -1,7 +1,6 @@
 package cn.dhx.boot.util;
 
 import cn.dhx.boot.aop.Log;
-import cn.dhx.util.Byte2StreamUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;

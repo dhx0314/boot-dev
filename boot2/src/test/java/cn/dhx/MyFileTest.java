@@ -2,7 +2,7 @@ package cn.dhx;
 
 
 import cn.dhx.boot.util.*;
-import cn.dhx.util.SambaUtils;
+
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,8 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class MyFileTest {
 
 
-    @Autowired
-    private SambaUtils sambaUtils;
+
 
     @Autowired
     private RestTemplateUtil restTemplateUtil;
@@ -116,13 +115,6 @@ public class MyFileTest {
     }
 
 
-    @Test
-    public void fun1() {
-//        sambaUtils.down();
-        sambaUtils.down2();
-
-//        sambaUtils.upload2();
-    }
 
 
 }

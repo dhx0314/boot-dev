@@ -5,6 +5,8 @@ import cn.dhx.boot.aop.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,10 +31,9 @@ public class DemoController {
         return "aa";
     }
 
-    @GetMapping("timeout")
-    public Object timeout() throws InterruptedException {
-        log.info("timeout");
-        TimeUnit.SECONDS.sleep(10);
+    @PostMapping("test")
+    public Object timeout(@RequestBody String data)  {
+        log.info("timeout {}",data);
         return "ok";
     }
 
