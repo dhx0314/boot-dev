@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 
@@ -36,7 +37,14 @@ public class MyFileTest {
 
 
     @Test
-    public void fun1tets() throws InterruptedException {
+    public void fun1() {
+        File file = new File("file\\send.txt");
+        System.out.println(file.exists());
+    }
+
+
+    @Test
+    public void fun1Tets() throws InterruptedException {
 
         for (int i = 0; i < 10; i++) {
             new Thread(() -> {
