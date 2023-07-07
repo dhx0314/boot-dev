@@ -3,6 +3,8 @@ package cn.dhx.boot.demo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.concurrent.*;
 
 /**
@@ -40,9 +42,9 @@ public class MyDemo {
 
     @Test
     public void fun1(){
-        String regex="^1\\d{1,8}$";
-        String ani = "1001";
-        boolean matches = ani.matches(regex);
-        System.out.println(matches);
+        Date date = new Date();
+        long time = date.getTime();
+        System.out.println(time);
+
     }
 }
