@@ -1,9 +1,11 @@
 package cn.dhx.boot.demo;
 
+import cn.dhx.boot.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.*;
 
@@ -17,34 +19,30 @@ public class MyDemo {
 
     public static void main(String[] args) {
 
-//        ExecutorService executor = Executors.newFixedThreadPool(2);
-        int nThreads=2;
-        ExecutorService executor = new ThreadPoolExecutor(nThreads, nThreads,
-                0L, TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<Runnable>(1));
-        for (int i = 0; i < 5; i++) {
-            try {
-                executor.execute(()->{
-                    try {
-                        log.info("Thread name {}",Thread.currentThread().getName());
-                        TimeUnit.SECONDS.sleep(10);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                });
+        User user = new User();
+        user.setName("aa");
+        ArrayList<User> users = new ArrayList<>();
+        boolean add = users.add(user);
 
-            } catch (Exception e) {
-                log.error("error",e);
+        User user1 = users.get(0);
+        user1.setName("bb");
+        users.remove(user1);
+        System.out.println(users.size());
+
+    }
+
+    public static void fun1(User user) {
+
+        synchronized (user) {
+            log.info("name {}", Thread.currentThread().getName());
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
 
 
-    @Test
-    public void fun1(){
-        Date date = new Date();
-        long time = date.getTime();
-        System.out.println(time);
 
-    }
 }

@@ -1,0 +1,12 @@
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://121.5.218.105:10001/security?characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: dhx@root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 121.5.218.105
+    port: 10002
+    password: dhx@root
