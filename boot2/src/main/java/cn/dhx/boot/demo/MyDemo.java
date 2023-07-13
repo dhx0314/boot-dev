@@ -19,16 +19,7 @@ public class MyDemo {
 
     public static void main(String[] args) {
 
-        User user = new User();
-        user.setName("aa");
-        ArrayList<User> users = new ArrayList<>();
-        boolean add = users.add(user);
-
-        User user1 = users.get(0);
-        user1.setName("bb");
-        users.remove(user1);
-        System.out.println(users.size());
-
+        System.out.println(new Date());
     }
 
     public static void fun1(User user) {
