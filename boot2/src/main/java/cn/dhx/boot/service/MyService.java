@@ -12,7 +12,14 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class MyService {
 
+    private static MyService instance;
+
     public MyService() {
         log.info("MyService start");
+        instance = this;
+    }
+
+    public static MyService getInstance() {
+        return instance;
     }
 }
