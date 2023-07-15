@@ -1,4 +1,4 @@
-package cn.dhx.mq.rabbitmq.java.helloWorld;
+package cn.dhx.mq.rabbitmq.java.workingmode.helloworld;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -30,6 +30,11 @@ public class Consumer {
          * 3.消费者未成功消费的回调
          */
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
+
+        //queue–队列的名称
+        //autoAck–如果服务器应考虑消息在送达后得到确认，则为true；如果服务器应期望显式确认，则为false
+        //deliveryCallback–传递消息时的回调
+        //cancelCallback–取消消费者时的回调
         channel.basicConsume(QUEUE_NAME,true, (consumerTag,message)->{
             String s = new String(message.getBody());
             System.out.println("message-------"+s);

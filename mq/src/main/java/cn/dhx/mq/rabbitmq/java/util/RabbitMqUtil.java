@@ -11,13 +11,15 @@ public class RabbitMqUtil {
 
     public static Channel getChannel() {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("121.5.218.105");
-        factory.setUsername("guest");
-        factory.setPassword("guest");
+        factory.setHost("172.16.2.89");
+        factory.setUsername("test");
+        factory.setPassword("123456");
         Connection connection;
         Channel channel = null;
         try {
+            //获取TCP长连接
             connection = factory.newConnection();
+            ////创建通信“通道”，相当于TCP中的虚拟连接
             channel = connection.createChannel();
         } catch (IOException e) {
             e.printStackTrace();

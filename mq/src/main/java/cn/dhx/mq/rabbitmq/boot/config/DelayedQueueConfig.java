@@ -28,7 +28,7 @@ public class DelayedQueueConfig {
     @Bean("delayedExchange")
     public CustomExchange delayedExchange() {
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("x-delayed-type","direct");
+        hashMap.put("x-delayed-type","route");
         return new CustomExchange(DELAYED_EXCHANGE_NAME,"x-delayed-message",true,false,hashMap);
     }
 

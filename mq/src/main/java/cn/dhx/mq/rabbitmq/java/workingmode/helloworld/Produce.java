@@ -1,4 +1,4 @@
-package cn.dhx.mq.rabbitmq.java.helloWorld;
+package cn.dhx.mq.rabbitmq.java.workingmode.helloworld;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

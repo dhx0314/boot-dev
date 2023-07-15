@@ -1,4 +1,4 @@
-package cn.dhx.mq.rabbitmq.java.workqueues;
+package cn.dhx.mq.rabbitmq.java.workingmode.workqueues;
 
 import cn.dhx.mq.rabbitmq.java.util.RabbitMqUtil;
 import com.rabbitmq.client.Channel;

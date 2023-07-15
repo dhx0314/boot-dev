@@ -1,4 +1,4 @@
-package cn.dhx.mq.rabbitmq.java.exchange.fanout;
+package cn.dhx.mq.rabbitmq.java.workingmode.pubsub;
 
 import cn.dhx.mq.rabbitmq.java.util.RabbitMqUtil;
 import com.rabbitmq.client.BuiltinExchangeType;
@@ -7,6 +7,10 @@ import com.rabbitmq.client.Channel;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+
+/**
+ * fanout广播模式；
+ */
 public class Consumer2 {
 
     private final static String EXCHANGE_NAME="fanout_logs";

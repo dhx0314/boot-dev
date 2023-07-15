@@ -1,4 +1,4 @@
-package cn.dhx.mq.rabbitmq.java.exchange.direct;
+package cn.dhx.mq.rabbitmq.java.workingmode.route;
 
 import cn.dhx.mq.rabbitmq.java.util.RabbitMqUtil;
 import com.rabbitmq.client.BuiltinExchangeType;

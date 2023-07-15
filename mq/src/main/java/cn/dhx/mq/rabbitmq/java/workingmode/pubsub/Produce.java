@@ -1,4 +1,4 @@
-package cn.dhx.mq.rabbitmq.java.exchange.fanout;
+package cn.dhx.mq.rabbitmq.java.workingmode.pubsub;
 
 import cn.dhx.mq.rabbitmq.java.util.RabbitMqUtil;
 import com.rabbitmq.client.BuiltinExchangeType;

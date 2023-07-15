@@ -1,4 +1,4 @@
-package cn.dhx.mq.rabbitmq.java.exchange.topics;
+package cn.dhx.mq.rabbitmq.java.workingmode.topics;
 
 import cn.dhx.mq.rabbitmq.java.util.RabbitMqUtil;
 import com.rabbitmq.client.BuiltinExchangeType;
