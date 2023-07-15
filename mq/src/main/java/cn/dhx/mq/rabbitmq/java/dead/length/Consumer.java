@@ -35,8 +35,6 @@ public class Consumer {
         params.put("x-dead-letter-routing-key","lisi");
         params.put("x-max-length",6);
 
-
-
         String queueName="nomal_queue";
         channel.queueDeclare(queueName, false, false, false, params);
         channel.queueBind(queueName,EXCHANGE_NAME,"zhangshan");

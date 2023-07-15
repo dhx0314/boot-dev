@@ -8,8 +8,15 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
 
+
+/**
+ *<a href="https://imgse.com/i/pC57yQO">
+ *     <img src="https://s1.ax1x.com/2023/07/15/pC57yQO.png" alt="pC57yQO.png" border="0" />
+ *     </a>
+ */
 @Configuration
-public class TtlQueueConfig {
+public class TTLQueueConfig {
+
 
     public static final String X_EXCHANGE = "X";
     public static final String QUEUE_A = "QA";

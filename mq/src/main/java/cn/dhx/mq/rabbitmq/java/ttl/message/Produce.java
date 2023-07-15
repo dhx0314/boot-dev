@@ -1,4 +1,4 @@
-package cn.dhx.mq.rabbitmq.java.dead.ttl;
+package cn.dhx.mq.rabbitmq.java.ttl.message;
 
 import cn.dhx.mq.rabbitmq.java.util.RabbitMqUtil;
 import com.rabbitmq.client.AMQP;
@@ -15,15 +15,15 @@ import java.nio.charset.StandardCharsets;
  */
 public class Produce {
 
-    private final static String EXCHANGE_NAME = "normal_exchange";
+    private final static String EXCHANGE_NAME = "ttl_exchange";
 
     public static void main(String[] args) throws IOException, InterruptedException {
         Channel channel = RabbitMqUtil.getChannel();
         channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
 
         // 设置消息的ttl时间
-        AMQP.BasicProperties properties = new AMQP.BasicProperties().builder().expiration("15000").build();
-        for (int i = 0; i < 10; i++) {
+        AMQP.BasicProperties properties = new AMQP.BasicProperties().builder().expiration("5000").build();
+        for (int i = 0; i < 100; i++) {
             Thread.sleep(500);
             String message = "info" + i;
             channel.basicPublish(EXCHANGE_NAME, "zhangshan", properties, message.getBytes(StandardCharsets.UTF_8));

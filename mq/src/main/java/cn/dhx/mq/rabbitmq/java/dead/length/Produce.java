@@ -7,6 +7,11 @@ import com.rabbitmq.client.Channel;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+
+/**
+ *  先启动Consumer  关闭 Consumer
+ *  启动 Produce  等待30s  启动 Consumer2
+ */
 public class Produce {
 
     private final static String EXCHANGE_NAME = "normal_exchange";
@@ -15,7 +20,7 @@ public class Produce {
         Channel channel = RabbitMqUtil.getChannel();
         channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             Thread.sleep(500);
             String message = "info" + i;
             channel.basicPublish(EXCHANGE_NAME, "zhangshan", null, message.getBytes(StandardCharsets.UTF_8));
