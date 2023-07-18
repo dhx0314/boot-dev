@@ -79,16 +79,12 @@ public class MyDemo {
 
     @Test
     public void fun2() {
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
-        executorService.execute(()->{
-            try {
-                TimeUnit.SECONDS.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
 
-        System.out.println(executorService.toString());
+
+        String filter = "dst host %s or src host %s";
+        String format = String.format(filter, "127.0.0.1","172.1.6.2.94");
+        System.out.println(format);
+
     }
 
 
