@@ -1,63 +1,54 @@
 package cn.dhx.boot.demo;
 
-import cn.dhx.boot.entity.User;
+import cn.dhx.boot.helper.ExecutorHelper;
+import cn.hutool.core.lang.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.*;
-import java.util.function.Function;
 
 /**
  * @Author daihongxin
  * @create 2023/7/3 15:19
  */
 @Slf4j
-public class MyDemo {
+public class MyDemo<T> {
 
+
+    private T a;
 
     public static void main(String[] args) {
-        Map<String, Map<String, Object>> map1 = new HashMap<>(4);
-        Map<String, Map<String, Object>> map0 = new HashMap<>(4);
 
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("test","testValue");
+        ScheduledFuture<?> scheduledFuture = ExecutorHelper.scheduleWithFixedDelay(() -> {
+            log.info("Thread {}", Thread.currentThread().getName());
+        }, 15, 6, TimeUnit.SECONDS);
 
-        HashMap<String, Object> hashMap2 = new HashMap<>();
-        hashMap2.put("test2","testValue2");
 
-        HashMap<String, Object> hashMap3 = new HashMap<>();
-        hashMap3.put("test3","testValue3");
+        ScheduledFuture<?> scheduledFuture2 = ExecutorHelper.scheduleWithFixedDelay(() -> {
+            log.info("scheduledFuture2 {}", Thread.currentThread().getName());
+        }, 15, 6, TimeUnit.SECONDS);
 
-        map1.put("a", hashMap);
-
-        map1.put("a2", hashMap2);
-
-        map0.put("a", hashMap3);
-//        map0.put("a", hashMap2);
-
-        log.info("map0 {}",map0);
-        log.info("map1 {}",map1);
-
-        log.info("--------------------");
-        if (map1 != null) {
-            map1.forEach((key, value) -> map0.computeIfAbsent(key, s -> new HashMap<>(4)).putAll(value));
+        try {
+            TimeUnit.SECONDS.sleep(30);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        scheduledFuture.cancel(true);
 
-        log.info("map0 {}",map0);
-        log.info("map1 {}",map1);
 
+        try {
+            TimeUnit.SECONDS.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }
 
 
     @Test
-    public  void fun1() {
+    public void fun1() {
         // 创建一个 HashMap
         HashMap<String, Integer> prices = new HashMap<>();
 
@@ -80,11 +71,54 @@ public class MyDemo {
     @Test
     public void fun2() {
 
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 0);
+        Integer code = (Integer) map.get("code");
 
-        String filter = "dst host %s or src host %s";
-        String format = String.format(filter, "127.0.0.1","172.1.6.2.94");
-        System.out.println(format);
+        if (code != null && 0 == code) {
+            System.out.println("Ok");
+        }
+    }
 
+
+    @Test
+    public void fun3() {
+//        String str = "2023-07-24 15:10:00";
+        String str = "2023-07-24";
+        String[] s = str.split(" ");
+        String s1 = s[0];
+        System.out.println(s1);
+    }
+
+    @Test
+    public void fun4() {
+//        String s = UUID.randomUUID().toString();
+
+        String replace = UUID.fastUUID().toString().replace("-", "");
+        System.out.println(replace);
+
+
+    }
+
+
+    public static <T> String funa() {
+
+        T t;
+        t = (T) "aa";
+        System.out.println(t);
+//        System.out.println(t);
+        return "ok";
+    }
+
+
+
+    public static <T> String funa2(T t) {
+
+//        T t;
+//        t = (T) "aa";
+        System.out.println(t);
+//        System.out.println(t);
+        return "ok";
     }
 
 

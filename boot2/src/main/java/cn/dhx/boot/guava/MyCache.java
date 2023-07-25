@@ -14,16 +14,16 @@ import java.util.concurrent.TimeUnit;
  * @create 2023/7/12 16:12
  */
 @Slf4j
-public class Cache {
+public class MyCache {
 
 
     @Test
     public void fun1() {
         LoadingCache<String, String> cache = CacheBuilder.newBuilder()
                 //缓存存储最大数量
-                .maximumSize(10)
+//                .maximumSize(10)
                 //访问过期时间3s
-                .expireAfterAccess(300, TimeUnit.SECONDS)
+                .expireAfterAccess(10, TimeUnit.SECONDS)
                 //监听删除
                 .removalListener(notification -> System.out.println("删除监听：" + notification.getKey() + "=" + notification.getCause()))
                 .build(new CacheLoader<String, String>() {
@@ -42,6 +42,19 @@ public class Cache {
         for (int i = 0; i < 20; i++) {
 
             cache.put(String.valueOf(i), String.valueOf(i));
+
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        try {
+            TimeUnit.SECONDS.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         try {

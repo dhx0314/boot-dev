@@ -98,14 +98,26 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
-
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.2</version>
+        </dependency>
         <dependency>
             <groupId>org.java-websocket</groupId>
             <artifactId>Java-WebSocket</artifactId>
             <version>1.3.5</version>
         </dependency>
 
-<!--        <dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.github.ben-manes.caffeine/caffeine -->
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>2.9.3</version>
+        </dependency>
+
+
+        <!--        <dependency>-->
 <!--            <groupId>org.bytedeco</groupId>-->
 <!--            <artifactId>ffmpeg-platform</artifactId>-->
 <!--            <version>4.4-1.5.6</version>-->
@@ -132,20 +144,20 @@
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.redisson</groupId>
-                    <artifactId>redisson-spring-data-27</artifactId>
-                </exclusion>
-            </exclusions>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.redisson</groupId>-->
+<!--                    <artifactId>redisson-spring-data-27</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
             <version>3.17.4</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-data-25</artifactId>
-            <version>3.16.8</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.redisson</groupId>-->
+<!--            <artifactId>redisson-spring-data-25</artifactId>-->
+<!--            <version>3.16.8</version>-->
+<!--        </dependency>-->
 
 
         <!--jasypt-->

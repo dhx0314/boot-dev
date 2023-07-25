@@ -1,7 +1,9 @@
 package cn.dhx.security.service.impl;
 
 import cn.dhx.security.entity.User;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +16,7 @@ import java.util.Collection;
  */
 @Slf4j
 @Data
+@NoArgsConstructor
 public class LoginUser implements UserDetails {
 
     private User user;

@@ -66,7 +66,7 @@ public class OrderDelayService   {
     }
 
     //该类对象Bean实例化之后，就开启while扫描任务
-    @PostConstruct
+//    @PostConstruct
     public void run()  {
         new Thread(() -> {  //开启新的线程，否则SpringBoot应用初始化无法启动
             while(true){

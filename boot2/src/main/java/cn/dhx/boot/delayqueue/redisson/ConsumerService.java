@@ -18,7 +18,7 @@ public class ConsumerService {
     @Autowired
     private RedisDelayQueueUtil redisDelayQueueUtil;
 
-    @PostConstruct
+//    @PostConstruct
     public void consumer() {
         new Thread(() -> {
             while (true) {
