@@ -15,7 +15,7 @@ public class LambdaQueryWrapperBuilder<T> {
     private final LambdaQueryWrapper<T> wrapper = Wrappers.lambdaQuery();
 
     public static <T> LambdaQueryWrapperBuilder<T> newBuilder() {
-        return new LambdaQueryWrapperBuilder<>();
+        return new LambdaQueryWrapperBuilder<T>();
     }
 
     public LambdaQueryWrapperBuilder<T> isNull(SFunction<T, ?> column) {

@@ -16,6 +16,7 @@ public class User {
 
     private Integer age;
 
+    Object lock = new Object();
 
     public User(String name, Integer age) {
         this.name = name;

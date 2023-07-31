@@ -1,6 +1,7 @@
 package cn.dhx;
 
 import cn.dhx.boot.entity.User;
+import cn.dhx.boot.filter.RedissonBloomFilter;
 import cn.dhx.boot.service.MyService;
 import cn.dhx.boot.util.JsonUtil;
 import cn.dhx.boot.util.RestTemplateUtil;
@@ -35,6 +36,10 @@ public class MyDemoTest {
 
     @Autowired
     private RestTemplate restTemplate;
+
+
+    @Autowired
+    private RedissonBloomFilter redissonBloomFilter;
 
 
     @Test
@@ -101,6 +106,11 @@ public class MyDemoTest {
     public void fun1() {
         System.out.println(myService.toString());
         System.out.println(MyService.getInstance());
+    }
+
+    @Test
+    public void funBloom() {
+        redissonBloomFilter.testBloom();
     }
 
 

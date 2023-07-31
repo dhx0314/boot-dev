@@ -1,6 +1,9 @@
 package cn.dhx.boot.demo;
 
+import cn.dhx.boot.entity.User;
 import cn.dhx.boot.helper.ExecutorHelper;
+import cn.hutool.cache.Cache;
+import cn.hutool.cache.CacheUtil;
 import cn.hutool.core.lang.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -14,6 +17,8 @@ import java.util.concurrent.*;
  */
 @Slf4j
 public class MyDemo<T> {
+
+
 
 
     private T a;
@@ -69,25 +74,51 @@ public class MyDemo<T> {
 
 
     @Test
-    public void fun2() {
+    public void fun2() throws InterruptedException {
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("code", 0);
-        Integer code = (Integer) map.get("code");
-
-        if (code != null && 0 == code) {
-            System.out.println("Ok");
+        for (int i = 0; i < 4; i++) {
+            User user = new User();
+            user.setName(String.valueOf(i));
+            ScheduledFuture<?> scheduledFuture = ExecutorHelper.schedule(() -> {
+                log.info("Thread {} {}", Thread.currentThread().getName(),user.getName());
+            }, 6, TimeUnit.SECONDS);
         }
+
+        TimeUnit.SECONDS.sleep(100);
     }
 
 
     @Test
-    public void fun3() {
-//        String str = "2023-07-24 15:10:00";
-        String str = "2023-07-24";
-        String[] s = str.split(" ");
-        String s1 = s[0];
-        System.out.println(s1);
+    public void fun3() throws InterruptedException {
+
+
+        User user = new User();
+        new Thread(()->{
+            log.info("t1");
+            synchronized (user.getLock()) {
+                try {
+                    TimeUnit.SECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                log.info("t1 end");
+            }
+        }).start();
+
+        new Thread(()->{
+            log.info("t2");
+            synchronized (user.getLock()) {
+                try {
+                    TimeUnit.SECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                log.info("t2 end");
+            }
+        }).start();
+
+        TimeUnit.SECONDS.sleep(100);
+
     }
 
     @Test
@@ -121,5 +152,16 @@ public class MyDemo<T> {
         return "ok";
     }
 
+
+    @Test
+    public void fun1aaa() {
+        Cache<String,String> fifoCache = CacheUtil.newFIFOCache(3);
+        fifoCache.put("1","a");
+        fifoCache.put("2","a");
+        fifoCache.put("3","a");
+        fifoCache.put("4","a");
+
+        System.out.println(fifoCache);
+    }
 
 }
