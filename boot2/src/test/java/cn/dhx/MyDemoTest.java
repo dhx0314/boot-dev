@@ -1,5 +1,6 @@
 package cn.dhx;
 
+import cn.dhx.boot.disruptor.MyDisruptor;
 import cn.dhx.boot.entity.User;
 import cn.dhx.boot.filter.RedissonBloomFilter;
 import cn.dhx.boot.service.MyService;
@@ -40,6 +41,20 @@ public class MyDemoTest {
 
     @Autowired
     private RedissonBloomFilter redissonBloomFilter;
+
+    @Autowired
+    private MyDisruptor myDisruptor;
+
+
+    @Test
+    public void funDyDisruptor() {
+
+//        myDisruptor.produce();
+        for (int i = 0; i < 3; i++) {
+            myDisruptor.produce2(i, "produce" + String.valueOf(i));
+        }
+
+    }
 
 
     @Test

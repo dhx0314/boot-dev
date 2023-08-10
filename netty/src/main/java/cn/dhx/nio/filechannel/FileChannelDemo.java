@@ -27,6 +27,10 @@ public class FileChannelDemo {
             ByteBuffer byteBuffer = ByteBuffer.allocate(10);
 //            byteBuffer.putInt(1);
             byteBuffer.put("aa".getBytes(StandardCharsets.UTF_8));
+
+            ByteBuffer writerBuffer = toChannel.map(FileChannel.MapMode.READ_WRITE, 0, 10);
+
+            writerBuffer.put("aa".getBytes(StandardCharsets.UTF_8));
             byteBuffer.flip();
             toChannel.write(byteBuffer);
         } catch (Exception e) {
