@@ -1,6 +1,5 @@
 package cn.dhx.security.service.impl;
 
-import cn.dhx.security.config.SampleAuthenticationManager;
 import cn.dhx.security.entity.User;
 import cn.dhx.security.pojo.ResponseResult;
 import cn.dhx.security.service.LoginService;
@@ -32,7 +31,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     private RedisCache redisCache;
-//    private static AuthenticationManager am = new SampleAuthenticationManager();
 
     @Override
     public ResponseResult login(User user) {
