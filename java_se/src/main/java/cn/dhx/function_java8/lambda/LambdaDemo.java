@@ -1,4 +1,4 @@
-package cn.dhx.function.lambda;
+package cn.dhx.function_java8.lambda;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

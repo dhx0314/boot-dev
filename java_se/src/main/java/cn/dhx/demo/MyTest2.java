@@ -37,6 +37,10 @@ public class MyTest2 {
         Map<String, Object> decode = User2UserInfoUtil.decode(uui);
         System.out.println(decode.get("userId"));
 
+
+        ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>();
+        concurrentHashMap.put("a", "b");
+
     }
 
 

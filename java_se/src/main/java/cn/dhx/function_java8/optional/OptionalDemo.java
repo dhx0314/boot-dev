@@ -1,7 +1,7 @@
-package cn.dhx.function.optional;
+package cn.dhx.function_java8.optional;
 
-import cn.dhx.function.stream.Author;
-import cn.dhx.function.stream.Book;
+import cn.dhx.function_java8.stream.Author;
+import cn.dhx.function_java8.stream.Book;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -79,5 +79,37 @@ public class OptionalDemo {
         Optional<Author> author = Optional.ofNullable(getAuthor());
         Optional<List<Book>> books = author.map(authors2 -> authors2.getBooks());
         books.ifPresent(books1 -> System.out.println(books1));
+    }
+
+    @Test
+    public void fun1() {
+        Student student1 =  new Student("王五", 80);
+        Optional<Student> optional = Optional.ofNullable(student1);
+
+        Student student2 = optional.orElse(getMyStudent());
+        System.out.println("-------------------");
+        Student student3 = optional.orElseGet(() -> getMyStudent());
+
+        log.info("student orElse {} ", student2);
+        log.info("student orElseGet {} ", student3);
+    }
+
+    @Test
+    public void fun2() {
+        Student student1 = null;
+        Optional<Student> optional = Optional.ofNullable(student1);
+
+        Student student2 = optional.orElse(getMyStudent());
+        System.out.println("-------------------");
+        Student student3 = optional.orElseGet(() -> getMyStudent());
+
+        log.info("student orElse {} ", student2);
+        log.info("student orElseGet {} ", student3);
+    }
+
+
+    public static Student getMyStudent() {
+        System.out.println("开始执行getMyStudent");
+        return new Student("张三", 90);
     }
 }

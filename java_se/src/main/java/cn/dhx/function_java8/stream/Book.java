@@ -1,4 +1,4 @@
-package cn.dhx.function.stream;
+package cn.dhx.function_java8.stream;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -8,7 +8,7 @@ import org.junit.Test;
  * @create 2023/5/10 23:49
  */
 @Slf4j
-public class BinarySearch {
+public class BinarySearch02 {
 
 
     //假设一个数组为{0，1，2，3，4，5，6，7，8，9}，
@@ -27,23 +27,10 @@ public class BinarySearch {
 
     @Test
     public void BinarySearchBasicTest() {
-        // 查3
 
-        // i     m        j
-        // 1 3 5 6 11 18 22
-        // 0 1 2 3 4  5   6
-
-        // i m j
-        // 1 3 5
-        // 0 1 2
-        int[] array = {1, 3, 5, 6, 11, 18, 22};
-
-        System.out.println(BinarySearchBasic(array, 1));
-        System.out.println(BinarySearchBasic(array, 3));
-        System.out.println(BinarySearchBasic(array, 5));
+        int[] array = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         System.out.println(BinarySearchBasic(array, 6));
-        System.out.println(BinarySearchBasic(array, 22));
-        System.out.println(BinarySearchBasic(array, 23));
+
 
 
     }
@@ -55,6 +42,7 @@ public class BinarySearch {
         int j = arr.length - 1; //j是查找目标
         while (i <= j) {
             int m = (i + j) >>> 1;
+            log.info("i {} j {} m{}",i,j,m);
             if (target < arr[m]) {
                 j = m - 1;
             } else if (target > arr[m]) {
@@ -84,14 +72,8 @@ public class BinarySearch {
         // i m j
         // 1 3 5
         // 0 1 2
-        int[] array = {1, 3, 5, 6, 11, 18, 22};
-
-        System.out.println(BinarySearchPro(array, 1));
-        System.out.println(BinarySearchPro(array, 3));
-        System.out.println(BinarySearchPro(array, 5));
+        int[] array = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         System.out.println(BinarySearchPro(array, 6));
-        System.out.println(BinarySearchPro(array, 22));
-        System.out.println(BinarySearchPro(array, 23));
 
 
     }
@@ -103,6 +85,7 @@ public class BinarySearch {
         int j = arr.length; //j不是查找目标,只作为边界
         while (i < j) {
             int m = (i + j) >>> 1;
+            log.info("i {} j {} m {}",i,j,m);
             if (target < arr[m]) {
                 j = m;
             } else if (target > arr[m]) {

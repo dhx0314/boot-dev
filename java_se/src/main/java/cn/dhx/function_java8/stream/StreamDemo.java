@@ -1,11 +1,9 @@
-package cn.dhx.function.stream;
+package cn.dhx.function_java8.stream;
 
-import cn.hutool.core.util.ArrayUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

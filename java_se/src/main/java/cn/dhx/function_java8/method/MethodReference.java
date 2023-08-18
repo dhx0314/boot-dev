@@ -1,6 +1,6 @@
-package cn.dhx.function.method;
+package cn.dhx.function_java8.method;
 
-import cn.dhx.function.stream.Author;
+import cn.dhx.function_java8.stream.Author;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
