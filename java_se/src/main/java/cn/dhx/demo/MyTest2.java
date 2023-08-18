@@ -44,4 +44,15 @@ public class MyTest2 {
     }
 
 
+    @Test
+
+    public void fun3() {
+
+        ArrayList<String> list = new ArrayList<>();
+        list.forEach(i-> System.out.println("aa"));
+
+
+    }
+
+
 }

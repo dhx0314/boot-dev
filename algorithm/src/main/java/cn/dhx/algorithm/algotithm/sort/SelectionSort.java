@@ -1,4 +1,4 @@
-package cn.dhx.algorithm.sort;
+package cn.dhx.algorithm.algotithm.sort;
 
 import java.util.Arrays;
 

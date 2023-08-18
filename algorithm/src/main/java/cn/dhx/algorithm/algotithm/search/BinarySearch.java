@@ -1,4 +1,4 @@
-package cn.dhx.algorithm.search;
+package cn.dhx.algorithm.algotithm.search;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -103,6 +103,7 @@ public class BinarySearch {
         int j = arr.length; //j不是查找目标,只作为边界
         while (i < j) {
             int m = (i + j) >>> 1;
+            log.info("i {} j{} m{}",i,j,m);
             if (target < arr[m]) {
                 j = m;
             } else if (target > arr[m]) {
@@ -114,6 +115,47 @@ public class BinarySearch {
 
         return -1;
 
+    }
+
+
+    @Test
+    public void binarySearchBalanceTest() {
+        // i     m        j
+        // 1 3 5 6 11 18 22
+        // 0 1 2 3 4  5   6
+
+        // i m j
+        // 1 3 5
+        // 0 1 2
+
+        // i m j
+        // 1 3 5
+        // 0 1 2
+
+
+        int[] array = {1, 3, 5, 6, 11, 18, 22};
+
+        System.out.println(binarySearchBalance(array, 1));
+        System.out.println(binarySearchBalance(array, 3));
+        System.out.println(binarySearchBalance(array, 5));
+        System.out.println(binarySearchBalance(array, 6));
+        System.out.println(binarySearchBalance(array, 22));
+        System.out.println(binarySearchBalance(array, 23));
+
+    }
+
+    public static int binarySearchBalance(int[] a, int target) {
+
+        int i = 0, j = a.length;
+        while (1 < j - i) {
+            int m = (i + j) >>> 1;
+            if (target < a[m]) {
+                j = m;
+            } else {
+                i = m;
+            }
+        }
+        return (a[i] == target) ? i : -1;
     }
 
 }
