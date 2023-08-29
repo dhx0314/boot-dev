@@ -1,6 +1,7 @@
 package cn.dhx.reflect;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
 
 import java.lang.reflect.Field;
 
@@ -46,13 +47,18 @@ public class FieldsDemo {
         name.setAccessible(true);
         System.out.println(name);
 
+
+        Field age = aClass.getDeclaredField("age");
+        age.setAccessible(true);
+
+
         int modifiers = name.getModifiers();
         System.out.println("modifiers: " + modifiers);
         String name1 = name.getName();
         System.out.println("name1: " + name1);
 
         Class<?> type = name.getType();
-        System.out.println(type);
+        System.out.println("type:" + type);
 
         Student student = new Student("张三", 18, "aa");
         String nameStr = (String) name.get(student);
@@ -64,4 +70,22 @@ public class FieldsDemo {
         System.out.println(student);
 
     }
+
+
+    @Test
+    public void fun2() throws Exception, IllegalAccessException {
+        Class<?> studentClass = Class.forName("cn.dhx.reflect.Student");
+//        Class<Student> studentClass = Student.class;
+        Field id = studentClass.getField("id");
+        Object id1 = id.get(Student.class);
+        System.out.println(id1);
+
+        Object id2 = id.get("id");
+        System.out.println(id2);
+
+
+    }
+
+
+
 }

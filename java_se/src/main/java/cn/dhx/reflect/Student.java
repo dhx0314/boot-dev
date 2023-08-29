@@ -13,6 +13,8 @@ import java.io.IOException;
 @ToString
 public class Student {
 
+    public static long id = 100;
+
     private String name;
     private int age;
     public String gender;
@@ -25,7 +27,6 @@ public class Student {
         this.age = age;
         this.gender = gender;
     }
-
 
 
     public Student(String name) {
@@ -44,6 +45,7 @@ public class Student {
 
     /**
      * 获取
+     *
      * @return name
      */
     public String getName() {
@@ -52,6 +54,7 @@ public class Student {
 
     /**
      * 设置
+     *
      * @param name
      */
     public void setName(String name) {
@@ -60,6 +63,7 @@ public class Student {
 
     /**
      * 获取
+     *
      * @return age
      */
     public int getAge() {
@@ -68,30 +72,29 @@ public class Student {
 
     /**
      * 设置
+     *
      * @param age
      */
     public void setAge(int age) {
         this.age = age;
     }
 
-    public void sleep(){
+    public void sleep() {
         System.out.println("睡觉");
     }
 
-    private String eat(String something) throws IOException,NullPointerException,ClassCastException {
+    private String eat(String something) throws IOException, NullPointerException, ClassCastException {
         System.out.println("在吃" + something);
         return "奥利给";
     }
 
-    private void eat(String something,int a) {
+    private void eat(String something, int a) {
         System.out.println("在吃" + something);
     }
 
     public String toString() {
         return "Student{name = " + name + ", age = " + age + "}";
     }
-
-
 
 
 }

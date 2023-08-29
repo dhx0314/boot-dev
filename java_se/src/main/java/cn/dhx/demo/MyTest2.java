@@ -44,14 +44,25 @@ public class MyTest2 {
     }
 
 
-    @Test
-
-    public void fun3() {
-
-        ArrayList<String> list = new ArrayList<>();
-        list.forEach(i-> System.out.println("aa"));
+    public static void main(String[] args) {
 
 
+
+//
+//        StringBuilder aa = new StringBuilder("aa");
+//        aa.append("aa");
+
+        HashMap<String, String> hashMap = new HashMap<>(6);
+
+        System.out.println(hashMap.size());
+        hashMap.put("a", "1");
+        System.out.println(hashMap.size());
+        for (int i = 0; i < 16; i++) {
+            hashMap.put(String.valueOf(i), "a");
+        }
+        System.out.println(hashMap.size());
+
+        System.out.println(hashMap.size());
     }
 
 

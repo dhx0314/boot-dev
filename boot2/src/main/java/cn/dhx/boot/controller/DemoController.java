@@ -41,4 +41,12 @@ public class DemoController {
     }
 
 
+
+    @Log
+    @GetMapping("hello")
+    public Object hello() {
+        log.info("hello");
+        return "aa";
+    }
+
 }

@@ -1,7 +1,8 @@
 package cn.dhx.algorithm.data_structure.array;
 
-import cn.hutool.core.date.StopWatch;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
+import org.springframework.util.StopWatch;
 
 /**
  * @Author daihongxin
@@ -9,6 +10,14 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ArrayDemo {
+
+
+    @Test
+    public void fun1() {
+        int[] arr={1, 2, 3};
+        System.out.println(arr.length);
+
+    }
 
 
     public static void main(String[] args) {
