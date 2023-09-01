@@ -8,6 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @Author daihongxin
+ * 交替打印
  * @create 2023/5/16 22:50
  */
 @Slf4j

@@ -24,6 +24,13 @@ public class MyTest2 {
 
 
     @Test
+    public void fun2() {
+        Thread thread = new Thread();
+
+
+    }
+
+    @Test
     public void fun1() {
         String uui = "7b22757365724964223a3132333435367d;encoding=jsonHex";
 
