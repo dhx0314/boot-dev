@@ -25,6 +25,7 @@ public class StringTableDemo {
         System.out.println(s3 == s4);   //false
         System.out.println(s3 == s5);   //true
         System.out.println(s3 == s6);   //true
+        System.out.println(s5 == s6);   //true
     }
 
     @Test

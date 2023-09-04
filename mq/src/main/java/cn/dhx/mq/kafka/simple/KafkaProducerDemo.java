@@ -28,7 +28,7 @@ public class KafkaProducerDemo {
         KafkaProducer<String, String> producer = new KafkaProducer<String, String>(props);
 
         // 3. 调用send发送1-100消息到指定Topic test
-        for (int i = 0; i < 100; ++i) {
+        for (int i = 0; i < 10; ++i) {
             try {
                 // 获取返回值Future，该对象封装了返回值
                 Future<RecordMetadata> future = producer.send(new ProducerRecord<String, String>("test", null, i + ""));
