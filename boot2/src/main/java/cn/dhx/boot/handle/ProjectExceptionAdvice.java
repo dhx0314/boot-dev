@@ -1,6 +1,6 @@
 package cn.dhx.boot.handle;
 
-import cn.dhx.boot.entity.R;
+import cn.dhx.boot.pojo.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

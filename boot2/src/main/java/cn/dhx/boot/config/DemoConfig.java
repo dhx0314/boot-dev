@@ -10,4 +10,5 @@ import org.springframework.context.annotation.ComponentScan;
 @Slf4j
 @ComponentScan
 public class DemoConfig {
+
 }

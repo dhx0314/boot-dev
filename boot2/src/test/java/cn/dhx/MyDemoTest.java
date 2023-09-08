@@ -1,14 +1,11 @@
 package cn.dhx;
 
 import cn.dhx.boot.disruptor.MyDisruptor;
-import cn.dhx.boot.entity.User;
 import cn.dhx.boot.filter.RedissonBloomFilter;
 import cn.dhx.boot.service.MyService;
 import cn.dhx.boot.util.JsonUtil;
-import cn.dhx.boot.util.RestTemplateUtil;
 import cn.dhx.boot.util.WebClientUtil;
 import cn.hutool.http.HttpUtil;
-import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,9 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.Duration;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @Author daihongxin

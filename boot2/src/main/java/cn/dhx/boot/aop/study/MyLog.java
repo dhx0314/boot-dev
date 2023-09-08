@@ -36,7 +36,7 @@ public class MyLog {
 
     //抽取公共的切入点表达式
     //该表达式表明MyService类下的所有方法都加上aop功能
-    @Pointcut("execution(public int cn.dhx.boot.aop.study.MyService.*(..))")
+    @Pointcut("execution(public int cn.dhx.boot.aop.study.MyServiceDemo.*(..))")
     public void pointCut() {
     }
 

@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
  * @create 2023/9/1 16:48
  */
 @Slf4j
-public class MyService {
+public class MyServiceDemo {
 
     //除法方法，返回两个数相除的结果
     public int divide(int a, int b){

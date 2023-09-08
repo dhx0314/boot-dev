@@ -22,8 +22,8 @@ public class MyConfig {
 
     //向容器中注册: 业务逻辑类
     @Bean
-    public MyService myService(){
-        return new MyService();
+    public MyServiceDemo myServiceDemo(){
+        return new MyServiceDemo();
     }
 
 }

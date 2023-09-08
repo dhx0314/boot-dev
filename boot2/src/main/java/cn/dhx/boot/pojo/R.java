@@ -1,4 +1,4 @@
-package cn.dhx.boot.entity;
+package cn.dhx.boot.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

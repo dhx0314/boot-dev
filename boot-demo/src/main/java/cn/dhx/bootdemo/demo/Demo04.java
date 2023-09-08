@@ -1,15 +1,16 @@
 package cn.dhx.bootdemo.demo;
 
+import java.util.LinkedHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Demo04 {
 
     public static void main(String[] args) {
-        String filePath="2023/03/24/36541931-25d5-4da0-b12b-ffa455227b1f_1.wav";
-
-        String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
-        String endPath = filePath.substring(0, filePath.lastIndexOf("/"));
-        System.out.println(fileName);
-        System.out.println(endPath);
+        LinkedHashMap<String, String> hashMap = new LinkedHashMap<>();
+        hashMap.put("a", "1");
+        hashMap.put("b", "2");
+        hashMap.put("c", "3");
+        hashMap.put("d", "4");
+        System.out.println(hashMap);
     }
 }

@@ -17,7 +17,7 @@ public class MyTest {
         //通过配置类启动容器
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MyConfig.class);
         //用id取出业务逻辑类的bean
-        MyService myService = (MyService) applicationContext.getBean("myService");
+        MyServiceDemo myService = (MyServiceDemo) applicationContext.getBean("MyServiceDemo");
         //调用此bean的divide方法观察控制台的输出信息,其中传入的参数进行除法运算是正常的
         myService.divide(1, 1);
 
@@ -29,7 +29,7 @@ public class MyTest {
         //通过配置类启动容器
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MyConfig.class);
         //用id取出业务逻辑类的bean
-        MyService myService = (MyService) applicationContext.getBean("myService");
+        MyServiceDemo myService = (MyServiceDemo) applicationContext.getBean("MyServiceDemo");
         //调用此bean的divide方法观察控制台的输出信息,其中传入的分母参数为 0
         try{
             //分母故意传个 0 康康会不会执行切面类的异常通知方法

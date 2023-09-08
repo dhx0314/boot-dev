@@ -1,6 +1,6 @@
 package cn.dhx.boot.util;
 
-import cn.dhx.boot.entity.User;
+import cn.dhx.boot.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -12,7 +12,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
@@ -87,7 +86,7 @@ public class RestTemplateUtil {
 
     public void getForEntity() {
         String url = "http://127.0.0.1:9001/pathVariable/{1}/{2}";
-        String name = "entity";
+        String name = "pojo";
         int age = 20;
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class, name, age);
         String body = responseEntity.getBody();

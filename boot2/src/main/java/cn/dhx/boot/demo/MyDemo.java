@@ -1,6 +1,6 @@
 package cn.dhx.boot.demo;
 
-import cn.dhx.boot.entity.User;
+import cn.dhx.boot.pojo.User;
 import cn.dhx.boot.helper.ExecutorHelper;
 import cn.hutool.cache.Cache;
 import cn.hutool.cache.CacheUtil;

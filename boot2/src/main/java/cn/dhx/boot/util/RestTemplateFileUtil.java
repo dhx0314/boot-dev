@@ -1,8 +1,7 @@
 package cn.dhx.boot.util;
 
-import cn.dhx.boot.entity.User;
+import cn.dhx.boot.pojo.User;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
@@ -14,13 +13,10 @@ import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @Author daihongxin

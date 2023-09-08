@@ -4,12 +4,9 @@ package cn.dhx.boot.controller;
 
 
 import cn.dhx.boot.aop.Log;
-import cn.dhx.boot.entity.User;
+import cn.dhx.boot.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * 参数demo
