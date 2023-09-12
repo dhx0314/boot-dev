@@ -28,9 +28,9 @@ public class DemoController {
     @GetMapping("hi")
     public Object hi() {
         log.info("aa");
-        if (true) {
-            throw new RuntimeException("error info");
-        }
+//        if (true) {
+//            throw new RuntimeException("error info");
+//        }
         return "aa";
     }
 

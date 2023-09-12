@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class MySchedule {
 
 
-    @Scheduled(cron = "${corn.tset:0/10 * * * * ?}")
+//    @Scheduled(cron = "${corn.tset:0/10 * * * * ?}")
     public void start() {
         log.info("=================================");
     }
