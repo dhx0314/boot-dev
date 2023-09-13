@@ -28,9 +28,14 @@ public class DemoController {
     @GetMapping("hi")
     public Object hi() {
         log.info("aa");
-//        if (true) {
-//            throw new RuntimeException("error info");
-//        }
+        return "aa";
+    }
+
+
+    @Log
+    @GetMapping("hello")
+    public Object hello() {
+        log.info("hello");
         return "aa";
     }
 
@@ -42,11 +47,6 @@ public class DemoController {
 
 
 
-    @Log
-    @GetMapping("hello")
-    public Object hello() {
-        log.info("hello");
-        return "aa";
-    }
+
 
 }

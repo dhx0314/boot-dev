@@ -4,6 +4,10 @@ import cn.hutool.http.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+
 /**
  * @Author daihongxin
  * @create 2023/8/23 16:59
@@ -13,12 +17,41 @@ public class Demo2 {
 
     @Test
     public void fun1() {
-        String str = "http://172.16.6.131:9503/record/updaterecord?event=1&agentid=1001&extnum=1001&starttime=2023-08-23 16:58:25&dir=0&caller=1001&called=1003&callid=c6d27b96-f714-4dfd-81ce-c15c666db64b";
-        String post = HttpUtil.post(str, "");
-        log.info("post {}",post);
 
 
-        Thread thread;
-        ThreadLocal<String> stringThreadLocal = new ThreadLocal<>();
+        try {
+            byte[] b_gbk = "中文".getBytes("GBK");
+//            byte[] b_utf8 = "????".getBytes("UTF-8");
+            System.out.println(Arrays.toString(b_gbk));
+
+            String s = new String(b_gbk, "UTF-8");
+            System.out.println(s);
+            System.out.println(Arrays.toString(s.getBytes()));
+//            System.out.println(s.);
+            byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
+            System.out.println(new String(bytes,"GBK"));
+//            System.out.println(Arrays.toString(b_utf8));
+//            byte[] b_iso88591 = "中文".getBytes("ISO8859-1");
+//            System.out.println(Arrays.toString(b_iso88591));
+//            String s_gbk = new String(b_gbk,"GBK");
+//            String s_utf8 = new String(b_utf8,"UTF-8");
+//
+//            String s_iso88591 = new String(b_iso88591,"ISO8859-1");
+//
+//            System.out.println("---"+new String(b_iso88591,"UTF-8"));
+//
+//            System.out.println("GBK 编码的字符串："+ s_gbk);
+//            System.out.println("UTF-8 编码的字符串："+ s_utf8);
+//            System.out.println("ISO8859-1编码的字符串："+ s_iso88591);
+//
+//
+//            String str = "中文";
+//            String s = new String(str.getBytes("ISO-8859-1"), "UTF-8");
+//            System.out.println(s);
+
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 }

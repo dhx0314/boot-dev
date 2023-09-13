@@ -37,4 +37,11 @@ public class MyTransaction {
         userService.insertA();
         userService.insertB();
     }
+
+
+
+
+    public void internalMethodTest() {
+        userService.internalMethod();
+    }
 }
