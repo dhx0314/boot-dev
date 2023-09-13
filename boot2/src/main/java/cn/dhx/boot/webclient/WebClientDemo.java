@@ -1,4 +1,4 @@
-package cn.dhx.bootdemo.webclient;
+package cn.dhx.boot.webclient;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;

@@ -25,7 +25,6 @@
         <module>jvm</module>
         <module>algorithm</module>
         <module>mq</module>
-        <module>boot-demo</module>
         <module>java_se</module>
         <module>sharding-jdbc</module>
         <module>common</module>

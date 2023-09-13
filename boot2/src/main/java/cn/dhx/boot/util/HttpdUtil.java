@@ -1,4 +1,4 @@
-package cn.dhx.bootdemo.httpd;
+package cn.dhx.boot.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Slf4j
 @Service
-public class Upload {
+public class HttpdUtil {
 
     @Autowired
     private RestTemplate restTemplate;

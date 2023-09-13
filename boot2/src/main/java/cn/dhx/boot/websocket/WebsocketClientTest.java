@@ -1,4 +1,4 @@
-package cn.dhx.bootdemo.websocket;
+package cn.dhx.boot.websocket;
 
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.WebSocket;

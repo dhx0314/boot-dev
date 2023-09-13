@@ -1,4 +1,4 @@
-package cn.dhx.bootdemo.websocket;
+package cn.dhx.boot.websocket;
 
 import lombok.Getter;
 import lombok.Setter;
