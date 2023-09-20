@@ -1,13 +1,12 @@
 package cn.dhx.boot.demo;
 
 import cn.dhx.boot.pojo.User;
-import cn.dhx.boot.helper.ExecutorHelper;
 import cn.hutool.cache.Cache;
 import cn.hutool.cache.CacheUtil;
 import cn.hutool.core.lang.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-
+import cn.dhx.boot.util.helper.*;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -24,6 +23,11 @@ public class MyDemo<T> {
     private T a;
 
     public static void main(String[] args) {
+
+        HashMap<Object, Object> map = new HashMap<>(5);
+        map.put("a", "b");
+
+        System.out.println(map.size());
 
         ScheduledFuture<?> scheduledFuture = ExecutorHelper.scheduleWithFixedDelay(() -> {
             log.info("Thread {}", Thread.currentThread().getName());

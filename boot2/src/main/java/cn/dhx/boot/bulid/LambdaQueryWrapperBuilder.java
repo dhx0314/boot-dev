@@ -7,10 +7,7 @@ import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 
 import java.util.Collection;
 
-/**
- * @author zjc
- * @date 2021/2/26 16:38
- */
+
 public class LambdaQueryWrapperBuilder<T> {
     private final LambdaQueryWrapper<T> wrapper = Wrappers.lambdaQuery();
 

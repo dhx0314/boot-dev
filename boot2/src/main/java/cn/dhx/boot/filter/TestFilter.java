@@ -35,7 +35,7 @@ public class TestFilter implements Filter {
         chain.doFilter(request, response);
         log.info("过滤器：开始执行 doFilter 方法。");
         // 请求放行
-        chain.doFilter(request, response);
+//        chain.doFilter(request, response);
         log.info("过滤器：结束执行 doFilter 方法。");
     }
 

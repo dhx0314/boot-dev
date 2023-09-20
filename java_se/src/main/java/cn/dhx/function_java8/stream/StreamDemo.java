@@ -71,6 +71,26 @@ public class StreamDemo {
                 .forEach(System.out::println);
     }
 
+    @Test
+    public void map3() {
+        List<Author> authors = Author.getAuthors();
+        authors.stream()
+                .map(author -> {
+                    author.setAge(author.getAge() * 2);
+                    return author;
+                })
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void map3Peek() {
+        List<Author> authors = Author.getAuthors();
+        authors.stream()
+                .peek(author -> author.setAge(author.getAge() * 2))
+                .forEach(System.out::println);
+    }
+
+
 
     @Test
     public void distinct() {
@@ -329,6 +349,21 @@ public class StreamDemo {
                 .map(age -> age + 10)
                 .filter(age->age>18)
                 .map(age->age+2)
+                .forEach(System.out::println);
+    }
+
+
+    @Test
+    public void sort() {
+        List<Author> authors = Author.getAuthors();
+        authors.forEach(System.out::println);
+        System.out.println("----------------");
+        authors.stream().sorted(Comparator.comparingInt(Author::getAge))
+                .forEach(System.out::println);
+
+        System.out.println("---------------------");
+        // 逆序
+        authors.stream().sorted(Comparator.comparingInt(Author::getAge).reversed())
                 .forEach(System.out::println);
     }
 }
