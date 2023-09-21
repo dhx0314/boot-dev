@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.nio.ByteBuffer;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -25,9 +26,9 @@ public class MyTest2 {
 
     @Test
     public void fun2() {
-        Thread thread = new Thread();
 
-
+        LocalDateTime localDateTime = LocalDateTime.now().minusDays(1).minusDays(1);
+        System.out.println(localDateTime);
     }
 
     @Test

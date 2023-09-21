@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @SpringBootApplication
 @EnableScheduling
-@ServletComponentScan
+//@ServletComponentScan
 public class BootApplication {
 
     public static void main(String[] args) {
