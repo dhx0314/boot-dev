@@ -37,6 +37,9 @@ public interface UserService extends IService<User> {
     public void transactionThread();
 
 
+    void test();
+
+
 
 }
 

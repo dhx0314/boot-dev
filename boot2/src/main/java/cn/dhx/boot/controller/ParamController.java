@@ -9,6 +9,7 @@ import cn.dhx.boot.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -116,6 +117,14 @@ public class ParamController {
         log.info("para "+user.toString());
         User user1 = JsonUtil.toObject(user, User.class);
         log.info(user1.toString());
+
+    }
+
+    @Log
+    @PostMapping("/requestBody/array")
+    public void list2(@RequestBody User[] user) {
+
+        log.info("aa  {}",Arrays.toString(user));
 
     }
 

@@ -135,6 +135,11 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         }).start();
     }
 
+    @Override
+    public void test() {
+        log.info("logback");
+    }
+
 
 }
 
