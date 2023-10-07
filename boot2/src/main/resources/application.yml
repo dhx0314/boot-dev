@@ -9,3 +9,11 @@ minio:
   bucketName: myio
   defaultBucketName: myio
   secure: false
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#logging:
+#  level:
+#    cn.dhx.boot.dao: debug

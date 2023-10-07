@@ -2,8 +2,9 @@ package cn.dhx.boot.controller;
 
 
 import cn.dhx.boot.aop.Log;
+import cn.dhx.boot.dao.UserDao;
+import cn.dhx.boot.entity.User;
 import cn.dhx.boot.pojo.AttrGroupRelationVo;
-import cn.dhx.boot.pojo.User;
 import cn.dhx.boot.service.UserService;
 import cn.dhx.boot.vo.MyVo;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,9 @@ public class DemoController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserDao userDao;
+
     @Log
     @GetMapping("hi")
     public Object hi() {
@@ -51,9 +55,16 @@ public class DemoController {
     }
 
     @PostMapping("test")
-    public Object timeout(@RequestBody String data)  {
-        log.info("timeout {}",data);
+    public Object timeout(@RequestBody String data) {
+        log.info("timeout {}", data);
         return "ok";
+    }
+
+    @GetMapping("user")
+    public Object fun2() {
+        User user = userDao.selectById(1);
+        log.info("user {}", user);
+        return user;
     }
 
 
@@ -84,37 +95,24 @@ public class DemoController {
     }
 
 
-
-
-    public static String ReadAsChars(HttpServletRequest request)
-    {
+    public static String ReadAsChars(HttpServletRequest request) {
 
         BufferedReader br = null;
         StringBuilder sb = new StringBuilder("");
-        try
-        {
+        try {
             br = request.getReader();
             String str;
-            while ((str = br.readLine()) != null)
-            {
+            while ((str = br.readLine()) != null) {
                 sb.append(str);
             }
             br.close();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally
-        {
-            if (null != br)
-            {
-                try
-                {
+        } finally {
+            if (null != br) {
+                try {
                     br.close();
-                }
-                catch (IOException e)
-                {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -137,8 +135,6 @@ public class DemoController {
         }
         return data.toString();
     }
-
-
 
 
 }
