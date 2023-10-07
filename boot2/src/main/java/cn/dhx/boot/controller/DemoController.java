@@ -2,16 +2,14 @@ package cn.dhx.boot.controller;
 
 
 import cn.dhx.boot.aop.Log;
+import cn.dhx.boot.pojo.AttrGroupRelationVo;
 import cn.dhx.boot.pojo.User;
 import cn.dhx.boot.service.UserService;
 import cn.dhx.boot.vo.MyVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -60,12 +59,26 @@ public class DemoController {
 
     @Log
     @PostMapping("/vo/array")
-    public void list2(HttpServletRequest request) {
-        String body = ReadAsChars(request);
-        log.info("body{}",body);
+    public void list2(@RequestBody AttrGroupRelationVo[] vos) {
+
+//        String body = ReadAsChars(request);
+        log.info("body   {}", vos);
 //        log.info("aa  {}", Arrays.toString(myVos));
 
-        userService.test();
+//        userService.test();
+
+
+    }
+
+    @Log
+    @PostMapping("/vo/list")
+    public void list2(@RequestBody List<AttrGroupRelationVo> vos) {
+
+//        String body = ReadAsChars(request);
+        log.info("body   {}", vos);
+//        log.info("aa  {}", Arrays.toString(myVos));
+
+//        userService.test();
 
 
     }
