@@ -31,7 +31,15 @@ public class User extends Model<User> {
 
     private String email;
 
+    public User(Integer id, String userName, Integer age, String phone, String email) {
+        this.id = id;
+        this.userName = userName;
+        this.age = age;
+        this.phone = phone;
+        this.email = email;
+    }
 
-
+    public User() {
+    }
 }
 
