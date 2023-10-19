@@ -221,20 +221,20 @@ public class MinioUtil {
      * @param response   HttpServletResponse对象
      */
 
-    public void downResponse(String bucketName, String objectName, HttpServletResponse response) {
-        try {
-            GetObjectResponse object = minioClient.getObject(GetObjectArgs.builder()
-                    .bucket(bucketName)
-                    .object(objectName)
-                    .build());
-            response.setHeader("Content-Disposition", "attachment;filename=" + objectName.substring(objectName.lastIndexOf("/") + 1));
-            response.setContentType("application/force-download");
-            response.setCharacterEncoding("UTF-8");
-            IOUtils.copy(object, response.getOutputStream());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void downResponse(String bucketName, String objectName, HttpServletResponse response) {
+//        try {
+//            GetObjectResponse object = minioClient.getObject(GetObjectArgs.builder()
+//                    .bucket(bucketName)
+//                    .object(objectName)
+//                    .build());
+//            response.setHeader("Content-Disposition", "attachment;filename=" + objectName.substring(objectName.lastIndexOf("/") + 1));
+//            response.setContentType("application/force-download");
+//            response.setCharacterEncoding("UTF-8");
+//            IOUtils.copy(object, response.getOutputStream());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     /**

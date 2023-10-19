@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Author daihongxin
@@ -14,6 +15,21 @@ import java.util.Arrays;
  */
 @Slf4j
 public class Demo2 {
+
+
+    @Test
+    public void fun2() {
+        ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>();
+        String remove = concurrentHashMap.remove("1123");
+        System.out.println(remove);
+
+
+        String file = "/home/spdb/recorder-config-service/logs/2023-10-19/config-info.20231019-0.log";
+        String substring = file.substring(file.lastIndexOf("/")+1);
+        System.out.println(substring);
+        boolean contains = substring.contains(".log");
+        System.out.println(contains);
+    }
 
     @Test
     public void fun1() {
