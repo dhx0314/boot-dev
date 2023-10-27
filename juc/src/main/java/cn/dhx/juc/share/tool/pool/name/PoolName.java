@@ -26,7 +26,8 @@ public class PoolName {
                 5,
                 TimeUnit.MINUTES,
                 new ArrayBlockingQueue<Runnable>(1000),
-                springThreadFactory); //给线程池中的线程自定义名称
+                springThreadFactory,//给线程池中的线程自定义名称
+                new ThreadPoolExecutor.AbortPolicy());
 
         for (int i = 0; i < 10; i++) {
             threadPool.execute(() -> {

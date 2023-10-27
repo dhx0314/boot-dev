@@ -8,6 +8,8 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @Author daihongxin
@@ -15,6 +17,45 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Slf4j
 public class Demo2 {
+
+     static ReentrantLock reentrantLock = new ReentrantLock();
+
+    @Test
+    public void fun2a() {
+
+        ReentrantLock lock = new ReentrantLock();
+
+
+        for (int j = 0; j <2; j++) {
+            new Thread(()->{
+                for (int i = 0; i < 3; i++) {
+                    new Thread(()->{
+                        fun_lock();
+                    }).start();
+
+                }
+            }).start();
+        }
+
+
+        try {
+            TimeUnit.SECONDS.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void fun_lock() {
+        reentrantLock.lock();
+        log.info("1 {}", Thread.currentThread().getName());
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        reentrantLock.unlock();
+    }
 
 
     @Test
