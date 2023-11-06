@@ -1,5 +1,6 @@
 package cn.dhx.boot.demo;
 
+import cn.dhx.boot.util.JsonUtil;
 import cn.hutool.http.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -7,6 +8,7 @@ import org.junit.Test;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
@@ -19,6 +21,24 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Demo2 {
 
      static ReentrantLock reentrantLock = new ReentrantLock();
+
+
+    @Test
+    public void fun4() {
+
+
+        System.out.println(Boolean.toString(true));
+//        HashMap<String, String> hashMap = new HashMap<>();
+//        hashMap.put("deviceId", "122");
+//        String format = "http://%s/passive-recorder/stream";
+//        String url = String.format(format, "172.16.6.77:8089");
+//        try {
+//            String result = HttpUtil.post(url, JsonUtil.toString(hashMap));
+//            log.info("push result {}", result);
+//        } catch (Exception e) {
+//            log.error("push url  {} callDTO {} error ",url, "callDTO", e);
+//        }
+    }
 
     @Test
     public void fun2a() {

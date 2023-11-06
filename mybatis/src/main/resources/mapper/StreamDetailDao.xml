@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wilcom.rqs.dao.StreamDetailDao">
+
+    <resultMap type="com.wilcom.rqs.entity.StreamDetail" id="StreamDetailMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="ani" column="ani" jdbcType="VARCHAR"/>
+        <result property="dnis" column="dnis" jdbcType="VARCHAR"/>
+        <result property="callDirect" column="call_direct" jdbcType="VARCHAR"/>
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
+        <result property="streamStartTime" column="stream_start_time" jdbcType="TIMESTAMP"/>
+        <result property="streamEndTime" column="stream_end_time" jdbcType="TIMESTAMP"/>
+        <result property="callId" column="call_id" jdbcType="VARCHAR"/>
+        <result property="userRole" column="user_role" jdbcType="VARCHAR"/>
+        <result property="deviceId" column="device_id" jdbcType="VARCHAR"/>
+        <result property="agentId" column="agent_id" jdbcType="VARCHAR"/>
+        <result property="deviceIp" column="device_ip" jdbcType="VARCHAR"/>
+        <result property="contactId" column="contact_id" jdbcType="VARCHAR"/>
+        <result property="sessionId" column="session_id" jdbcType="VARCHAR"/>
+        <result property="sendPackets" column="send_packets" jdbcType="INTEGER"/>
+        <result property="realSendPackets" column="real_send_packets" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="StreamDetailMap">
+        select
+          id, ani, dnis, call_direct, start_time, end_time, stream_start_time, stream_end_time, call_id, user_role, device_id, agent_id, device_ip, contact_id, session_id, send_packets, real_send_packets, create_time
+        from t_stream_detail
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="StreamDetailMap">
+        select
+          id, ani, dnis, call_direct, start_time, end_time, stream_start_time, stream_end_time, call_id, user_role, device_id, agent_id, device_ip, contact_id, session_id, send_packets, real_send_packets, create_time
+        from t_stream_detail
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="ani != null and ani != ''">
+                and ani = #{ani}
+            </if>
+            <if test="dnis != null and dnis != ''">
+                and dnis = #{dnis}
+            </if>
+            <if test="callDirect != null and callDirect != ''">
+                and call_direct = #{callDirect}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="streamStartTime != null">
+                and stream_start_time = #{streamStartTime}
+            </if>
+            <if test="streamEndTime != null">
+                and stream_end_time = #{streamEndTime}
+            </if>
+            <if test="callId != null and callId != ''">
+                and call_id = #{callId}
+            </if>
+            <if test="userRole != null and userRole != ''">
+                and user_role = #{userRole}
+            </if>
+            <if test="deviceId != null and deviceId != ''">
+                and device_id = #{deviceId}
+            </if>
+            <if test="agentId != null and agentId != ''">
+                and agent_id = #{agentId}
+            </if>
+            <if test="deviceIp != null and deviceIp != ''">
+                and device_ip = #{deviceIp}
+            </if>
+            <if test="contactId != null and contactId != ''">
+                and contact_id = #{contactId}
+            </if>
+            <if test="sessionId != null and sessionId != ''">
+                and session_id = #{sessionId}
+            </if>
+            <if test="sendPackets != null">
+                and send_packets = #{sendPackets}
+            </if>
+            <if test="realSendPackets != null">
+                and real_send_packets = #{realSendPackets}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from t_stream_detail
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="ani != null and ani != ''">
+                and ani = #{ani}
+            </if>
+            <if test="dnis != null and dnis != ''">
+                and dnis = #{dnis}
+            </if>
+            <if test="callDirect != null and callDirect != ''">
+                and call_direct = #{callDirect}
+            </if>
+            <if test="startTime != null">
+                and start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="streamStartTime != null">
+                and stream_start_time = #{streamStartTime}
+            </if>
+            <if test="streamEndTime != null">
+                and stream_end_time = #{streamEndTime}
+            </if>
+            <if test="callId != null and callId != ''">
+                and call_id = #{callId}
+            </if>
+            <if test="userRole != null and userRole != ''">
+                and user_role = #{userRole}
+            </if>
+            <if test="deviceId != null and deviceId != ''">
+                and device_id = #{deviceId}
+            </if>
+            <if test="agentId != null and agentId != ''">
+                and agent_id = #{agentId}
+            </if>
+            <if test="deviceIp != null and deviceIp != ''">
+                and device_ip = #{deviceIp}
+            </if>
+            <if test="contactId != null and contactId != ''">
+                and contact_id = #{contactId}
+            </if>
+            <if test="sessionId != null and sessionId != ''">
+                and session_id = #{sessionId}
+            </if>
+            <if test="sendPackets != null">
+                and send_packets = #{sendPackets}
+            </if>
+            <if test="realSendPackets != null">
+                and real_send_packets = #{realSendPackets}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into t_stream_detail(ani, dnis, call_direct, start_time, end_time, stream_start_time, stream_end_time, call_id, user_role, device_id, agent_id, device_ip, contact_id, session_id, send_packets, real_send_packets, create_time)
+        values (#{ani}, #{dnis}, #{callDirect}, #{startTime}, #{endTime}, #{streamStartTime}, #{streamEndTime}, #{callId}, #{userRole}, #{deviceId}, #{agentId}, #{deviceIp}, #{contactId}, #{sessionId}, #{sendPackets}, #{realSendPackets}, #{createTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into t_stream_detail(ani, dnis, call_direct, start_time, end_time, stream_start_time, stream_end_time, call_id, user_role, device_id, agent_id, device_ip, contact_id, session_id, send_packets, real_send_packets, create_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.ani}, #{entity.dnis}, #{entity.callDirect}, #{entity.startTime}, #{entity.endTime}, #{entity.streamStartTime}, #{entity.streamEndTime}, #{entity.callId}, #{entity.userRole}, #{entity.deviceId}, #{entity.agentId}, #{entity.deviceIp}, #{entity.contactId}, #{entity.sessionId}, #{entity.sendPackets}, #{entity.realSendPackets}, #{entity.createTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into t_stream_detail(ani, dnis, call_direct, start_time, end_time, stream_start_time, stream_end_time, call_id, user_role, device_id, agent_id, device_ip, contact_id, session_id, send_packets, real_send_packets, create_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.ani}, #{entity.dnis}, #{entity.callDirect}, #{entity.startTime}, #{entity.endTime}, #{entity.streamStartTime}, #{entity.streamEndTime}, #{entity.callId}, #{entity.userRole}, #{entity.deviceId}, #{entity.agentId}, #{entity.deviceIp}, #{entity.contactId}, #{entity.sessionId}, #{entity.sendPackets}, #{entity.realSendPackets}, #{entity.createTime})
+        </foreach>
+        on duplicate key update
+        ani = values(ani),
+        dnis = values(dnis),
+        call_direct = values(call_direct),
+        start_time = values(start_time),
+        end_time = values(end_time),
+        stream_start_time = values(stream_start_time),
+        stream_end_time = values(stream_end_time),
+        call_id = values(call_id),
+        user_role = values(user_role),
+        device_id = values(device_id),
+        agent_id = values(agent_id),
+        device_ip = values(device_ip),
+        contact_id = values(contact_id),
+        session_id = values(session_id),
+        send_packets = values(send_packets),
+        real_send_packets = values(real_send_packets),
+        create_time = values(create_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update t_stream_detail
+        <set>
+            <if test="ani != null and ani != ''">
+                ani = #{ani},
+            </if>
+            <if test="dnis != null and dnis != ''">
+                dnis = #{dnis},
+            </if>
+            <if test="callDirect != null and callDirect != ''">
+                call_direct = #{callDirect},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="streamStartTime != null">
+                stream_start_time = #{streamStartTime},
+            </if>
+            <if test="streamEndTime != null">
+                stream_end_time = #{streamEndTime},
+            </if>
+            <if test="callId != null and callId != ''">
+                call_id = #{callId},
+            </if>
+            <if test="userRole != null and userRole != ''">
+                user_role = #{userRole},
+            </if>
+            <if test="deviceId != null and deviceId != ''">
+                device_id = #{deviceId},
+            </if>
+            <if test="agentId != null and agentId != ''">
+                agent_id = #{agentId},
+            </if>
+            <if test="deviceIp != null and deviceIp != ''">
+                device_ip = #{deviceIp},
+            </if>
+            <if test="contactId != null and contactId != ''">
+                contact_id = #{contactId},
+            </if>
+            <if test="sessionId != null and sessionId != ''">
+                session_id = #{sessionId},
+            </if>
+            <if test="sendPackets != null">
+                send_packets = #{sendPackets},
+            </if>
+            <if test="realSendPackets != null">
+                real_send_packets = #{realSendPackets},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from t_stream_detail where id = #{id}
+    </delete>
+
+</mapper>
+

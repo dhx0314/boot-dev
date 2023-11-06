@@ -1,8 +1,13 @@
 package cn.dhx;
 
 import cn.dhx.boot.util.DateToolUtil;
+import cn.dhx.boot.util.JsonUtil;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateUtil;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -37,14 +42,16 @@ public class RedisTest {
 
     @Test
     public void fun1() {
-        RLock lock = redissonClient.getLock("lock_10_18");
-        lock.lock();
 
-        try {
-            TimeUnit.SECONDS.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        System.out.println();
+//        RLock lock = redissonClient.getLock("lock_10_18");
+//        lock.lock();
+//
+//        try {
+//            TimeUnit.SECONDS.sleep(100);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Test
@@ -92,6 +99,18 @@ public class RedisTest {
         System.out.println(redisDTO1);
     }
 
+    @Test
+    public void fun4() throws JsonProcessingException {
+        RedisDTO redisDTO = new RedisDTO();
+        redisDTO.setName("aa");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        String s1 = objectMapper.writeValueAsString(redisDTO);
+        HashMap<String, String> hashMap = JsonUtil.toObject(s1, new TypeReference<HashMap<String, String>>() {
+        });
+        redisTemplate.opsForHash().putAll("q", hashMap);
+    }
+
 }
 
 
@@ -99,6 +118,6 @@ public class RedisTest {
 class RedisDTO{
     private String name;
     private String date;
-//    private Date date2;
+    private Long count;
 
 }
